@@ -59,7 +59,9 @@ const POOLS: Record<ModelRole, ModelSpec[]> = {
   prose: [
     { id: "llama-3.3-70b-versatile", provider: "groq", strictJson: false, promptCache: false, supportsReasoningEffort: false, tpm: 12_000 },
     { id: "openai/gpt-oss-120b", provider: "groq", strictJson: true, promptCache: true, supportsReasoningEffort: true, tpm: 8_000 },
-    { id: "deepseek-ai/deepseek-v4-flash", provider: "nim", strictJson: false, promptCache: false, supportsReasoningEffort: false, tpm: 0 },
+    // NVIDIA's shared free workers are removed from this pool entirely: under
+    // load they answer 503 "Worker local total request limit reached", observed
+    // as high as 634/48, so routing prose there only adds latency and noise.
   ],
   triage: [
     { id: "llama-3.1-8b-instant", provider: "groq", strictJson: false, promptCache: false, supportsReasoningEffort: false, tpm: 6_000 },
@@ -69,8 +71,13 @@ const POOLS: Record<ModelRole, ModelSpec[]> = {
 
 /** NVIDIA's free tier is ~40 RPM GLOBAL across all models on a key. */
 const nimThrottle = new Throttle(1_750);
-/** Groq allows 30 RPM per model id; a light gap keeps bursts civil. */
-const groqThrottle = new Throttle(250);
+/**
+ * Groq allows 30 RPM per model id, but the free tier's 12K tokens-per-minute is
+ * the real constraint: bursting a critic loop straight at it produces 429s and
+ * spills work onto NVIDIA's shared workers, which then answer 503. Pacing here
+ * keeps the whole loop on the primary model.
+ */
+const groqThrottle = new Throttle(2_400);
 
 export interface CallUsage {
   model: string;
@@ -419,12 +426,14 @@ export interface ProseOptions {
   userContent: string;
   maxTokens?: number;
   temperature?: number;
+  /** Enforce JSON Object Mode. Guarantees syntax, not schema. */
+  json?: boolean;
 }
 
 export async function writeProse(opts: ProseOptions): Promise<{ text: string; usage: CallUsage }> {
   const { value, hit } = await cached(
     "llm-prose",
-    { p: opts.staticPrefix, u: opts.userContent, t: opts.temperature ?? 0.65 },
+    { p: opts.staticPrefix, u: opts.userContent, t: opts.temperature ?? 0.65, j: opts.json ?? false },
     async () =>
       withPool("prose", async (spec) => {
         const body: Record<string, unknown> = {
@@ -436,6 +445,11 @@ export async function writeProse(opts: ProseOptions): Promise<{ text: string; us
           max_completion_tokens: opts.maxTokens ?? 900,
           temperature: opts.temperature ?? 0.65,
         };
+        if (opts.json) {
+          // JSON Object Mode guarantees parseable syntax. It requires the word
+          // JSON to appear in the prompt, which the writer prefix already does.
+          body.response_format = { type: "json_object" };
+        }
         if (spec.supportsReasoningEffort) {
           body.reasoning_effort = "low";
           body.reasoning_format = "hidden";

@@ -77,3 +77,22 @@ export {
   fmtDateTime,
   daysAgo,
 } from "./format";
+
+/** Frozen outreach artifacts: every draft, and the strategy that constrained it. */
+export interface OutreachArtifact {
+  drafts: Record<string, import("./types").EmailDraft[]>;
+  strategies: Record<string, import("./outreach").MessageStrategy>;
+}
+
+let cachedOutreach: OutreachArtifact | null = null;
+
+export async function loadOutreach(): Promise<OutreachArtifact | null> {
+  if (cachedOutreach) return cachedOutreach;
+  try {
+    const raw = await readFile(join(process.cwd(), "data", "outreach.json"), "utf8");
+    cachedOutreach = JSON.parse(raw) as OutreachArtifact;
+    return cachedOutreach;
+  } catch {
+    return null;
+  }
+}

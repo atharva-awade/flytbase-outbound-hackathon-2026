@@ -135,7 +135,7 @@ const MEETING_ASK_RX =
 
 /** Interest-based asks: permission to send something, not a diary request. */
 const INTEREST_CTA_RX =
-  /\bworth (me )?(sending|sharing)\b|\bwant me to send\b|\bshould i send\b|\bhappy to send\b|\bcan i send\b|\bopen to (seeing|a look)\b|\b(le )?env[íi]o\b|\bquiere que le env[íi]e\b|\b(te|le) mando\b|\bposso enviar\b|\bquer que eu envie\b/i;
+  /worth (me )?(sending|sharing)|want me to send|should i send|happy to send|can i send|shall i send|send (it|that|you) (over|across)|open to (seeing|a look)|autoriza(r|rme)? el env[íi]o|puedo envia(r|rle)|le env[íi]o|enviarle|env[íe]o el|quiere que le env[íi]e|quiere que le comparta|(te|le) mando|le hago llegar|le comparto|puedo comparti(r|rle)|posso enviar|quer que eu envie|podemos enviar|envio um resumo/i;
 
 export function critique(input: CriticInput): CriticVerdict {
   const body = input.body.trim();

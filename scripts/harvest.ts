@@ -51,9 +51,13 @@ import {
   stripTags,
 } from "../src/lib/sources/people";
 import { GRADED_BRIEF, getPack, type VerticalPack } from "../src/lib/verticals";
+import { buildCadence, generateEmail, type MessageStrategy } from "../src/lib/outreach";
+import { hasKey } from "../src/lib/llm";
 import type {
   Account,
   AgentId,
+  CadenceStep,
+  EmailDraft,
   EvidenceRow,
   NullResult,
   Run,
@@ -842,6 +846,81 @@ async function main() {
 
   const ordered = rankAccounts(accounts);
 
+  // Stage 5 — outreach. Runs only where a model key is configured; without one
+  // the strategy is still produced (it is deterministic) and the absence of
+  // copy is recorded rather than filled in by hand.
+  const cadences: Record<string, CadenceStep[]> = {};
+  const allDrafts: Record<string, EmailDraft[]> = {};
+  const strategies: Record<string, MessageStrategy> = {};
+  let accepted = 0;
+  let rejected = 0;
+
+  const modelAvailable = hasKey("groq") || hasKey("nim");
+  emit("message_strategist", "start",
+    modelAvailable
+      ? "Composing outreach for the top accounts."
+      : "No model key configured — producing message strategy only, and recording the absence of copy.",
+  );
+
+  // Work the accounts an AE would actually work: tier A and B, plus the anchor.
+  const outreachTargets = ordered
+    .filter((a) => a.icp.tier === "A" || a.icp.tier === "B" || a.isAnchor)
+    .slice(0, 4);
+
+  for (const account of outreachTargets) {
+    const pickable = account.contacts
+      .filter((c) => c.tier !== "ROLE_TARGET_NO_NAME")
+      .slice(0, 3);
+    const contacts = pickable.length > 0 ? pickable : account.contacts.slice(0, 2);
+    const acceptedByContact = new Map<string, EmailDraft>();
+
+    for (const contact of contacts) {
+      const result = await generateEmail({
+        account,
+        contact,
+        pack,
+        evidence,
+        touch: "first",
+      });
+      strategies[contact.id] = result.strategy;
+      if (result.drafts.length) allDrafts[contact.id] = result.drafts;
+      if (result.accepted) {
+        acceptedByContact.set(contact.id, result.accepted);
+        accepted++;
+        rejected += result.drafts.length - 1;
+        emit("red_team", "note",
+          `${account.displayName} / ${contact.name ?? contact.targetRole}: accepted on iteration ${result.accepted.iteration} with score ${result.accepted.score}.`,
+        );
+      } else {
+        rejected += result.drafts.length;
+        if (result.blocked) {
+          emit("red_team", "note", `${account.displayName} / ${contact.name ?? contact.targetRole}: ${result.blocked}`);
+          noteNull({
+            subject: account.displayName,
+            question: `Could a compliant first-touch message be produced for ${contact.name ?? contact.targetRole}?`,
+            attempts: [
+              {
+                source: "Copywriter then Red Team critic",
+                outcome: result.blocked,
+              },
+            ],
+            interpretation:
+              "The critic is deliberately strict. It would rather emit nothing than emit a message that fails a gate, because a weak message spends the one first impression this account has.",
+            remediation:
+              "Either supply the missing sourced fact the gate requires, or relax the specific gate deliberately and record that decision.",
+            producedBy: "red_team",
+          });
+        }
+      }
+    }
+
+    cadences[account.id] = buildCadence({ account, contacts, accepted: acceptedByContact });
+  }
+
+  emit("sequence_architect", "finish",
+    `Built ${Object.keys(cadences).length} cadence(s); ${accepted} message(s) passed the critic, ${rejected} draft(s) were rejected.`,
+  );
+
   // ── Freeze ─────────────────────────────────────────────────────────────
   const finishedAt = new Date().toISOString();
   const activeSites = ordered.flatMap((a) => a.sites.filter((s) => !s.excluded));
@@ -864,7 +943,7 @@ async function main() {
     accounts: ordered,
     evidence,
     nullResults,
-    cadences: {},
+    cadences,
     briefs: {},
     trace,
     stats: {
@@ -875,8 +954,8 @@ async function main() {
       evidenceRows: Object.keys(evidence).length,
       namedContacts: ordered.flatMap((a) => a.contacts).filter((c) => c.tier !== "ROLE_TARGET_NO_NAME").length,
       roleTargets: ordered.flatMap((a) => a.contacts).filter((c) => c.tier === "ROLE_TARGET_NO_NAME").length,
-      emailsAccepted: 0,
-      emailsRejected: 0,
+      emailsAccepted: accepted,
+      emailsRejected: rejected,
       sourcesFetched,
       languages: [...new Set(Object.values(evidence).map((e) => e.language))],
     },
@@ -893,6 +972,11 @@ async function main() {
     generatedAt: finishedAt,
   };
   await writeFile(join(dir, "harvest-meta.json"), JSON.stringify(meta, null, 2), "utf8");
+  await writeFile(
+    join(dir, "outreach.json"),
+    JSON.stringify({ drafts: allDrafts, strategies }, null, 2),
+    "utf8",
+  );
 
   console.log("\n" + "=".repeat(78));
   console.log(`RUN ${run.id}`);
@@ -908,6 +992,8 @@ async function main() {
   console.log(`  null results           ${run.nullResults.length}`);
   console.log(`  sources fetched        ${run.stats.sourcesFetched}`);
   console.log(`  languages              ${run.stats.languages.join(", ")}`);
+  console.log(`  emails accepted        ${run.stats.emailsAccepted}`);
+  console.log(`  drafts rejected        ${run.stats.emailsRejected}`);
   console.log(`  OSM data timestamps    ${meta.osmDataTimestamps.join(", ") || "n/a"}`);
   console.log("\n  Tier ordering:");
   for (const a of run.accounts) {

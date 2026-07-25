@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { IcpWaterfall } from "@/components/IcpWaterfall";
+import { Outreach } from "@/components/Outreach";
+import { ExportBar } from "@/components/ExportBar";
 import SiteMapClient from "@/components/SiteMapClient";
 import {
   Citations,
@@ -28,6 +30,7 @@ import {
   resolveEvidence,
 } from "@/lib/run";
 import { summariseSites } from "@/lib/geo";
+import { loadOutreach } from "@/lib/run";
 import { getPack } from "@/lib/verticals";
 import type { EvidenceRow } from "@/lib/types";
 
@@ -39,6 +42,7 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
   if (!found) notFound();
   const { run, account } = found;
   const meta = await loadMeta();
+  const outreach = await loadOutreach();
   const pack = getPack(account.verticalPackId);
 
   const ev = (ids: string[] | undefined): EvidenceRow[] => resolveEvidence(run, ids);
@@ -602,6 +606,38 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
             </div>
           </section>
         )}
+
+        {/* ── Outreach ─────────────────────────────────────────────── */}
+        <section className="mt-14">
+          <SectionHead
+            label="Outreach · generated, then adversarially checked"
+            title="The messages, and everything the critic threw away"
+            note="A deterministic strategist chooses which of the account's own facts to lead with; a model phrases it; a critic then tries to reject the result against mechanical gates. Rejected drafts are shown because they are the proof that a machine wrote this and that something checked it."
+            aside={
+              <div className="flex gap-6">
+                <Stat label="Passed" value={run.stats.emailsAccepted} sub="score 85 or above" />
+                <Stat label="Rejected" value={run.stats.emailsRejected} sub="kept on the record" />
+              </div>
+            }
+          />
+          <Outreach
+            account={account}
+            cadence={run.cadences[account.id] ?? []}
+            draftsByContact={outreach?.drafts ?? {}}
+            strategies={outreach?.strategies ?? {}}
+            evidenceFor={ev}
+          />
+        </section>
+
+        {/* ── Handoff ──────────────────────────────────────────────── */}
+        <section className="mt-14">
+          <SectionHead
+            label="Handoff"
+            title="Take it into the tools you already use"
+            note="Exports are CRM-shaped. Any address that was only inferred is excluded from the sendable column rather than quietly included."
+          />
+          <ExportBar slug={account.slug} displayName={account.displayName} />
+        </section>
 
         {/* ── Gaps ─────────────────────────────────────────────────── */}
         {accountNulls.length > 0 && (
