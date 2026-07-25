@@ -211,7 +211,11 @@ export default function LiveGlobe({
       window.removeEventListener("resize", onResize);
       globe?.destroy();
     };
-  }, [markers, arcs, size, fullscreen]);
+  // Deliberately NOT dependent on `fullscreen`: the frame loop reads the live
+  // container width every tick, so the canvas resizes itself. Rebuilding the
+  // globe on a layout change would destroy and re-create a WebGL context for no
+  // reason, and was part of what made full screen unstable.
+  }, [markers, arcs, size]);
 
   useEffect(() => {
     if (!fullscreen) return;
@@ -242,162 +246,183 @@ export default function LiveGlobe({
     drag.current = null;
   }, []);
 
-  const inner = (
+  // ONE stable tree. Full screen changes only the size of the box the canvas
+  // sits in. Returning a different subtree here is what crashed the page
+  // previously: cobe inserts its own wrapper element around the canvas, so when
+  // React reconciled a canvas that had been moved, removeChild threw.
+  return (
     <div
-      className="relative"
-      style={
+      className={cx(
         fullscreen
-          ? { width: "min(84vh, 84vw)", height: "min(84vh, 84vw)" }
-          : { width: "100%", aspectRatio: "1" }
-      }
-      onPointerEnter={() => {
-        paused.current = true;
-      }}
-      onPointerLeave={() => {
-        paused.current = false;
-        endDrag();
-        setHovered(null);
-      }}
+          ? "fixed inset-0 z-[100] flex items-center justify-center bg-[rgba(251,251,250,0.98)] backdrop-blur-sm"
+          : "relative mx-auto",
+      )}
+      style={fullscreen ? undefined : { width: "100%", maxWidth: size }}
     >
-      <canvas
-        ref={canvas}
-        aria-label={`Interactive globe showing ${sites.length} measured industrial sites`}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={endDrag}
-        style={{
-          width: "100%",
-          height: "100%",
-          cursor: "grab",
-          contain: "layout paint size",
-          opacity: ready ? 1 : 0,
-          transition: "opacity 900ms ease",
-          touchAction: "none",
+      {fullscreen && (
+        <div className="absolute left-6 top-5 z-40 max-w-md">
+          <p className="t-label">Measured sites · live view</p>
+          <p className="t-micro mt-0.5">
+            {sites.length} sites · drag to rotate · hover holds the rotation · click a site to open it and draw
+            its link to Pune · Esc to close
+          </p>
+        </div>
+      )}
+
+      <div
+        className="relative"
+        style={
+          fullscreen
+            ? { width: "min(80vh, 80vw)", height: "min(80vh, 80vw)" }
+            : { width: "100%", aspectRatio: "1" }
+        }
+        onPointerEnter={() => {
+          paused.current = true;
         }}
-      />
+        onPointerLeave={() => {
+          paused.current = false;
+          endDrag();
+          setHovered(null);
+        }}
+      >
+        <canvas
+          ref={canvas}
+          aria-label={`Interactive globe showing ${sites.length} measured industrial sites`}
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={endDrag}
+          style={{
+            width: "100%",
+            height: "100%",
+            cursor: "grab",
+            contain: "layout paint size",
+            opacity: ready ? 1 : 0,
+            transition: "opacity 900ms ease",
+            touchAction: "none",
+          }}
+        />
 
-      {/* Interactive overlay, placed from the renderer's own anchors. */}
-      <div className="pointer-events-none absolute inset-0">
-        {Object.entries(placed).map(([id, p]) => {
-          if (!p.visible) return null;
-          if (id === HQ_ID) {
-            return (
-              <span
-                key={id}
-                className="absolute -translate-x-1/2 -translate-y-1/2"
-                style={{ left: `${p.x}%`, top: `${p.y}%` }}
-                title={HQ.label}
-              >
-                <span className="relative block h-3 w-3">
-                  <span
-                    className="absolute inset-0 rounded-full"
-                    style={{
-                      background: "rgba(180,83,10,0.32)",
-                      animation: "globe-pulse 2.1s cubic-bezier(0.36,0.11,0.29,1) infinite",
-                    }}
-                  />
-                  <span className="absolute inset-[26%] rounded-full bg-[var(--color-v-mining)] shadow-[0_0_0_1.5px_rgba(255,255,255,0.95)]" />
+        {/* Interactive overlay, placed from the renderer's own anchors. */}
+        <div className="pointer-events-none absolute inset-0">
+          {Object.entries(placed).map(([id, p]) => {
+            if (!p.visible) return null;
+
+            if (id === HQ_ID) {
+              return (
+                <span
+                  key={id}
+                  className="absolute -translate-x-1/2 -translate-y-1/2"
+                  style={{ left: `${p.x}%`, top: `${p.y}%` }}
+                  title={HQ.label}
+                >
+                  <span className="relative block h-3 w-3">
+                    <span
+                      className="absolute inset-0 rounded-full"
+                      style={{
+                        background: "rgba(180,83,10,0.32)",
+                        animation: "globe-pulse 2.1s cubic-bezier(0.36,0.11,0.29,1) infinite",
+                      }}
+                    />
+                    <span className="absolute inset-[26%] rounded-full bg-[var(--color-v-mining)] shadow-[0_0_0_1.5px_rgba(255,255,255,0.95)]" />
+                  </span>
                 </span>
-              </span>
-            );
-          }
+              );
+            }
 
-          const s = siteById.get(id);
-          if (!s) return null;
-          const isHover = hovered === id;
-          const isLinked = linked === id;
-          const urgent = (s.signalUrgency ?? 0) >= 0.8;
-          const px = 16 + s.weight * 14;
+            const site = siteById.get(id);
+            if (!site) return null;
+            const isHover = hovered === id;
+            const isLinked = linked === id;
+            const urgent = (site.signalUrgency ?? 0) >= 0.8;
+            const px = 16 + site.weight * 14;
 
-          return (
-            <button
-              key={id}
-              type="button"
-              onPointerEnter={() => setHovered(id)}
-              onFocus={() => setHovered(id)}
-              onBlur={() => setHovered(null)}
-              onClick={() => {
-                setLinked(id);
-                onSelect?.(s);
-              }}
-              aria-label={`${s.name}, ${s.areaKm2.toFixed(2)} square kilometres, ${s.accountName}`}
-              className="pointer-events-auto absolute -translate-x-1/2 -translate-y-1/2 rounded-full outline-none"
-              style={{
-                left: `${p.x}%`,
-                top: `${p.y}%`,
-                width: px,
-                height: px,
-                zIndex: isHover ? 30 : 10,
-                cursor: "pointer",
-              }}
-            >
-              {/* Pulse rate carries urgency, so the globe reads as live. */}
-              <span
-                className="absolute inset-0 rounded-full"
-                style={{
-                  background: isLinked
-                    ? "rgba(18,36,95,0.4)"
-                    : urgent
-                      ? "rgba(27,79,216,0.32)"
-                      : "rgba(27,79,216,0.18)",
-                  animation: `globe-pulse ${urgent ? 1.5 : 2.7}s cubic-bezier(0.36,0.11,0.29,1) infinite`,
+            return (
+              <button
+                key={id}
+                type="button"
+                onPointerEnter={() => setHovered(id)}
+                onFocus={() => setHovered(id)}
+                onBlur={() => setHovered(null)}
+                onClick={() => {
+                  setLinked(id);
+                  onSelect?.(site);
                 }}
-              />
-              {isHover && (
-                <span className="absolute inset-[18%] rounded-full ring-2 ring-[var(--color-accent)]" />
-              )}
-            </button>
-          );
-        })}
+                aria-label={`${site.name}, ${site.areaKm2.toFixed(2)} square kilometres, ${site.accountName}`}
+                className="pointer-events-auto absolute -translate-x-1/2 -translate-y-1/2 rounded-full outline-none"
+                style={{
+                  left: `${p.x}%`,
+                  top: `${p.y}%`,
+                  width: px,
+                  height: px,
+                  zIndex: isHover ? 30 : 10,
+                  cursor: "pointer",
+                }}
+              >
+                {/* Pulse rate carries urgency, so the globe reads as live. */}
+                <span
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    background: isLinked
+                      ? "rgba(18,36,95,0.42)"
+                      : urgent
+                        ? "rgba(27,79,216,0.32)"
+                        : "rgba(27,79,216,0.18)",
+                    animation: `globe-pulse ${urgent ? 1.5 : 2.7}s cubic-bezier(0.36,0.11,0.29,1) infinite`,
+                  }}
+                />
+                {isHover && (
+                  <span className="absolute inset-[18%] rounded-full ring-2 ring-[var(--color-accent)]" />
+                )}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Hover card */}
+        {hovered &&
+          placed[hovered]?.visible &&
+          (() => {
+            const site = siteById.get(hovered);
+            const p = placed[hovered];
+            if (!site) return null;
+            const flip = p.y > 62;
+            return (
+              <div
+                className="pointer-events-none absolute z-40 w-56 rounded-[10px] bg-[rgba(255,255,255,0.97)] p-2.5 shadow-[var(--shadow-lift)]"
+                style={{
+                  left: `${Math.min(88, Math.max(12, p.x))}%`,
+                  top: `${p.y}%`,
+                  transform: flip ? "translate(-50%, -118%)" : "translate(-50%, 14px)",
+                }}
+              >
+                <p className="text-[0.82rem] font-[600] leading-tight">{site.name}</p>
+                <p className="t-micro mt-0.5">
+                  {site.accountName} · {site.countryName}
+                </p>
+                <div className="mt-1.5 flex gap-3">
+                  <span className="tnum text-[0.9rem] font-[560]">
+                    {site.areaKm2.toFixed(2)}
+                    <span className="t-micro ml-0.5">km²</span>
+                  </span>
+                  <span className="tnum text-[0.9rem] font-[560]">
+                    {site.perimeterKm.toFixed(1)}
+                    <span className="t-micro ml-0.5">km</span>
+                  </span>
+                </div>
+                {site.signalHeadline && (
+                  <p className="t-micro mt-1.5 border-t border-[var(--color-hair)] pt-1.5">
+                    {site.signalHeadline.slice(0, 110)}
+                  </p>
+                )}
+                <p className="t-micro mt-1.5 opacity-60">click to open · draws the link to Pune</p>
+              </div>
+            );
+          })()}
+
+        {!ready && <div className="shimmer absolute inset-0 rounded-full bg-[var(--color-panel-sunk)]" />}
       </div>
 
-      {/* Hover card */}
-      {hovered &&
-        placed[hovered]?.visible &&
-        (() => {
-          const s = siteById.get(hovered);
-          const p = placed[hovered];
-          if (!s) return null;
-          const flip = p.y > 62;
-          return (
-            <div
-              className="pointer-events-none absolute z-40 w-56 rounded-[10px] bg-[rgba(255,255,255,0.97)] p-2.5 shadow-[var(--shadow-lift)]"
-              style={{
-                left: `${Math.min(88, Math.max(12, p.x))}%`,
-                top: `${p.y}%`,
-                transform: flip ? "translate(-50%, -118%)" : "translate(-50%, 14px)",
-              }}
-            >
-              <p className="text-[0.82rem] font-[600] leading-tight">{s.name}</p>
-              <p className="t-micro mt-0.5">
-                {s.accountName} · {s.countryName}
-              </p>
-              <div className="mt-1.5 flex gap-3">
-                <span className="tnum text-[0.9rem] font-[560]">
-                  {s.areaKm2.toFixed(2)}
-                  <span className="t-micro ml-0.5">km²</span>
-                </span>
-                <span className="tnum text-[0.9rem] font-[560]">
-                  {s.perimeterKm.toFixed(1)}
-                  <span className="t-micro ml-0.5">km</span>
-                </span>
-              </div>
-              {s.signalHeadline && (
-                <p className="t-micro mt-1.5 border-t border-[var(--color-hair)] pt-1.5">
-                  {s.signalHeadline.slice(0, 110)}
-                </p>
-              )}
-              <p className="t-micro mt-1.5 opacity-60">click to open · draws the link to Pune</p>
-            </div>
-          );
-        })()}
-
-      {!ready && <div className="shimmer absolute inset-0 rounded-full bg-[var(--color-panel-sunk)]" />}
-    </div>
-  );
-
-  const chrome = (
-    <>
+      {/* Controls */}
       <div className={cx("absolute z-40 flex gap-1.5", fullscreen ? "right-5 top-5" : "-top-1 right-0")}>
         {linked && (
           <button
@@ -418,6 +443,7 @@ export default function LiveGlobe({
         </button>
       </div>
 
+      {/* Legend */}
       <div
         className={cx(
           "absolute z-30 flex flex-wrap items-center gap-x-3 gap-y-1",
@@ -445,29 +471,6 @@ export default function LiveGlobe({
           100% { transform: scale(1.85); opacity: 0; }
         }
       `}</style>
-    </>
-  );
-
-  if (!fullscreen) {
-    return (
-      <div className="relative mx-auto" style={{ width: "100%", maxWidth: size }}>
-        {inner}
-        {chrome}
-      </div>
-    );
-  }
-
-  return (
-    <div className="fixed inset-0 z-[100] bg-[rgba(251,251,250,0.98)] backdrop-blur-sm">
-      <div className="absolute left-6 top-5 z-40">
-        <p className="t-label">Measured sites · live view</p>
-        <p className="t-micro mt-0.5">
-          {sites.length} sites · drag to rotate · hover holds the rotation · click a site to open it and draw
-          its link to Pune · Esc to close
-        </p>
-      </div>
-      <div className="flex h-full items-center justify-center">{inner}</div>
-      {chrome}
     </div>
   );
 }

@@ -4,6 +4,7 @@ import maplibregl, { type Map as MlMap } from "maplibre-gl";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import type { SiteGeometry } from "@/lib/types";
+import { cx } from "./ui";
 
 /**
  * Satellite imagery for the measured polygons.
@@ -65,6 +66,10 @@ export default function SiteMap({
   const map = useRef<MlMap | null>(null);
   const [ready, setReady] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
+  const [mapError, setMapError] = useState<string | null>(null);
+  // Swapping the basemap removes every source and layer, so the polygon layers
+  // have to be rebuilt afterwards. Bumping this re-runs the layer effect.
+  const [styleEpoch, setStyleEpoch] = useState(0);
 
   const featureCollection = useMemo(
     () => ({
@@ -100,11 +105,43 @@ export default function SiteMap({
     });
     m.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
     m.addControl(new maplibregl.ScaleControl({ maxWidth: 110, unit: "metric" }), "bottom-left");
-    m.on("load", () => {
-      // The container may have been laid out after construction; without this
+    const markReady = () => {
+      // The container is often laid out after construction; without this
       // MapLibre keeps a stale zero size and paints nothing.
       m.resize();
       setReady(true);
+    };
+    m.on("load", markReady);
+    // `load` does not fire again for an already-loaded style, and a map created
+    // inside a modal or a hidden container can finish loading before the
+    // listener attaches. Both are checked rather than trusted.
+    m.on("styledata", () => {
+      if (m.isStyleLoaded()) markReady();
+    });
+    if (m.isStyleLoaded()) markReady();
+    // Last resort: never leave a loading cover over a map that is actually fine.
+    const readyFallback = setTimeout(markReady, 2_500);
+
+    // A tile or style failure would otherwise be an unexplained blank panel.
+    // A keyed provider can also reject a request for reasons that have nothing
+    // to do with this page — a domain-restricted key, an exhausted quota — so the
+    // first failure on a keyed basemap silently falls back to the keyless one
+    // rather than leaving the reviewer with an empty rectangle.
+    let fellBack = false;
+    m.on("error", (e) => {
+      const msg = (e as unknown as { error?: Error }).error?.message ?? "unknown map error";
+      if (maptilerKey && !fellBack) {
+        fellBack = true;
+        try {
+          m.setStyle(basemap(undefined));
+          m.once("styledata", () => setStyleEpoch((n) => n + 1));
+          setMapError(null);
+          return;
+        } catch {
+          /* fall through to reporting it */
+        }
+      }
+      setMapError(msg);
     });
 
     // Keep the canvas in step with its container for the life of the map.
@@ -113,6 +150,7 @@ export default function SiteMap({
 
     map.current = m;
     return () => {
+      clearTimeout(readyFallback);
       ro.disconnect();
       m.remove();
       map.current = null;
@@ -269,48 +307,71 @@ export default function SiteMap({
       );
       m.fitBounds(b, { padding: 44, duration: 700, maxZoom: 14 });
     }
-  }, [ready, featureCollection, onSelect]);
-
-  const shell = (
-    <div
-      className="relative overflow-hidden rounded-[12px]"
-      style={fullscreen ? { height: "100%" } : { height }}
-    >
-      <div ref={holder} className="absolute inset-0" />
-      {!ready && <div className="shimmer absolute inset-0 bg-[var(--color-panel-sunk)]" />}
-
-      {allowFullscreen && (
-        <button
-          type="button"
-          onClick={() => setFullscreen((v) => !v)}
-          className="absolute left-2 top-2 z-20 rounded-[7px] bg-[rgba(255,255,255,0.94)] px-2 py-1.5 text-[0.72rem] font-[520] shadow-[var(--shadow-hair)] transition-shadow hover:shadow-[var(--shadow-panel)]"
-          title={fullscreen ? "Exit full screen (Esc)" : "Full screen"}
-        >
-          {fullscreen ? "✕ Close" : "⤢ Full screen"}
-        </button>
-      )}
-
-      <div className="pointer-events-none absolute bottom-2 right-2 flex flex-col items-end gap-1">
-        <Legend swatch="#19a068" label="operator attributed" />
-        <Legend swatch="#c58a2a" label="proximity inferred" dashed />
-        {focusOsmId && <Legend swatch="#1b4fd8" label="selected site" />}
-      </div>
-    </div>
-  );
-
-  if (!fullscreen) return shell;
+  }, [ready, featureCollection, onSelect, styleEpoch]);
 
   return (
-    <div className="fixed inset-0 z-[100] bg-[rgba(251,251,250,0.98)] p-4 backdrop-blur-sm sm:p-6">
-      <div className="mb-3 flex items-baseline justify-between gap-4">
-        <div>
-          <p className="t-label">Measured geometry · satellite</p>
-          <p className="t-micro mt-0.5">
-            {sites.filter((s) => !s.excluded).length} features · scroll to zoom · drag to pan · Esc to close
-          </p>
+    <div
+      className={cx(
+        fullscreen
+          ? "fixed inset-0 z-[120] flex flex-col gap-3 bg-[rgba(251,251,250,0.98)] p-4 backdrop-blur-sm sm:p-6"
+          : "relative",
+      )}
+    >
+      {fullscreen && (
+        <div className="flex shrink-0 items-baseline justify-between gap-4">
+          <div>
+            <p className="t-label">Measured geometry · satellite</p>
+            <p className="t-micro mt-0.5">
+              {sites.filter((x) => !x.excluded).length} features · scroll to zoom · drag to pan · Esc to close
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* The map container is rendered exactly once and only ever restyled.
+          Returning a different tree for full screen would re-parent this canvas,
+          and MapLibre would be rebuilt into a zero-size box. */}
+      <div
+        className="relative min-h-0 flex-1 overflow-hidden rounded-[12px]"
+        style={fullscreen ? undefined : { height }}
+      >
+        <div ref={holder} className="absolute inset-0" />
+
+        {!ready && !mapError && (
+          <div className="pointer-events-none absolute inset-0 bg-[var(--color-panel-sunk)] opacity-70" />
+        )}
+
+        {mapError && (
+          <div className="absolute inset-0 flex items-center justify-center bg-[var(--color-panel-sunk)] p-6">
+            <div className="max-w-sm text-center">
+              <p className="t-label" style={{ color: "var(--color-conflict)" }}>
+                Imagery unavailable
+              </p>
+              <p className="t-small mt-1.5">
+                The satellite layer did not load: {mapError}. The measured figures below come from the geometry
+                itself and are unaffected — the map is a way to look at them, not their source.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {allowFullscreen && (
+          <button
+            type="button"
+            onClick={() => setFullscreen((v) => !v)}
+            className="absolute left-2 top-2 z-20 rounded-[7px] bg-[rgba(255,255,255,0.94)] px-2 py-1.5 text-[0.72rem] font-[520] shadow-[var(--shadow-hair)] transition-shadow hover:shadow-[var(--shadow-panel)]"
+            title={fullscreen ? "Exit full screen (Esc)" : "Full screen"}
+          >
+            {fullscreen ? "✕ Close" : "⤢ Full screen"}
+          </button>
+        )}
+
+        <div className="pointer-events-none absolute bottom-2 right-2 flex flex-col items-end gap-1">
+          <Legend swatch="#19a068" label="operator attributed" />
+          <Legend swatch="#c58a2a" label="proximity inferred" dashed />
+          {focusOsmId && <Legend swatch="#1b4fd8" label="selected site" />}
         </div>
       </div>
-      <div style={{ height: "calc(100% - 3.5rem)" }}>{shell}</div>
     </div>
   );
 }
