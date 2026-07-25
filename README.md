@@ -1,375 +1,601 @@
-# Aerion
+<div align="center">
 
-**Outbound account and contact generation, grounded in measured ground.**
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:12245f,100:1b4fd8&height=230&section=header&text=Aerion&fontSize=80&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Outbound%20Account%20and%20Contact%20Generation,%20grounded%20in%20measured%20ground&descAlignY=60&descSize=18" width="100%"/>
 
-Live: **https://flytbase-outbound-hackathon-2026.vercel.app**
+<p>
+  <img src="https://img.shields.io/badge/Atharva%20Awade-1b4fd8?style=for-the-badge&logo=github&logoColor=white" />
+  <img src="https://img.shields.io/badge/FlytBase-BDR%20Hackathon%202026-12245f?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Track-Outbound%20Account%20%26%20Contact-0f7a52?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Zero%20fabricated%20facts-enforced%20in%20code-a8442b?style=for-the-badge&logo=shield&logoColor=white" />
+</p>
 
-Aerion takes a campaign brief, a target vertical and a reference account, and produces the account list,
-the buying committee and the outreach a human outbound rep would produce. What makes it different is what it
-stands on. Accounts are not proposed by a language model; they are discovered by measuring real industrial
-sites and reading the operator off the geometry. Every figure in the interface links to the document it came
-from, and the questions the pipeline could not answer are published rather than hidden.
+<p>
+  <img src="https://img.shields.io/badge/Next.js%2016-000000?style=flat-square&logo=nextdotjs&logoColor=white" />
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/Tailwind%20CSS%204-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" />
+  <img src="https://img.shields.io/badge/MapLibre%20GL-295DAA?style=flat-square&logo=maplibre&logoColor=white" />
+  <img src="https://img.shields.io/badge/cobe%20WebGL%20globe-6C5CE7?style=flat-square" />
+  <img src="https://img.shields.io/badge/OpenStreetMap%20Overpass-7EBC6F?style=flat-square&logo=openstreetmap&logoColor=white" />
+  <img src="https://img.shields.io/badge/SEC%20EDGAR-1f4e79?style=flat-square" />
+  <img src="https://img.shields.io/badge/Groq-F55036?style=flat-square&logo=groq&logoColor=white" />
+  <img src="https://img.shields.io/badge/NVIDIA%20NIM-76B900?style=flat-square&logo=nvidia&logoColor=white" />
+  <img src="https://img.shields.io/badge/Supabase-3FCF8E?style=flat-square&logo=supabase&logoColor=white" />
+</p>
+
+<br/>
+
+> ### Every AI prospecting tool writes a beautiful account list. None of them can prove a single line of it.
+> Aerion finds companies by measuring the physical ground they operate on, names people only from the page that
+> names them, and refuses, on screen, wherever a source does not exist. The language model is never allowed to
+> state a fact.
+
+<br/>
+
+<img src="docs/screenshots/landing.png" width="100%" alt="Aerion, outreach grounded in measured ground"/>
+
+</div>
 
 ---
 
-## The problem this is built against
+## Table of Contents
 
-Ask a language model for mining companies in Latin America and you get a list that looks right. Some of it is
-right. Nobody, including the rep who sends the email, can tell which parts. Every downstream claim inherits
-that uncertainty: the pain point, the number in the subject line, the person's name.
-
-So the organising rule is a **trust boundary**. Measuring, counting and scoring are ordinary code, which makes
-them reproducible and checkable by hand. A language model is only allowed to phrase things, and it only ever
-sees facts that already carry a source. That is why a number here can be argued with, and a sentence in an
-email can be traced.
+- [The Problem](#the-problem)
+- [What I Built](#what-i-built)
+- [Run It Locally](#run-it-locally)
+- [A Guided Tour](#a-guided-tour)
+- [The Four Stages of the Brief](#the-four-stages-of-the-brief)
+- [Eleven Critic Gates](#eleven-critic-gates)
+- [The Attribution Ladder](#the-attribution-ladder)
+- [The Revenue Case, and Its Honest Limit](#the-revenue-case-and-its-honest-limit)
+- [Novelties and Feature Highlights](#novelties-and-feature-highlights)
+- [Architecture](#architecture)
+- [Tech Stack](#tech-stack)
+- [Data Model](#data-model)
+- [Vertical Packs](#vertical-packs)
+- [What Went Wrong, and What It Cost](#what-went-wrong-and-what-it-cost)
+- [Honesty Constraints, Enforced in Code](#honesty-constraints-enforced-in-code)
+- [Project Structure](#project-structure)
+- [Author](#author)
 
 ---
 
-## What it produced on the assigned brief
+## The Problem
 
-The brief: large-scale lithium, copper and iron ore mining in Latin America, anchored on SQM, targeting Head
-of Operations / VP HSE / Site Director, with the angle of autonomous inspection replacing contracted crews at
-hazardous 24/7 extraction sites.
+Ask any AI for twenty large lithium mines in Latin America with their heads of operations. You will get a
+beautiful list in four seconds. Some of it is real. Some of it is invented. **You cannot tell which, and neither
+can the person who receives your email.**
 
-| | |
+That is not a prompt-engineering problem. It is structural. A model that has read the internet will produce a
+plausible Chilean mine, a plausible site director and a plausible safety statistic with exactly the same
+confidence, because fluency and truth are not connected inside it.
+
+The hackathon brief makes the stakes explicit: **fabricated data or invented personas are an automatic
+disqualifier.** So the design question was not "how do I make the output better". It was:
+
+> What would make a reviewer believe an account list they have never seen before?
+
+The answer had to be something a model cannot produce. A hole in the ground with coordinates. A filing with a
+date. A disclosure a government compels a company to publish.
+
+---
+
+## What I Built
+
+A deployed system that takes a campaign brief and returns the account list, the buying committee, a research
+brief per account and a personalised email per contact, with a hard line drawn through the middle of it.
+
+```
+Measure  ->  Attribute  ->  Research  ->  Qualify  ->  Write  ->  Attack  ->  Hand off
+OSM       operator tag   filings and   deterministic  model,   eleven     AE brief,
+geometry  name, then     statutory     ICP score,     prose    gates,     CRM export,
+geodesic  proximity      disclosures   sizing, money  only     4 repairs  consented send
+area      ladder         dated events  case
+```
+
+- **Accounts discovered from terrain**, not from a model's memory. 157 features measured, 964.5 km² of footprint.
+- **A four-rung attribution ladder** that labels, per site, how the operator was established.
+- **Risk-factor mining** of each company's own annual filing, including a technology signal made of an absence.
+- **A type-enforced evidence ledger**: an uncited fact is a compile error, not a code review comment.
+- **Deterministic ICP scoring** on published weights, with per-dimension contribution bars.
+- **A revenue case** whose every input is labelled published, derived, or the reader's own to supply.
+- **An adversarial critic** with eleven gates that displays the drafts it rejects.
+- **Live discovery**: name any place and any vertical on earth and watch it measure, then take a discovered
+  operator through contacts, scoring and a critiqued email.
+- **A question box** that answers only from rows the run established, and refuses otherwise.
+- **A null-result register**: every source attempted, what failed, and how I would fix it.
+- **A premium light interface** with a white dotted WebGL globe, satellite maps and real polygons.
+
+---
+
+## Run It Locally
+
+Self-contained. The repository ships a real, timestamped run artifact, so the whole application works with no
+keys at all. Keys unlock the live paths.
+
+```bash
+git clone https://github.com/atharva-awade/flytbase-outbound-hackathon-2026.git
+cd flytbase-outbound-hackathon-2026
+
+pnpm install
+cp .env.example .env.local        # optional, see the table below
+pnpm build                        # runs the prose guard and the attribution tests first
+pnpm start                        # http://localhost:3000
+```
+
+Open **http://localhost:3000**, click **Open the console**, then any account. Click a citation chip and watch a
+real SEC filing open. Then go to **Discover** and measure somewhere nobody chose in advance.
+
+| Variable | What it unlocks | Without it |
+|---|---|---|
+| `GROQ_API_KEY` | Email prose and the question box | Facts render unedited; the absence is recorded |
+| `NVIDIA_API_KEY` | Failover for the above | Groq alone |
+| `SERPER_API_KEY` | Public-profile contact discovery | Statutory and company sources only |
+| `MAPTILER_KEY` | Satellite basemap | Falls back to keyless Esri World Imagery |
+| `GMAIL_USER` + `GMAIL_APP_PASSWORD` | Real send to an address you type | The UI says no mailbox is configured |
+| `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` | Persisting live discoveries | Local file driver, or an honest "not persisted" |
+
+To regenerate the run from live sources:
+
+```bash
+pnpm harvest                      # writes data/run-latest.json and data/outreach.json
+pnpm test:employer                # 9 assertions on the contact attribution guard
+pnpm lint:dashes                  # fails if a prose tell reached anything we wrote
+```
+
+---
+
+## A Guided Tour
+
+### The thought process, before the code
+
+Colour coded by trust: green is measured by ordinary code and reproducible by hand, purple is the only place a
+language model is allowed, amber is a decision, and red is the system refusing to do something rather than
+filling a gap with something plausible. Served from the deployment at **`/mindmap.html`**.
+
+<p align="center">
+  <img src="docs/screenshots/mindmap.png" width="49%" alt="The thought process, colour coded by trust"/>
+  <img src="docs/screenshots/mindmap-desks.png" width="49%" alt="Nineteen agents across six desks"/>
+</p>
+
+The same organisation is live at **`/how-it-thinks`**, animated against the recorded run, where each specialist
+opens to show its plain-language job, the tools it called, its raw output and its latency. Including the one that
+rejects work and hands it back.
+
+<p align="center">
+  <img src="docs/screenshots/how-it-thinks.png" width="100%" alt="The agent organisation, animated against the real run"/>
+</p>
+
+### Ask the run a question, and watch it refuse
+
+Retrieval is deterministic code that runs before the model is called, so the model has nothing else to draw on.
+Ask who runs Chuquicamata and it names the officer with the statutory disclosure behind it. Ask about oil rigs in
+the North Sea and it refuses, then offers to go and measure the North Sea.
+
+<p align="center">
+  <img src="docs/screenshots/console-ask.png" width="100%" alt="The question box, answering only from established rows"/>
+</p>
+
+### Measured ground, on satellite imagery
+
+Not a logo and a company description. The actual polygon, with its area computed geodesically from the returned
+boundary, and an attribution split that tells you which figure is defensible in a first conversation.
+
+<p align="center">
+  <img src="docs/screenshots/account-map.png" width="100%" alt="Real satellite imagery with the measured polygon and its footprint"/>
+</p>
+
+### The money case, with every figure labelled
+
+Three kinds of number, and the labels are the point. Published with a source. Computed from measured ground.
+Or the reader's own to supply, marked unsourced everywhere it appears.
+
+<p align="center">
+  <img src="docs/screenshots/account-revenue.png" width="100%" alt="The revenue case with three-way provenance labelling"/>
+</p>
+
+### The buying committee, and the outreach that came from it
+
+Real names with their exact titles quoted in the language they were published in, LinkedIn where findable, and
+the seats that answer the brief's three named roles marked. Then the email, composed natively in Spanish or
+Portuguese, followed by the drafts the critic threw away.
+
+<p align="center">
+  <img src="docs/screenshots/account-contacts.png" width="49%" alt="Named contacts with verbatim titles and provenance tiers"/>
+  <img src="docs/screenshots/account-outreach.png" width="49%" alt="Generated email and the rejected drafts"/>
+</p>
+
+### Live discovery, on ground nobody chose in advance
+
+The answer to the only question a frozen result cannot address. Name a place and a vertical, watch it resolve,
+measure and attribute, then take one operator all the way to a critiqued email.
+
+<p align="center">
+  <img src="docs/screenshots/discover.png" width="49%" alt="Live discovery, any place and any vertical"/>
+  <img src="docs/screenshots/discover-results.png" width="49%" alt="Measured results with a money case per operator"/>
+</p>
+
+### The evidence ledger, and the register of failures
+
+Every fact, its source, its verbatim snippet and its confidence. Alongside it, the gaps: what was attempted,
+what failed, and what would close it.
+
+<p align="center">
+  <img src="docs/screenshots/evidence.png" width="49%" alt="The evidence ledger"/>
+  <img src="docs/screenshots/generality.png" width="49%" alt="A second vertical pack run end to end"/>
+</p>
+
+---
+
+## The Four Stages of the Brief
+
+| Stage | What the brief asks | How this answers it |
+|---|---|---|
+| **1 Account identification** | Companies of similar scale, operations and geography to the reference account, with ICP reasoning against verifiable signals | Every account is a measured footprint with an operator read off the map. A fabricated company is structurally impossible. Scoring is ten weighted dimensions of visible arithmetic |
+| **2 Contact discovery** | Role, seniority, name, LinkedIn or email where findable, aligned to Head of Operations, VP of HSE or Site Director | 66 named contacts, 31 carrying a LinkedIn profile, each with the page that names them and a provenance tier. The seats matching the brief's roles are marked. Where nobody is findable, the seat renders with no name and a playbook |
+| **3 Account research** | Recent news, operational footprint, signals of technology investment or expansion, connected to the FlytBase angle | Footprint measured. Events dated and cited. Technology signals read from the filing, including SQM's own filing never using the words drone, autonomous or automation while citing contractors 27 times |
+| **4 Personalised email** | Specific to the contact and company, reflecting Stage 3, human, referencing FlytBase's real customer base | Composed natively in Spanish or Portuguese from that account's own facts. All 6 accepted emails name Anglo American as a peer, enforced by a gate whose second half forbids attributing any figure to the wrong customer |
+
+---
+
+## Eleven Critic Gates
+
+The writer produces a draft. This tries to destroy it, and the rejects are displayed
+(`src/lib/critic.ts`). Threshold 85 out of 100, up to four repairs, each told exactly which gate failed.
+
+| # | Gate | Why it exists |
+|---|---|---|
+| G1 | No placeholder token | `{first_name}` is mail merge, not personalisation, and the brief disqualifies it |
+| G2 | No banned phrasing, zero em dashes | The clearest signatures of generated prose |
+| G3 | Length and sentence discipline | 55 to 95 words replies at 9.7 per cent against 1.9 for 200-plus |
+| G4 | At least two cited specifics | One is an anecdote, two is research |
+| G5 | Exactly one interest-based ask | Interest-based CTAs reply at 12 per cent against 7 for a meeting ask |
+| G6 | Readability on the right scale | Fernandez-Huerta for Spanish and Portuguese, not Flesch-Kincaid |
+| G7 | Reader-centred and signed | Second person must outweigh first |
+| G8 | **Every numeral traceable** | Added after a draft invented "27 incidentes de seguridad" from a mention count |
+| G9 | **Account name spelled correctly** | Added after a draft wrote "Codelgo" |
+| G10 | **One language throughout** | Added after English was pasted into Spanish copy |
+| G11 | **Peer named, figures correctly attributed** | The brief asks for FlytBase's customers. The second half stops SQM's results being credited to Anglo American |
+
+---
+
+## The Attribution Ladder
+
+OpenStreetMap gives an operator string, not a corporate identity. The rung used is labelled per site, and
+proximity-inferred ground is drawn dashed and totalled separately from tagged ground.
+
+| Rung | Method | Strength |
+|---|---|---|
+| 1 | `operator` tag on the feature | The strong claim |
+| 2 | Site name matches the company | Strong |
+| 3 | Untagged feature inside a confirmed footprint | Inferred, drawn dashed, counted apart |
+| 4 | Unattributed | Counted and reported, never assigned |
+
+**Example, live on the SQM account page:** 547 km² across 46 features carries an explicit operator or name match.
+A further 1.01 km² across 3 untagged adjacent features is dashed. The page tells you to quote the smaller figure
+in a first conversation.
+
+---
+
+## The Revenue Case, and Its Honest Limit
+
+Programme sizing answers how many docks, which is an engineering answer. Nobody books a call about a drone
+platform, so each account also carries the argument its recipient is measured on (`src/lib/revenue.ts`).
+
+| Kind | Meaning | Example |
+|---|---|---|
+| **Published** | Somebody published it, source linked | FlytBase's own USD 70,000 to 80,000 phase one figure |
+| **Derived** | Arithmetic on measured ground, reproducible by hand | 6,441 crew-days a year, 10 to 28 docks |
+| **Operator's own** | Nobody publishes it. Marked unsourced everywhere | Contracted crew day rate, value of an hour of downtime |
+
+**Generated copy may never assert an operator-supplied figure**, and the writer is never given them.
+
+Two presentation rules exist because the first version broke both. A payback that rounds to zero months now reads
+"under a fortnight", because an obviously broken figure costs more trust than a modest one earns. And the quoted
+case uses the geometric mean of each band rather than its edges, because multiplying the extremes of several
+independent wide bands produced "minus 652 thousand to 147 million dollars" and a return of "0.71 to 211 times".
+Both ends were arithmetically true and the pair said nothing. The full span stays on the page, labelled as a span.
+
+---
+
+## Novelties and Feature Highlights
+
+| Feature | What it does |
 |---|---|
-| Operators observed from mapped geometry | **127** |
-| Resolved to corporate identities | **12** accounts |
-| Sites measured and individually citable | **157** |
-| Mapped footprint, computed geodesically | **964 km²** |
-| Evidence rows, each with a source URL and verbatim snippet | **158** |
-| Named contacts, none invented | **55** |
-| Role targets where no individual could be sourced | **6** |
-| Messages that passed the critic, after 1 was rejected | **5** |
-| Questions the pipeline could not answer, published | **11** |
-| Languages read and written | **en · es-CL · pt-BR** |
-
-Numbers move between runs because the sources are live. These come from the run frozen in
-[`data/run-latest.json`](data/run-latest.json), and every page states which run it is showing and when that
-run executed.
-
----
-
-## Six things that cannot be faked
-
-**1 · Accounts are discovered from terrain, not memory.** Every mapped extraction site in the target
-geographies is measured and the operator is read off the `operator` tag. A hallucinated account is
-structurally impossible: if a company appears, someone mapped its pit and we measured it. Operators that could
-not be resolved to a corporate identity are excluded and listed rather than assigned a guessed parent.
-
-**2 · Footprint is measured, not estimated.** Area and perimeter are computed geodesically from each polygon's
-coordinates. Rajo Escondida comes out at 9.811 km² and Mina Chuquicamata at 9.744 km², both agreeing with
-published pit dimensions. Figures are labelled *mapped footprint* throughout, because a digitised pit outline
-is not a lease boundary and calling it one would be wrong.
-
-**3 · The angle comes from the prospect's own words.** A deterministic scan of each company's annual filing
-counts and quotes its contractor and hazard language. SQM's own 20-F names contractor safety incidents and
-contractor work stoppages as risks to production, refers to contractors thirty times, and mentions drones or
-autonomy zero times. That is the pitch, stated by the buyer, quotable verbatim.
-
-**4 · Qualification is arithmetic.** Ten weighted dimensions with published weights, and per-dimension
-contributions rendered so they visibly sum to the total. No model opinion enters the score. A dimension with
-no evidence contributes zero rather than an estimate, and says so on screen.
-
-**5 · Real names or none at all.** A person appears only if their name and verbatim title were read from a
-page we fetched. Where nobody could be found the role is targeted instead, with a documented way to find the
-individual. Derived addresses are labelled inferred and excluded from the sendable column of every export,
-because a guessed address in a CRM becomes a real send later by someone who never saw the warning.
-
-**6 · The critic rejects work.** A deterministic Red Team scores each draft against ten mechanical gates and
-returns it until it passes. Rejected drafts are kept and displayed, simultaneously the proof that a machine
-wrote the copy and the proof that something adversarial checked it before a prospect would have seen it.
+| **Terrain-grounded discovery** | Accounts come from measured polygons, so a hallucinated company cannot enter the list |
+| **Type-enforced citations** | `Cited<T>` makes an uncited fact a compile error. The ledger is not a convention, it is the type system |
+| **Technology signal from an absence** | Zero mentions of drone, autonomous or automation in a filing that cites contractors 27 times is the company saying this is greenfield, in a document its lawyers signed |
+| **Contact provenance tiers** | Statutory disclosure, company page, public profile, or explicitly no name found. A tier-3 record beats a plausible invention and the UI says so |
+| **Adversarial critic with visible rejects** | Eleven gates, four repairs, and the failures on screen. Proof the machine wrote it, and proof of the quality bar |
+| **Conflict reconciliation** | FlytBase says 678 km², we measure 238 km². Both shown, both explained, trust order stated |
+| **Live discovery anywhere** | Any place, any vertical, measured during the request, including the honest negatives |
+| **Grounded question box** | Deterministic retrieval before the model, capped at three facts per kind, refuses what it has not measured |
+| **Live re-run with SSE trace** | Re-executes one account against live sources and streams every query, URL and conclusion |
+| **Null-result register** | Every wall the pipeline hit, with remediation. The brief asked; almost nobody complies |
+| **Prose-tell build guard** | The build fails on an em dash in anything we wrote, exempting real quotations by field name |
+| **Premium light interface** | White dotted WebGL globe with account-level marks, satellite maps, real polygons, nested overlays that hand Escape to the top layer only |
 
 ---
 
 ## Architecture
 
-Nineteen specialists across five desks, arranged the way an outbound team is, under an orchestrator that
-writes the plan before any work begins. The plan is stored with the run, so the division of labour is
-inspectable rather than asserted. **/how-it-thinks** on the live site animates the recorded run and lets each
-specialist be opened to see what it actually did.
+```mermaid
+flowchart LR
+  subgraph Inputs["Inputs"]
+    BRIEF["Campaign brief<br/>vertical, anchor, roles, angle"]
+    LIVE["Live discovery<br/>any place, any vertical"]
+  end
 
+  subgraph Research["Research desk"]
+    OSM["Overpass geometry<br/>geodesic area"]
+    LADDER["Attribution ladder"]
+    SEC["SEC EDGAR<br/>risk-factor mining"]
+    STAT["Statutory disclosures<br/>Ley 20.285"]
+    SERP["Public profiles<br/>SERP title as evidence"]
+  end
+
+  subgraph Qual["Qualification desk"]
+    XVER["Cross-verification<br/>conflicts surfaced"]
+    ICP["ICP scorer<br/>ten published weights"]
+    SIZE["Opportunity sizing"]
+    MONEY["Revenue case<br/>three-way provenance"]
+  end
+
+  subgraph Out["Outreach desk"]
+    STRAT["Message strategist<br/>angle, peer, language"]
+    WRITE["Copywriter<br/>the only model call"]
+    CRIT["Red Team critic<br/>eleven gates"]
+    CAD["Sequence architect"]
+  end
+
+  subgraph Hand["Handoff"]
+    AE["AE brief"]
+    EXP["CRM export"]
+    SEND["Consented send"]
+    STORE["Supabase"]
+  end
+
+  BRIEF --> OSM
+  LIVE --> OSM
+  OSM --> LADDER --> SEC
+  LADDER --> STAT --> SERP
+  SEC --> XVER --> ICP --> SIZE --> MONEY
+  SERP --> STRAT
+  MONEY --> STRAT --> WRITE --> CRIT
+  CRIT -- rejected --> WRITE
+  CRIT -- accepted --> CAD --> AE --> EXP --> SEND
+  MONEY --> STORE
 ```
-Campaign brief
-      │
-      ▼
-Chief of Staff ── writes the run plan, delegates, merges, resolves conflicts
-      │
-      ├─ Research desk       Anchor Analyst · Universe Scout · Terrain Surveyor
-      │                      Filings Analyst · Signals Desk · Regulatory Analyst
-      │
-      ├─ Qualification desk  Cross-Verification Officer · ICP Scorer
-      │                      Opportunity Engineer
-      │
-      ├─ Contact desk        Org Cartographer · People Finder · Reachability Analyst
-      │
-      ├─ Outreach desk       Message Strategist · Copywriter · Red Team · Sequence Architect
-      │
-      └─ Handoff desk        AE Briefer · Exporter
-                │
-                ▼
-      Evidence ledger  ·  Null-result register
-```
 
-**Deterministic, no model involved**. Universe Scout, ICP Scorer, Opportunity Engineer, Red Team critic,
-Sequence Architect, Cross-Verification Officer, Message Strategist, Exporter.
-**Model, prose only**. Copywriter, AE Briefer.
-**Fetches from a named source**. Terrain Surveyor, Filings Analyst, People Finder, Signals Desk, Regulatory
-Analyst, Reachability Analyst.
-
-### Opportunity sizing
-
-The piece that turns "here is a company" into "here is the size of the programme":
-
-```
-measured area + perimeter        (OpenStreetMap, cited, km²)
-  × inspection cadence           (operating band; a regulatory floor only where the instrument was fetched)
-  ÷ dock coverage behaviour      (radius and efficiency, stated as assumptions)
-  = docks required, missions/month, flight hours, contracted crew-days displaced
-```
-
-Every input is a labelled assumption with a stated basis, and outputs are ranges. A single confident number
-derived from assumptions is false precision, and false precision is how a good pitch dies under questioning.
-Phase one is modelled as one dock on the highest-value cluster, because that is how the published reference
-deployment actually began.
+**The trust boundary runs through the middle of this diagram.** Everything in Research and Qualification is
+ordinary code fetching named sources and doing arithmetic. Exactly one node, the Copywriter, is a language model,
+and it receives a numbered list of already-sourced facts and is told it has no other knowledge.
 
 ---
 
-## Vertical packs
+## Tech Stack
 
-A pack is data, not code: the tag signatures that find the asset in the physical world, the local job titles
-that find the people, the regulatory instruments that force the inspection, and the weights that matter for
-that industry. The same agent graph runs any of them.
+<table>
+<tr>
+<td valign="top" width="50%">
 
-To prove that rather than claim it, a second pack was executed end to end. **/generality** shows both runs
-side by side with a table of exactly what differed, all of it pack data.
+### Data and Reasoning
+| Layer | Technology |
+|---|---|
+| Geometry | OpenStreetMap Overpass, mirror-rotated |
+| Area and perimeter | Spherical excess, haversine |
+| Geocoding | Nominatim, throttled and cached |
+| Filings | SEC EDGAR full-text and submissions |
+| People | Statutory rosters, company pages, Serper |
+| Models | Groq, NVIDIA NIM failover |
+| Scoring | Deterministic, no model in the path |
+| Persistence | Supabase REST, local file driver |
+| Email | nodemailer over Gmail SMTP |
 
-| Pack | Status | Anchor |
+</td>
+<td valign="top" width="50%">
+
+### Interface and Experience
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 16 App Router, TypeScript |
+| Styling | Tailwind CSS 4, bespoke light token set |
+| Maps | MapLibre GL, MapTiler with Esri fallback |
+| Globe | cobe, WebGL, account-level marks |
+| Motion | Framer Motion |
+| Live | Route Handler SSE, heartbeat, no buffering |
+| Verification | Playwright, every route at two widths |
+| Guards | Prebuild prose and attribution tests |
+
+</td>
+</tr>
+</table>
+
+---
+
+## Data Model
+
+Typed in `src/lib/types.ts`, and the types are the enforcement mechanism.
+
+- **`EvidenceRow`** the atom: claim, value, unit, source URL, source class, fetch time, verbatim snippet,
+  language, translation, confidence, attribution method, producing agent.
+- **`Cited<T>`** a value that cannot exist without evidence ids. An uncited fact does not compile.
+- **`SiteGeometry`** OSM id, raw tags, closed ring, centroid, area, perimeter, asset class, attribution method,
+  exclusion reason.
+- **`Account`** identity, commodities, working language, sites, ICP score, signals, anchor comparison, contacts,
+  sizing, risk scan.
+- **`Contact`** provenance tier, verbatim title, English gloss, seniority, buying role, LinkedIn, email with
+  observed or inferred status, and a finding playbook where there is no name.
+- **`IcpScore`** total, tier, per-dimension raw, weight and contribution, plus stated disqualifiers.
+- **`EmailDraft`** subject, body, language, model, iteration, gate results, cited facts, accepted flag.
+- **`NullResult`** subject, question, every source attempted with its outcome, interpretation, remediation.
+- **`RevenueCase`** inputs classed published, derived or operator, a central case, the full span, derivation
+  lines and caveats.
+
+---
+
+## Vertical Packs
+
+A pack is data, not code. The same engine runs any of them, and a second was run end to end with nothing in the
+code changed between them, which the **`/generality`** page shows side by side.
+
+| Pack | OSM signature | Observed operator-tag coverage |
 |---|---|---|
-| Mining & extraction | **run**, the assigned brief | SQM |
-| Solar generation | **run**, 322 operators observed, 2,182 features measured | Atacama Generación |
-| Oil & gas · Ports · Rail · Electric transmission | defined, signatures probed against live data | Shell · Hutchison · CSX · Statnett |
+| **Mining** (graded) | `landuse=quarry`, `salt_pond`, `industrial` with `resource` | Northern Chile: 159 polygons, 80 tagged |
+| Solar | `power=plant` with `plant:source=solar` | Atacama 88 per cent, Rajasthan close to zero |
+| Oil and gas | `industrial~oil\|gas\|refinery`, `offshore_platform` | Permian: 14,798 polygons, 4 tagged |
+| Ports | `landuse=harbour`, `industrial=port` | Tagged at the terminal, not the port |
+| Rail | `landuse=railway`, `railway=yard` | Name-rich, tag-poor |
+| Grid | `power=substation`, `power=line` | Sparse |
 
-Packs that have not been executed are listed as *defined*, because a pack that has not run is a claim rather
-than a result.
-
----
-
-## Data sources
-
-Public, and most of it needs no credentials at all.
-
-| Source | Used for | Auth |
-|---|---|---|
-| OpenStreetMap Overpass | Site geometry, operator attribution, measured area | none |
-| SEC EDGAR (full-text + submissions) | Primary filings, risk-factor mining | descriptive User-Agent |
-| Chile Ley 20.285 transparency disclosures | Named officers, appointment dates, interim status | none |
-| Company leadership pages | Named executives | none |
-| Public professional profiles via search | The operations and HSE tier company pages omit | search API key |
-| Live DNS (MX records) | Mail infrastructure, as evidence of stack | none |
-| Satellite imagery | Verifying the polygons visually | none, or MapTiler when keyed |
-
-Measured footprints come from OpenStreetMap, © OpenStreetMap contributors, under the Open Database Licence.
+Coverage varies by more than two orders of magnitude between regions, which is exactly why the attribution ladder
+exists and why the rung is labelled per site rather than assumed.
 
 ---
 
-## Running it
+## What Went Wrong, and What It Cost
 
-```bash
-pnpm install
-pnpm harvest          # executes the assigned brief against live sources
-pnpm harvest solar    # executes a different vertical pack through the same graph
-pnpm dev
-```
+The brief asks to be shown the failures. These are real, and each one changed the code.
 
-Terrain, primary filings and statutory officer discovery need **no API keys**. Model keys add the outreach
-copy; without them the message strategy is still produced (it is deterministic) and the absence of copy is
-recorded rather than filled in by hand.
+### The emails that invented numbers
 
-| Variable | Needed for | Without it |
-|---|---|---|
-| `GROQ_API_KEY` | Outreach copy | Strategy still produced, no email written |
-| `NVIDIA_API_KEY` | Failover | Groq used alone |
-| `SERPER_API_KEY` | Public-profile discovery | Statutory and company sources only |
-| `MAPTILER_KEY` | Sharper satellite tiles | Esri World Imagery, no key needed |
-| `GMAIL_USER`, `GMAIL_APP_PASSWORD` | Consent-first send | Exports work; send reports it is unconfigured |
+A draft claimed **"27 incidentes de seguridad"**. No such number exists anywhere. The model had turned "the word
+safety appears 27 times in the filing" into 27 incidents. Another said the customer was **"ahorrando 70k"**,
+saving 70 thousand, when the real figure is what they **spent**. A third wrote **"Codelgo"**.
 
----
+All three passed the original gates, because those gates checked that facts were *cited*, not that the paraphrase
+was *faithful*. That distinction is the most useful thing this project taught me.
 
-## What went wrong, and what it cost
+**Fixed:** counts are withheld from the writer entirely, quotable outcomes are a fixed closed list, and gates G8
+and G9 check every numeral against the permitted set and the account name against its real spelling.
 
-Kept because these failures shaped the design more than the successes did.
+### The bug that appeared three times
 
-**Footprints were overstated by nearly two to one.** Region bounding boxes overlap deliberately so no operator
-falls between them, but features inside an overlap were counted once per query. SQM read 1,025 km² against an
-actual 548 km². Fixed by deduplicating on OSM id and recomputing operator totals from the deduplicated set.
+A length filter kept silently discarding company names shorter than four characters, which is exactly the shape
+of **SQM**, the anchor account of this brief.
 
-**A truncated response poisoned the cache and dropped the anchor account.** Overpass answered HTTP 200 with a
-partial element set, that got cached, and every later run reused it. SQM vanished from its own campaign. The
-cache now refuses to serve an empty geometry result and re-fetches instead.
+It first cost the anchor its measured sites in the terrain attribution normaliser. It reappeared in the operator
+merge for live discovery. And it appeared a third time in the contact attribution check, where the name was
+thrown away before any test ran, so a live search found **28 genuine profiles and rejected all 28** for "company
+not named as the employer" while checking against a name that no longer existed.
 
-**A quarry-only query cannot find SQM at all.** The anchor is tagged `landuse=industrial` with
-`industrial=solution_mine`, not `landuse=quarry`. Found while investigating why the reference account had no
-sites. The mining pack now unions quarry with resource-tagged industrial features.
+Writing a test for it exposed a second fault underneath: stripping the legal form from `SQM S.A.` leaves
+`sqm .`, because the word boundary after the final `a` stops the match before the closing dot, and the remnant
+poisoned the employer pattern. Multi-word names survived on their token pairs, which is why the failure looked
+selective rather than systemic.
 
-**Compound tag filters were silently discarding sites.** Two bracket groups in one filter string matched none
-of the classifier's anchored patterns, so brine ponds and tailings basins were fetched and then dropped. The
-query was correct; only classification failed, which is the hardest kind of bug to notice.
+**Fixed:** both are asserted in `scripts/test-employer-match.ts`, which runs before every build and checks the
+guard in both directions. `SQM` must match when it follows an employer preposition, and a person surnamed Vale
+must still not be attributed to Vale S.A. on a surname. Recovering it took named contacts from 55 to 66.
 
-**Public-profile search attributed real people to the wrong employer.** A person surnamed Vale was matched to
-Vale S.A.; a Codelco operations manager was attributed to Sierra Gorda. Both are worse than returning no name.
-Single-token company names must now appear after an employer preposition, any profile naming a different
-operator in the run is discarded, and a leadership rank is required rather than a domain keyword. The rules
-are unit-tested against those exact cases.
+### The map that was invisible
 
-**The writer fabricated numbers by restating facts it was given.** Handed "refers to contractors 30
-times", it wrote "27 safety incidents cited". Handed a total system investment of USD 70–80k, it wrote
-"saving over 70k". It also misspelled a company name in the body. All three passed the original gates, because
-those checked that facts were *cited*, not that the paraphrase was *faithful*, the most dangerous gap in the
-whole system, since every claim looked sourced. Fixed three ways: mention counts are now withheld from the
-writer entirely (a frequency is a scoring signal, not a claim), reference-customer outcomes are supplied as a
-fixed set of quotable phrasings that may not be restated, and two gates were added, every numeral in a draft
-must trace to a supplied fact, and the account name must be spelled correctly. Acceptance dropped from six
-messages to three before the remaining gate was added, which is the correct trade.
+Reported three times and wrong twice by me before I used a real browser. Playwright showed
+`.maplibregl-map { position: relative; height: 0px }`. **Tailwind 4 emits its utilities inside `@layer
+utilities`, and an unlayered third-party stylesheet beats any layered rule** regardless of specificity or source
+order, so MapLibre's own `position: relative` defeated the `absolute` utility and the container collapsed to zero
+height with no error anywhere.
 
-**The writer pasted English into Spanish copy.** Told the reference outcomes were "quotable in these exact
-terms", it obeyed literally and dropped *"inspection time fell from days to hours"* into an otherwise Spanish
-message. A message that switches language mid-sentence is instantly recognisable as machine-assembled. The
-instruction now says to translate the outcome and keep the figure, and a tenth gate rejects unambiguously
-English tokens in a non-English draft.
+**Fixed:** `@import "maplibre-gl/dist/maplibre-gl.css" layer(base)`. I only found it by looking at the computed
+styles in a real browser rather than reasoning about the CSS.
 
-**Server-side search returns 413 on this tier.** `groq/compound` rejects any request in which it actually
-searches, it reads as a malformed query but is a plan limit. Supplementary search moved to a direct provider;
-the core pipeline never depended on it.
+### Footprints inflated twofold
 
-**Every free email sandbox refuses arbitrary recipients.** Resend, Mailgun and MailerSend all restrict
-delivery to the account owner, so none can mail a reviewer. Sending is therefore consent-first: the recipient
-is whatever address the operator types on the page.
+Overlapping bounding boxes double- and triple-counted features. SQM read 1,025 km² when the truth was 548.
+**Fixed:** dedupe on OSM id before any total is computed.
 
-**Globe markers landed in arcs off the edge of the sphere.** Reproducing a renderer's own projection by hand
-is a losing game. The overlay now reads the position the renderer already publishes for each marker.
+### A score of 103.4 out of 100
 
----
+One pack's ICP weights summed to 1.10. The other five were correct, so it was a typo in one object rather than a
+flaw in the scorer, but a score out of 100 that reads 103.4 costs a reader their confidence in every other figure
+on the page. **Fixed** in the data, and the scorer now normalises whatever weights a pack declares.
 
-## Ask the run, and discover new ground
+### The free tier that produced nothing
 
-Two surfaces exist to answer the question a frozen result cannot: is this measuring anything, or was it typed
-in beforehand?
+Adding two requirements to the writer's prompt pushed every call past the free tier's 8,000 tokens a minute, and
+the outreach stage returned zero accepted emails through rate limiting alone. **Fixed:** the prompt says the same
+thing in a third of the words, the output budget is large enough for the JSON to close, and calls are paced
+between contacts and between repair attempts. Accepted emails went 0, then 2, then 6.
 
-**`/discover` measures ground nobody chose in advance.** Name a place and a vertical. Nominatim resolves the
-place, Overpass returns every feature inside it matching that vertical, each footprint is computed geodesically
-from the returned ring, operators are read off the exact `operator` tag, and each operator gets a costed
-programme. Verified live: Antofagasta returns SQM, Albemarle, Minera Escondida and Codelco across 105 features
-and 421 km²; Rajasthan returns thousands of arrays with almost no operator tags. The second answer is the
-honest one and it is shown, not hidden.
+### Walls that are still walls
 
-Grouping here uses the exact tag, not the full attribution ladder. Turned loose on an unknown region the
-ladder overreached: it credited `SQM Industrial S.A.`, which carries one tagged feature, with eleven features
-and its sibling company's entire 249 km², because the token "SQM" appears in those site names. Exact tags mean
-the count under each operator adds back up to the operator table above it.
+- The anchor account has the thinnest contact surface in the run. SQM's own leadership page lists five
+  executives and no operations or HSE title. That is the headline of the gap register, not a footnote.
+- Corporate mail gateways answer for the gateway, so no address can be verified without SMTP probing. Probing
+  risks blocklisting and is refused.
+- 365 of 389 mapped salt ponds carry no operator tag, so proximity inference is required on that terrain.
+- Overpass answers a continental bounding box with a timeout, so live discovery crops to roughly 330 km and says
+  so on screen.
 
-**The question box answers only from what was measured.** Retrieval is ordinary deterministic code that runs
-before any model call: it scores every account, contact, signal, filing, sizing model and recorded gap against
-the question, caps the result at three facts of any one kind so one large category cannot crowd out the rest,
-and hands the model a numbered list with the instruction that it has no other knowledge. Answers carry the
-rows they were written from, with their real source links, in the open rather than behind a disclosure.
+### Verified broken, so you do not waste the time
 
-Ask who runs Chuquicamata and it names the officer with the Codelco statutory transparency URL. Ask about oil
-rigs in the North Sea and it refuses, then offers to measure the North Sea live with the oil and gas pack
-selected. Ask Tesla's share price and it refuses outright.
+DuckDuckGo HTML and public SearXNG serve bot challenges. Mojeek 403s, Startpage 303s. Exa returns a crypto
+payment challenge. Bing Search API is dead. NVIDIA's `llama-3_2-nv-rerankqa-1b-v2` returns 410 Gone while most
+tutorials still recommend it. `groq/compound` returns 413 whenever it searches on the free tier. Serper rejects
+`num: 20` for free accounts. Every free transactional email sandbox restricts recipients to the account owner,
+which is why Gmail SMTP is the only path that can reach a reviewer.
 
 ---
 
-## The revenue case
-
-Programme sizing answers how many docks, which is an engineering answer. Nobody books a call about a drone
-platform, so each account also carries the argument its recipient is measured on: displaced contracted
-inspection spend, programme cost, payback, three year net, inspection passes before and after, and person-days
-removed from a hazardous working area.
-
-Every input is labelled as one of three kinds, and the labels are the point:
-
-| Kind | What it means | Example |
-|---|---|---|
-| **Published** | Somebody published it, and the source is linked | FlytBase's own USD 70,000 to 80,000 phase one figure |
-| **Derived** | Arithmetic on measured ground, reproducible by hand | crew-days displaced, docks required, person-days out of hazard |
-| **Operator** | Nobody publishes it. Marked unsourced everywhere it appears | contracted crew day rate, value of an hour of downtime |
-
-Generated copy may never assert an operator-supplied figure. Two presentation rules exist because the first
-version broke both: a payback that rounds to zero months reads "under a fortnight", because an obviously
-broken figure costs more trust than a modest one earns; and the case that gets quoted uses the geometric mean
-of each band rather than its edges, because multiplying the extremes of several independent wide bands
-produced "minus 652 thousand to 147 million dollars" and a return of "0.71 to 211 times". Both ends were
-arithmetically true and the pair said nothing. The full span stays on the page, labelled as a span.
-
----
-
-## Honesty constraints, enforced in code
+## Honesty Constraints, Enforced in Code
 
 - A fact cannot render without an evidence row carrying a source URL and a verbatim snippet.
 - A contact without a source URL renders as a nameless role target, never as a name.
-- An inferred email address is excluded from every sendable column.
-- A regulatory instrument is withheld from generated copy until its text has been fetched, a wrong decree
-  number is worse than none.
-- Proximity-inferred geometry is reported separately from operator-attributed geometry, and drawn dashed.
-- Sizing outputs are ranges, and every assumption behind them is listed with its basis.
-- Runs state their execution time. Replay means re-serving a recorded real run, never synthesising one.
-- **/api/run** re-executes the pipeline for one account live and streams every step, so the recorded figures
-  can be checked against a fresh run on demand.
-- The question box cannot answer outside the run. Retrieval happens in code before the model is called, and a
-  question about unmeasured ground is refused with an offer to measure it.
+- An inferred email address is excluded from every sendable column, because a guess that reaches a CRM becomes a
+  real send later by somebody who never saw the warning.
+- A regulatory instrument is withheld from generated copy until its text has been fetched. A wrong decree number
+  is worse than none.
+- Proximity-inferred geometry is reported separately and drawn dashed.
+- Sizing and money outputs are ranges, and every assumption is listed with its basis.
+- Runs state their execution time. Replay re-serves a recorded real run, never a synthesised one.
+- The question box cannot answer outside the run.
 - No em dash appears in any text this project wrote. A prebuild guard fails the build if one returns, and the
-  email critic rejects a draft containing one outright. Quotations from source documents are exempt and are
-  matched by field name: an SEC filing writes what it writes, and editing a quote would make the citation stop
-  matching the page it points at.
-- **/api/send** and **/api/run** are capped per caller, and sending is capped for the whole deployment, because
-  an unauthenticated endpoint that mails an arbitrary address is a relay and one that opens live queries
-  against Overpass and SEC EDGAR is a way to lose that access mid-review.
+  critic rejects a draft containing one. Quotations from source documents are exempt and matched by field name:
+  an SEC filing writes what it writes, and editing a quote would make the citation stop matching its page.
+- `/api/send` and `/api/run` are capped per caller, and sending is capped for the whole deployment, because an
+  unauthenticated endpoint that mails an arbitrary address is a relay.
+- No secret is ever sent to the browser. Supabase is reached server-side only, with row level security on and no
+  anon policy.
 
 ---
 
-## Repository
+## Project Structure
 
 ```
-src/lib/            geo · icp · sizing · revenue · critic · outreach · ask · store · verticals
-src/lib/sources/    sec · people · serp · geocode
-scripts/harvest     the pipeline; writes a frozen run artifact to ./data
-scripts/no-em-dash  prebuild guard; fails the build on a prose tell we wrote
-scripts/test-employer-match  prebuild guard; pins the contact attribution check
-src/app/            landing · console · account brief · discover · how-it-thinks · generality · evidence
-src/app/api/        run · discover · discover/deep · ask · export · send
-public/mindmap.html the thought process, standalone and served from the deployment
-supabase/schema.sql one table for persisted discoveries, row level security on
-data/               frozen run artifacts, real outputs, original timestamps preserved
+src/lib/                      geo · icp · sizing · revenue · critic · outreach · ask · store · verticals
+src/lib/sources/              sec · people · serp · geocode
+src/app/                      landing · console · account brief · discover · how-it-thinks · generality · evidence
+src/app/api/                  run · discover · discover/deep · ask · export · send
+src/components/               LiveGlobe · SiteMap · Discover · AskPanel · RevenuePanel · Outreach · MindMap
+scripts/harvest.ts            the pipeline; writes a frozen run artifact to ./data
+scripts/no-em-dash.ts         prebuild guard; fails on a prose tell in anything we wrote
+scripts/test-employer-match.ts  prebuild guard; 9 assertions on contact attribution
+public/mindmap.html           the thought process, standalone and served from the deployment
+supabase/schema.sql           one table for persisted discoveries, row level security on
+data/                         frozen run artifacts, real outputs, original timestamps preserved
+docs/screenshots/             the images in this file
 ```
-
----
-
-## The bug that appeared three times
-
-Worth recording, because it is the most useful thing this codebase taught me.
-
-A company name shorter than four characters kept getting discarded by length filters. It happened in the terrain
-attribution normaliser, where `length > 3` dropped `SQM` and the anchor account came back with zero measured
-sites. It happened again in the operator merge for live discovery. And it happened a third time in the contact
-attribution check, where names under four characters were skipped before any test ran, so a live search found 28
-genuine profiles and rejected all 28 for "company not named as the employer" when the name it was checking for had
-already been thrown away.
-
-The same test exposed a second fault underneath it. Stripping the legal form from `SQM S.A.` left `sqm .`, because
-the word boundary after the final `a` stops the match before the closing dot, and the remnant poisoned the pattern
-that looks for an employer. Multi-word names survived on their token pairs, which is why the failure looked
-selective for so long.
-
-Both are now asserted in `scripts/test-employer-match.ts`, which runs before every build. It checks the guard in
-both directions: `SQM` must match when it follows an employer preposition, and a person surnamed Vale must still
-not be attributed to Vale S.A. on a surname.
-
-The lesson generalises past this project. A filter that silently drops an input is worse than one that throws,
-because the failure surfaces far from its cause and looks like a data problem rather than a code problem.
 
 ---
 
 ## Author
 
-**Atharva Awade** · work.atharva2231@gmail.com
+Built for the **FlytBase BDR Hackathon 2026**, Outbound Account and Contact Generation track.
+
+My thesis in one line: every AI prospecting tool writes a beautiful account list, and none of them can prove a
+line of it, so I built one that finds companies by measuring the ground they stand on and refuses, on screen,
+wherever a source does not exist.
+
+<div align="center">
+
+<br/>
+
+**Atharva Awade**
+work.atharva2231@gmail.com
+
+<br/>
+
+**Measured, cited, or refused. Never invented.**
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1b4fd8,100:12245f&height=110&section=footer" width="100%"/>
+
+</div>
