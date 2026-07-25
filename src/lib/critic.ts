@@ -1,7 +1,7 @@
 /**
  * Red Team critic.
  *
- * The copywriter drafts; this rejects. It is deliberately deterministic — a
+ * The copywriter drafts; this rejects. It is deliberately deterministic, a
  * second language model grading a first one is unfalsifiable, whereas these
  * gates are arithmetic a judge can re-run by hand.
  *
@@ -120,7 +120,7 @@ export const BANNED_PHRASES = [
   "low-hanging fruit",
   "at the end of the day",
   "move the needle",
-  // Spanish equivalents — the same tells exist and read just as synthetic
+  // Spanish equivalents, the same tells exist and read just as synthetic
   "espero que se encuentre bien",
   "espero que este correo lo encuentre bien",
   "me pongo en contacto",
@@ -175,33 +175,36 @@ export function critique(input: CriticInput): CriticVerdict {
 
   const gates: GateOutcome[] = [];
 
-  // G1 — no placeholders. Mail-merge is explicitly not personalisation.
+  // G1, no placeholders. Mail-merge is explicitly not personalisation.
   const placeholderHit = PLACEHOLDER_RX.exec(`${input.subject} ${body}`);
   gates.push({
     gate: "G1",
     label: "No placeholder tokens",
     passed: !placeholderHit,
     detail: placeholderHit
-      ? `Found placeholder-shaped token "${placeholderHit[0]}" — that is mail-merge, not personalisation.`
+      ? `Found placeholder-shaped token "${placeholderHit[0]}", that is mail-merge, not personalisation.`
       : "No merge fields, brackets or TBD markers present.",
   });
 
-  // G2 — banned phrases and em-dash discipline.
+  // G2, banned phrases and em-dash discipline.
   const haystack = `${input.subject}\n${body}`.toLowerCase();
   const hits = BANNED_PHRASES.filter((p) => haystack.includes(p));
   gates.push({
     gate: "G2",
     label: "No template or model-tell phrasing",
-    passed: hits.length === 0 && emDashes <= 2,
+    // Zero em dashes, not a small allowance. The character is the single most
+    // recognisable signature of generated prose, and a prospect who spots one
+    // stops reading the argument and starts reading the tooling.
+    passed: hits.length === 0 && emDashes === 0,
     detail:
       hits.length > 0
         ? `Banned phrasing: ${hits.slice(0, 4).map((h) => `"${h}"`).join(", ")}.`
-        : emDashes > 2
-          ? `${emDashes} em-dashes; more than two is a recognised model tell.`
-          : "Clean of known template openers and model vocabulary.",
+        : emDashes > 0
+          ? `${emDashes} em-dash(es). The character is the clearest model tell there is, so none are allowed.`
+          : "Clean of known template openers, model vocabulary and em dashes.",
   });
 
-  // G3 — length. Openers stay short; follow-ups are allowed to carry substance.
+  // G3, length. Openers stay short; follow-ups are allowed to carry substance.
   const lengthOk =
     input.touch === "first"
       ? wordCount >= 55 && wordCount <= 95 && sentences.length >= 4 && sentences.length <= 7 && longestSentence <= 22
@@ -217,7 +220,7 @@ export function critique(input: CriticInput): CriticVerdict {
     }`,
   });
 
-  // G4 — verifiable specifics. This is the anti-hallucination gate.
+  // G4, verifiable specifics. This is the anti-hallucination gate.
   const numericFacts = input.citedFacts.filter((f) => f.isNumeric ?? /\d/.test(f.text));
   const recentFacts = input.citedFacts.filter((f) => f.dateIso && withinMonths(f.dateIso, 18));
   const allCited = input.citedFacts.every((f) => Boolean(f.evidenceId));
@@ -231,7 +234,7 @@ export function critique(input: CriticInput): CriticVerdict {
     }`,
   });
 
-  // G5 — one interest-based ask, no diary request at first touch, no links.
+  // G5, one interest-based ask, no diary request at first touch, no links.
   const urlCount = (body.match(/https?:\/\//g) ?? []).length;
   const meetingAsk = MEETING_ASK_RX.test(body);
   const interestAsk = INTEREST_CTA_RX.test(body);
@@ -249,7 +252,7 @@ export function critique(input: CriticInput): CriticVerdict {
         ? meetingAsk
           ? "Contains a calendar request. At first touch, interest-based asks outperform meeting requests roughly two to one."
           : !interestAsk
-            ? "No recognisable interest-based ask — the reader is not told what they are agreeing to receive."
+            ? "No recognisable interest-based ask, the reader is not told what they are agreeing to receive."
             : urlCount > 0
               ? `${urlCount} link(s) in a first touch; links depress first-touch reply rates and raise spam scoring.`
               : questionMarks > 1
@@ -258,7 +261,7 @@ export function critique(input: CriticInput): CriticVerdict {
         : `${questionMarks} question(s), ${urlCount} link(s).`,
   });
 
-  // G6 — readability. Operators skim on a phone at a mine site.
+  // G6, readability. Operators skim on a phone at a mine site.
   const g6 = isSpanish || isPortuguese ? readability >= 60 : readability <= 9;
   gates.push({
     gate: "G6",
@@ -269,7 +272,7 @@ export function critique(input: CriticInput): CriticVerdict {
     }`,
   });
 
-  // G7 — about them, not us; and signed.
+  // G7, about them, not us; and signed.
   const signed = body.toLowerCase().includes(input.senderName.toLowerCase().split(" ")[0]);
   const g7 = youRatio >= 2 && signed;
   gates.push({
@@ -281,7 +284,7 @@ export function critique(input: CriticInput): CriticVerdict {
     }`,
   });
 
-  // G8 — number provenance. The most dangerous thing a writer can do is take a
+  // G8, number provenance. The most dangerous thing a writer can do is take a
   // supplied figure and restate it as something else: a contractor mention count
   // rendered as a count of safety incidents, or an investment figure described
   // as a saving. Both were observed. Every numeral in the draft must therefore
@@ -314,7 +317,7 @@ export function critique(input: CriticInput): CriticVerdict {
         : `All ${bodyNumbers.length} numeral(s) in the draft trace to a fact the writer was given.`,
   });
 
-  // G9 — the account's name must be spelled correctly if it appears. A prospect
+  // G9, the account's name must be spelled correctly if it appears. A prospect
   // reading their own company misspelled stops reading.
   let nameOk = true;
   let nameDetail = "Account name not used in the body.";
@@ -346,7 +349,7 @@ export function critique(input: CriticInput): CriticVerdict {
     detail: nameDetail,
   });
 
-  // G10 — language purity. Told that outcomes were "quotable in these exact
+  // G10, language purity. Told that outcomes were "quotable in these exact
   // terms", the writer pasted an English phrase into Spanish copy verbatim.
   // A message that switches language mid-sentence is instantly recognisable as
   // machine-assembled, so unambiguously English tokens are rejected outright in a
@@ -457,7 +460,7 @@ function occurrences(haystack: string, needle: string): number {
   return count;
 }
 
-/** English syllable heuristic — good enough for a grade-level gate. */
+/** English syllable heuristic, good enough for a grade-level gate. */
 function syllablesEn(word: string): number {
   const w = word.toLowerCase().replace(/[^a-z]/g, "");
   if (w.length <= 3) return 1;

@@ -4,7 +4,7 @@
  * `/api/send` delivers real email to whatever address the caller types, and
  * `/api/run` executes live queries against Overpass, SEC EDGAR and company
  * sites. Unlimited, the first is an open relay and the second is a way to get
- * our access to those sources withdrawn — SEC asks for a descriptive agent and
+ * our access to those sources withdrawn. SEC asks for a descriptive agent and
  * no more than ten requests a second, and Overpass bans on abuse. Neither
  * endpoint needs authentication for a public demonstration, but both need a
  * ceiling.

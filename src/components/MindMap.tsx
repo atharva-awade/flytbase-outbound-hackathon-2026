@@ -18,7 +18,7 @@ const KIND_STYLE: Record<AgentNode["kind"], string> = {
  *
  * Built as an org chart on purpose. A reviewer from a revenue team should be
  * able to see six named specialists, understand what each one does from a single
- * sentence, and — critically — see the one edge that runs backwards, where the
+ * sentence, and, critically, see the one edge that runs backwards, where the
  * critic rejects the writer's work and sends it back. A static diagram cannot
  * show refusal, and refusal is the clearest proof that this is a real division
  * of labour rather than one prompt with extra steps.
@@ -168,7 +168,7 @@ export default function MindMap({
                 <p className="t-label">Depends on</p>
                 <div className="mt-1.5 flex flex-wrap gap-1">
                   {active.dependsOn.length === 0 ? (
-                    <span className="t-micro">nothing — this is the entry point</span>
+                    <span className="t-micro">nothing, this is the entry point</span>
                   ) : (
                     active.dependsOn.map((d) => {
                       const dep = AGENTS.find((x) => x.id === d);

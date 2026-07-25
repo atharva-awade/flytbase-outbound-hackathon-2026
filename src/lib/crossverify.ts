@@ -60,7 +60,7 @@ function trustRank(cls: SourceClass): number {
 
 /**
  * Published figures we can hold our own measurements against. These are real
- * public claims with sources, kept deliberately small — an unsourced comparison
+ * public claims with sources, kept deliberately small, an unsourced comparison
  * figure would defeat the purpose of the exercise.
  */
 const PUBLISHED_FIGURES: {
@@ -194,7 +194,7 @@ export function crossVerify(args: {
         },
       ],
       resolution:
-        "The smaller figure is the defensible one and is what should be quoted in a first conversation. The larger figure is shown because the adjacent features are almost certainly part of the same operation, but proximity is an inference and is labelled as one — on the map those outlines are drawn dashed.",
+        "The smaller figure is the defensible one and is what should be quoted in a first conversation. The larger figure is shown because the adjacent features are almost certainly part of the same operation, but proximity is an inference and is labelled as one, on the map those outlines are drawn dashed.",
       kind: "different_scope",
     });
   }

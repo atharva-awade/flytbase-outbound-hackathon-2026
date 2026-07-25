@@ -4,7 +4,7 @@
 
 Live: **https://flytbase-outbound-hackathon-2026.vercel.app**
 
-Aerion takes a campaign brief — a target vertical and a reference account — and produces the account list,
+Aerion takes a campaign brief, a target vertical and a reference account, and produces the account list,
 the buying committee and the outreach a human outbound rep would produce. What makes it different is what it
 stands on. Accounts are not proposed by a language model; they are discovered by measuring real industrial
 sites and reading the operator off the geometry. Every figure in the interface links to the document it came
@@ -15,7 +15,7 @@ from, and the questions the pipeline could not answer are published rather than 
 ## The problem this is built against
 
 Ask a language model for mining companies in Latin America and you get a list that looks right. Some of it is
-right. Nobody — including the rep who sends the email — can tell which parts. Every downstream claim inherits
+right. Nobody, including the rep who sends the email, can tell which parts. Every downstream claim inherits
 that uncertainty: the pain point, the number in the subject line, the person's name.
 
 So the organising rule is a **trust boundary**. Measuring, counting and scoring are ordinary code, which makes
@@ -77,7 +77,7 @@ individual. Derived addresses are labelled inferred and excluded from the sendab
 because a guessed address in a CRM becomes a real send later by someone who never saw the warning.
 
 **6 · The critic rejects work.** A deterministic Red Team scores each draft against ten mechanical gates and
-returns it until it passes. Rejected drafts are kept and displayed — simultaneously the proof that a machine
+returns it until it passes. Rejected drafts are kept and displayed, simultaneously the proof that a machine
 wrote the copy and the proof that something adversarial checked it before a prospect would have seen it.
 
 ---
@@ -111,10 +111,10 @@ Chief of Staff ── writes the run plan, delegates, merges, resolves conflicts
       Evidence ledger  ·  Null-result register
 ```
 
-**Deterministic, no model involved** — Universe Scout, ICP Scorer, Opportunity Engineer, Red Team critic,
+**Deterministic, no model involved**. Universe Scout, ICP Scorer, Opportunity Engineer, Red Team critic,
 Sequence Architect, Cross-Verification Officer, Message Strategist, Exporter.
-**Model, prose only** — Copywriter, AE Briefer.
-**Fetches from a named source** — Terrain Surveyor, Filings Analyst, People Finder, Signals Desk, Regulatory
+**Model, prose only**. Copywriter, AE Briefer.
+**Fetches from a named source**. Terrain Surveyor, Filings Analyst, People Finder, Signals Desk, Regulatory
 Analyst, Reachability Analyst.
 
 ### Opportunity sizing
@@ -142,12 +142,12 @@ that find the people, the regulatory instruments that force the inspection, and 
 that industry. The same agent graph runs any of them.
 
 To prove that rather than claim it, a second pack was executed end to end. **/generality** shows both runs
-side by side with a table of exactly what differed — all of it pack data.
+side by side with a table of exactly what differed, all of it pack data.
 
 | Pack | Status | Anchor |
 |---|---|---|
-| Mining & extraction | **run** — the assigned brief | SQM |
-| Solar generation | **run** — 322 operators observed, 2,182 features measured | Atacama Generación |
+| Mining & extraction | **run**, the assigned brief | SQM |
+| Solar generation | **run**, 322 operators observed, 2,182 features measured | Atacama Generación |
 | Oil & gas · Ports · Rail · Electric transmission | defined, signatures probed against live data | Shell · Hutchison · CSX · Statnett |
 
 Packs that have not been executed are listed as *defined*, because a pack that has not run is a claim rather
@@ -205,7 +205,7 @@ falls between them, but features inside an overlap were counted once per query. 
 actual 548 km². Fixed by deduplicating on OSM id and recomputing operator totals from the deduplicated set.
 
 **A truncated response poisoned the cache and dropped the anchor account.** Overpass answered HTTP 200 with a
-partial element set, that got cached, and every later run reused it — SQM vanished from its own campaign. The
+partial element set, that got cached, and every later run reused it. SQM vanished from its own campaign. The
 cache now refuses to serve an empty geometry result and re-fetches instead.
 
 **A quarry-only query cannot find SQM at all.** The anchor is tagged `landuse=industrial` with
@@ -225,10 +225,10 @@ are unit-tested against those exact cases.
 **The writer fabricated numbers by restating facts it was given.** Handed "refers to contractors 30
 times", it wrote "27 safety incidents cited". Handed a total system investment of USD 70–80k, it wrote
 "saving over 70k". It also misspelled a company name in the body. All three passed the original gates, because
-those checked that facts were *cited*, not that the paraphrase was *faithful* — the most dangerous gap in the
+those checked that facts were *cited*, not that the paraphrase was *faithful*, the most dangerous gap in the
 whole system, since every claim looked sourced. Fixed three ways: mention counts are now withheld from the
 writer entirely (a frequency is a scoring signal, not a claim), reference-customer outcomes are supplied as a
-fixed set of quotable phrasings that may not be restated, and two gates were added — every numeral in a draft
+fixed set of quotable phrasings that may not be restated, and two gates were added, every numeral in a draft
 must trace to a supplied fact, and the account name must be spelled correctly. Acceptance dropped from six
 messages to three before the remaining gate was added, which is the correct trade.
 
@@ -239,7 +239,7 @@ instruction now says to translate the outcome and keep the figure, and a tenth g
 English tokens in a non-English draft.
 
 **Server-side search returns 413 on this tier.** `groq/compound` rejects any request in which it actually
-searches — it reads as a malformed query but is a plan limit. Supplementary search moved to a direct provider;
+searches, it reads as a malformed query but is a plan limit. Supplementary search moved to a direct provider;
 the core pipeline never depended on it.
 
 **Every free email sandbox refuses arbitrary recipients.** Resend, Mailgun and MailerSend all restrict
@@ -256,7 +256,7 @@ is a losing game. The overlay now reads the position the renderer already publis
 - A fact cannot render without an evidence row carrying a source URL and a verbatim snippet.
 - A contact without a source URL renders as a nameless role target, never as a name.
 - An inferred email address is excluded from every sendable column.
-- A regulatory instrument is withheld from generated copy until its text has been fetched — a wrong decree
+- A regulatory instrument is withheld from generated copy until its text has been fetched, a wrong decree
   number is worse than none.
 - Proximity-inferred geometry is reported separately from operator-attributed geometry, and drawn dashed.
 - Sizing outputs are ranges, and every assumption behind them is listed with its basis.
@@ -274,5 +274,5 @@ src/lib/sources/  sec · people · serp
 scripts/harvest   the pipeline; writes a frozen run artifact to ./data
 src/app/          landing · console · account brief · how-it-thinks · generality · evidence
 src/app/api/      run (live SSE) · export (CRM CSV and JSON) · send (consent-first)
-data/             frozen run artifacts — real outputs, original timestamps preserved
+data/             frozen run artifacts, real outputs, original timestamps preserved
 ```

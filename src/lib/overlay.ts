@@ -1,8 +1,8 @@
 /**
  * Shared bookkeeping for stacked overlays.
  *
- * Three components can put a layer over the page — the site dialog, the globe's
- * full screen and the map's full screen — and they nest: the map goes full
+ * Three components can put a layer over the page, the site dialog, the globe's
+ * full screen and the map's full screen, and they nest: the map goes full
  * screen inside the dialog. Each one used to set `body.overflow = "hidden"` on
  * open and `""` on close, so closing the inner layer unlocked scrolling while
  * the outer layer was still up. Each also listened for Escape, so one press
@@ -23,7 +23,7 @@ export function lockScroll(): () => void {
     // Every overlay here is rendered inside <main>, which isolates its own
     // stacking context, so the sticky header painted over the top of a full
     // screen view no matter what z-index the overlay carried. Marking the body
-    // lets the header stand down for the duration — simpler and safer than
+    // lets the header stand down for the duration, simpler and safer than
     // portalling a canvas the globe renderer mutates in place.
     document.body.dataset.overlay = "1";
   }

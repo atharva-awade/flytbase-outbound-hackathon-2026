@@ -240,7 +240,7 @@ function SiteDetail({
               {site.contactTitle && <p className="t-small mt-0.5 italic">{site.contactTitle}</p>}
               <p className="t-micro mt-2">
                 A named leader beside the measured extent of what they run. One half comes from a published
-                disclosure, the other from geometry — which is why this pairing cannot be produced by a
+                disclosure, the other from geometry, which is why this pairing cannot be produced by a
                 prompt.
               </p>
             </div>

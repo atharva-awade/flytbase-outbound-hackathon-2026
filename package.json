@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "harvest": "tsx scripts/harvest.ts"
+    "harvest": "tsx scripts/harvest.ts",
+    "lint:dashes": "tsx scripts/no-em-dash.ts",
+    "prebuild": "tsx scripts/no-em-dash.ts"
   },
   "dependencies": {
     "next": "^16.2.11",

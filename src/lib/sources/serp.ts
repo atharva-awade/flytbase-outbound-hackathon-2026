@@ -4,8 +4,8 @@
  * The method matters for defensibility. A direct request to a professional
  * profile returns a redirect into an authentication wall, so the profile body is
  * never fetched. What is used instead is the search engine's own result title,
- * which carries exactly the fields the brief asks for — a person's name and
- * their stated title — and the profile URL becomes the citation a reviewer can
+ * which carries exactly the fields the brief asks for, a person's name and
+ * their stated title, and the profile URL becomes the citation a reviewer can
  * open. Nothing is scraped from behind a login.
  *
  * Local-language titles substantially outperform English ones for Spanish- and
@@ -38,7 +38,7 @@ export function hasSerpKey(): boolean {
 
 /**
  * Free Serper accounts reject `num` above 10 with "Query pattern not allowed for
- * free accounts" — a 400 that looks like a malformed query but is a plan limit.
+ * free accounts", a 400 that looks like a malformed query but is a plan limit.
  * Ten results per query is therefore the ceiling here.
  */
 async function serper(query: string, gl: string, hl: string, num = 10): Promise<SerpHit[]> {
@@ -134,7 +134,7 @@ export function parseProfileTitle(serpTitle: string): { name: string; title: str
     .replace(/\s*-\s*LinkedIn\s*$/i, "")
     .trim();
 
-  const parts = cleaned.split(/\s+[-–—]\s+/).map((p) => p.trim()).filter(Boolean);
+  const parts = cleaned.split(/\s+[-–, ]\s+/).map((p) => p.trim()).filter(Boolean);
   if (parts.length < 2) return null;
 
   const [candidateName, ...rest] = parts;
@@ -163,7 +163,7 @@ function looksLikeName(s: string): boolean {
 
 /**
  * Find public profiles at a company for the roles this campaign targets.
- * Returns candidates only — the caller decides the provenance tier, and these
+ * Returns candidates only, the caller decides the provenance tier, and these
  * are never promoted above a public-profile grade because a search snippet is
  * weaker evidence than a company's own disclosure.
  */
@@ -230,7 +230,7 @@ export async function findPublicProfiles(args: {
         otherCompanies: args.otherCompanies ?? [],
       });
       if (!verdict.matched) {
-        rejected.push(`${parsed.name} — ${verdict.reason}`);
+        rejected.push(`${parsed.name}: ${verdict.reason}`);
         continue;
       }
 
@@ -241,13 +241,13 @@ export async function findPublicProfiles(args: {
       // "Gerente de Operaciones" qualifies, "Mantenedor mina" does not.
       if (!hasLeadershipToken(parsed.title)) {
         rejected.push(
-          `${parsed.name} — "${parsed.title}" carries no leadership rank, so it is not a buying-committee seat`,
+          `${parsed.name}: "${parsed.title}" carries no leadership rank, so it is not a buying-committee seat`,
         );
         continue;
       }
       const role = classifyRole(parsed.title);
       if (role.relevance < 0.85) {
-        rejected.push(`${parsed.name} — role "${parsed.title}" is not an operations, site or HSE leadership seat`);
+        rejected.push(`${parsed.name}: role "${parsed.title}" is not an operations, site or HSE leadership seat`);
         continue;
       }
 
@@ -284,7 +284,7 @@ function chunk<T>(arr: T[], size: number): T[][] {
  * Decide whether a search result genuinely belongs to an employee of this
  * company. Three tests, all of which must pass:
  *
- *  1. The company must be named as an EMPLOYER — either following an employer
+ *  1. The company must be named as an EMPLOYER, either following an employer
  *     preposition ("en", "at", "na", "@"), or present as its full multi-word
  *     name. A bare first token is not enough, because company names collide
  *     with surnames.
@@ -323,7 +323,7 @@ export function employerMatches(args: {
   // Words that introduce an employer in the languages this campaign covers.
   const EMPLOYER_PREP = String.raw`(?:\ben\b|\bat\b|\bna\b|\bno\b|@|\bde\b|\bpara\b)\s+`;
   // Legal suffixes are stripped only as WHOLE words. Stripping them loosely
-  // would carve a company token out of an unrelated surname — "Casanova" must
+  // would carve a company token out of an unrelated surname, "Casanova" must
   // not become "Canova".
   const LEGAL_FORM = /\b(?:s\.?a\.?|ltda\.?|spa|inc\.?|plc|scm|limitada|corp\.?|sac)\b/g;
 
@@ -340,7 +340,7 @@ export function employerMatches(args: {
     }
 
     // Operations are commonly referred to by the distinctive part of the name
-    // rather than the full legal entity — a Teck Quebrada Blanca employee writes
+    // rather than the full legal entity, a Teck Quebrada Blanca employee writes
     // "Quebrada Blanca". Two or more consecutive significant tokens is specific
     // enough to attribute, where a single token would not be.
     if (multiWord) {

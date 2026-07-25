@@ -83,7 +83,7 @@ export function ExportBar({ slug, displayName }: { slug: string; displayName: st
         <p className="t-label">Send a copy to yourself</p>
         <p className="t-small mt-1.5">
           Type your own address and the accepted message for {displayName} is delivered to you, unchanged.
-          Nothing is ever sent to a prospect from here — the recipient is whatever you type, which is what
+          Nothing is ever sent to a prospect from here, the recipient is whatever you type, which is what
           makes this a demonstration rather than outreach.
         </p>
         <form onSubmit={send} className="mt-3 flex flex-wrap gap-2">

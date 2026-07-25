@@ -59,14 +59,14 @@ export function fmtKm2(n: number): string {
 }
 
 export function fmtDate(iso: string | undefined): string {
-  if (!iso) return "—";
+  if (!iso) return "not recorded";
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return iso;
   return d.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
 }
 
 export function fmtDateTime(iso: string | undefined): string {
-  if (!iso) return "—";
+  if (!iso) return "not recorded";
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return iso;
   return `${d.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })}, ${d

@@ -118,7 +118,7 @@ export function Outreach({
               </div>
             </div>
 
-            {/* Strategy — deterministic, produced without a model. */}
+            {/* Strategy, deterministic, produced without a model. */}
             {strategy && (
               <Panel className="mt-3 p-4" sunk>
                 <div className="flex items-baseline justify-between">
@@ -154,7 +154,7 @@ export function Outreach({
                   <div className="mt-3 border-t border-[var(--color-hair)] pt-2.5">
                     <p className="t-label">Reference customer it may name</p>
                     <p className="t-small mt-1">
-                      <strong>{strategy.proofPoint.customer}</strong> — {strategy.proofPoint.claim}
+                      <strong>{strategy.proofPoint.customer}</strong>: {strategy.proofPoint.claim}
                     </p>
                     <a
                       href={strategy.proofPoint.sourceUrl}
@@ -200,7 +200,7 @@ export function Outreach({
               </div>
             )}
 
-            {/* Rejected drafts — kept on purpose. */}
+            {/* Rejected drafts, kept on purpose. */}
             {rejectedDrafts.length > 0 && (
               <div className="mt-4">
                 <p className="t-label" style={{ color: "var(--color-conflict)" }}>
@@ -226,7 +226,7 @@ export function Outreach({
                 </p>
                 <p className="t-small mt-1.5">
                   The strategy above was produced deterministically. Phrasing is the one step that needs a
-                  language model, and it is left empty rather than filled in by hand — writing these ourselves
+                  language model, and it is left empty rather than filled in by hand, writing these ourselves
                   and presenting them as generated would misrepresent the system.
                 </p>
               </Panel>
@@ -290,7 +290,7 @@ function DraftCard({
         </div>
       )}
 
-      {/* Gate results — every check, pass or fail. */}
+      {/* Gate results, every check, pass or fail. */}
       <div className="mt-3 border-t border-[var(--color-hair)] pt-2.5">
         <div className="flex items-baseline justify-between">
           <p className="t-label">Critic gates</p>
@@ -313,7 +313,7 @@ function DraftCard({
           <ul className="mt-2 space-y-1">
             {failed.map((g) => (
               <li key={g.gate} className="t-micro" style={{ color: "var(--color-conflict)" }}>
-                <strong>{g.gate}</strong> — {g.detail}
+                <strong>{g.gate}</strong>: {g.detail}
               </li>
             ))}
           </ul>

@@ -1,11 +1,11 @@
 /**
- * People Finder — real named humans only.
+ * People Finder, real named humans only.
  *
  * The hard rule: a person's name may only enter the system if it was read from
  * a page we fetched, and that page's URL is stored alongside the verbatim
  * title. There is no inference path that produces a name. Where no name is
  * found we emit a ROLE_TARGET_NO_NAME record instead, which states the role
- * and how to find the person — auditable, and stronger than a plausible guess.
+ * and how to find the person, auditable, and stronger than a plausible guess.
  *
  * Highest-yield source discovered: Chile's Ley 20.285 transparency obligation
  * forces state-owned operators to publish officers with exact titles. Codelco's
@@ -13,7 +13,7 @@
  * yield 19 named executives including all eight division General Managers.
  *
  * A subtle, high-value find encoded below: those titles carry Chilean interim
- * markers — "(i)" for interino, "(s)" for suplente. An interim holder in an
+ * markers, "(i)" for interino, "(s)" for suplente. An interim holder in an
  * operations or site-leadership seat is a strong buying signal, because the
  * seat was recently vacated and the incumbent has a mandate to change
  * something. For Codelco this independently corroborates the February 2026
@@ -68,7 +68,7 @@ export interface InterimFlag {
  * holder, "(s)" a suplente (acting/substitute). Detecting these turns a
  * directory page into a timing signal.
  *
- * The marker's position is not stable across sources — on the divisional page
+ * The marker's position is not stable across sources, on the divisional page
  * it is appended to the NAME, on the officers roster to the TITLE, and the
  * officers roster also publishes an explicit "Carácter del cargo" column. All
  * three are checked, explicit column first.
@@ -84,14 +84,14 @@ export function detectInterim(
       return {
         isInterim: true,
         marker: tenureCharacter,
-        meaning: "interino — interim holder, seat recently vacated",
+        meaning: "interino, interim holder, seat recently vacated",
       };
     }
     if (t.startsWith("subrogante") || t.startsWith("suplente")) {
       return {
         isInterim: true,
         marker: tenureCharacter,
-        meaning: "subrogante / suplente — acting holder, substantive seat unfilled",
+        meaning: "subrogante / suplente, acting holder, substantive seat unfilled",
       };
     }
     if (t.startsWith("indefinido")) return { isInterim: false };
@@ -106,8 +106,8 @@ export function detectInterim(
       marker: m[0].trim(),
       meaning:
         marker.startsWith("s") || marker.startsWith("sub")
-          ? "subrogante / suplente — acting holder, substantive seat unfilled"
-          : "interino — interim holder, seat recently vacated",
+          ? "subrogante / suplente, acting holder, substantive seat unfilled"
+          : "interino, interim holder, seat recently vacated",
     };
   }
   return { isInterim: false };
@@ -154,7 +154,7 @@ export function classifyRole(titleVerbatim: string): {
             : "manager";
 
   if (SITE_RX.test(t) && !EXEC_RX.test(t)) {
-    // Site GMs own the P&L of a single faena — the strongest first touch.
+    // Site GMs own the P&L of a single faena, the strongest first touch.
     return { buyingRole: "champion", seniority, relevance: 1.0, domain: "site" };
   }
   if (HSE_RX.test(t)) {
@@ -231,7 +231,7 @@ export interface ExtractedPerson {
  *
  * The `responsables-de-la-administracion` page is a strict superset of the
  * vicepresidencias and gerencias-divisionales pages: it carries all officers
- * AND two columns the narrower pages omit — "Fecha ingreso al cargo" and
+ * AND two columns the narrower pages omit, "Fecha ingreso al cargo" and
  * "Carácter del cargo". Those turn a directory into a timing instrument:
  * an appointment date gives recency scoring for free, and the tenure character
  * states outright whether a seat is Interino or Subrogante rather than leaving
@@ -421,7 +421,7 @@ export function buildContact(args: BuildContactArgs): Contact {
   }
   if (tenureDays !== undefined && tenureDays <= 120) {
     notes.push(
-      `Appointed ${person.appointedAt} — ${tenureDays} day(s) in post. New appointees reset an account's willingness to look at new suppliers, and the first quarter is when they choose what to change.`,
+      `Appointed ${person.appointedAt}, ${tenureDays} day(s) in post. New appointees reset an account's willingness to look at new suppliers, and the first quarter is when they choose what to change.`,
     );
   }
 
@@ -483,7 +483,7 @@ export interface PeopleSource {
   extractor: "transparency_table" | "leadership_cards";
   sourceClass: "statutory_disclosure" | "company_primary";
   language: string;
-  /** Why this source exists — cited in the UI to show the legal basis. */
+  /** Why this source exists, cited in the UI to show the legal basis. */
   basis: string;
 }
 
@@ -500,7 +500,7 @@ export const PEOPLE_SOURCES: PeopleSource[] = [
       "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública, which obliges state-owned enterprises to disclose the officers responsible for administration, the date each entered the role, and whether the appointment is permanent or interim.",
   },
   {
-    // Divisional General Managers — the site-leadership tier, which is the
+    // Divisional General Managers, the site-leadership tier, which is the
     // single most relevant seniority band for this campaign.
     accountKey: "codelco",
     url: "https://www.codelco.com/transparencia/gerencias-divisionales",

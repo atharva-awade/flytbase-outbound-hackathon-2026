@@ -274,7 +274,7 @@ function buildDerivation(x: {
     `The sites fall into ${x.clusters} spatial cluster${x.clusters === 1 ? "" : "s"} once features within ${x.a.dockRadiusKmHigh * 2} km of each other are grouped. Separated clusters cannot share dock infrastructure, so ${x.clusters} is the floor on dock count regardless of area.`,
     `A dock services roughly ${round(x.coverageHigh, 1)} km² at a ${x.a.dockRadiusKmHigh} km effective radius, or ${round(x.coverageLow, 1)} km² at ${x.a.dockRadiusKmLow} km, after a 70% coverage-efficiency allowance. Dividing measured area by those figures and respecting the cluster floor gives ${x.docksLow} to ${x.docksHigh} docks for full coverage.`,
     `At ${x.a.inspectionsPerMonthLow} to ${x.a.inspectionsPerMonthHigh} inspection passes per site per month, the programme runs ${x.missionsLow} to ${x.missionsHigh} autonomous missions monthly, which is ${x.hoursLow} to ${x.hoursHigh} flight hours.`,
-    `Substituting for contracted crews at ${x.a.manualCrewDaysPerPassLow} to ${x.a.manualCrewDaysPerPassHigh} crew-days per manual pass, that displaces ${x.crewLow} to ${x.crewHigh} contracted crew-days per month — the hours currently spent putting people on ${subjects}.`,
+    `Substituting for contracted crews at ${x.a.manualCrewDaysPerPassLow} to ${x.a.manualCrewDaysPerPassHigh} crew-days per manual pass, that displaces ${x.crewLow} to ${x.crewHigh} contracted crew-days per month, the hours currently spent putting people on ${subjects}.`,
   ];
 
   if (x.regulatoryInstrument) {
@@ -284,7 +284,7 @@ function buildDerivation(x: {
   }
 
   lines.push(
-    `Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year — so the first conversation is about one dock on the highest-risk cluster, not ${x.docksHigh}.`,
+    `Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year, so the first conversation is about one dock on the highest-risk cluster, not ${x.docksHigh}.`,
   );
 
   return lines;

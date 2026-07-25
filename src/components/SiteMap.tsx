@@ -125,7 +125,7 @@ export default function SiteMap({
 
     // A tile or style failure would otherwise be an unexplained blank panel.
     // A keyed provider can also reject a request for reasons that have nothing
-    // to do with this page — a domain-restricted key, an exhausted quota — so the
+    // to do with this page, a domain-restricted key, an exhausted quota, so the
     // first failure on a keyed basemap silently falls back to the keyless one
     // rather than leaving the reviewer with an empty rectangle.
     let fellBack = false;
@@ -304,7 +304,7 @@ export default function SiteMap({
 
     // Frame the FOCUSED feature rather than every site. Codelco's sites span the
     // length of Chile, so fitting all of them puts the camera at a 300 km scale
-    // where the pits are specks — technically correct and useless. The rest stay
+    // where the pits are specks, technically correct and useless. The rest stay
     // on the map, one zoom-out away.
     const focused = focusOsmId
       ? featureCollection.features.find((f) => f.properties.osmId === focusOsmId)
@@ -369,7 +369,7 @@ export default function SiteMap({
               </p>
               <p className="t-small mt-1.5">
                 The satellite layer did not load: {mapError}. The measured figures below come from the geometry
-                itself and are unaffected — the map is a way to look at them, not their source.
+                itself and are unaffected, the map is a way to look at them, not their source.
               </p>
             </div>
           </div>

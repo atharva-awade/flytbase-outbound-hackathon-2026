@@ -3,7 +3,7 @@
   "brief": {
     "id": "brief-latam-mining",
     "verticalPackId": "mining",
-    "label": "LatAm mining — the assigned brief",
+    "label": "LatAm mining, the assigned brief",
     "targetVertical": "Large-scale lithium, copper, and iron ore mining operations in Latin America",
     "referenceAccount": "Sociedad Química y Minera de Chile (SQM)",
     "geographies": [
@@ -3673,7 +3673,7 @@
           {
             "key": "trigger_signal",
             "label": "Timing trigger",
-            "rationale": "A dated, cited event that makes contact relevant now — leadership change, incident, regulatory action, or expansion.",
+            "rationale": "A dated, cited event that makes contact relevant now, leadership change, incident, regulatory action, or expansion.",
             "weight": 0.13,
             "raw": 0,
             "contribution": 0,
@@ -3812,7 +3812,7 @@
           "autonomous",
           "automation"
         ],
-        "interpretation": "The filing refers to contractors 31 time(s), including in its risk factors — contractor dependency is disclosed as material to production. Safety incidents are named as a risk to operations (2 reference(s)). No autonomy programme is disclosed at filing level: drone, autonomous and automation each appear zero times. This indicates undisclosed whitespace rather than a solved problem, and is a conversation opener rather than a conclusion."
+        "interpretation": "The filing refers to contractors 31 time(s), including in its risk factors, contractor dependency is disclosed as material to production. Safety incidents are named as a risk to operations (2 reference(s)). No autonomy programme is disclosed at filing level: drone, autonomous and automation each appear zero times. This indicates undisclosed whitespace rather than a solved problem, and is a conversation opener rather than a conclusion."
       },
       "signals": [],
       "anchorComparison": {
@@ -4014,8 +4014,8 @@
           "The sites fall into 7 spatial clusters once features within 10 km of each other are grouped. Separated clusters cannot share dock infrastructure, so 7 is the floor on dock count regardless of area.",
           "A dock services roughly 55 km² at a 5 km effective radius, or 19.8 km² at 3 km, after a 70% coverage-efficiency allowance. Dividing measured area by those figures and respecting the cluster floor gives 10 to 28 docks for full coverage.",
           "At 4 to 30 inspection passes per site per month, the programme runs 196 to 1470 autonomous missions monthly, which is 78.4 to 1176 flight hours.",
-          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 98 to 2940 contracted crew-days per month — the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
-          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year — so the first conversation is about one dock on the highest-risk cluster, not 28."
+          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 98 to 2940 contracted crew-days per month, the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
+          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year, so the first conversation is about one dock on the highest-risk cluster, not 28."
         ],
         "caveats": [
           "Footprint is measured from mapped geometry, which reflects the operator's surface disturbance rather than a licensed concession boundary. It is a floor on inspectable area, not a ceiling.",
@@ -22583,7 +22583,7 @@
           {
             "key": "trigger_signal",
             "label": "Timing trigger",
-            "rationale": "A dated, cited event that makes contact relevant now — leadership change, incident, regulatory action, or expansion.",
+            "rationale": "A dated, cited event that makes contact relevant now, leadership change, incident, regulatory action, or expansion.",
             "weight": 0.13,
             "raw": 0,
             "contribution": 0,
@@ -22693,7 +22693,7 @@
           "drone",
           "automation"
         ],
-        "interpretation": "The filing refers to contractors 44 time(s), including in its risk factors — contractor dependency is disclosed as material to production. Safety incidents are named as a risk to operations (1 reference(s))."
+        "interpretation": "The filing refers to contractors 44 time(s), including in its risk factors, contractor dependency is disclosed as material to production. Safety incidents are named as a risk to operations (1 reference(s))."
       },
       "signals": [],
       "anchorComparison": {
@@ -22858,8 +22858,8 @@
           "The sites fall into 8 spatial clusters once features within 10 km of each other are grouped. Separated clusters cannot share dock infrastructure, so 8 is the floor on dock count regardless of area.",
           "A dock services roughly 55 km² at a 5 km effective radius, or 19.8 km² at 3 km, after a 70% coverage-efficiency allowance. Dividing measured area by those figures and respecting the cluster floor gives 8 to 8 docks for full coverage.",
           "At 4 to 30 inspection passes per site per month, the programme runs 144 to 1080 autonomous missions monthly, which is 57.6 to 864 flight hours.",
-          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 72 to 2160 contracted crew-days per month — the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
-          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year — so the first conversation is about one dock on the highest-risk cluster, not 8."
+          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 72 to 2160 contracted crew-days per month, the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
+          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year, so the first conversation is about one dock on the highest-risk cluster, not 8."
         ],
         "caveats": [
           "Footprint is measured from mapped geometry, which reflects the operator's surface disturbance rather than a licensed concession boundary. It is a floor on inspectable area, not a ceiling.",
@@ -29796,7 +29796,7 @@
           {
             "key": "trigger_signal",
             "label": "Timing trigger",
-            "rationale": "A dated, cited event that makes contact relevant now — leadership change, incident, regulatory action, or expansion.",
+            "rationale": "A dated, cited event that makes contact relevant now, leadership change, incident, regulatory action, or expansion.",
             "weight": 0.13,
             "raw": 0.872,
             "contribution": 11.3,
@@ -29992,7 +29992,7 @@
           "seniority": "c_suite",
           "accountId": "codelco",
           "findingPlaybook": [
-            "Appointed 2026-07-13 — 12 day(s) in post. New appointees reset an account's willingness to look at new suppliers, and the first quarter is when they choose what to change."
+            "Appointed 2026-07-13, 12 day(s) in post. New appointees reset an account's willingness to look at new suppliers, and the first quarter is when they choose what to change."
           ],
           "evidenceIds": [
             "ev-codelco-person-41"
@@ -30085,7 +30085,7 @@
           "seniority": "vp",
           "accountId": "codelco",
           "findingPlaybook": [
-            "Source records this seat as \"Interino\" (interino — interim holder, seat recently vacated).",
+            "Source records this seat as \"Interino\" (interino, interim holder, seat recently vacated).",
             "Interim holders in operations and site seats are unusually reachable: the seat changed hands recently and the incumbent needs a visible win."
           ],
           "evidenceIds": [
@@ -30154,7 +30154,7 @@
           "accountId": "codelco",
           "siteOsmId": "way/868387958",
           "findingPlaybook": [
-            "Source records this seat as \"Interino\" (interino — interim holder, seat recently vacated).",
+            "Source records this seat as \"Interino\" (interino, interim holder, seat recently vacated).",
             "Interim holders in operations and site seats are unusually reachable: the seat changed hands recently and the incumbent needs a visible win."
           ],
           "evidenceIds": [
@@ -30191,7 +30191,7 @@
           "accountId": "codelco",
           "siteOsmId": "way/251446165",
           "findingPlaybook": [
-            "Source records this seat as \"Subrogante\" (subrogante / suplente — acting holder, substantive seat unfilled).",
+            "Source records this seat as \"Subrogante\" (subrogante / suplente, acting holder, substantive seat unfilled).",
             "Interim holders in operations and site seats are unusually reachable: the seat changed hands recently and the incumbent needs a visible win."
           ],
           "evidenceIds": [
@@ -30226,7 +30226,7 @@
           "accountId": "codelco",
           "siteOsmId": "way/355367015",
           "findingPlaybook": [
-            "Source records this seat as \"Interino\" (interino — interim holder, seat recently vacated).",
+            "Source records this seat as \"Interino\" (interino, interim holder, seat recently vacated).",
             "Interim holders in operations and site seats are unusually reachable: the seat changed hands recently and the incumbent needs a visible win."
           ],
           "evidenceIds": [
@@ -30279,7 +30279,7 @@
           "accountId": "codelco",
           "siteOsmId": "way/251446165",
           "findingPlaybook": [
-            "Source records this seat as \"(s)\" (subrogante / suplente — acting holder, substantive seat unfilled).",
+            "Source records this seat as \"(s)\" (subrogante / suplente, acting holder, substantive seat unfilled).",
             "Interim holders in operations and site seats are unusually reachable: the seat changed hands recently and the incumbent needs a visible win."
           ],
           "evidenceIds": [
@@ -30417,8 +30417,8 @@
           "The sites fall into 7 spatial clusters once features within 10 km of each other are grouped. Separated clusters cannot share dock infrastructure, so 7 is the floor on dock count regardless of area.",
           "A dock services roughly 55 km² at a 5 km effective radius, or 19.8 km² at 3 km, after a 70% coverage-efficiency allowance. Dividing measured area by those figures and respecting the cluster floor gives 7 to 9 docks for full coverage.",
           "At 4 to 30 inspection passes per site per month, the programme runs 96 to 720 autonomous missions monthly, which is 38.4 to 576 flight hours.",
-          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 48 to 1440 contracted crew-days per month — the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
-          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year — so the first conversation is about one dock on the highest-risk cluster, not 9."
+          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 48 to 1440 contracted crew-days per month, the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
+          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year, so the first conversation is about one dock on the highest-risk cluster, not 9."
         ],
         "caveats": [
           "Footprint is measured from mapped geometry, which reflects the operator's surface disturbance rather than a licensed concession boundary. It is a floor on inspectable area, not a ceiling.",
@@ -31859,7 +31859,7 @@
           {
             "key": "trigger_signal",
             "label": "Timing trigger",
-            "rationale": "A dated, cited event that makes contact relevant now — leadership change, incident, regulatory action, or expansion.",
+            "rationale": "A dated, cited event that makes contact relevant now, leadership change, incident, regulatory action, or expansion.",
             "weight": 0.13,
             "raw": 0,
             "contribution": 0,
@@ -31902,7 +31902,7 @@
           "findingPlaybook": [
             "No public officer roster was found for Albemarle (Salar de Atacama) during this run, so no individual is named. The role remains the correct target and the buying-committee position is unchanged.",
             "Search public professional profiles restricted to this employer using local-language titles, which materially outperform English titles in Spanish-speaking operations.",
-            "Where the operator is state-owned, check for a statutory transparency disclosure — these publish officers, appointment dates and whether a seat is interim.",
+            "Where the operator is state-owned, check for a statutory transparency disclosure, these publish officers, appointment dates and whether a seat is interim.",
             "Check the annual filing's executive-officers section, which names officers and titles as a signed disclosure.",
             "Confirm the individual on a second independent source before any outreach is sent."
           ],
@@ -31921,7 +31921,7 @@
           "findingPlaybook": [
             "No public officer roster was found for Albemarle (Salar de Atacama) during this run, so no individual is named. The role remains the correct target and the buying-committee position is unchanged.",
             "Search public professional profiles restricted to this employer using local-language titles, which materially outperform English titles in Spanish-speaking operations.",
-            "Where the operator is state-owned, check for a statutory transparency disclosure — these publish officers, appointment dates and whether a seat is interim.",
+            "Where the operator is state-owned, check for a statutory transparency disclosure, these publish officers, appointment dates and whether a seat is interim.",
             "Check the annual filing's executive-officers section, which names officers and titles as a signed disclosure.",
             "Confirm the individual on a second independent source before any outreach is sent."
           ],
@@ -31940,7 +31940,7 @@
           "findingPlaybook": [
             "No public officer roster was found for Albemarle (Salar de Atacama) during this run, so no individual is named. The role remains the correct target and the buying-committee position is unchanged.",
             "Search public professional profiles restricted to this employer using local-language titles, which materially outperform English titles in Spanish-speaking operations.",
-            "Where the operator is state-owned, check for a statutory transparency disclosure — these publish officers, appointment dates and whether a seat is interim.",
+            "Where the operator is state-owned, check for a statutory transparency disclosure, these publish officers, appointment dates and whether a seat is interim.",
             "Check the annual filing's executive-officers section, which names officers and titles as a signed disclosure.",
             "Confirm the individual on a second independent source before any outreach is sent."
           ],
@@ -32064,8 +32064,8 @@
           "The sites fall into 1 spatial cluster once features within 10 km of each other are grouped. Separated clusters cannot share dock infrastructure, so 1 is the floor on dock count regardless of area.",
           "A dock services roughly 55 km² at a 5 km effective radius, or 19.8 km² at 3 km, after a 70% coverage-efficiency allowance. Dividing measured area by those figures and respecting the cluster floor gives 1 to 3 docks for full coverage.",
           "At 4 to 30 inspection passes per site per month, the programme runs 108 to 810 autonomous missions monthly, which is 43.2 to 648 flight hours.",
-          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 54 to 1620 contracted crew-days per month — the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
-          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year — so the first conversation is about one dock on the highest-risk cluster, not 3."
+          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 54 to 1620 contracted crew-days per month, the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
+          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year, so the first conversation is about one dock on the highest-risk cluster, not 3."
         ],
         "caveats": [
           "Footprint is measured from mapped geometry, which reflects the operator's surface disturbance rather than a licensed concession boundary. It is a floor on inspectable area, not a ceiling.",
@@ -33382,7 +33382,7 @@
           {
             "key": "trigger_signal",
             "label": "Timing trigger",
-            "rationale": "A dated, cited event that makes contact relevant now — leadership change, incident, regulatory action, or expansion.",
+            "rationale": "A dated, cited event that makes contact relevant now, leadership change, incident, regulatory action, or expansion.",
             "weight": 0.13,
             "raw": 0,
             "contribution": 0,
@@ -33574,8 +33574,8 @@
           "The sites fall into 2 spatial clusters once features within 10 km of each other are grouped. Separated clusters cannot share dock infrastructure, so 2 is the floor on dock count regardless of area.",
           "A dock services roughly 55 km² at a 5 km effective radius, or 19.8 km² at 3 km, after a 70% coverage-efficiency allowance. Dividing measured area by those figures and respecting the cluster floor gives 2 to 4 docks for full coverage.",
           "At 4 to 30 inspection passes per site per month, the programme runs 20 to 150 autonomous missions monthly, which is 8 to 120 flight hours.",
-          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 10 to 300 contracted crew-days per month — the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
-          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year — so the first conversation is about one dock on the highest-risk cluster, not 4."
+          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 10 to 300 contracted crew-days per month, the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
+          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year, so the first conversation is about one dock on the highest-risk cluster, not 4."
         ],
         "caveats": [
           "Footprint is measured from mapped geometry, which reflects the operator's surface disturbance rather than a licensed concession boundary. It is a floor on inspectable area, not a ceiling.",
@@ -34503,7 +34503,7 @@
           {
             "key": "trigger_signal",
             "label": "Timing trigger",
-            "rationale": "A dated, cited event that makes contact relevant now — leadership change, incident, regulatory action, or expansion.",
+            "rationale": "A dated, cited event that makes contact relevant now, leadership change, incident, regulatory action, or expansion.",
             "weight": 0.13,
             "raw": 0,
             "contribution": 0,
@@ -34786,8 +34786,8 @@
           "The sites fall into 3 spatial clusters once features within 10 km of each other are grouped. Separated clusters cannot share dock infrastructure, so 3 is the floor on dock count regardless of area.",
           "A dock services roughly 55 km² at a 5 km effective radius, or 19.8 km² at 3 km, after a 70% coverage-efficiency allowance. Dividing measured area by those figures and respecting the cluster floor gives 3 to 3 docks for full coverage.",
           "At 4 to 30 inspection passes per site per month, the programme runs 24 to 180 autonomous missions monthly, which is 9.6 to 144 flight hours.",
-          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 12 to 360 contracted crew-days per month — the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
-          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year — so the first conversation is about one dock on the highest-risk cluster, not 3."
+          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 12 to 360 contracted crew-days per month, the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
+          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year, so the first conversation is about one dock on the highest-risk cluster, not 3."
         ],
         "caveats": [
           "Footprint is measured from mapped geometry, which reflects the operator's surface disturbance rather than a licensed concession boundary. It is a floor on inspectable area, not a ceiling.",
@@ -35595,7 +35595,7 @@
           {
             "key": "trigger_signal",
             "label": "Timing trigger",
-            "rationale": "A dated, cited event that makes contact relevant now — leadership change, incident, regulatory action, or expansion.",
+            "rationale": "A dated, cited event that makes contact relevant now, leadership change, incident, regulatory action, or expansion.",
             "weight": 0.13,
             "raw": 0,
             "contribution": 0,
@@ -35764,8 +35764,8 @@
           "The sites fall into 2 spatial clusters once features within 10 km of each other are grouped. Separated clusters cannot share dock infrastructure, so 2 is the floor on dock count regardless of area.",
           "A dock services roughly 55 km² at a 5 km effective radius, or 19.8 km² at 3 km, after a 70% coverage-efficiency allowance. Dividing measured area by those figures and respecting the cluster floor gives 2 to 2 docks for full coverage.",
           "At 4 to 30 inspection passes per site per month, the programme runs 12 to 90 autonomous missions monthly, which is 4.8 to 72 flight hours.",
-          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 6 to 180 contracted crew-days per month — the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
-          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year — so the first conversation is about one dock on the highest-risk cluster, not 2."
+          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 6 to 180 contracted crew-days per month, the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
+          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year, so the first conversation is about one dock on the highest-risk cluster, not 2."
         ],
         "caveats": [
           "Footprint is measured from mapped geometry, which reflects the operator's surface disturbance rather than a licensed concession boundary. It is a floor on inspectable area, not a ceiling.",
@@ -36330,7 +36330,7 @@
           {
             "key": "trigger_signal",
             "label": "Timing trigger",
-            "rationale": "A dated, cited event that makes contact relevant now — leadership change, incident, regulatory action, or expansion.",
+            "rationale": "A dated, cited event that makes contact relevant now, leadership change, incident, regulatory action, or expansion.",
             "weight": 0.13,
             "raw": 0,
             "contribution": 0,
@@ -36516,8 +36516,8 @@
           "The sites fall into 1 spatial cluster once features within 10 km of each other are grouped. Separated clusters cannot share dock infrastructure, so 1 is the floor on dock count regardless of area.",
           "A dock services roughly 55 km² at a 5 km effective radius, or 19.8 km² at 3 km, after a 70% coverage-efficiency allowance. Dividing measured area by those figures and respecting the cluster floor gives 1 to 1 docks for full coverage.",
           "At 4 to 30 inspection passes per site per month, the programme runs 8 to 60 autonomous missions monthly, which is 3.2 to 48 flight hours.",
-          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 4 to 120 contracted crew-days per month — the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
-          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year — so the first conversation is about one dock on the highest-risk cluster, not 1."
+          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 4 to 120 contracted crew-days per month, the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
+          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year, so the first conversation is about one dock on the highest-risk cluster, not 1."
         ],
         "caveats": [
           "Footprint is measured from mapped geometry, which reflects the operator's surface disturbance rather than a licensed concession boundary. It is a floor on inspectable area, not a ceiling.",
@@ -36813,7 +36813,7 @@
           {
             "key": "trigger_signal",
             "label": "Timing trigger",
-            "rationale": "A dated, cited event that makes contact relevant now — leadership change, incident, regulatory action, or expansion.",
+            "rationale": "A dated, cited event that makes contact relevant now, leadership change, incident, regulatory action, or expansion.",
             "weight": 0.13,
             "raw": 0,
             "contribution": 0,
@@ -36977,8 +36977,8 @@
           "The sites fall into 1 spatial cluster once features within 10 km of each other are grouped. Separated clusters cannot share dock infrastructure, so 1 is the floor on dock count regardless of area.",
           "A dock services roughly 55 km² at a 5 km effective radius, or 19.8 km² at 3 km, after a 70% coverage-efficiency allowance. Dividing measured area by those figures and respecting the cluster floor gives 1 to 1 docks for full coverage.",
           "At 4 to 30 inspection passes per site per month, the programme runs 4 to 30 autonomous missions monthly, which is 1.6 to 24 flight hours.",
-          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 2 to 60 contracted crew-days per month — the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
-          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year — so the first conversation is about one dock on the highest-risk cluster, not 1."
+          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 2 to 60 contracted crew-days per month, the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
+          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year, so the first conversation is about one dock on the highest-risk cluster, not 1."
         ],
         "caveats": [
           "Footprint is measured from mapped geometry, which reflects the operator's surface disturbance rather than a licensed concession boundary. It is a floor on inspectable area, not a ceiling.",
@@ -37287,7 +37287,7 @@
           {
             "key": "trigger_signal",
             "label": "Timing trigger",
-            "rationale": "A dated, cited event that makes contact relevant now — leadership change, incident, regulatory action, or expansion.",
+            "rationale": "A dated, cited event that makes contact relevant now, leadership change, incident, regulatory action, or expansion.",
             "weight": 0.13,
             "raw": 0,
             "contribution": 0,
@@ -37432,8 +37432,8 @@
           "The sites fall into 1 spatial cluster once features within 10 km of each other are grouped. Separated clusters cannot share dock infrastructure, so 1 is the floor on dock count regardless of area.",
           "A dock services roughly 55 km² at a 5 km effective radius, or 19.8 km² at 3 km, after a 70% coverage-efficiency allowance. Dividing measured area by those figures and respecting the cluster floor gives 1 to 1 docks for full coverage.",
           "At 4 to 30 inspection passes per site per month, the programme runs 4 to 30 autonomous missions monthly, which is 1.6 to 24 flight hours.",
-          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 2 to 60 contracted crew-days per month — the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
-          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year — so the first conversation is about one dock on the highest-risk cluster, not 1."
+          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 2 to 60 contracted crew-days per month, the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
+          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year, so the first conversation is about one dock on the highest-risk cluster, not 1."
         ],
         "caveats": [
           "Footprint is measured from mapped geometry, which reflects the operator's surface disturbance rather than a licensed concession boundary. It is a floor on inspectable area, not a ceiling.",
@@ -37701,7 +37701,7 @@
           {
             "key": "trigger_signal",
             "label": "Timing trigger",
-            "rationale": "A dated, cited event that makes contact relevant now — leadership change, incident, regulatory action, or expansion.",
+            "rationale": "A dated, cited event that makes contact relevant now, leadership change, incident, regulatory action, or expansion.",
             "weight": 0.13,
             "raw": 0,
             "contribution": 0,
@@ -37846,8 +37846,8 @@
           "The sites fall into 1 spatial cluster once features within 10 km of each other are grouped. Separated clusters cannot share dock infrastructure, so 1 is the floor on dock count regardless of area.",
           "A dock services roughly 55 km² at a 5 km effective radius, or 19.8 km² at 3 km, after a 70% coverage-efficiency allowance. Dividing measured area by those figures and respecting the cluster floor gives 1 to 1 docks for full coverage.",
           "At 4 to 30 inspection passes per site per month, the programme runs 4 to 30 autonomous missions monthly, which is 1.6 to 24 flight hours.",
-          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 2 to 60 contracted crew-days per month — the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
-          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year — so the first conversation is about one dock on the highest-risk cluster, not 1."
+          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 2 to 60 contracted crew-days per month, the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
+          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year, so the first conversation is about one dock on the highest-risk cluster, not 1."
         ],
         "caveats": [
           "Footprint is measured from mapped geometry, which reflects the operator's surface disturbance rather than a licensed concession boundary. It is a floor on inspectable area, not a ceiling.",
@@ -38199,7 +38199,7 @@
           {
             "key": "trigger_signal",
             "label": "Timing trigger",
-            "rationale": "A dated, cited event that makes contact relevant now — leadership change, incident, regulatory action, or expansion.",
+            "rationale": "A dated, cited event that makes contact relevant now, leadership change, incident, regulatory action, or expansion.",
             "weight": 0.13,
             "raw": 0,
             "contribution": 0,
@@ -38242,7 +38242,7 @@
           "findingPlaybook": [
             "No public officer roster was found for Glencore (Lomas Bayas) during this run, so no individual is named. The role remains the correct target and the buying-committee position is unchanged.",
             "Search public professional profiles restricted to this employer using local-language titles, which materially outperform English titles in Spanish-speaking operations.",
-            "Where the operator is state-owned, check for a statutory transparency disclosure — these publish officers, appointment dates and whether a seat is interim.",
+            "Where the operator is state-owned, check for a statutory transparency disclosure, these publish officers, appointment dates and whether a seat is interim.",
             "Check the annual filing's executive-officers section, which names officers and titles as a signed disclosure.",
             "Confirm the individual on a second independent source before any outreach is sent."
           ],
@@ -38261,7 +38261,7 @@
           "findingPlaybook": [
             "No public officer roster was found for Glencore (Lomas Bayas) during this run, so no individual is named. The role remains the correct target and the buying-committee position is unchanged.",
             "Search public professional profiles restricted to this employer using local-language titles, which materially outperform English titles in Spanish-speaking operations.",
-            "Where the operator is state-owned, check for a statutory transparency disclosure — these publish officers, appointment dates and whether a seat is interim.",
+            "Where the operator is state-owned, check for a statutory transparency disclosure, these publish officers, appointment dates and whether a seat is interim.",
             "Check the annual filing's executive-officers section, which names officers and titles as a signed disclosure.",
             "Confirm the individual on a second independent source before any outreach is sent."
           ],
@@ -38280,7 +38280,7 @@
           "findingPlaybook": [
             "No public officer roster was found for Glencore (Lomas Bayas) during this run, so no individual is named. The role remains the correct target and the buying-committee position is unchanged.",
             "Search public professional profiles restricted to this employer using local-language titles, which materially outperform English titles in Spanish-speaking operations.",
-            "Where the operator is state-owned, check for a statutory transparency disclosure — these publish officers, appointment dates and whether a seat is interim.",
+            "Where the operator is state-owned, check for a statutory transparency disclosure, these publish officers, appointment dates and whether a seat is interim.",
             "Check the annual filing's executive-officers section, which names officers and titles as a signed disclosure.",
             "Confirm the individual on a second independent source before any outreach is sent."
           ],
@@ -38380,8 +38380,8 @@
           "The sites fall into 1 spatial cluster once features within 10 km of each other are grouped. Separated clusters cannot share dock infrastructure, so 1 is the floor on dock count regardless of area.",
           "A dock services roughly 55 km² at a 5 km effective radius, or 19.8 km² at 3 km, after a 70% coverage-efficiency allowance. Dividing measured area by those figures and respecting the cluster floor gives 1 to 1 docks for full coverage.",
           "At 4 to 30 inspection passes per site per month, the programme runs 8 to 60 autonomous missions monthly, which is 3.2 to 48 flight hours.",
-          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 4 to 120 contracted crew-days per month — the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
-          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year — so the first conversation is about one dock on the highest-risk cluster, not 1."
+          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 4 to 120 contracted crew-days per month, the hours currently spent putting people on pit walls, haul roads, benches and stockpiles; brine well fields, pond networks, pipework and process plant.",
+          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year, so the first conversation is about one dock on the highest-risk cluster, not 1."
         ],
         "caveats": [
           "Footprint is measured from mapped geometry, which reflects the operator's surface disturbance rather than a licensed concession boundary. It is a floor on inspectable area, not a ceiling.",
@@ -40529,55 +40529,55 @@
       "attempts": [
         {
           "source": "OSM operator tag",
-          "outcome": "\"Yacimientos de Litio Bolivianos\" — 1 feature(s), 502 km² mapped, no identity match"
+          "outcome": "\"Yacimientos de Litio Bolivianos\", 1 feature(s), 502 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"SQM Industrial S.A.\" — 6 feature(s), 286.45 km² mapped, no identity match"
+          "outcome": "\"SQM Industrial S.A.\", 6 feature(s), 286.45 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Anglo American Sur S.A.\" — 5 feature(s), 58.24 km² mapped, no identity match"
+          "outcome": "\"Anglo American Sur S.A.\", 5 feature(s), 58.24 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Minera Los Pelambres\" — 3 feature(s), 56.89 km² mapped, no identity match"
+          "outcome": "\"Minera Los Pelambres\", 3 feature(s), 56.89 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Atacama Minerals Chile S.C.M.\" — 1 feature(s), 44.15 km² mapped, no identity match"
+          "outcome": "\"Atacama Minerals Chile S.C.M.\", 1 feature(s), 44.15 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Anglo American Minério de Ferro Brasil S/A\" — 1 feature(s), 43.22 km² mapped, no identity match"
+          "outcome": "\"Anglo American Minério de Ferro Brasil S/A\", 1 feature(s), 43.22 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Algorta Norte S.A.\" — 1 feature(s), 37.47 km² mapped, no identity match"
+          "outcome": "\"Algorta Norte S.A.\", 1 feature(s), 37.47 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"CSN Mineração S.A.\" — 1 feature(s), 31.84 km² mapped, no identity match"
+          "outcome": "\"CSN Mineração S.A.\", 1 feature(s), 31.84 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Compañía Minera Cerro Colorado Limitada\" — 2 feature(s), 28.22 km² mapped, no identity match"
+          "outcome": "\"Compañía Minera Cerro Colorado Limitada\", 2 feature(s), 28.22 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Usiminas\" — 1 feature(s), 17.44 km² mapped, no identity match"
+          "outcome": "\"Usiminas\", 1 feature(s), 17.44 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Mexicana de Cobre, S.A.\" — 1 feature(s), 15.51 km² mapped, no identity match"
+          "outcome": "\"Mexicana de Cobre, S.A.\", 1 feature(s), 15.51 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Sociedad Contractual Minera Corporación de Desarrollo del Norte\" — 1 feature(s), 14.09 km² mapped, no identity match"
+          "outcome": "\"Sociedad Contractual Minera Corporación de Desarrollo del Norte\", 1 feature(s), 14.09 km² mapped, no identity match"
         }
       ],
       "interpretation": "These are real operators with real measured geometry, but resolving a local legal entity to a parent group needs a corporate registry we did not query. They are excluded from the account list rather than being guessed at.",
-      "remediation": "Add a registry lookup keyed on the operator string. Until then, excluding them keeps the account list free of invented parentage — an unresolved operator is a lead to research, not an account to email.",
+      "remediation": "Add a registry lookup keyed on the operator string. Until then, excluding them keeps the account list free of invented parentage, an unresolved operator is a lead to research, not an account to email.",
       "producedBy": "universe_scout"
     },
     {
@@ -41163,7 +41163,7 @@
       "accountId": "sqm",
       "headline": "SQM is the reference profile this campaign is modelled on. Its measured footprint and disclosed contractor dependency define what a good account looks like.",
       "whyNow": "No dated trigger event was found, so the reason to call is structural rather than circumstantial: their own filing names contractor dependency as a production risk 30 times and discloses no autonomy programme.",
-      "positioning": "SQM runs 49 mapped operating areas totalling 548.5 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection — same coverage or better, without a person in front of the hazard.",
+      "positioning": "SQM runs 49 mapped operating areas totalling 548.5 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection, same coverage or better, without a person in front of the hazard.",
       "stakeholderMap": [
         {
           "contactId": "contact-sqm-ricardo-ramos",
@@ -41201,7 +41201,7 @@
         },
         {
           "question": "Your annual filing lists contractor safety incidents and contractor work stoppages as risks to production. How much inspection work sits with contracted crews right now?",
-          "whyItLands": "It is their own disclosure, not our claim — the filing refers to contractors 30 times. Quoting a company's own risk language moves the conversation from whether there is a problem to how big it is.",
+          "whyItLands": "It is their own disclosure, not our claim, the filing refers to contractors 30 times. Quoting a company's own risk language moves the conversation from whether there is a problem to how big it is.",
           "evidenceIds": [
             "ev-sqm-filing-15"
           ]
@@ -41220,7 +41220,7 @@
         },
         {
           "question": "If inspection frequency were not constrained by crew availability, what would you want to look at more often than you currently can?",
-          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection — it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
+          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection, it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
           "evidenceIds": []
         }
       ],
@@ -41232,7 +41232,7 @@
         },
         {
           "objection": "Our contractors are cheaper than a capital programme.",
-          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year — not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk and refers to contractors 30 times.",
+          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year, not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk and refers to contractors 30 times.",
           "evidenceIds": [
             "ev-sqm-filing-15"
           ]
@@ -41256,16 +41256,16 @@
         }
       ],
       "referenceCase": {
-        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme — which is the objection this account will raise first.",
+        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme, which is the objection this account will raise first.",
         "evidenceIds": []
       },
-      "nextAction": "Send the accepted first-touch message to Ricardo Ramos, opening on SQM Salar de Atacama, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message — the ask is permission to send the written breakdown."
+      "nextAction": "Send the accepted first-touch message to Ricardo Ramos, opening on SQM Salar de Atacama, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message, the ask is permission to send the written breakdown."
     },
     "vale": {
       "accountId": "vale",
       "headline": "Worth a sequence once tier A is moving. Vale resembles Sociedad Química y Minera de Chile (SQM) on the dimensions that matter.",
       "whyNow": "No dated trigger event was found, so the reason to call is structural rather than circumstantial: their own filing names contractor dependency as a production risk 45 times and discloses no autonomy programme.",
-      "positioning": "Vale runs 36 mapped operating areas totalling 81.5 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection — same coverage or better, without a person in front of the hazard.",
+      "positioning": "Vale runs 36 mapped operating areas totalling 81.5 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection, same coverage or better, without a person in front of the hazard.",
       "stakeholderMap": [
         {
           "contactId": "contact-vale-henrique-candian",
@@ -41288,7 +41288,7 @@
         },
         {
           "question": "Your annual filing lists contractor safety incidents and contractor work stoppages as risks to production. How much inspection work sits with contracted crews right now?",
-          "whyItLands": "It is their own disclosure, not our claim — the filing refers to contractors 45 times. Quoting a company's own risk language moves the conversation from whether there is a problem to how big it is.",
+          "whyItLands": "It is their own disclosure, not our claim, the filing refers to contractors 45 times. Quoting a company's own risk language moves the conversation from whether there is a problem to how big it is.",
           "evidenceIds": [
             "ev-vale-filing-105"
           ]
@@ -41307,7 +41307,7 @@
         },
         {
           "question": "If inspection frequency were not constrained by crew availability, what would you want to look at more often than you currently can?",
-          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection — it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
+          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection, it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
           "evidenceIds": []
         }
       ],
@@ -41319,7 +41319,7 @@
         },
         {
           "objection": "Our contractors are cheaper than a capital programme.",
-          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year — not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk and refers to contractors 45 times.",
+          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year, not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk and refers to contractors 45 times.",
           "evidenceIds": [
             "ev-vale-filing-105"
           ]
@@ -41343,16 +41343,16 @@
         }
       ],
       "referenceCase": {
-        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme — which is the objection this account will raise first.",
+        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme, which is the objection this account will raise first.",
         "evidenceIds": []
       },
-      "nextAction": "Send the accepted first-touch message to Henrique Candian, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message — the ask is permission to send the written breakdown."
+      "nextAction": "Send the accepted first-touch message to Henrique Candian, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message, the ask is permission to send the written breakdown."
     },
     "codelco": {
       "accountId": "codelco",
       "headline": "Worth a sequence once tier A is moving. Codelco resembles Sociedad Química y Minera de Chile (SQM) on the dimensions that matter, and División Radomiro Tomic is where the conversation starts.",
       "whyNow": "Vicepresidente de Operaciones (i) is held on an interim basis by Lindor Quiroga B.. An interim holder in an operations seat signals the substantive post was vacated recently and is unresolved. The organisation is actively re-examining how that function is run.",
-      "positioning": "Codelco runs 24 mapped operating areas totalling 177.2 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection — same coverage or better, without a person in front of the hazard.",
+      "positioning": "Codelco runs 24 mapped operating areas totalling 177.2 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection, same coverage or better, without a person in front of the hazard.",
       "stakeholderMap": [
         {
           "contactId": "contact-codelco-claudia-dominguez-sepulveda",
@@ -41409,7 +41409,7 @@
         },
         {
           "question": "If inspection frequency were not constrained by crew availability, what would you want to look at more often than you currently can?",
-          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection — it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
+          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection, it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
           "evidenceIds": []
         }
       ],
@@ -41421,7 +41421,7 @@
         },
         {
           "objection": "Our contractors are cheaper than a capital programme.",
-          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year — not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
+          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year, not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
           "evidenceIds": []
         },
         {
@@ -41443,16 +41443,16 @@
         }
       ],
       "referenceCase": {
-        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme — which is the objection this account will raise first.",
+        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme, which is the objection this account will raise first.",
         "evidenceIds": []
       },
-      "nextAction": "Send the accepted first-touch message to Claudia Domínguez Sepúlveda, opening on División Radomiro Tomic, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message — the ask is permission to send the written breakdown."
+      "nextAction": "Send the accepted first-touch message to Claudia Domínguez Sepúlveda, opening on División Radomiro Tomic, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message, the ask is permission to send the written breakdown."
     },
     "albemarle": {
       "accountId": "albemarle",
       "headline": "Worth a sequence once tier A is moving. Albemarle (Salar de Atacama) resembles Sociedad Química y Minera de Chile (SQM) on the dimensions that matter, and Planta Salar Atacama Albemarle is where the conversation starts.",
       "whyNow": "No timing trigger was found for this account. Treat it as nurture until one appears rather than manufacturing urgency.",
-      "positioning": "Albemarle (Salar de Atacama) runs 27 mapped operating areas totalling 43 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection — same coverage or better, without a person in front of the hazard.",
+      "positioning": "Albemarle (Salar de Atacama) runs 27 mapped operating areas totalling 43 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection, same coverage or better, without a person in front of the hazard.",
       "stakeholderMap": [
         {
           "contactId": "roletarget-albemarle-site-director",
@@ -41492,7 +41492,7 @@
         },
         {
           "question": "If inspection frequency were not constrained by crew availability, what would you want to look at more often than you currently can?",
-          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection — it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
+          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection, it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
           "evidenceIds": []
         }
       ],
@@ -41504,7 +41504,7 @@
         },
         {
           "objection": "Our contractors are cheaper than a capital programme.",
-          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year — not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
+          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year, not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
           "evidenceIds": []
         },
         {
@@ -41526,7 +41526,7 @@
         }
       ],
       "referenceCase": {
-        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme — which is the objection this account will raise first.",
+        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme, which is the objection this account will raise first.",
         "evidenceIds": []
       },
       "nextAction": "Find the Site Director before sending anything. The finding playbook on this account lists the specific sources to try, in order."
@@ -41535,7 +41535,7 @@
       "accountId": "teck-qb",
       "headline": "Nurture. Teck Quebrada Blanca resembles Sociedad Química y Minera de Chile (SQM) on the dimensions that matter, and Mina Quebrada Blanca is where the conversation starts.",
       "whyNow": "No timing trigger was found for this account. Treat it as nurture until one appears rather than manufacturing urgency.",
-      "positioning": "Teck Quebrada Blanca runs 5 mapped operating areas totalling 64.6 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection — same coverage or better, without a person in front of the hazard.",
+      "positioning": "Teck Quebrada Blanca runs 5 mapped operating areas totalling 64.6 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection, same coverage or better, without a person in front of the hazard.",
       "stakeholderMap": [
         {
           "contactId": "contact-teck-qb-mario-ortiz",
@@ -41555,7 +41555,7 @@
         {
           "contactId": "contact-teck-qb-cristian-soto-araneda",
           "role": "risk_validator",
-          "approach": "Cristian Soto araneda can stop this on safety or compliance grounds, so bring them in early rather than late. The argument that lands is auditability — a timestamped, third-party-verifiable inspection record — not labour saving."
+          "approach": "Cristian Soto araneda can stop this on safety or compliance grounds, so bring them in early rather than late. The argument that lands is auditability, a timestamped, third-party-verifiable inspection record, not labour saving."
         }
       ],
       "discoveryQuestions": [
@@ -41580,7 +41580,7 @@
         },
         {
           "question": "If inspection frequency were not constrained by crew availability, what would you want to look at more often than you currently can?",
-          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection — it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
+          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection, it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
           "evidenceIds": []
         }
       ],
@@ -41592,7 +41592,7 @@
         },
         {
           "objection": "Our contractors are cheaper than a capital programme.",
-          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year — not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
+          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year, not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
           "evidenceIds": []
         },
         {
@@ -41614,16 +41614,16 @@
         }
       ],
       "referenceCase": {
-        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme — which is the objection this account will raise first.",
+        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme, which is the objection this account will raise first.",
         "evidenceIds": []
       },
-      "nextAction": "Send the accepted first-touch message to Mario Ortiz, opening on Mina Quebrada Blanca, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message — the ask is permission to send the written breakdown."
+      "nextAction": "Send the accepted first-touch message to Mario Ortiz, opening on Mina Quebrada Blanca, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message, the ask is permission to send the written breakdown."
     },
     "antofagasta-minerals": {
       "accountId": "antofagasta-minerals",
       "headline": "Nurture. Antofagasta Minerals resembles Sociedad Química y Minera de Chile (SQM) on the dimensions that matter, and Rajo Zaldívar is where the conversation starts.",
       "whyNow": "No timing trigger was found for this account. Treat it as nurture until one appears rather than manufacturing urgency.",
-      "positioning": "Antofagasta Minerals runs 6 mapped operating areas totalling 11.4 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection — same coverage or better, without a person in front of the hazard.",
+      "positioning": "Antofagasta Minerals runs 6 mapped operating areas totalling 11.4 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection, same coverage or better, without a person in front of the hazard.",
       "stakeholderMap": [
         {
           "contactId": "contact-antofagasta-minerals-patricio-chacana",
@@ -41673,7 +41673,7 @@
         },
         {
           "question": "If inspection frequency were not constrained by crew availability, what would you want to look at more often than you currently can?",
-          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection — it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
+          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection, it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
           "evidenceIds": []
         }
       ],
@@ -41685,7 +41685,7 @@
         },
         {
           "objection": "Our contractors are cheaper than a capital programme.",
-          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year — not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
+          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year, not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
           "evidenceIds": []
         },
         {
@@ -41707,16 +41707,16 @@
         }
       ],
       "referenceCase": {
-        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme — which is the objection this account will raise first.",
+        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme, which is the objection this account will raise first.",
         "evidenceIds": []
       },
-      "nextAction": "Send the accepted first-touch message to Patricio Chacana, opening on Rajo Zaldívar, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message — the ask is permission to send the written breakdown."
+      "nextAction": "Send the accepted first-touch message to Patricio Chacana, opening on Rajo Zaldívar, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message, the ask is permission to send the written breakdown."
     },
     "escondida": {
       "accountId": "escondida",
       "headline": "Nurture. Minera Escondida (BHP) resembles Sociedad Química y Minera de Chile (SQM) on the dimensions that matter, and Rajo Escondida is where the conversation starts.",
       "whyNow": "No timing trigger was found for this account. Treat it as nurture until one appears rather than manufacturing urgency.",
-      "positioning": "Minera Escondida (BHP) runs 3 mapped operating areas totalling 18.2 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection — same coverage or better, without a person in front of the hazard.",
+      "positioning": "Minera Escondida (BHP) runs 3 mapped operating areas totalling 18.2 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection, same coverage or better, without a person in front of the hazard.",
       "stakeholderMap": [
         {
           "contactId": "contact-escondida-july-amas-aranda",
@@ -41756,7 +41756,7 @@
         },
         {
           "question": "If inspection frequency were not constrained by crew availability, what would you want to look at more often than you currently can?",
-          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection — it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
+          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection, it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
           "evidenceIds": []
         }
       ],
@@ -41768,7 +41768,7 @@
         },
         {
           "objection": "Our contractors are cheaper than a capital programme.",
-          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year — not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
+          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year, not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
           "evidenceIds": []
         },
         {
@@ -41790,16 +41790,16 @@
         }
       ],
       "referenceCase": {
-        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme — which is the objection this account will raise first.",
+        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme, which is the objection this account will raise first.",
         "evidenceIds": []
       },
-      "nextAction": "Send the accepted first-touch message to July Amas Aranda, opening on Rajo Escondida, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message — the ask is permission to send the written breakdown."
+      "nextAction": "Send the accepted first-touch message to July Amas Aranda, opening on Rajo Escondida, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message, the ask is permission to send the written breakdown."
     },
     "collahuasi": {
       "accountId": "collahuasi",
       "headline": "Nurture. Collahuasi resembles Sociedad Química y Minera de Chile (SQM) on the dimensions that matter, and Rajo Rosario is where the conversation starts.",
       "whyNow": "No timing trigger was found for this account. Treat it as nurture until one appears rather than manufacturing urgency.",
-      "positioning": "Collahuasi runs 2 mapped operating areas totalling 7.5 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection — same coverage or better, without a person in front of the hazard.",
+      "positioning": "Collahuasi runs 2 mapped operating areas totalling 7.5 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection, same coverage or better, without a person in front of the hazard.",
       "stakeholderMap": [
         {
           "contactId": "contact-collahuasi-aldo-tosetti-munizaga",
@@ -41844,7 +41844,7 @@
         },
         {
           "question": "If inspection frequency were not constrained by crew availability, what would you want to look at more often than you currently can?",
-          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection — it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
+          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection, it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
           "evidenceIds": []
         }
       ],
@@ -41856,7 +41856,7 @@
         },
         {
           "objection": "Our contractors are cheaper than a capital programme.",
-          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year — not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
+          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year, not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
           "evidenceIds": []
         },
         {
@@ -41878,31 +41878,31 @@
         }
       ],
       "referenceCase": {
-        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme — which is the objection this account will raise first.",
+        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme, which is the objection this account will raise first.",
         "evidenceIds": []
       },
-      "nextAction": "Send the accepted first-touch message to Aldo Tosetti Munizaga, opening on Rajo Rosario, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message — the ask is permission to send the written breakdown."
+      "nextAction": "Send the accepted first-touch message to Aldo Tosetti Munizaga, opening on Rajo Rosario, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message, the ask is permission to send the written breakdown."
     },
     "mantos-copper": {
       "accountId": "mantos-copper",
       "headline": "Nurture. Mantos Copper resembles Sociedad Química y Minera de Chile (SQM) on the dimensions that matter, and Rajo Santa Bárbara is where the conversation starts.",
       "whyNow": "No timing trigger was found for this account. Treat it as nurture until one appears rather than manufacturing urgency.",
-      "positioning": "Mantos Copper runs 1 mapped operating area totalling 2.8 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection — same coverage or better, without a person in front of the hazard.",
+      "positioning": "Mantos Copper runs 1 mapped operating area totalling 2.8 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection, same coverage or better, without a person in front of the hazard.",
       "stakeholderMap": [
         {
           "contactId": "contact-mantos-copper-carlos-novoa-irribarra",
           "role": "risk_validator",
-          "approach": "Carlos Novoa Irribarra can stop this on safety or compliance grounds, so bring them in early rather than late. The argument that lands is auditability — a timestamped, third-party-verifiable inspection record — not labour saving."
+          "approach": "Carlos Novoa Irribarra can stop this on safety or compliance grounds, so bring them in early rather than late. The argument that lands is auditability, a timestamped, third-party-verifiable inspection record, not labour saving."
         },
         {
           "contactId": "contact-mantos-copper-olga-sepulveda-peralta",
           "role": "risk_validator",
-          "approach": "Olga Sepúlveda Peralta can stop this on safety or compliance grounds, so bring them in early rather than late. The argument that lands is auditability — a timestamped, third-party-verifiable inspection record — not labour saving."
+          "approach": "Olga Sepúlveda Peralta can stop this on safety or compliance grounds, so bring them in early rather than late. The argument that lands is auditability, a timestamped, third-party-verifiable inspection record, not labour saving."
         },
         {
           "contactId": "contact-mantos-copper-rene-vallejos-osorio",
           "role": "risk_validator",
-          "approach": "Rene Vallejos Osorio can stop this on safety or compliance grounds, so bring them in early rather than late. The argument that lands is auditability — a timestamped, third-party-verifiable inspection record — not labour saving."
+          "approach": "Rene Vallejos Osorio can stop this on safety or compliance grounds, so bring them in early rather than late. The argument that lands is auditability, a timestamped, third-party-verifiable inspection record, not labour saving."
         }
       ],
       "discoveryQuestions": [
@@ -41920,7 +41920,7 @@
         },
         {
           "question": "If inspection frequency were not constrained by crew availability, what would you want to look at more often than you currently can?",
-          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection — it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
+          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection, it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
           "evidenceIds": []
         }
       ],
@@ -41932,7 +41932,7 @@
         },
         {
           "objection": "Our contractors are cheaper than a capital programme.",
-          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year — not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
+          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year, not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
           "evidenceIds": []
         },
         {
@@ -41954,16 +41954,16 @@
         }
       ],
       "referenceCase": {
-        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme — which is the objection this account will raise first.",
+        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme, which is the objection this account will raise first.",
         "evidenceIds": []
       },
-      "nextAction": "Send the accepted first-touch message to Carlos Novoa Irribarra, opening on Rajo Santa Bárbara, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message — the ask is permission to send the written breakdown."
+      "nextAction": "Send the accepted first-touch message to Carlos Novoa Irribarra, opening on Rajo Santa Bárbara, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message, the ask is permission to send the written breakdown."
     },
     "spence": {
       "accountId": "spence",
       "headline": "Nurture. BHP Spence resembles Sociedad Química y Minera de Chile (SQM) on the dimensions that matter, and Rajo Spence is where the conversation starts.",
       "whyNow": "No timing trigger was found for this account. Treat it as nurture until one appears rather than manufacturing urgency.",
-      "positioning": "BHP Spence runs 1 mapped operating area totalling 4.4 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection — same coverage or better, without a person in front of the hazard.",
+      "positioning": "BHP Spence runs 1 mapped operating area totalling 4.4 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection, same coverage or better, without a person in front of the hazard.",
       "stakeholderMap": [
         {
           "contactId": "contact-spence-arturo-ardiles-alfaro",
@@ -41991,7 +41991,7 @@
         },
         {
           "question": "If inspection frequency were not constrained by crew availability, what would you want to look at more often than you currently can?",
-          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection — it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
+          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection, it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
           "evidenceIds": []
         }
       ],
@@ -42003,7 +42003,7 @@
         },
         {
           "objection": "Our contractors are cheaper than a capital programme.",
-          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year — not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
+          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year, not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
           "evidenceIds": []
         },
         {
@@ -42025,16 +42025,16 @@
         }
       ],
       "referenceCase": {
-        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme — which is the objection this account will raise first.",
+        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme, which is the objection this account will raise first.",
         "evidenceIds": []
       },
-      "nextAction": "Send the accepted first-touch message to Arturo Ardiles Alfaro, opening on Rajo Spence, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message — the ask is permission to send the written breakdown."
+      "nextAction": "Send the accepted first-touch message to Arturo Ardiles Alfaro, opening on Rajo Spence, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message, the ask is permission to send the written breakdown."
     },
     "sierra-gorda": {
       "accountId": "sierra-gorda",
       "headline": "Nurture. Sierra Gorda resembles Sociedad Química y Minera de Chile (SQM) on the dimensions that matter, and Rajo Catabel is where the conversation starts.",
       "whyNow": "No timing trigger was found for this account. Treat it as nurture until one appears rather than manufacturing urgency.",
-      "positioning": "Sierra Gorda runs 1 mapped operating area totalling 3 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection — same coverage or better, without a person in front of the hazard.",
+      "positioning": "Sierra Gorda runs 1 mapped operating area totalling 3 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection, same coverage or better, without a person in front of the hazard.",
       "stakeholderMap": [
         {
           "contactId": "contact-sierra-gorda-mario-castro-walker",
@@ -42044,7 +42044,7 @@
         {
           "contactId": "contact-sierra-gorda-marcelo-carreno",
           "role": "risk_validator",
-          "approach": "Marcelo Carreño can stop this on safety or compliance grounds, so bring them in early rather than late. The argument that lands is auditability — a timestamped, third-party-verifiable inspection record — not labour saving."
+          "approach": "Marcelo Carreño can stop this on safety or compliance grounds, so bring them in early rather than late. The argument that lands is auditability, a timestamped, third-party-verifiable inspection record, not labour saving."
         }
       ],
       "discoveryQuestions": [
@@ -42062,7 +42062,7 @@
         },
         {
           "question": "If inspection frequency were not constrained by crew availability, what would you want to look at more often than you currently can?",
-          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection — it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
+          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection, it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
           "evidenceIds": []
         }
       ],
@@ -42074,7 +42074,7 @@
         },
         {
           "objection": "Our contractors are cheaper than a capital programme.",
-          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year — not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
+          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year, not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
           "evidenceIds": []
         },
         {
@@ -42096,16 +42096,16 @@
         }
       ],
       "referenceCase": {
-        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme — which is the objection this account will raise first.",
+        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme, which is the objection this account will raise first.",
         "evidenceIds": []
       },
-      "nextAction": "Send the accepted first-touch message to Mario Castro Walker, opening on Rajo Catabel, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message — the ask is permission to send the written breakdown."
+      "nextAction": "Send the accepted first-touch message to Mario Castro Walker, opening on Rajo Catabel, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message, the ask is permission to send the written breakdown."
     },
     "glencore-lomas": {
       "accountId": "glencore-lomas",
       "headline": "Nurture. Glencore (Lomas Bayas) resembles Sociedad Química y Minera de Chile (SQM) on the dimensions that matter, and Rajo Lomas Bayas I is where the conversation starts.",
       "whyNow": "No timing trigger was found for this account. Treat it as nurture until one appears rather than manufacturing urgency.",
-      "positioning": "Glencore (Lomas Bayas) runs 2 mapped operating areas totalling 2.4 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection — same coverage or better, without a person in front of the hazard.",
+      "positioning": "Glencore (Lomas Bayas) runs 2 mapped operating areas totalling 2.4 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection, same coverage or better, without a person in front of the hazard.",
       "stakeholderMap": [
         {
           "contactId": "roletarget-glencore-lomas-site-director",
@@ -42145,7 +42145,7 @@
         },
         {
           "question": "If inspection frequency were not constrained by crew availability, what would you want to look at more often than you currently can?",
-          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection — it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
+          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection, it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
           "evidenceIds": []
         }
       ],
@@ -42157,7 +42157,7 @@
         },
         {
           "objection": "Our contractors are cheaper than a capital programme.",
-          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year — not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
+          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year, not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
           "evidenceIds": []
         },
         {
@@ -42179,7 +42179,7 @@
         }
       ],
       "referenceCase": {
-        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme — which is the objection this account will raise first.",
+        "value": "Lead with SQM (with Adentu). 678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme, which is the objection this account will raise first.",
         "evidenceIds": []
       },
       "nextAction": "Find the Site Director before sending anything. The finding playbook on this account lists the specific sources to try, in order."
@@ -42191,7 +42191,7 @@
       "at": "2026-07-25T06:48:34.852Z",
       "agent": "chief_of_staff",
       "phase": "start",
-      "message": "Campaign brief received: LatAm mining — the assigned brief."
+      "message": "Campaign brief received: LatAm mining, the assigned brief."
     },
     {
       "seq": 2,

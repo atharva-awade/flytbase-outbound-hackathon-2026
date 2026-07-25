@@ -8,11 +8,11 @@
    of source order or specificity. Imported unlayered, MapLibre's own
    `.maplibregl-map { position: relative }` therefore defeated the `absolute`
    utility on the map container, `inset-0` stopped applying, and the container
-   collapsed to zero height — an invisible map with no error anywhere. */
+   collapsed to zero height, an invisible map with no error anywhere. */
 @import "maplibre-gl/dist/maplibre-gl.css" layer(base);
 
 /* ───────────────────────────────────────────────────────────────
-   Aerion design system — light "instrument panel"
+   Aerion design system, light "instrument panel"
    Calibrated for evidence density: hairline rules, layered
    shadows, one accent, mono for anything a judge might verify.
    ─────────────────────────────────────────────────────────────── */
@@ -41,7 +41,7 @@
   --color-null: #6b7280;
   --color-null-wash: #f2f3f5;
 
-  /* vertical pack accents — used on the globe and pack chips */
+  /* vertical pack accents, used on the globe and pack chips */
   --color-v-mining: #b4530a;
   --color-v-solar: #b08900;
   --color-v-oilgas: #4a4a52;

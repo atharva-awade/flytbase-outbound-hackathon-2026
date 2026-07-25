@@ -143,7 +143,7 @@ export async function GET(
     const emailStatus = c.email
       ? c.email.status === "OBSERVED"
         ? "observed"
-        : "inferred — excluded from Email column, do not send"
+        : "inferred, excluded from Email column, do not send"
       : "not sourced";
 
     rows.push([

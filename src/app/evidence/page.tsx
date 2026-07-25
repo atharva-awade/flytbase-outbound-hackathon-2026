@@ -114,7 +114,7 @@ export default async function EvidencePage() {
                   <blockquote className="mt-2 border-l-2 border-[var(--color-hair-2)] pl-3 text-[0.83rem] leading-[1.55] text-[var(--color-ink-2)]">
                     “{r.verbatim}”
                   </blockquote>
-                  {r.translation && <p className="t-micro mt-1.5">EN — {r.translation}</p>}
+                  {r.translation && <p className="t-micro mt-1.5">EN: {r.translation}</p>}
                   <p className="t-micro mt-2 opacity-70">{r.sourceTitle}</p>
                 </Panel>
               ))}

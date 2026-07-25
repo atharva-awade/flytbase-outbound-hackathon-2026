@@ -4,7 +4,7 @@
  * A pack is DATA, not code. The same agent graph runs any pack, which is the
  * difference between "a script that finds mining companies" and an outbound
  * engine. Every OSM tag signature below was probed live against the Overpass
- * API before being committed — the observed hit counts are recorded so we
+ * API before being committed, the observed hit counts are recorded so we
  * never promise coverage we have not seen.
  */
 
@@ -35,7 +35,7 @@ export interface VerticalPack {
     pt: string[];
   };
   /** Inspection mandates by jurisdiction. `sourceUrl` is REQUIRED before a
-   *  decree number may appear in generated copy — a wrong decree is worse
+   *  decree number may appear in generated copy, a wrong decree is worse
    *  than none, so unsourced entries are filtered at render time. */
   regulatoryRegimes: {
     country: string;
@@ -128,14 +128,14 @@ const MINING: VerticalPack = {
     },
     {
       country: "CL",
-      instrument: "DS 248 — depósitos de relaves",
+      instrument: "DS 248, depósitos de relaves",
       obligation: "Tailings deposit approval, monitoring and closure obligations.",
     },
     {
       country: "PE",
       instrument: "DS 024-2016-EM (mod. DS 023-2017-EM)",
       obligation:
-        "Reglamento de Seguridad y Salud Ocupacional en Minería — periodic inspection and reporting duties.",
+        "Reglamento de Seguridad y Salud Ocupacional en Minería, periodic inspection and reporting duties.",
     },
     {
       country: "BR",
@@ -242,7 +242,7 @@ const SOLAR: VerticalPack = {
     reachability: 0.02,
   },
   coverageNote:
-    "Probed live: Chile returned 58 solar plant polygons with 51 carrying operator tags (88% — the richest coverage of any pack tested). Rajasthan returned 170 polygons but only 2 operator tags, so attribution falls back to proximity and company-reported coordinates.",
+    "Probed live: Chile returned 58 solar plant polygons with 51 carrying operator tags (88%, the richest coverage of any pack tested). Rajasthan returned 170 polygons but only 2 operator tags, so attribution falls back to proximity and company-reported coordinates.",
 };
 
 const OIL_GAS: VerticalPack = {
@@ -298,7 +298,7 @@ const OIL_GAS: VerticalPack = {
     reachability: 0.02,
   },
   coverageNote:
-    "Probed live: Permian bbox returned 14,798 industrial polygons but only 13 named and 4 with operator tags — oil & gas requires name-match and proximity attribution, and point features (man_made=petroleum_well) carry more of the signal than polygons.",
+    "Probed live: Permian bbox returned 14,798 industrial polygons but only 13 named and 4 with operator tags, oil & gas requires name-match and proximity attribution, and point features (man_made=petroleum_well) carry more of the signal than polygons.",
 };
 
 const PORTS: VerticalPack = {
@@ -460,7 +460,7 @@ export function getPack(id: string): VerticalPack {
 export const GRADED_BRIEF: CampaignBrief = {
   id: "brief-latam-mining",
   verticalPackId: "mining",
-  label: "LatAm mining — the assigned brief",
+  label: "LatAm mining, the assigned brief",
   targetVertical: "Large-scale lithium, copper, and iron ore mining operations in Latin America",
   referenceAccount: "Sociedad Química y Minera de Chile (SQM)",
   geographies: ["CL", "PE", "BR", "AR", "MX"],
@@ -475,7 +475,7 @@ export const PRESET_BRIEFS: CampaignBrief[] = [
   {
     id: "brief-chile-solar",
     verticalPackId: "solar",
-    label: "Atacama solar — highest OSM operator coverage",
+    label: "Atacama solar, highest OSM operator coverage",
     targetVertical: "Utility-scale photovoltaic generation in the Atacama and Antofagasta regions",
     referenceAccount: "Atacama Generación",
     geographies: ["CL"],
@@ -486,7 +486,7 @@ export const PRESET_BRIEFS: CampaignBrief[] = [
   {
     id: "brief-na-rail",
     verticalPackId: "rail",
-    label: "North American rail — anchored on CSX",
+    label: "North American rail, anchored on CSX",
     targetVertical: "Class I freight railroads and intermodal terminal operators",
     referenceAccount: "CSX",
     geographies: ["US", "CA"],
@@ -496,7 +496,7 @@ export const PRESET_BRIEFS: CampaignBrief[] = [
   {
     id: "brief-eu-ports",
     verticalPackId: "ports",
-    label: "European ports — terminal-level operators",
+    label: "European ports, terminal-level operators",
     targetVertical: "Deep-water container and bulk terminal operators",
     referenceAccount: "Hutchison ECT Delta Terminal",
     geographies: ["NL", "BE", "DE", "ES"],

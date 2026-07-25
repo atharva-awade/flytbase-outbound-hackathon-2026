@@ -19,7 +19,7 @@ export interface GlobeSite {
   assetClass: string;
   attributionMethod: string;
   tier: string;
-  /** 0..1 — drives dot size and pulse rate. */
+  /** 0..1, drives dot size and pulse rate. */
   weight: number;
   signalHeadline?: string;
   signalUrgency?: number;
@@ -49,7 +49,7 @@ interface Placed {
  *
  * So a few relaxation passes push coincident dots apart along the line between
  * them. Displacement is capped, and any dot that moved keeps its true anchor so
- * the overlay can draw a hairline back to the real coordinate — the position
+ * the overlay can draw a hairline back to the real coordinate, the position
  * stays honest, it is just legible as well.
  */
 function declutter(placed: Record<string, Placed>, widthPx: number) {
@@ -57,8 +57,8 @@ function declutter(placed: Record<string, Placed>, widthPx: number) {
   if (ids.length < 2 || widthPx <= 0) return;
 
   // Work in percentages, which is what the anchors give us.
-  const minPct = (16 / widthPx) * 100;
-  const maxPullPct = (19 / widthPx) * 100;
+  const minPct = (27 / widthPx) * 100;
+  const maxPullPct = (30 / widthPx) * 100;
 
   for (let pass = 0; pass < 12; pass++) {
     let moved = false;
@@ -114,7 +114,7 @@ const HQ_ID = "hq";
  * that marker's projected position, and writes a `--cobe-visible-<id>` custom
  * property while the marker is on the near side of the sphere. Reading those two
  * things gives pixel-exact overlay placement that cannot drift from the dots the
- * canvas is drawing — an earlier attempt at reprojecting the coordinates
+ * canvas is drawing, an earlier attempt at reprojecting the coordinates
  * independently put markers in arcs off the edge of the globe, because matching a
  * renderer's own projection by hand is a losing game.
  *
@@ -152,22 +152,36 @@ export default function LiveGlobe({
    * One dot per operation, not per polygon.
    *
    * Plotting every measured feature put 60 markers on a 560px sphere, 939 of
-   * whose pairs sat within 12px of each other — SQM alone has 49 features inside
+   * whose pairs sat within 12px of each other. SQM alone has 49 features inside
    * a couple of degrees. The result read as a blue smear rather than a set of
    * sites, and clicking any particular one was luck.
    *
    * So features are grouped by operator and a coarse geographic cell. Grouping
    * is deliberately never across operators: merging two companies into one dot
    * would misstate who holds the ground. Within one operator, "49 features,
-   * 548 km² total" is the truer statement anyway — that is the unit a rep sells
+   * 548 km² total" is the truer statement anyway, that is the unit a rep sells
    * to. The cell is geographic rather than screen-space so a cluster does not
    * re-form as the globe turns.
    */
   const clusters = useMemo(() => {
-    const CELL = 2.5; // degrees — keeps neighbouring dots ~14px apart at 560px
+    // One mark per account.
+    //
+    // This started as one mark per polygon: sixty of them, 939 pairs inside
+    // twelve pixels, which read as spawn rather than as an instrument. Grouping
+    // by operator and a 2.5 degree cell got it to twenty, still sixteen crowded
+    // pairs, because the Atacama is genuinely the densest mining district on
+    // earth and no amount of styling fixes twenty marks inside 150 pixels of
+    // sphere.
+    //
+    // So the unit is the account, which is also the unit this product sells. Six
+    // named, sized, separated marks state something twenty anonymous dots cannot:
+    // these are the companies, this is how much ground each one holds. The dot
+    // sits at the area-weighted centre of that account's footprint, so it lands
+    // over the bulk of the operation, and the label names the account and its
+    // total, so nothing is implied that is not written.
     const groups = new Map<string, GlobeSite[]>();
     for (const s of sites) {
-      const key = `${s.accountSlug}|${Math.round(s.lat / CELL)}|${Math.round(s.lon / CELL)}`;
+      const key = s.accountSlug;
       const g = groups.get(key);
       if (g) g.push(s);
       else groups.set(key, [s]);
@@ -202,6 +216,33 @@ export default function LiveGlobe({
     // Largest last, so the biggest operations paint on top of smaller neighbours.
     return out.sort((a, b) => a.totalArea - b.totalArea);
   }, [sites, idFor]);
+
+  /**
+   * Footprint drives the mark, and only the largest few are labelled.
+   *
+   * With every mark the same size and the same flat blue, twenty of them in one
+   * mining district read as a clump rather than as an instrument. Area maps to
+   * radius on a square root, which is how area should map to a circle, and the
+   * biggest four operations carry a chip in the same style as the Pune station,
+   * so the eye lands on a name instead of a field of identical dots.
+   */
+  const maxClusterArea = useMemo(
+    () => Math.max(0.01, ...clusters.map((c) => c.totalArea)),
+    [clusters],
+  );
+  /**
+   * One standing label, and one only.
+   *
+   * Every account labelled at once put eight chips inside one district, stacked
+   * on each other and running off the sphere. The whole point of a label is that
+   * it is readable. So the largest footprint carries a standing annotation, which
+   * is the fact worth stating unprompted, and every other mark names itself on
+   * hover through the card that already exists.
+   */
+  const labelledIds = useMemo(
+    () => new Set([...clusters].sort((a, b) => b.totalArea - a.totalArea).slice(0, 1).map((c) => c.id)),
+    [clusters],
+  );
 
   const clusterById = useMemo(() => {
     const m = new Map<string, (typeof clusters)[number]>();
@@ -539,10 +580,19 @@ export default function LiveGlobe({
             const isHover = hovered === id;
             const isLinked = linked === id;
             const urgent = (cluster.signalUrgency ?? 0) >= 0.8;
-            // A tight, deliberate size range. Large blobs stopped being readable
-            // as distinct sites, which was the point of plotting them.
-            const core = 5 + cluster.weight * 4;
-            const hit = Math.max(20, core * 3.6);
+            // Area to radius on a square root, clamped to a range that keeps the
+            // smallest mark legible and the largest from swamping its neighbours.
+            const core = 8 + Math.sqrt(Math.min(1, cluster.totalArea / maxClusterArea)) * 12;
+            const hit = Math.max(26, core * 2.4);
+            const labelled = labelledIds.has(id) || isHover || isLinked;
+            // Only a site with a live timing signal pulses. Everything pulsing at
+            // once is noise, and the pulse is supposed to mean something.
+            const pulses = (cluster.signalUrgency ?? 0) >= 0.55;
+            // The ring is an annotation, not a proportional mark, so it is capped.
+            // Scaled off the core it threw a sixty pixel hoop off the largest dot.
+            const ringSize = Math.min(core * 2.2, 30);
+            // Label outward from the centre, so a chip never runs off the sphere.
+            const flipLabel = p.x > 68;
             // The leader points from the drawn dot back to the true anchor.
             const holderW = canvas.current?.offsetWidth ?? size;
             const ldx = ((p.ax - p.x) / 100) * holderW;
@@ -578,30 +628,32 @@ export default function LiveGlobe({
               >
                 {/* Where declutter moved this dot, a hairline runs back to the
                     true coordinate so the display never implies a false position. */}
-                {leaderLen > 2 && (
+                {leaderLen > 5 && (
                   <span
                     className="absolute left-1/2 top-1/2 origin-left"
                     style={{
                       width: leaderLen,
                       height: 1,
                       marginTop: -0.5,
-                      background: "rgba(27,79,216,0.26)",
+                      background: "rgba(27,79,216,0.17)",
                       transform: `rotate(${leaderAngle}deg)`,
                     }}
                   />
                 )}
 
-                {/* Expanding rings, two, staggered, so the site reads as
-                    transmitting rather than merely blinking. They are drawn as a
-                    hairline stroke, not a filled disc: filled pulses bled into
-                    one another and turned a dense cluster into one blue blob. */}
+                {/* Expanding rings, two, staggered, so a site with a live signal
+                    reads as transmitting rather than merely blinking. Drawn as a
+                    hairline stroke, not a filled disc: filled pulses bled into one
+                    another and turned a dense district into one blue blob. */}
+                {pulses && (
+                  <>
                 <span
                   className="globe-ring absolute left-1/2 top-1/2 rounded-full"
                   style={{
-                    width: core * 2.2,
-                    height: core * 2.2,
-                    marginLeft: -core * 1.1,
-                    marginTop: -core * 1.1,
+                    width: ringSize,
+                    height: ringSize,
+                    marginLeft: -ringSize / 2,
+                    marginTop: -ringSize / 2,
                     border: `1px solid ${urgent ? "rgba(27,79,216,0.62)" : "rgba(27,79,216,0.44)"}`,
                     animationDuration: urgent ? "1.7s" : "3s",
                   }}
@@ -609,18 +661,39 @@ export default function LiveGlobe({
                 <span
                   className="globe-ring absolute left-1/2 top-1/2 rounded-full"
                   style={{
-                    width: core * 2.2,
-                    height: core * 2.2,
-                    marginLeft: -core * 1.1,
-                    marginTop: -core * 1.1,
+                    width: ringSize,
+                    height: ringSize,
+                    marginLeft: -ringSize / 2,
+                    marginTop: -ringSize / 2,
                     border: `1px solid ${urgent ? "rgba(27,79,216,0.4)" : "rgba(27,79,216,0.26)"}`,
                     animationDuration: urgent ? "1.7s" : "3s",
                     animationDelay: urgent ? "0.85s" : "1.5s",
                   }}
                 />
+                  </>
+                )}
 
-                {/* Crisp core with a white keyline, so a dot stays legible against
-                    both the pale sphere and the dark landmass stipple. */}
+                {/* A soft halo seats the mark on the sphere instead of leaving it
+                    pasted on top. Kept wide and very faint so neighbours do not
+                    merge, which is what the old hard glow did. */}
+                <span
+                  className="absolute left-1/2 top-1/2 rounded-full"
+                  style={{
+                    width: core * 3.1,
+                    height: core * 3.1,
+                    marginLeft: -core * 1.55,
+                    marginTop: -core * 1.55,
+                    background:
+                      "radial-gradient(circle, rgba(27,79,216,0.20) 0%, rgba(27,79,216,0.07) 45%, rgba(27,79,216,0) 72%)",
+                    opacity: isHover || isLinked ? 1 : 0.75,
+                    transition: "opacity 200ms ease",
+                  }}
+                />
+
+                {/* The mark. A lens rather than a flat disc: lit from the top left,
+                    deepening toward the bottom, with a hairline white keyline and a
+                    real shadow underneath. Flat fills of one colour at one size are
+                    what made a district of these read as spawn. */}
                 <span
                   className="absolute left-1/2 top-1/2 rounded-full transition-transform duration-200"
                   style={{
@@ -628,32 +701,37 @@ export default function LiveGlobe({
                     height: core,
                     marginLeft: -core / 2,
                     marginTop: -core / 2,
-                    background: isLinked || isHover ? "var(--color-accent-ink)" : "var(--color-accent)",
-                    // A tight keyline plus a short shadow. The previous 6–12px
-                    // glow was what made adjacent markers read as one shape.
+                    background: isLinked
+                      ? "radial-gradient(circle at 32% 28%, #4b7bff 0%, #12245f 78%)"
+                      : "radial-gradient(circle at 32% 28%, #5b86f7 0%, #1b4fd8 62%, #1740ad 100%)",
                     boxShadow: isHover
-                      ? "0 0 0 1.5px #fff, 0 0 0 3.5px rgba(27,79,216,0.35), 0 1px 3px rgba(16,24,40,0.28)"
-                      : "0 0 0 1.25px rgba(255,255,255,0.98), 0 1px 2px rgba(16,24,40,0.22)",
-                    transform: isHover ? "scale(1.45)" : "scale(1)",
+                      ? "0 0 0 1.6px #fff, 0 0 0 4px rgba(27,79,216,0.28), 0 3px 7px rgba(16,24,40,0.32), inset 0 -1px 2px rgba(11,26,74,0.55)"
+                      : "0 0 0 1.4px #fff, 0 2px 4px rgba(16,24,40,0.26), inset 0 -1px 2px rgba(11,26,74,0.45)",
+                    transform: isHover || isLinked ? "scale(1.18)" : "scale(1)",
                   }}
                 />
 
+                {/* Name and measured footprint, on the largest operations and on
+                    whatever the pointer is over. The same chip the Pune station
+                    uses, because that is the one element on this globe that already
+                    read as finished. */}
+                {labelled && (
+                  <span
+                    className="pointer-events-none absolute top-1/2 -translate-y-1/2 whitespace-nowrap rounded-[6px] bg-[rgba(255,255,255,0.95)] px-1.5 py-0.5 text-[0.62rem] font-[560] tracking-[0.01em] shadow-[var(--shadow-hair)]"
+                    style={{
+                      left: flipLabel ? "auto" : `calc(50% + ${core / 2 + 7}px)`,
+                      right: flipLabel ? `calc(50% + ${core / 2 + 7}px)` : "auto",
+                      color: isHover || isLinked ? "var(--color-accent-ink)" : "var(--color-ink-2)",
+                      zIndex: 2,
+                    }}
+                  >
+                    {site.accountName.length > 22 ? `${site.accountName.slice(0, 21)}…` : site.accountName}
+                    <span className="ml-1 opacity-55">{cluster.totalArea.toFixed(0)} km²</span>
+                  </span>
+                )}
+
                 {/* Urgent sites carry a thin outer halo so "act now" is visible
                     without reading the tooltip. */}
-                {/* Urgent sites carry a static hairline so "act now" is visible
-                    without reading the hover card. */}
-                {urgent && (
-                  <span
-                    className="absolute left-1/2 top-1/2 rounded-full"
-                    style={{
-                      width: core * 2.9,
-                      height: core * 2.9,
-                      marginLeft: -core * 1.45,
-                      marginTop: -core * 1.45,
-                      border: "1px solid rgba(27,79,216,0.34)",
-                    }}
-                  />
-                )}
               </button>
             );
           })}

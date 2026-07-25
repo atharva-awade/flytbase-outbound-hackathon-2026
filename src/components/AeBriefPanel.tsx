@@ -45,7 +45,7 @@ export function AeBriefPanel({
         </div>
       </div>
 
-      {/* Next action — the single most important line on the page. */}
+      {/* Next action, the single most important line on the page. */}
       <div className="mt-4 flex items-start gap-3 rounded-[11px] bg-[var(--color-ink)] p-3.5">
         <span className="mt-0.5 shrink-0 rounded-[6px] bg-[rgba(255,255,255,0.14)] px-1.5 py-0.5 font-[family-name:var(--font-mono)] text-[0.62rem] uppercase tracking-[0.12em] text-white">
           do next

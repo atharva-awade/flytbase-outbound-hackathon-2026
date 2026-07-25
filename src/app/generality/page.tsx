@@ -34,7 +34,7 @@ export default async function GeneralityPage() {
           <p className="t-body mt-5">
             It is easy to claim an engine is vertical-agnostic and hard to prove it, so rather than assert it
             here are complete runs produced by the identical agent graph, differing only in which vertical pack
-            was loaded. Nothing in the code changed between them — not the scorer, not the contact finder, not
+            was loaded. Nothing in the code changed between them, not the scorer, not the contact finder, not
             the critic.
           </p>
           <p className="t-body mt-4">

@@ -3,7 +3,7 @@
  *
  * This exists from the first line of the data layer on purpose. Our research
  * engine (groq/compound) is capped at 250 requests per DAY on the free tier,
- * and Overpass rate-limits aggressive querying — retrofitting caching late is
+ * and Overpass rate-limits aggressive querying, retrofitting caching late is
  * the classic way a build like this dies. Every outbound fetch goes through
  * here, keyed by a hash of its full request description.
  */

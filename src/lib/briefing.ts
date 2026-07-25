@@ -3,7 +3,7 @@
  *
  * The test this exists to pass: an account executive picks this up cold and
  * knows what to do next without asking a question. That means it cannot be a
- * summary — a summary tells them what they already have. It has to be the things
+ * summary, a summary tells them what they already have. It has to be the things
  * a rep would otherwise spend an afternoon assembling: what to open with, what to
  * ask, what they will get pushed back on, and which reference to reach for.
  *
@@ -59,7 +59,7 @@ export function buildAeBrief(input: BriefingInput): AeBrief {
   if (contractorCount > 0 && filingEvidence) {
     discoveryQuestions.push({
       question: `Your annual filing lists contractor safety incidents and contractor work stoppages as risks to production. How much inspection work sits with contracted crews right now?`,
-      whyItLands: `It is their own disclosure, not our claim — the filing refers to contractors ${contractorCount} times. Quoting a company's own risk language moves the conversation from whether there is a problem to how big it is.`,
+      whyItLands: `It is their own disclosure, not our claim, the filing refers to contractors ${contractorCount} times. Quoting a company's own risk language moves the conversation from whether there is a problem to how big it is.`,
       evidenceIds: [filingEvidence],
     });
   }
@@ -90,7 +90,7 @@ export function buildAeBrief(input: BriefingInput): AeBrief {
   discoveryQuestions.push({
     question: `If inspection frequency were not constrained by crew availability, what would you want to look at more often than you currently can?`,
     whyItLands:
-      "Reframes from cost reduction to capability. The reference deployment did not cut inspection — it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
+      "Reframes from cost reduction to capability. The reference deployment did not cut inspection, it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
     evidenceIds: [],
   });
 
@@ -104,7 +104,7 @@ export function buildAeBrief(input: BriefingInput): AeBrief {
     },
     {
       objection: "Our contractors are cheaper than a capital programme.",
-      response: `Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year — not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk${contractorCount > 0 ? ` and refers to contractors ${contractorCount} times` : ""}.`,
+      response: `Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year, not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk${contractorCount > 0 ? ` and refers to contractors ${contractorCount} times` : ""}.`,
       evidenceIds: filingEvidence ? [filingEvidence] : [],
     },
     {
@@ -140,14 +140,14 @@ export function buildAeBrief(input: BriefingInput): AeBrief {
   const proof = pack.proofPoints[0];
   const referenceCase = proof
     ? {
-        value: `Lead with ${proof.customer}. ${proof.claim}. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme — which is the objection this account will raise first.`,
+        value: `Lead with ${proof.customer}. ${proof.claim}. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme, which is the objection this account will raise first.`,
         evidenceIds: [],
       }
     : { value: "No published reference deployment matches this vertical closely enough to lead with.", evidenceIds: [] };
 
   // ── Positioning and next action ──────────────────────────────────────
   const positioning = biggest
-    ? `${account.displayName} runs ${active.length} mapped operating area${active.length === 1 ? "" : "s"} totalling ${round(active.reduce((a, s) => a + s.areaKm2, 0), 1)} km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection — same coverage or better, without a person in front of the hazard.`
+    ? `${account.displayName} runs ${active.length} mapped operating area${active.length === 1 ? "" : "s"} totalling ${round(active.reduce((a, s) => a + s.areaKm2, 0), 1)} km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection, same coverage or better, without a person in front of the hazard.`
     : `${account.displayName} could not be sized from mapped geometry in this run, so lead with discovery rather than a quantified claim.`;
 
   const whyNow = topSignal
@@ -196,7 +196,7 @@ function approachFor(c: Contact, account: Account, siteName?: string): string {
     case "economic_buyer":
       return `${c.name} carries the cost line that contracted inspection sits on. Lead with displaced crew-days rather than technology, and bring the range rather than a single number so the figure survives scrutiny.`;
     case "risk_validator":
-      return `${c.name} can stop this on safety or compliance grounds, so bring them in early rather than late. The argument that lands is auditability — a timestamped, third-party-verifiable inspection record — not labour saving.`;
+      return `${c.name} can stop this on safety or compliance grounds, so bring them in early rather than late. The argument that lands is auditability, a timestamped, third-party-verifiable inspection record, not labour saving.`;
     case "technical_buyer":
       return `${c.name} will ask about integration, data residency and airspace before value. Have the platform's compliance posture ready and concede the connectivity constraints rather than arguing them.`;
     default:
@@ -229,7 +229,7 @@ function nextActionFor(account: Account, primary: Contact | undefined, siteName?
   if (primary.tier === "ROLE_TARGET_NO_NAME") {
     return `Find the ${primary.targetRole} before sending anything. The finding playbook on this account lists the specific sources to try, in order.`;
   }
-  return `Send the accepted first-touch message to ${primary.name}${siteName ? `, opening on ${siteName}` : ""}, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message — the ask is permission to send the written breakdown.`;
+  return `Send the accepted first-touch message to ${primary.name}${siteName ? `, opening on ${siteName}` : ""}, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message, the ask is permission to send the written breakdown.`;
 }
 
 function rank(c: Contact): number {

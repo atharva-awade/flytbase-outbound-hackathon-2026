@@ -1,9 +1,9 @@
 /**
- * Aerion harvest — runs the real pipeline and freezes the result.
+ * Aerion harvest, runs the real pipeline and freezes the result.
  *
  * Design decision that matters: the account universe is DISCOVERED FROM THE
  * PHYSICAL WORLD. We do not ask a language model to list mining companies in
- * Latin America — we measure every mapped extraction site in the target
+ * Latin America, we measure every mapped extraction site in the target
  * geographies and read the `operator` tag off the geometry. A hallucinated
  * account is therefore structurally impossible: if a company appears in this
  * run, someone mapped its pit and we measured it.
@@ -362,7 +362,7 @@ async function surveyTerrain(pack: VerticalPack, regionKeys: string[]): Promise<
   // them, which means the same feature is returned by more than one query.
   // Deduplicating by OSM id is essential: without it a feature inside an
   // overlap is counted twice and the reported footprint is inflated. This was
-  // measured — SQM read 1025 km² before dedup against 548 km² after.
+  // measured. SQM read 1025 km² before dedup against 548 km² after.
   const seenOsmIds = new Set<string>();
   const allSites: SiteGeometry[] = [];
   const operatorTotals = new Map<string, { features: number; areaKm2: number }>();
@@ -525,7 +525,7 @@ async function findPeople(
         noteNull({
           subject: identity.displayName,
           question: `Does ${src.url} list named officers?`,
-          attempts: [{ source: src.extractor, url: src.url, outcome: "HTTP 200 but the page lacks any officer markers — a soft 404 serving other content." }],
+          attempts: [{ source: src.extractor, url: src.url, outcome: "HTTP 200 but the page lacks any officer markers, a soft 404 serving other content." }],
           interpretation:
             "A validator trusting status codes alone would record this as a success and then wrongly report that the company publishes no officers.",
           remediation: "Content-marker validation is applied here; the correct path must be rediscovered by search rather than assumed.",
@@ -558,7 +558,7 @@ async function findPeople(
         const nameKey = person.name.replace(/\s*\((?:i|s)\)\s*$/i, "").toLowerCase();
 
         const verbatim = [
-          `${person.titleVerbatim} — ${person.name}`,
+          `${person.titleVerbatim}: ${person.name}`,
           person.appointedAt ? `Fecha ingreso al cargo: ${person.appointedAt}` : "",
           person.tenureCharacter ? `Carácter del cargo: ${person.tenureCharacter}` : "",
         ]
@@ -663,7 +663,7 @@ async function findPeople(
 
   // ── Supplementary pass: public professional profiles ──────────────────
   // Company and statutory pages reliably publish executives, but they
-  // structurally omit the health-and-safety tier at site level — the exact
+  // structurally omit the health-and-safety tier at site level, the exact
   // people this campaign targets. Public profiles surfaced through a search
   // engine fill that gap. The profile body is never fetched, because a direct
   // request redirects into an authentication wall; the search-result title is
@@ -788,7 +788,7 @@ async function findPeople(
           reasoning: `No public officer roster was found for ${identity.displayName} during this run, so no individual is named. The role remains the correct target and the buying-committee position is unchanged.`,
           playbook: [
             "Search public professional profiles restricted to this employer using local-language titles, which materially outperform English titles in Spanish-speaking operations.",
-            "Where the operator is state-owned, check for a statutory transparency disclosure — these publish officers, appointment dates and whether a seat is interim.",
+            "Where the operator is state-owned, check for a statutory transparency disclosure, these publish officers, appointment dates and whether a seat is interim.",
             "Check the annual filing's executive-officers section, which names officers and titles as a signed disclosure.",
             "Confirm the individual on a second independent source before any outreach is sent.",
           ],
@@ -821,7 +821,7 @@ async function main() {
 
   // The brief is an argument, not a constant. Running a different pack points
   // the identical agent graph at a different asset class, which is the whole
-  // claim behind vertical packs — so it has to be exercised, not asserted.
+  // claim behind vertical packs, so it has to be exercised, not asserted.
   const requested = process.argv[2];
   const brief = requested
     ? (PRESET_BRIEFS.find((b) => b.id === requested || b.verticalPackId === requested) ?? GRADED_BRIEF)
@@ -843,7 +843,7 @@ async function main() {
     brief.geographies.some((g) => k.startsWith(`${g}-`)),
   );
 
-  // Stage 1 — terrain, which also produces the account universe.
+  // Stage 1, terrain, which also produces the account universe.
   const terrain = await surveyTerrain(pack, regionKeys);
 
   emit("universe_scout", "start", "Deriving the account universe from operator attribution on measured geometry.");
@@ -864,12 +864,12 @@ async function main() {
       question: "Which mapped operators could not be resolved to a corporate identity?",
       attempts: unresolved.slice(0, 12).map((u) => ({
         source: "OSM operator tag",
-        outcome: `"${u.operator}" — ${u.features} feature(s), ${round(u.areaKm2, 2)} km² mapped, no identity match`,
+        outcome: `"${u.operator}": ${u.features} feature(s), ${round(u.areaKm2, 2)} km² mapped, no identity match`,
       })),
       interpretation:
         "These are real operators with real measured geometry, but resolving a local legal entity to a parent group needs a corporate registry we did not query. They are excluded from the account list rather than being guessed at.",
       remediation:
-        "Add a registry lookup keyed on the operator string. Until then, excluding them keeps the account list free of invented parentage — an unresolved operator is a lead to research, not an account to email.",
+        "Add a registry lookup keyed on the operator string. Until then, excluding them keeps the account list free of invented parentage, an unresolved operator is a lead to research, not an account to email.",
       producedBy: "universe_scout",
     });
   }
@@ -1009,7 +1009,7 @@ async function main() {
     `Anchor profile from ${anchorAccount.displayName}: ${round(anchor.measuredAreaKm2, 1)} km² across ${anchor.siteCount} mapped site(s), ${anchor.contractorMentions} contractor reference(s) in its primary filing, autonomy disclosed: ${anchor.disclosesAutonomy ? "yes" : "no"}.`,
   );
 
-  // Stage 4 — deterministic scoring and sizing.
+  // Stage 4, deterministic scoring and sizing.
   emit("icp_scorer", "start", "Scoring every account against the anchor profile using published weights.");
   for (const account of accounts) {
     const evidenceByDim: Record<string, string[]> = {
@@ -1060,7 +1060,7 @@ async function main() {
 
   const ordered = rankAccounts(accounts);
 
-  // Stage 5 — outreach. Runs only where a model key is configured; without one
+  // Stage 5, outreach. Runs only where a model key is configured; without one
   // the strategy is still produced (it is deterministic) and the absence of
   // copy is recorded rather than filled in by hand.
   const cadences: Record<string, CadenceStep[]> = {};
@@ -1073,7 +1073,7 @@ async function main() {
   emit("message_strategist", "start",
     modelAvailable
       ? "Composing outreach for the top accounts."
-      : "No model key configured — producing message strategy only, and recording the absence of copy.",
+      : "No model key configured, producing message strategy only, and recording the absence of copy.",
   );
 
   // Work the accounts an AE would actually work: tier A and B, plus the anchor.
@@ -1131,7 +1131,7 @@ async function main() {
     cadences[account.id] = buildCadence({ account, contacts, accepted: acceptedByContact });
   }
 
-  // Stage 6 — the account executive hand-off. Deterministic: every question and
+  // Stage 6, the account executive hand-off. Deterministic: every question and
   // objection is derived from this account's own evidence rather than a generic
   // playbook, so each one carries the source it rests on.
   const briefs: Record<string, AeBrief> = {};

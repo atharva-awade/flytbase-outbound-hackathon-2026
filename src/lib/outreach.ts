@@ -2,8 +2,8 @@
  * Outreach desk.
  *
  * The division of labour here is the point. A deterministic Message Strategist
- * decides WHAT to say — which two of the account's own facts to lead with, which
- * published customer story proves it, which language the recipient works in —
+ * decides WHAT to say, which two of the account's own facts to lead with, which
+ * published customer story proves it, which language the recipient works in
  * and every one of those inputs already carries a source. The language model is
  * then asked only to phrase it. It receives no freedom to introduce a claim,
  * because it never sees anything except facts that are already cited.
@@ -49,7 +49,7 @@ export interface MessageStrategy {
   proofPoint: { customer: string; claim: string; sourceUrl: string } | null;
   /** The single interest-based ask. */
   ask: string;
-  /** Site the recipient owns, when known — the specificity that lands. */
+  /** Site the recipient owns, when known, the specificity that lands. */
   site?: SiteGeometry;
   /** Deliberately withheld from the writer, and why. */
   withheld: string[];
@@ -107,7 +107,7 @@ export function buildStrategy(args: {
   const facts: CitedFact[] = [];
   const withheld: string[] = [];
 
-  // Fact 1 — their own filing language about contractors, where it exists.
+  // Fact 1, their own filing language about contractors, where it exists.
   const contractorPassage = account.riskScan?.passages.find(
     (p) => /contractor/i.test(p.term) && p.evidenceId,
   );
@@ -124,7 +124,7 @@ export function buildStrategy(args: {
     });
   }
 
-  // Fact 2 — the measured extent of what this person is responsible for.
+  // Fact 2, the measured extent of what this person is responsible for.
   if (site && site.evidenceIds[0]) {
     facts.push({
       text: `${site.name ?? "the operation"} covers ${site.areaKm2.toFixed(1)} km² of mapped surface with ${site.perimeterKm.toFixed(0)} km of boundary`,
@@ -145,7 +145,7 @@ export function buildStrategy(args: {
     }
   }
 
-  // Fact 3 — the timing signal, if one is strong and recent.
+  // Fact 3, the timing signal, if one is strong and recent.
   const signal = [...account.signals].sort((a, b) => b.urgency - a.urgency)[0];
   if (signal && signal.urgency >= 0.7 && signal.evidenceIds[0]) {
     facts.push({
@@ -193,7 +193,7 @@ export function buildStrategy(args: {
     facts: facts.filter((f) => evidence[f.evidenceId]),
     proofPoint,
     ask:
-      "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it — never for a meeting, and never propose a time.",
+      "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it, never for a meeting, and never propose a time.",
     site,
     withheld,
   };
@@ -213,7 +213,8 @@ You will be given a small set of FACTS. Each fact was independently verified and
 Absolute rules:
 - Never state anything that is not in the FACTS. No invented numbers, no invented projects, no guessed job history.
 - Never use placeholder tokens, merge fields, or square brackets.
-- Write in the language you are told to write in, natively. Do not translate from English — compose in the target language so the sentence rhythm is native.
+- Write in the language you are told to write in, natively. Do not translate from English, compose in the target language so the sentence rhythm is native.
+- Never use an em dash. Use a comma, a colon or a full stop. This is checked and a draft containing one is rejected outright.
 - No links. No attachments. No signature beyond the sender block you are given.
 - The ask is permission to send something. Never request a meeting, never propose a time, never mention minutes or calendars.
 
@@ -231,7 +232,7 @@ Style:
 Compose the body to this shape. Each line is one sentence with a word budget. Following it lands you inside the required length without counting:
 - Sentence 1 (12 to 18 words): state their own measured scale, using a number from the FACTS verbatim.
 - Sentence 2 (12 to 18 words): state a second fact, using its number verbatim.
-- Sentence 3 (12 to 18 words): the operational consequence for them — what contracted crews currently absorb.
+- Sentence 3 (12 to 18 words): the operational consequence for them, what contracted crews currently absorb.
 - Sentence 4 (12 to 18 words): what the named reference customer actually achieved, with one figure.
 - Sentence 5 (10 to 16 words): the permission question. Ask only to send a written summary.
 - Final line: the signature block exactly as given, on its own line.
@@ -241,7 +242,7 @@ That is five sentences plus a signature, which lands between 60 and 85 words. Do
 Return STRICT JSON only, with exactly these keys:
 {"subject": string, "body": string, "factsUsed": string[]}
 
-The subject must be 3 to 6 words, under 50 characters, describing the operational problem — never the product. Never put the words AI, platform, solution, or partnership in the subject.
+The subject must be 3 to 6 words, under 50 characters, describing the operational problem, never the product. Never put the words AI, platform, solution, or partnership in the subject.
 "factsUsed" must quote the exact fact strings you relied on, copied from the FACTS list.`;
 
 function buildUserPrompt(args: {
@@ -265,7 +266,7 @@ function buildUserPrompt(args: {
     `THEIR TITLE (verbatim, in their language): ${contact.titleVerbatim ?? contact.targetRole}`,
     `COMPANY: ${account.displayName} (${account.countryName})`,
     "",
-    "FACTS — you may use only these:",
+    "FACTS, you may use only these:",
     ...strategy.facts.map((f, i) => `  ${i + 1}. ${f.text}`),
     "",
     `ANGLE: ${strategy.angle}`,
@@ -278,8 +279,8 @@ function buildUserPrompt(args: {
       `REFERENCE CUSTOMER you may name: ${strategy.proofPoint.customer}.`,
       `Published outcomes, quotable ONLY in these exact terms:`,
       ...PROOF_QUOTABLES.map((q) => `  - ${q}`),
-      `Use at most ONE of those. Express it IN THE TARGET LANGUAGE — translate the meaning exactly and keep any figure identical. Do NOT copy the English wording into the message; the list above is in English only because these instructions are.`,
-      `Specifically: "frequency doubled" must not become a before-and-after cadence, because the actual figures are not in your FACTS. The investment figure is what the customer SPENT, not what they saved — calling it a saving is false.`,
+      `Use at most ONE of those. Express it IN THE TARGET LANGUAGE, translate the meaning exactly and keep any figure identical. Do NOT copy the English wording into the message; the list above is in English only because these instructions are.`,
+      `Specifically: "frequency doubled" must not become a before-and-after cadence, because the actual figures are not in your FACTS. The investment figure is what the customer SPENT, not what they saved, calling it a saving is false.`,
     );
   }
 
@@ -476,7 +477,7 @@ function buildRepairHint(verdict: CriticVerdict, strategy: MessageStrategy): str
   if (m.words < 55) {
     const deficit = 60 - m.words;
     parts.push(
-      `Your draft was ${m.words} words. That is too short and will be rejected again. Add roughly ${deficit} more words of substance by using another of the FACTS in full, including its number. Do not add filler or adjectives — add a fact.`,
+      `Your draft was ${m.words} words. That is too short and will be rejected again. Add roughly ${deficit} more words of substance by using another of the FACTS in full, including its number. Do not add filler or adjectives, add a fact.`,
     );
   } else if (m.words > 95) {
     parts.push(
@@ -501,7 +502,7 @@ function buildRepairHint(verdict: CriticVerdict, strategy: MessageStrategy): str
   }
   if (verdict.gates.some((g) => g.gate === "G8" && !g.passed)) {
     parts.push(
-      `Remove every number that was not in the FACTS. Do not convert a described risk into a count of incidents, and do not describe the investment figure as a saving — it is what the customer spent.`,
+      `Remove every number that was not in the FACTS. Do not convert a described risk into a count of incidents, and do not describe the investment figure as a saving, it is what the customer spent.`,
     );
   }
   if (verdict.gates.some((g) => g.gate === "G10" && !g.passed)) {
@@ -565,8 +566,8 @@ function parseWriter(raw: string): WriterOutput {
  *
  * The facts are handed to the writer in English while the draft is composed in
  * Spanish or Portuguese, so word overlap between the two is close to useless.
- * Numbers, however, survive translation intact — "9.7 km²" and "71 sitios" read
- * the same in any language — so a distinctive figure appearing in the body is
+ * Numbers, however, survive translation intact, "9.7 km²" and "71 sitios" read
+ * the same in any language, so a distinctive figure appearing in the body is
  * the strongest available signal that the fact was used. The model's own
  * `factsUsed` echo is checked as well, since it echoes the English original.
  */

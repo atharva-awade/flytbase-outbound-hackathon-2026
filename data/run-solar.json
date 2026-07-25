@@ -3,7 +3,7 @@
   "brief": {
     "id": "brief-chile-solar",
     "verticalPackId": "solar",
-    "label": "Atacama solar — highest OSM operator coverage",
+    "label": "Atacama solar, highest OSM operator coverage",
     "targetVertical": "Utility-scale photovoltaic generation in the Atacama and Antofagasta regions",
     "referenceAccount": "Atacama Generación",
     "geographies": [
@@ -87138,7 +87138,7 @@
           {
             "key": "trigger_signal",
             "label": "Timing trigger",
-            "rationale": "A dated, cited event that makes contact relevant now — leadership change, incident, regulatory action, or expansion.",
+            "rationale": "A dated, cited event that makes contact relevant now, leadership change, incident, regulatory action, or expansion.",
             "weight": 0.1,
             "raw": 0,
             "contribution": 0,
@@ -87291,8 +87291,8 @@
           "The sites fall into 1 spatial cluster once features within 10 km of each other are grouped. Separated clusters cannot share dock infrastructure, so 1 is the floor on dock count regardless of area.",
           "A dock services roughly 55 km² at a 5 km effective radius, or 19.8 km² at 3 km, after a 70% coverage-efficiency allowance. Dividing measured area by those figures and respecting the cluster floor gives 1 to 1 docks for full coverage.",
           "At 4 to 30 inspection passes per site per month, the programme runs 8224 to 61680 autonomous missions monthly, which is 3289.6 to 49344 flight hours.",
-          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 4112 to 123360 contracted crew-days per month — the hours currently spent putting people on module strings, tracker rows, inverter skids and combiner boxes; array blocks and thermal hotspots.",
-          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year — so the first conversation is about one dock on the highest-risk cluster, not 1."
+          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 4112 to 123360 contracted crew-days per month, the hours currently spent putting people on module strings, tracker rows, inverter skids and combiner boxes; array blocks and thermal hotspots.",
+          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year, so the first conversation is about one dock on the highest-risk cluster, not 1."
         ],
         "caveats": [
           "Footprint is measured from mapped geometry, which reflects the operator's surface disturbance rather than a licensed concession boundary. It is a floor on inspectable area, not a ceiling.",
@@ -92525,7 +92525,7 @@
               -21.2316184
             ]
           ],
-          "areaKm2": 0.00004485575932223883,
+          "areaKm2": 4.485575932223883e-05,
           "perimeterKm": 0.02939111488373082,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -92569,7 +92569,7 @@
               -21.2317121
             ]
           ],
-          "areaKm2": 0.00004485573081296977,
+          "areaKm2": 4.485573081296977e-05,
           "perimeterKm": 0.029391101706489852,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -92613,7 +92613,7 @@
               -21.2317121
             ]
           ],
-          "areaKm2": 0.000044855730811173496,
+          "areaKm2": 4.4855730811173496e-05,
           "perimeterKm": 0.029391101706489852,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -92657,7 +92657,7 @@
               -21.2318111
             ]
           ],
-          "areaKm2": 0.00004485570072160205,
+          "areaKm2": 4.485570072160205e-05,
           "perimeterKm": 0.029391087786556944,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -92701,7 +92701,7 @@
               -21.2315203
             ]
           ],
-          "areaKm2": 0.00004485561629328563,
+          "areaKm2": 4.485561629328563e-05,
           "perimeterKm": 0.02939104522733553,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -92745,7 +92745,7 @@
               -21.2315221
             ]
           ],
-          "areaKm2": 0.000044855615746532616,
+          "areaKm2": 4.4855615746532616e-05,
           "perimeterKm": 0.02939104497419791,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -92789,7 +92789,7 @@
               -21.2315239
             ]
           ],
-          "areaKm2": 0.00004485561520035878,
+          "areaKm2": 4.485561520035878e-05,
           "perimeterKm": 0.029391044721060276,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -92833,7 +92833,7 @@
               -21.2315239
             ]
           ],
-          "areaKm2": 0.00004485561520035878,
+          "areaKm2": 4.485561520035878e-05,
           "perimeterKm": 0.029391044721060276,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -92877,7 +92877,7 @@
               -21.2315239
             ]
           ],
-          "areaKm2": 0.00004485561520034199,
+          "areaKm2": 4.485561520034199e-05,
           "perimeterKm": 0.029391044719583835,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -92921,7 +92921,7 @@
               -21.2315256
             ]
           ],
-          "areaKm2": 0.00004485561468433533,
+          "areaKm2": 4.485561468433533e-05,
           "perimeterKm": 0.029391044479252032,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -92965,7 +92965,7 @@
               -21.2315256
             ]
           ],
-          "areaKm2": 0.000044855614677872136,
+          "areaKm2": 4.4855614677872136e-05,
           "perimeterKm": 0.029391044481985824,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -93009,7 +93009,7 @@
               -21.2315256
             ]
           ],
-          "areaKm2": 0.00004485561467574011,
+          "areaKm2": 4.485561467574011e-05,
           "perimeterKm": 0.029391044477775588,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -93053,7 +93053,7 @@
               -21.2316158
             ]
           ],
-          "areaKm2": 0.00004485558724358405,
+          "areaKm2": 4.485558724358405e-05,
           "perimeterKm": 0.02939103179547393,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -93097,7 +93097,7 @@
               -21.2316176
             ]
           ],
-          "areaKm2": 0.00004485558670731485,
+          "areaKm2": 4.485558670731485e-05,
           "perimeterKm": 0.029391031543811667,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -93141,7 +93141,7 @@
               -21.2316193
             ]
           ],
-          "areaKm2": 0.00004485558618550811,
+          "areaKm2": 4.485558618550811e-05,
           "perimeterKm": 0.029391031302398722,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -93185,7 +93185,7 @@
               -21.2316202
             ]
           ],
-          "areaKm2": 0.00004485558592431095,
+          "areaKm2": 4.485558592431095e-05,
           "perimeterKm": 0.029391031177692508,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -93229,7 +93229,7 @@
               -21.2316202
             ]
           ],
-          "areaKm2": 0.00004485558592224609,
+          "areaKm2": 4.485558592224609e-05,
           "perimeterKm": 0.029391031180426304,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -93273,7 +93273,7 @@
               -21.2316202
             ]
           ],
-          "areaKm2": 0.00004485558591673978,
+          "areaKm2": 4.485558591673978e-05,
           "perimeterKm": 0.029391031178956924,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -93317,7 +93317,7 @@
               -21.2316202
             ]
           ],
-          "areaKm2": 0.00004485558591365087,
+          "areaKm2": 4.485558591365087e-05,
           "perimeterKm": 0.029391031180426304,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -93361,7 +93361,7 @@
               -21.2316202
             ]
           ],
-          "areaKm2": 0.00004485558591365087,
+          "areaKm2": 4.485558591365087e-05,
           "perimeterKm": 0.029391031178956924,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -93405,7 +93405,7 @@
               -21.2316211
             ]
           ],
-          "areaKm2": 0.000044855585623142695,
+          "areaKm2": 4.4855585623142695e-05,
           "perimeterKm": 0.029391031048863668,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -93449,7 +93449,7 @@
               -21.2317113
             ]
           ],
-          "areaKm2": 0.00004485555821045177,
+          "areaKm2": 4.485555821045177e-05,
           "perimeterKm": 0.029391018363773787,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -93493,7 +93493,7 @@
               -21.2317139
             ]
           ],
-          "areaKm2": 0.000044855557417694315,
+          "areaKm2": 4.4855557417694315e-05,
           "perimeterKm": 0.0293910179995968,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -93537,7 +93537,7 @@
               -21.2317139
             ]
           ],
-          "areaKm2": 0.00004485555740050389,
+          "areaKm2": 4.485555740050389e-05,
           "perimeterKm": 0.029391017998127416,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -93581,7 +93581,7 @@
               -21.2317148
             ]
           ],
-          "areaKm2": 0.00004485555714066652,
+          "areaKm2": 4.485555714066652e-05,
           "perimeterKm": 0.029391017870081068,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -93625,7 +93625,7 @@
               -21.2317148
             ]
           ],
-          "areaKm2": 0.00004485555714066652,
+          "areaKm2": 4.485555714066652e-05,
           "perimeterKm": 0.029391017873026892,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -93669,7 +93669,7 @@
               -21.2317148
             ]
           ],
-          "areaKm2": 0.00004485555713766156,
+          "areaKm2": 4.485555713766156e-05,
           "perimeterKm": 0.02939101787429132,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -93713,7 +93713,7 @@
               -21.2317157
             ]
           ],
-          "areaKm2": 0.000044855556870294984,
+          "areaKm2": 4.4855556870294984e-05,
           "perimeterKm": 0.02939101774772141,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -93757,7 +93757,7 @@
               -21.2317157
             ]
           ],
-          "areaKm2": 0.00004485555686132205,
+          "areaKm2": 4.485555686132205e-05,
           "perimeterKm": 0.029391017744987598,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -93801,7 +93801,7 @@
               -21.231805
             ]
           ],
-          "areaKm2": 0.00004485552968640129,
+          "areaKm2": 4.485552968640129e-05,
           "perimeterKm": 0.029391005187671612,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -93845,7 +93845,7 @@
               -21.2318067
             ]
           ],
-          "areaKm2": 0.00004485552918635958,
+          "areaKm2": 4.485552918635958e-05,
           "perimeterKm": 0.02939100495007058,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -93889,7 +93889,7 @@
               -21.2318076
             ]
           ],
-          "areaKm2": 0.00004485552891935393,
+          "areaKm2": 4.485552891935393e-05,
           "perimeterKm": 0.029391004822235705,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -93933,7 +93933,7 @@
               -21.2318076
             ]
           ],
-          "areaKm2": 0.00004485552891075871,
+          "areaKm2": 4.485552891075871e-05,
           "perimeterKm": 0.029391004820766325,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -93977,7 +93977,7 @@
               -21.2318085
             ]
           ],
-          "areaKm2": 0.00004485552865223078,
+          "areaKm2": 4.485552865223078e-05,
           "perimeterKm": 0.029391004694195887,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -94021,7 +94021,7 @@
               -21.2318085
             ]
           ],
-          "areaKm2": 0.00004485552864392095,
+          "areaKm2": 4.485552864392095e-05,
           "perimeterKm": 0.029391004696929707,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -94065,7 +94065,7 @@
               -21.2318094
             ]
           ],
-          "areaKm2": 0.000044855528364123216,
+          "areaKm2": 4.4855528364123216e-05,
           "perimeterKm": 0.029391004570359265,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -94109,7 +94109,7 @@
               -21.2318094
             ]
           ],
-          "areaKm2": 0.000044855528362990055,
+          "areaKm2": 4.4855528362990055e-05,
           "perimeterKm": 0.029391004570359265,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -94153,7 +94153,7 @@
               -21.2318103
             ]
           ],
-          "areaKm2": 0.00004485552807505876,
+          "areaKm2": 4.485552807505876e-05,
           "perimeterKm": 0.02939100443957855,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -94197,7 +94197,7 @@
               -21.2316184
             ]
           ],
-          "areaKm2": 0.000044833112504658424,
+          "areaKm2": 4.4833112504658424e-05,
           "perimeterKm": 0.029380712967167245,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -94241,7 +94241,7 @@
               -21.2316184
             ]
           ],
-          "areaKm2": 0.00004483311250276143,
+          "areaKm2": 4.483311250276143e-05,
           "perimeterKm": 0.029380712967174302,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -94285,7 +94285,7 @@
               -21.2315239
             ]
           ],
-          "areaKm2": 0.000044833025988057405,
+          "areaKm2": 4.4833025988057405e-05,
           "perimeterKm": 0.029380642751880445,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -94329,7 +94329,7 @@
               -21.2315256
             ]
           ],
-          "areaKm2": 0.000044833025473704325,
+          "areaKm2": 4.4833025473704325e-05,
           "perimeterKm": 0.02938064251440277,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -94373,7 +94373,7 @@
               -21.2317139
             ]
           ],
-          "areaKm2": 0.00004483296821866349,
+          "areaKm2": 4.483296821866349e-05,
           "perimeterKm": 0.029380616046600236,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -94417,7 +94417,7 @@
               -21.2317148
             ]
           ],
-          "areaKm2": 0.00004483296794910615,
+          "areaKm2": 4.483296794910615e-05,
           "perimeterKm": 0.02938061592009404,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -94461,7 +94461,7 @@
               -21.2318094
             ]
           ],
-          "areaKm2": 0.00004483293919366476,
+          "areaKm2": 4.483293919366476e-05,
           "perimeterKm": 0.029380602622858437,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -94505,7 +94505,7 @@
               -21.2318094
             ]
           ],
-          "areaKm2": 0.00004483293919366476,
+          "areaKm2": 4.483293919366476e-05,
           "perimeterKm": 0.029380602622858437,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -94549,7 +94549,7 @@
               -21.2315267
             ]
           ],
-          "areaKm2": 0.000044798046404229065,
+          "areaKm2": 4.4798046404229065e-05,
           "perimeterKm": 0.029379966655322522,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -94593,7 +94593,7 @@
               -21.2315248
             ]
           ],
-          "areaKm2": 0.00004477545779033594,
+          "areaKm2": 4.477545779033594e-05,
           "perimeterKm": 0.029369564906538394,
           "assetClass": "pv_array",
           "attributionMethod": "osm_operator_tag",
@@ -94739,7 +94739,7 @@
           {
             "key": "trigger_signal",
             "label": "Timing trigger",
-            "rationale": "A dated, cited event that makes contact relevant now — leadership change, incident, regulatory action, or expansion.",
+            "rationale": "A dated, cited event that makes contact relevant now, leadership change, incident, regulatory action, or expansion.",
             "weight": 0.1,
             "raw": 0,
             "contribution": 0,
@@ -94930,8 +94930,8 @@
           "The sites fall into 11 spatial clusters once features within 10 km of each other are grouped. Separated clusters cannot share dock infrastructure, so 11 is the floor on dock count regardless of area.",
           "A dock services roughly 55 km² at a 5 km effective radius, or 19.8 km² at 3 km, after a 70% coverage-efficiency allowance. Dividing measured area by those figures and respecting the cluster floor gives 11 to 11 docks for full coverage.",
           "At 4 to 30 inspection passes per site per month, the programme runs 404 to 3030 autonomous missions monthly, which is 161.6 to 2424 flight hours.",
-          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 202 to 6060 contracted crew-days per month — the hours currently spent putting people on module strings, tracker rows, inverter skids and combiner boxes; array blocks and thermal hotspots.",
-          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year — so the first conversation is about one dock on the highest-risk cluster, not 11."
+          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 202 to 6060 contracted crew-days per month, the hours currently spent putting people on module strings, tracker rows, inverter skids and combiner boxes; array blocks and thermal hotspots.",
+          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year, so the first conversation is about one dock on the highest-risk cluster, not 11."
         ],
         "caveats": [
           "Footprint is measured from mapped geometry, which reflects the operator's surface disturbance rather than a licensed concession boundary. It is a floor on inspectable area, not a ceiling.",
@@ -96517,7 +96517,7 @@
           {
             "key": "trigger_signal",
             "label": "Timing trigger",
-            "rationale": "A dated, cited event that makes contact relevant now — leadership change, incident, regulatory action, or expansion.",
+            "rationale": "A dated, cited event that makes contact relevant now, leadership change, incident, regulatory action, or expansion.",
             "weight": 0.1,
             "raw": 0,
             "contribution": 0,
@@ -96685,8 +96685,8 @@
           "The sites fall into 2 spatial clusters once features within 10 km of each other are grouped. Separated clusters cannot share dock infrastructure, so 2 is the floor on dock count regardless of area.",
           "A dock services roughly 55 km² at a 5 km effective radius, or 19.8 km² at 3 km, after a 70% coverage-efficiency allowance. Dividing measured area by those figures and respecting the cluster floor gives 2 to 2 docks for full coverage.",
           "At 4 to 30 inspection passes per site per month, the programme runs 48 to 360 autonomous missions monthly, which is 19.2 to 288 flight hours.",
-          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 24 to 720 contracted crew-days per month — the hours currently spent putting people on module strings, tracker rows, inverter skids and combiner boxes; array blocks and thermal hotspots.",
-          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year — so the first conversation is about one dock on the highest-risk cluster, not 2."
+          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 24 to 720 contracted crew-days per month, the hours currently spent putting people on module strings, tracker rows, inverter skids and combiner boxes; array blocks and thermal hotspots.",
+          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year, so the first conversation is about one dock on the highest-risk cluster, not 2."
         ],
         "caveats": [
           "Footprint is measured from mapped geometry, which reflects the operator's surface disturbance rather than a licensed concession boundary. It is a floor on inspectable area, not a ceiling.",
@@ -97326,7 +97326,7 @@
           {
             "key": "trigger_signal",
             "label": "Timing trigger",
-            "rationale": "A dated, cited event that makes contact relevant now — leadership change, incident, regulatory action, or expansion.",
+            "rationale": "A dated, cited event that makes contact relevant now, leadership change, incident, regulatory action, or expansion.",
             "weight": 0.1,
             "raw": 0,
             "contribution": 0,
@@ -97369,7 +97369,7 @@
           "findingPlaybook": [
             "No public officer roster was found for Solar Elena during this run, so no individual is named. The role remains the correct target and the buying-committee position is unchanged.",
             "Search public professional profiles restricted to this employer using local-language titles, which materially outperform English titles in Spanish-speaking operations.",
-            "Where the operator is state-owned, check for a statutory transparency disclosure — these publish officers, appointment dates and whether a seat is interim.",
+            "Where the operator is state-owned, check for a statutory transparency disclosure, these publish officers, appointment dates and whether a seat is interim.",
             "Check the annual filing's executive-officers section, which names officers and titles as a signed disclosure.",
             "Confirm the individual on a second independent source before any outreach is sent."
           ],
@@ -97388,7 +97388,7 @@
           "findingPlaybook": [
             "No public officer roster was found for Solar Elena during this run, so no individual is named. The role remains the correct target and the buying-committee position is unchanged.",
             "Search public professional profiles restricted to this employer using local-language titles, which materially outperform English titles in Spanish-speaking operations.",
-            "Where the operator is state-owned, check for a statutory transparency disclosure — these publish officers, appointment dates and whether a seat is interim.",
+            "Where the operator is state-owned, check for a statutory transparency disclosure, these publish officers, appointment dates and whether a seat is interim.",
             "Check the annual filing's executive-officers section, which names officers and titles as a signed disclosure.",
             "Confirm the individual on a second independent source before any outreach is sent."
           ],
@@ -97407,7 +97407,7 @@
           "findingPlaybook": [
             "No public officer roster was found for Solar Elena during this run, so no individual is named. The role remains the correct target and the buying-committee position is unchanged.",
             "Search public professional profiles restricted to this employer using local-language titles, which materially outperform English titles in Spanish-speaking operations.",
-            "Where the operator is state-owned, check for a statutory transparency disclosure — these publish officers, appointment dates and whether a seat is interim.",
+            "Where the operator is state-owned, check for a statutory transparency disclosure, these publish officers, appointment dates and whether a seat is interim.",
             "Check the annual filing's executive-officers section, which names officers and titles as a signed disclosure.",
             "Confirm the individual on a second independent source before any outreach is sent."
           ],
@@ -97519,8 +97519,8 @@
           "The sites fall into 4 spatial clusters once features within 10 km of each other are grouped. Separated clusters cannot share dock infrastructure, so 4 is the floor on dock count regardless of area.",
           "A dock services roughly 55 km² at a 5 km effective radius, or 19.8 km² at 3 km, after a 70% coverage-efficiency allowance. Dividing measured area by those figures and respecting the cluster floor gives 4 to 4 docks for full coverage.",
           "At 4 to 30 inspection passes per site per month, the programme runs 32 to 240 autonomous missions monthly, which is 12.8 to 192 flight hours.",
-          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 16 to 480 contracted crew-days per month — the hours currently spent putting people on module strings, tracker rows, inverter skids and combiner boxes; array blocks and thermal hotspots.",
-          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year — so the first conversation is about one dock on the highest-risk cluster, not 4."
+          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 16 to 480 contracted crew-days per month, the hours currently spent putting people on module strings, tracker rows, inverter skids and combiner boxes; array blocks and thermal hotspots.",
+          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year, so the first conversation is about one dock on the highest-risk cluster, not 4."
         ],
         "caveats": [
           "Footprint is measured from mapped geometry, which reflects the operator's surface disturbance rather than a licensed concession boundary. It is a floor on inspectable area, not a ceiling.",
@@ -97976,7 +97976,7 @@
           {
             "key": "trigger_signal",
             "label": "Timing trigger",
-            "rationale": "A dated, cited event that makes contact relevant now — leadership change, incident, regulatory action, or expansion.",
+            "rationale": "A dated, cited event that makes contact relevant now, leadership change, incident, regulatory action, or expansion.",
             "weight": 0.1,
             "raw": 0,
             "contribution": 0,
@@ -98111,8 +98111,8 @@
           "The sites fall into 2 spatial clusters once features within 10 km of each other are grouped. Separated clusters cannot share dock infrastructure, so 2 is the floor on dock count regardless of area.",
           "A dock services roughly 55 km² at a 5 km effective radius, or 19.8 km² at 3 km, after a 70% coverage-efficiency allowance. Dividing measured area by those figures and respecting the cluster floor gives 2 to 2 docks for full coverage.",
           "At 4 to 30 inspection passes per site per month, the programme runs 20 to 150 autonomous missions monthly, which is 8 to 120 flight hours.",
-          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 10 to 300 contracted crew-days per month — the hours currently spent putting people on module strings, tracker rows, inverter skids and combiner boxes; array blocks and thermal hotspots.",
-          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year — so the first conversation is about one dock on the highest-risk cluster, not 2."
+          "Substituting for contracted crews at 0.5 to 2 crew-days per manual pass, that displaces 10 to 300 contracted crew-days per month, the hours currently spent putting people on module strings, tracker rows, inverter skids and combiner boxes; array blocks and thermal hotspots.",
+          "Phase one does not require full coverage. FlytBase's published deployment at the reference account began with a single dock on one zone for one use case at USD 70,000 to 80,000 total system investment, reaching return inside a year, so the first conversation is about one dock on the highest-risk cluster, not 2."
         ],
         "caveats": [
           "Footprint is measured from mapped geometry, which reflects the operator's surface disturbance rather than a licensed concession boundary. It is a floor on inspectable area, not a ceiling.",
@@ -99025,55 +99025,55 @@
       "attempts": [
         {
           "source": "OSM operator tag",
-          "outcome": "\"Parque Solar Fotovoltaico Sol del Desierto SpA\" — 1 feature(s), 4.64 km² mapped, no identity match"
+          "outcome": "\"Parque Solar Fotovoltaico Sol del Desierto SpA\", 1 feature(s), 4.64 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Engie Energía Chile S.A.\" — 3 feature(s), 4.62 km² mapped, no identity match"
+          "outcome": "\"Engie Energía Chile S.A.\", 3 feature(s), 4.62 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Atacama Solar S.A.\" — 1 feature(s), 3.99 km² mapped, no identity match"
+          "outcome": "\"Atacama Solar S.A.\", 1 feature(s), 3.99 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Generadora Metropolitana\" — 1 feature(s), 3.79 km² mapped, no identity match"
+          "outcome": "\"Generadora Metropolitana\", 1 feature(s), 3.79 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"María Elena Solar S.A.\" — 1 feature(s), 3.61 km² mapped, no identity match"
+          "outcome": "\"María Elena Solar S.A.\", 1 feature(s), 3.61 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Siemens Energy SpA\" — 1 feature(s), 3.41 km² mapped, no identity match"
+          "outcome": "\"Siemens Energy SpA\", 1 feature(s), 3.41 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Chungungo S.A.\" — 1 feature(s), 3.3 km² mapped, no identity match"
+          "outcome": "\"Chungungo S.A.\", 1 feature(s), 3.3 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Parque Fotovoltaico Nueva Quillagua SpA\" — 1 feature(s), 3.29 km² mapped, no identity match"
+          "outcome": "\"Parque Fotovoltaico Nueva Quillagua SpA\", 1 feature(s), 3.29 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"AR Pampa SpA\" — 1 feature(s), 3.23 km² mapped, no identity match"
+          "outcome": "\"AR Pampa SpA\", 1 feature(s), 3.23 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Conejo Solar\" — 1 feature(s), 3.19 km² mapped, no identity match"
+          "outcome": "\"Conejo Solar\", 1 feature(s), 3.19 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Andes Solar SpA\" — 1 feature(s), 2.92 km² mapped, no identity match"
+          "outcome": "\"Andes Solar SpA\", 1 feature(s), 2.92 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Tercera Región Solar SpA\" — 1 feature(s), 2.48 km² mapped, no identity match"
+          "outcome": "\"Tercera Región Solar SpA\", 1 feature(s), 2.48 km² mapped, no identity match"
         }
       ],
       "interpretation": "These are real operators with real measured geometry, but resolving a local legal entity to a parent group needs a corporate registry we did not query. They are excluded from the account list rather than being guessed at.",
-      "remediation": "Add a registry lookup keyed on the operator string. Until then, excluding them keeps the account list free of invented parentage — an unresolved operator is a lead to research, not an account to email.",
+      "remediation": "Add a registry lookup keyed on the operator string. Until then, excluding them keeps the account list free of invented parentage, an unresolved operator is a lead to research, not an account to email.",
       "producedBy": "universe_scout"
     },
     {
@@ -99166,7 +99166,7 @@
       "accountId": "atacama-generacion",
       "headline": "Atacama Generación is the reference profile this campaign is modelled on. Its measured footprint and disclosed contractor dependency define what a good account looks like.",
       "whyNow": "No timing trigger was found for this account. Treat it as nurture until one appears rather than manufacturing urgency.",
-      "positioning": "Atacama Generación runs 2056 mapped operating areas totalling 16.5 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection — same coverage or better, without a person in front of the hazard.",
+      "positioning": "Atacama Generación runs 2056 mapped operating areas totalling 16.5 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection, same coverage or better, without a person in front of the hazard.",
       "stakeholderMap": [
         {
           "contactId": "contact-atacama-generacion-fredy-cruces",
@@ -99196,7 +99196,7 @@
         },
         {
           "question": "If inspection frequency were not constrained by crew availability, what would you want to look at more often than you currently can?",
-          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection — it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
+          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection, it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
           "evidenceIds": []
         }
       ],
@@ -99208,7 +99208,7 @@
         },
         {
           "objection": "Our contractors are cheaper than a capital programme.",
-          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year — not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
+          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year, not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
           "evidenceIds": []
         },
         {
@@ -99230,16 +99230,16 @@
         }
       ],
       "referenceCase": {
-        "value": "Lead with FlytBase solar operations. Automated PV inspection with thermal anomaly detection across large arrays. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme — which is the objection this account will raise first.",
+        "value": "Lead with FlytBase solar operations. Automated PV inspection with thermal anomaly detection across large arrays. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme, which is the objection this account will raise first.",
         "evidenceIds": []
       },
-      "nextAction": "Send the accepted first-touch message to Fredy Cruces, opening on Complejo Solar Cerro Dominador, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message — the ask is permission to send the written breakdown."
+      "nextAction": "Send the accepted first-touch message to Fredy Cruces, opening on Complejo Solar Cerro Dominador, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message, the ask is permission to send the written breakdown."
     },
     "enel-green-power": {
       "accountId": "enel-green-power",
       "headline": "Nurture. Enel Green Power resembles Atacama Generación on the dimensions that matter, and Parque Fotovoltaico Crucero Este is where the conversation starts.",
       "whyNow": "No timing trigger was found for this account. Treat it as nurture until one appears rather than manufacturing urgency.",
-      "positioning": "Enel Green Power runs 101 mapped operating areas totalling 36.6 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection — same coverage or better, without a person in front of the hazard.",
+      "positioning": "Enel Green Power runs 101 mapped operating areas totalling 36.6 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection, same coverage or better, without a person in front of the hazard.",
       "stakeholderMap": [
         {
           "contactId": "contact-enel-green-power-javier-martinez-ramirez",
@@ -99254,7 +99254,7 @@
         {
           "contactId": "contact-enel-green-power-alex-palma-avila",
           "role": "risk_validator",
-          "approach": "Alex Palma Avila can stop this on safety or compliance grounds, so bring them in early rather than late. The argument that lands is auditability — a timestamped, third-party-verifiable inspection record — not labour saving."
+          "approach": "Alex Palma Avila can stop this on safety or compliance grounds, so bring them in early rather than late. The argument that lands is auditability, a timestamped, third-party-verifiable inspection record, not labour saving."
         }
       ],
       "discoveryQuestions": [
@@ -99279,7 +99279,7 @@
         },
         {
           "question": "If inspection frequency were not constrained by crew availability, what would you want to look at more often than you currently can?",
-          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection — it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
+          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection, it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
           "evidenceIds": []
         }
       ],
@@ -99291,7 +99291,7 @@
         },
         {
           "objection": "Our contractors are cheaper than a capital programme.",
-          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year — not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
+          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year, not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
           "evidenceIds": []
         },
         {
@@ -99313,16 +99313,16 @@
         }
       ],
       "referenceCase": {
-        "value": "Lead with FlytBase solar operations. Automated PV inspection with thermal anomaly detection across large arrays. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme — which is the objection this account will raise first.",
+        "value": "Lead with FlytBase solar operations. Automated PV inspection with thermal anomaly detection across large arrays. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme, which is the objection this account will raise first.",
         "evidenceIds": []
       },
-      "nextAction": "Send the accepted first-touch message to Javier Martínez Ramírez, opening on Parque Fotovoltaico Crucero Este, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message — the ask is permission to send the written breakdown."
+      "nextAction": "Send the accepted first-touch message to Javier Martínez Ramírez, opening on Parque Fotovoltaico Crucero Este, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message, the ask is permission to send the written breakdown."
     },
     "acciona": {
       "accountId": "acciona",
       "headline": "Nurture. Acciona Energía resembles Atacama Generación on the dimensions that matter, and PFV Malgarida is where the conversation starts.",
       "whyNow": "No timing trigger was found for this account. Treat it as nurture until one appears rather than manufacturing urgency.",
-      "positioning": "Acciona Energía runs 12 mapped operating areas totalling 10.8 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection — same coverage or better, without a person in front of the hazard.",
+      "positioning": "Acciona Energía runs 12 mapped operating areas totalling 10.8 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection, same coverage or better, without a person in front of the hazard.",
       "stakeholderMap": [
         {
           "contactId": "contact-acciona-enric-almirall",
@@ -99357,7 +99357,7 @@
         },
         {
           "question": "If inspection frequency were not constrained by crew availability, what would you want to look at more often than you currently can?",
-          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection — it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
+          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection, it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
           "evidenceIds": []
         }
       ],
@@ -99369,7 +99369,7 @@
         },
         {
           "objection": "Our contractors are cheaper than a capital programme.",
-          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year — not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
+          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year, not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
           "evidenceIds": []
         },
         {
@@ -99391,16 +99391,16 @@
         }
       ],
       "referenceCase": {
-        "value": "Lead with FlytBase solar operations. Automated PV inspection with thermal anomaly detection across large arrays. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme — which is the objection this account will raise first.",
+        "value": "Lead with FlytBase solar operations. Automated PV inspection with thermal anomaly detection across large arrays. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme, which is the objection this account will raise first.",
         "evidenceIds": []
       },
-      "nextAction": "Send the accepted first-touch message to Enric Almirall, opening on PFV Malgarida, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message — the ask is permission to send the written breakdown."
+      "nextAction": "Send the accepted first-touch message to Enric Almirall, opening on PFV Malgarida, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message, the ask is permission to send the written breakdown."
     },
     "solar-elena": {
       "accountId": "solar-elena",
       "headline": "Nurture. Solar Elena resembles Atacama Generación on the dimensions that matter, and PFV Elena is where the conversation starts.",
       "whyNow": "No timing trigger was found for this account. Treat it as nurture until one appears rather than manufacturing urgency.",
-      "positioning": "Solar Elena runs 8 mapped operating areas totalling 6.3 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection — same coverage or better, without a person in front of the hazard.",
+      "positioning": "Solar Elena runs 8 mapped operating areas totalling 6.3 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection, same coverage or better, without a person in front of the hazard.",
       "stakeholderMap": [
         {
           "contactId": "roletarget-solar-elena-site-director",
@@ -99440,7 +99440,7 @@
         },
         {
           "question": "If inspection frequency were not constrained by crew availability, what would you want to look at more often than you currently can?",
-          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection — it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
+          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection, it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
           "evidenceIds": []
         }
       ],
@@ -99452,7 +99452,7 @@
         },
         {
           "objection": "Our contractors are cheaper than a capital programme.",
-          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year — not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
+          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year, not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
           "evidenceIds": []
         },
         {
@@ -99474,7 +99474,7 @@
         }
       ],
       "referenceCase": {
-        "value": "Lead with FlytBase solar operations. Automated PV inspection with thermal anomaly detection across large arrays. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme — which is the objection this account will raise first.",
+        "value": "Lead with FlytBase solar operations. Automated PV inspection with thermal anomaly detection across large arrays. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme, which is the objection this account will raise first.",
         "evidenceIds": []
       },
       "nextAction": "Find the Site Director before sending anything. The finding playbook on this account lists the specific sources to try, in order."
@@ -99483,12 +99483,12 @@
       "accountId": "aes-andes",
       "headline": "Nurture. AES Andes resembles Atacama Generación on the dimensions that matter, and PFV Andes Solar II B is where the conversation starts.",
       "whyNow": "No timing trigger was found for this account. Treat it as nurture until one appears rather than manufacturing urgency.",
-      "positioning": "AES Andes runs 5 mapped operating areas totalling 4.7 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection — same coverage or better, without a person in front of the hazard.",
+      "positioning": "AES Andes runs 5 mapped operating areas totalling 4.7 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection, same coverage or better, without a person in front of the hazard.",
       "stakeholderMap": [
         {
           "contactId": "contact-aes-andes-cristian-lagniel-villouta",
           "role": "risk_validator",
-          "approach": "Cristian Lagniel Villouta can stop this on safety or compliance grounds, so bring them in early rather than late. The argument that lands is auditability — a timestamped, third-party-verifiable inspection record — not labour saving."
+          "approach": "Cristian Lagniel Villouta can stop this on safety or compliance grounds, so bring them in early rather than late. The argument that lands is auditability, a timestamped, third-party-verifiable inspection record, not labour saving."
         }
       ],
       "discoveryQuestions": [
@@ -99513,7 +99513,7 @@
         },
         {
           "question": "If inspection frequency were not constrained by crew availability, what would you want to look at more often than you currently can?",
-          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection — it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
+          "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection, it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
           "evidenceIds": []
         }
       ],
@@ -99525,7 +99525,7 @@
         },
         {
           "objection": "Our contractors are cheaper than a capital programme.",
-          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year — not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
+          "response": "Compare like for like. Phase one at the reference account was a single dock on one zone for a total system investment of USD 70,000 to 80,000, with return inside a year, not a site-wide capital programme. Then ask what a single contractor safety incident costs them, because their own filing already names that as a production risk.",
           "evidenceIds": []
         },
         {
@@ -99547,10 +99547,10 @@
         }
       ],
       "referenceCase": {
-        "value": "Lead with FlytBase solar operations. Automated PV inspection with thermal anomaly detection across large arrays. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme — which is the objection this account will raise first.",
+        "value": "Lead with FlytBase solar operations. Automated PV inspection with thermal anomaly detection across large arrays. It is the strongest reference for this account because it is the same commodity family, the same jurisdiction and the same asset class, and because it began as one dock on one zone rather than a site-wide programme, which is the objection this account will raise first.",
         "evidenceIds": []
       },
-      "nextAction": "Send the accepted first-touch message to Cristian Lagniel Villouta, opening on PFV Andes Solar II B, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message — the ask is permission to send the written breakdown."
+      "nextAction": "Send the accepted first-touch message to Cristian Lagniel Villouta, opening on PFV Andes Solar II B, then run the day 3 and day 7 touches as laid out in the cadence. Do not request a meeting in the first message, the ask is permission to send the written breakdown."
     }
   },
   "trace": [
@@ -99559,7 +99559,7 @@
       "at": "2026-07-25T06:26:59.426Z",
       "agent": "chief_of_staff",
       "phase": "start",
-      "message": "Campaign brief received: Atacama solar — highest OSM operator coverage."
+      "message": "Campaign brief received: Atacama solar, highest OSM operator coverage."
     },
     {
       "seq": 2,

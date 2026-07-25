@@ -57,7 +57,7 @@ export async function GET(req: Request) {
   if (!gate.ok) {
     return limitResponse(
       gate,
-      `A live run opens real queries against OpenStreetMap, SEC EDGAR and company sites, so it is capped at six every five minutes per caller. Try again in ${gate.retryAfter}s — the frozen runs on the page are the same pipeline's output and are always available.`,
+      `A live run opens real queries against OpenStreetMap, SEC EDGAR and company sites, so it is capped at six every five minutes per caller. Try again in ${gate.retryAfter}s, the frozen runs on the page are the same pipeline's output and are always available.`,
     );
   }
 
@@ -155,7 +155,7 @@ export async function GET(req: Request) {
           send({
             agent: "terrain_surveyor",
             phase: "error",
-            message: `Overpass failed: ${(err as Error).message}. This is the most common live failure — the public endpoint rate-limits aggressive querying, which is exactly why the graded run queries it at harvest time and serves measured geometry from a frozen artifact.`,
+            message: `Overpass failed: ${(err as Error).message}. This is the most common live failure, the public endpoint rate-limits aggressive querying, which is exactly why the graded run queries it at harvest time and serves measured geometry from a frozen artifact.`,
           });
         }
 
@@ -242,7 +242,7 @@ export async function GET(req: Request) {
               send({
                 agent: "people_finder",
                 phase: "error",
-                message: "Answered 200 but the page carries no officer markers — a soft 404. Recorded as a gap rather than a success.",
+                message: "Answered 200 but the page carries no officer markers, a soft 404. Recorded as a gap rather than a success.",
               });
               continue;
             }
@@ -271,7 +271,7 @@ export async function GET(req: Request) {
               send({
                 agent: "people_finder",
                 phase: "note",
-                message: `Named, with a source: ${person.name} — "${person.titleVerbatim}"${person.appointedAt ? `, in post since ${person.appointedAt}` : ""}${person.tenureCharacter ? ` (${person.tenureCharacter})` : ""}.`,
+                message: `Named, with a source: ${person.name}, "${person.titleVerbatim}"${person.appointedAt ? `, in post since ${person.appointedAt}` : ""}${person.tenureCharacter ? ` (${person.tenureCharacter})` : ""}.`,
                 url: src.url,
                 evidenceCreated: 1,
               });
@@ -340,7 +340,7 @@ export async function GET(req: Request) {
         send({
           agent: "chief_of_staff",
           phase: "finish",
-          message: `Live run complete. ${evidence.length} evidence row(s) created from sources fetched during this request. Compare the figures above with the frozen account brief — they are produced by the same code.`,
+          message: `Live run complete. ${evidence.length} evidence row(s) created from sources fetched during this request. Compare the figures above with the frozen account brief, they are produced by the same code.`,
         });
 
         send({ done: true, evidenceCount: evidence.length, tier: icp.tier, total: icp.total });

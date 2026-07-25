@@ -63,7 +63,7 @@ export const DESKS: Desk[] = [
 export interface AgentNode extends AgentSpec {
   /** What this agent hands to the next one. */
   produces: string;
-  /** Whether the output is computed or generated — the trust boundary. */
+  /** Whether the output is computed or generated, the trust boundary. */
   kind: "deterministic" | "model" | "fetch" | "orchestration";
   dependsOn: AgentId[];
 }
@@ -131,7 +131,7 @@ export const AGENTS: AgentNode[] = [
     desk: "research",
     title: "Signals Desk",
     plainJob:
-      "Looks for dated events that change whether now is a good time to make contact — a new appointment, an incident, an expansion — and says why each one matters.",
+      "Looks for dated events that change whether now is a good time to make contact, a new appointment, an incident, an expansion, and says why each one matters.",
     tools: ["statutory appointment dates", "interim-status detection", "server-side web search"],
     produces: "Dated, cited signals with an urgency score and a read on what they mean",
     kind: "fetch",
@@ -190,7 +190,7 @@ export const AGENTS: AgentNode[] = [
     desk: "contact",
     title: "Org Cartographer",
     plainJob:
-      "Works out the shape of the buying group for this kind of company — who champions, who signs, who can veto on safety grounds — whether or not names are available.",
+      "Works out the shape of the buying group for this kind of company, who champions, who signs, who can veto on safety grounds, whether or not names are available.",
     tools: ["role taxonomy", "seniority classification"],
     produces: "The buying committee structure and which role to open with",
     kind: "deterministic",
@@ -247,7 +247,7 @@ export const AGENTS: AgentNode[] = [
     desk: "outreach",
     title: "Red Team critic",
     plainJob:
-      "Tries to reject the writer's draft. It checks length, banned phrasing, whether the facts are cited, whether the ask is reasonable, and how the copy reads — and sends it back if any check fails.",
+      "Tries to reject the writer's draft. It checks length, banned phrasing, whether the facts are cited, whether the ask is reasonable, and how the copy reads, and sends it back if any check fails.",
     tools: ["ten hard gates", "banned-phrase list", "language-correct readability"],
     produces: "A pass or fail with reasons, and the rejected drafts kept on the record",
     kind: "deterministic",
@@ -299,7 +299,7 @@ export function agentsByDesk(desk: DeskId | "orchestrator"): AgentNode[] {
 }
 
 export const KIND_LABEL: Record<AgentNode["kind"], string> = {
-  deterministic: "computed — no model involved",
+  deterministic: "computed, no model involved",
   model: "language model, prose only",
   fetch: "fetches from a named source",
   orchestration: "plans and delegates",

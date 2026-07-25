@@ -144,7 +144,7 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
               </p>
               <p className="mt-1.5 text-[0.85rem]" style={{ color: "var(--color-inferred)" }}>
                 <strong className="tnum">{fmtKm2(summary.attributedAreaKm2)} km²</strong> across{" "}
-                {summary.attributedSiteCount} features carries an explicit operator or name match — the
+                {summary.attributedSiteCount} features carries an explicit operator or name match, the
                 strong claim. A further{" "}
                 <strong className="tnum">{fmtKm2(summary.clusteredAreaKm2)} km²</strong> across{" "}
                 {summary.clusteredSiteCount} untagged adjacent features is attributed by proximity only, and
@@ -539,7 +539,7 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
                   {site && (
                     <div className="mt-2.5 rounded-[8px] bg-[var(--color-accent-wash)] px-2.5 py-2">
                       <p className="text-[0.8rem] text-[var(--color-accent-ink)]">
-                        Runs <strong>{site.name ?? site.osmId}</strong> —{" "}
+                        Runs <strong>{site.name ?? site.osmId}</strong>,{" "}
                         <span className="tnum">{site.areaKm2.toFixed(2)} km²</span> of mapped footprint,{" "}
                         <span className="tnum">{site.perimeterKm.toFixed(1)} km</span> of boundary.
                       </p>
@@ -564,7 +564,7 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
                     <Citations rows={ev(c.evidenceIds)} max={3} />
                     {c.email ? (
                       <span className={cx("chip", c.email.status === "OBSERVED" ? "chip-verified" : "chip-inferred")}>
-                        {c.email.status === "OBSERVED" ? c.email.address : "address inferred — not sendable"}
+                        {c.email.status === "OBSERVED" ? c.email.address : "address inferred, not sendable"}
                       </span>
                     ) : (
                       <span className="chip chip-null">no address sourced</span>
@@ -577,7 +577,7 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
 
           {roleTargets.length > 0 && (
             <div className="mt-4">
-              <p className="t-label">Role targets — no individual found</p>
+              <p className="t-label">Role targets, no individual found</p>
               <p className="t-small mt-1.5 max-w-3xl">
                 These are deliberately nameless. The role is right and the buying position is unchanged, but
                 no public source named the holder during this run. A plausible-looking invented name would
@@ -614,7 +614,7 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
             <SectionHead
               label="Regulatory context"
               title="What forces the inspection to happen"
-              note="Naming the instrument an HSE lead answers to is the highest-signal specificity available — and a wrong decree number is worse than none, so an instrument is only quoted in generated copy once its text has been fetched."
+              note="Naming the instrument an HSE lead answers to is the highest-signal specificity available, and a wrong decree number is worse than none, so an instrument is only quoted in generated copy once its text has been fetched."
             />
             <div className="grid gap-3 md:grid-cols-2">
               {pack.regulatoryRegimes

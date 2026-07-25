@@ -78,7 +78,7 @@ export default async function ConsolePage() {
             {" "}
             {run.stats.accountsConsidered} distinct operators were observed this way; {run.accounts.length}{" "}
             resolved to a corporate identity and the remainder were left out rather than guessed at. An
-            invented account is therefore not possible here — if a company appears below, someone mapped
+            invented account is therefore not possible here, if a company appears below, someone mapped
             its pit and we measured it.
           </p>
         </div>
@@ -99,7 +99,7 @@ export default async function ConsolePage() {
               return (
                 // The card is a container, not a link. It used to be a <Link>
                 // wrapping the whole body, which put the citation chips' own <a>
-                // inside an <a> — invalid HTML, a hydration error, and a chip
+                // inside an <a>, invalid HTML, a hydration error, and a chip
                 // click that also navigated the card. The overlay link below
                 // keeps the whole card clickable while leaving the chips live.
                 <div
@@ -140,7 +140,7 @@ export default async function ConsolePage() {
                       <MiniStat k="named" v={String(named.length)} />
                       <MiniStat
                         k="docks"
-                        v={a.sizing ? `${a.sizing.docksRequired.low}–${a.sizing.docksRequired.high}` : "—"}
+                        v={a.sizing ? `${a.sizing.docksRequired.low}–${a.sizing.docksRequired.high}` : "n/a"}
                       />
                     </div>
                   </div>

@@ -187,7 +187,7 @@ export class ProviderError extends Error {
 
 /**
  * Try each model in a role's pool. On rate-limit or provider-terminal errors,
- * advance to the next model id rather than waiting — the whole point of holding
+ * advance to the next model id rather than waiting, the whole point of holding
  * several pools is that a 429 on one id says nothing about the next.
  */
 async function withPool<T>(
@@ -210,7 +210,7 @@ async function withPool<T>(
       lastErr = err;
       if (err instanceof ProviderError && (err.isRateLimit || err.isTerminalForProvider)) continue;
       if (err instanceof MissingKeyError) continue;
-      // Unexpected failures also fall through — a working model beats a clean stack trace.
+      // Unexpected failures also fall through, a working model beats a clean stack trace.
       continue;
     }
   }

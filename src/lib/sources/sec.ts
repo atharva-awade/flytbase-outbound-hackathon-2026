@@ -1,5 +1,5 @@
 /**
- * SEC EDGAR — primary corporate filings.
+ * SEC EDGAR, primary corporate filings.
  *
  * This is the highest-trust source class in the system: a 20-F is a document
  * the company's own officers signed. Two things were verified live before
@@ -106,7 +106,7 @@ export interface CompanyFilings {
   filings: FilingRef[];
 }
 
-/** Company submissions index — authoritative list of what a filer has filed. */
+/** Company submissions index, authoritative list of what a filer has filed. */
 export async function companyFilings(cik: string): Promise<CompanyFilings> {
   const padded = cik.padStart(10, "0");
   const url = `https://data.sec.gov/submissions/CIK${padded}.json`;
@@ -176,7 +176,7 @@ export function htmlToText(html: string): string {
  *
  * Deterministic: counts occurrences and lifts verbatim passages with context.
  * No model involved, so the numbers are reproducible and auditable. Terms
- * found ZERO times are reported too — absence of "autonomous" in a filing is
+ * found ZERO times are reported too, absence of "autonomous" in a filing is
  * itself a whitespace signal worth putting in front of an AE.
  */
 export async function scanFiling(
@@ -261,7 +261,7 @@ function interpret(counts: Record<string, number>, absent: string[]): string {
   const parts: string[] = [];
   if (contractor > 0) {
     parts.push(
-      `The filing refers to contractors ${contractor} time(s), including in its risk factors — contractor dependency is disclosed as material to production.`,
+      `The filing refers to contractors ${contractor} time(s), including in its risk factors, contractor dependency is disclosed as material to production.`,
     );
   }
   if (safety > 0) {

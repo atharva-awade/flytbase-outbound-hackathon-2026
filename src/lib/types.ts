@@ -3,7 +3,7 @@
  *
  * The central rule of this system: a fact may not reach the UI unless it is
  * carried by an EvidenceRow that has a real `sourceUrl` and a `verbatim`
- * snippet taken from that source. `Cited<T>` enforces that at the type level —
+ * snippet taken from that source. `Cited<T>` enforces that at the type level
  * you cannot construct a displayable value without attaching evidence ids.
  *
  * This is what makes "all research must be real" a property of the program
@@ -51,7 +51,7 @@ export interface EvidenceRow {
   sourceUrl: string;
   sourceTitle?: string;
   sourceClass: SourceClass;
-  /** ISO-8601. Real fetch time — the demo shows these to prove freshness. */
+  /** ISO-8601. Real fetch time, the demo shows these to prove freshness. */
   fetchedAt: string;
   /** Exact text from the source. Must contain the claim/value. Never paraphrased. */
   verbatim: string;
@@ -61,7 +61,7 @@ export interface EvidenceRow {
   translation?: string;
   confidence: Confidence;
   attributionMethod?: AttributionMethod;
-  /** Which agent produced this row — drives the "how it thinks" trace. */
+  /** Which agent produced this row, drives the "how it thinks" trace. */
   producedBy: AgentId;
   /** Ids of rows that corroborate or contradict this one. */
   corroborates?: string[];
@@ -131,7 +131,7 @@ export interface AgentSpec {
   tools: string[];
 }
 
-// ── Campaign brief (the input — never hardcoded) ──────────────────────────
+// ── Campaign brief (the input, never hardcoded) ──────────────────────────
 
 export interface CampaignBrief {
   id: string;
@@ -152,7 +152,7 @@ export interface CampaignBrief {
 // ── Sites and geometry ────────────────────────────────────────────────────
 
 export interface SiteGeometry {
-  /** e.g. "way/886558255" — resolvable on openstreetmap.org. */
+  /** e.g. "way/886558255", resolvable on openstreetmap.org. */
   osmId: string;
   name?: string;
   operatorTag?: string;
@@ -201,7 +201,7 @@ export interface OpportunitySizing {
   siteCount: number
   totalAreaKm2: number;
   totalPerimeterKm: number;
-  /** Assumptions are surfaced and editable in the UI — never buried. */
+  /** Assumptions are surfaced and editable in the UI, never buried. */
   assumptions: {
     key: string;
     label: string;
@@ -230,7 +230,7 @@ export interface RiskFactorScan {
   termCounts: Record<string, number>;
   /** The strongest verbatim passages, with surrounding context. */
   passages: { term: string; verbatim: string; evidenceId: string }[];
-  /** Terms deliberately searched and found ZERO times — a whitespace signal. */
+  /** Terms deliberately searched and found ZERO times, a whitespace signal. */
   absentTerms: string[];
   interpretation: string;
 }
@@ -248,9 +248,9 @@ export interface Signal {
     | "sustainability";
   headline: string;
   occurredAt?: string;
-  /** Why this matters for the angle — the strategic read, not the trivia. */
+  /** Why this matters for the angle, the strategic read, not the trivia. */
   soWhat: string;
-  /** 0..1 — how strongly this argues for outreach right now. */
+  /** 0..1, how strongly this argues for outreach right now. */
   urgency: number;
   evidenceIds: string[];
 }
@@ -354,7 +354,7 @@ export interface EmailDraft {
   gates: CriticGateResult[];
   score: number;
   accepted: boolean;
-  /** Why the critic rejected it — displayed, because rejects prove the loop is real. */
+  /** Why the critic rejected it, displayed, because rejects prove the loop is real. */
   rejectionReasons: string[];
   model: string;
 }
@@ -362,7 +362,7 @@ export interface EmailDraft {
 export interface CadenceStep {
   dayOffset: number;
   channel: "email" | "linkedin" | "call";
-  /** Which contact this touch targets — cadences are multi-threaded. */
+  /** Which contact this touch targets, cadences are multi-threaded. */
   contactId: string;
   intent: string;
   /** Why this gap and this channel, with the data behind it. */

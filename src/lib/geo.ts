@@ -1,5 +1,5 @@
 /**
- * Terrain layer — the evidence a language model cannot fabricate.
+ * Terrain layer, the evidence a language model cannot fabricate.
  *
  * Everything here comes from OpenStreetMap via Overpass and is measured, not
  * asserted. Two constraints were learned by probing the API live and are
@@ -24,7 +24,7 @@ import type { OsmTagSignature, VerticalPack } from "./verticals";
  * Only instances with a single, consistent backend are used.
  * A load-balanced pool was tested and rejected: six identical queries in 90
  * seconds came back with `timestamp_osm_base` values spanning May to July 2026,
- * which makes results non-reproducible — a judge clicking twice could get
+ * which makes results non-reproducible, a judge clicking twice could get
  * different data, which is worse than a slower query.
  */
 const MIRRORS = [
@@ -208,7 +208,7 @@ export interface TerrainQueryResult {
   sites: SiteGeometry[];
   /** Distinct operator strings observed, with feature counts and measured area. */
   operators: { operator: string; features: number; areaKm2: number }[];
-  /** Features with no operator tag — reported honestly rather than hidden. */
+  /** Features with no operator tag, reported honestly rather than hidden. */
   unattributedCount: number;
   excludedCount: number;
   cacheHit: boolean;
@@ -239,7 +239,7 @@ function classify(tags: Record<string, string>, pack: VerticalPack): OsmTagSigna
 
 /**
  * Fetch and measure every mappable site in a region for a pack.
- * Returns measured geometry only — attribution to a company happens separately
+ * Returns measured geometry only, attribution to a company happens separately
  * via `attributeToCompany`, so the measurement step stays company-agnostic.
  */
 export async function queryTerrain(
@@ -250,7 +250,7 @@ export async function queryTerrain(
   const query = buildQuery(pack, bbox);
 
   // Overpass can answer HTTP 200 with a truncated element set when it is under
-  // load. Caching such a response silently poisons every later run — this cost
+  // load. Caching such a response silently poisons every later run, this cost
   // us the anchor account once, which is exactly the failure a judge would
   // catch. An empty answer is therefore never cached, and a cached answer that
   // is empty is re-fetched rather than trusted.
@@ -331,7 +331,7 @@ export async function queryTerrain(
 // ── Attribution ladder ───────────────────────────────────────────────────
 
 /**
- * Operator-tag coverage varies enormously by vertical and region — Chilean
+ * Operator-tag coverage varies enormously by vertical and region. Chilean
  * solar is 88% tagged, Rajasthan solar 1%, the Permian 0.1%. So attribution
  * descends a ladder and always records which rung it landed on, so the UI can
  * state how a site was linked to a company rather than implying certainty.
@@ -378,7 +378,7 @@ export function attributeToCompany(
   if (matched.length > 0) {
     const anchors = matched.map((m) => m.centroid);
     for (const site of rest) {
-      if (site.operatorTag) continue; // tagged to someone else — never steal it
+      if (site.operatorTag) continue; // tagged to someone else, never steal it
       const near = anchors.some(
         (a) => haversineKm(a.lat, a.lon, site.centroid.lat, site.centroid.lon) <= proximityKm,
       );
@@ -419,10 +419,10 @@ export function summariseSites(sites: SiteGeometry[]) {
     excludedCount: sites.length - active.length,
     totalAreaKm2: round(active.reduce((a, s) => a + s.areaKm2, 0), 3),
     totalPerimeterKm: round(active.reduce((a, s) => a + s.perimeterKm, 0), 2),
-    /** Footprint carried by an explicit operator or name match — the strong claim. */
+    /** Footprint carried by an explicit operator or name match, the strong claim. */
     attributedAreaKm2: sum(tagged),
     attributedSiteCount: tagged.length,
-    /** Footprint added by spatial inference — the weaker, clearly-labelled claim. */
+    /** Footprint added by spatial inference, the weaker, clearly-labelled claim. */
     clusteredAreaKm2: sum(clustered),
     clusteredSiteCount: clustered.length,
     largest: active[0],

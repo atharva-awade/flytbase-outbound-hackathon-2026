@@ -112,7 +112,7 @@ export function LiveRun({ slug, displayName }: { slug: string; displayName: stri
           <p className="t-label">Prove it · live run</p>
           <p className="t-small mt-1.5">
             A recorded result and an invented one look the same on a page. Press this and the pipeline
-            re-executes for {displayName} against live sources right now — opening the same URLs, measuring the
+            re-executes for {displayName} against live sources right now, opening the same URLs, measuring the
             same geometry and reaching the same score, in front of you.
           </p>
         </div>

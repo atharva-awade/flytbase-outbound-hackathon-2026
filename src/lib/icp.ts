@@ -4,7 +4,7 @@
  * Deliberately NOT an LLM. "The model said 92%" is unauditable; this is a pure
  * function whose weights are published on screen and whose per-dimension
  * contributions are rendered as a waterfall a non-technical judge can add up by
- * hand. Every dimension either cites evidence or is explicitly marked unscored —
+ * hand. Every dimension either cites evidence or is explicitly marked unscored
  * a missing signal scores zero rather than being guessed.
  *
  * The anchor account defines the target profile, so the scorer is calibrated
@@ -95,7 +95,7 @@ const DIMENSION_LABELS: Record<string, { label: string; rationale: string }> = {
   trigger_signal: {
     label: "Timing trigger",
     rationale:
-      "A dated, cited event that makes contact relevant now — leadership change, incident, regulatory action, or expansion.",
+      "A dated, cited event that makes contact relevant now, leadership change, incident, regulatory action, or expansion.",
   },
   reachability: {
     label: "Reachability",

@@ -108,7 +108,7 @@ export async function POST(req: Request) {
   if (!burst.ok) {
     return limitResponse(
       burst,
-      `This deployment allows three sends per ten minutes from one address, so a public demonstration cannot be used as a relay. Try again in ${burst.retryAfter}s — the CSV and JSON exports are not limited.`,
+      `This deployment allows three sends per ten minutes from one address, so a public demonstration cannot be used as a relay. Try again in ${burst.retryAfter}s, the CSV and JSON exports are not limited.`,
     );
   }
   const daily = take("send:all", 40, 24 * 60 * 60_000);
@@ -142,7 +142,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({
       ok: true,
-      detail: `Sent to ${to} — message id ${info.messageId}. Check your inbox.`,
+      detail: `Sent to ${to}, message id ${info.messageId}. Check your inbox.`,
     });
   } catch (err) {
     // The operator needs to know why a send failed, but an SMTP rejection can

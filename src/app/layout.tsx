@@ -15,7 +15,7 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Aerion — terrain-grounded outbound intelligence",
+  title: "Aerion · terrain-grounded outbound intelligence",
   description:
     "An outbound engine that measures real industrial sites, reads primary filings, finds real named operators and writes outreach every claim of which is traceable to a source.",
 };

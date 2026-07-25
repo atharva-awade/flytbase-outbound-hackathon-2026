@@ -26,8 +26,8 @@ export default async function HowItThinksPage() {
             executive.
           </p>
           <p className="t-body mt-4">
-            The organising principle is a trust boundary. {deterministic} of these are ordinary code —
-            measuring, counting, scoring — so their output is reproducible and can be re-checked by hand.
+            The organising principle is a trust boundary. {deterministic} of these are ordinary code
+            measuring, counting, scoring, so their output is reproducible and can be re-checked by hand.
             Only {modelBacked} are allowed to write, and they may only write over facts that already carry a
             source. That is why a number in this system can be argued with, and a sentence in an email can be
             traced to the document it came from.
