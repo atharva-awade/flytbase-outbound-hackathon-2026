@@ -302,7 +302,7 @@ function DraftCard({
           {draft.gates.map((g) => (
             <span
               key={g.gate}
-              className={cx("chip", g.passed ? "chip-verified" : "chip-conflict")}
+              className={cx("chip chip-wrap", g.passed ? "chip-verified" : "chip-conflict")}
               title={g.detail}
             >
               {g.gate} {g.label}

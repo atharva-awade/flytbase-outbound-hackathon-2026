@@ -106,7 +106,23 @@ const DIMENSION_LABELS: Record<string, { label: string; rationale: string }> = {
 
 export function scoreAccount(inputs: ScoreInputs): IcpScore {
   const { pack, anchor, sites, riskScan, signals } = inputs;
-  const weights = pack.icpWeights;
+
+  /**
+   * Normalise the weights before using them.
+   *
+   * A score out of 100 has to be out of 100. One pack's weights summed to 1.10
+   * through a typo, and the result was a reference account scoring 103.4, which
+   * is the kind of number that costs a reader their confidence in every other
+   * figure on the page. The pack data is fixed, and this makes the class of
+   * mistake unable to reach the screen again: whatever weights a pack declares,
+   * the dimensions reported here sum to exactly 1 and the total to at most 100.
+   */
+  const declared = pack.icpWeights;
+  const weightSum = Object.values(declared).reduce((a, w) => a + w, 0);
+  const weights: Record<string, number> =
+    Math.abs(weightSum - 1) < 1e-9 || weightSum <= 0
+      ? declared
+      : Object.fromEntries(Object.entries(declared).map(([k, w]) => [k, w / weightSum]));
   const active = sites.filter((s) => !s.excluded);
   const totalArea = active.reduce((a, s) => a + s.areaKm2, 0);
 

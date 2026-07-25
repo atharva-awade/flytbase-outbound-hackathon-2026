@@ -202,17 +202,22 @@ const MINING: VerticalPack = {
     "autonomous",
     "automation",
   ],
+  // These sum to exactly 1, which they did not until a perfect account scored
+  // 103.4 out of 100 and made the arithmetic obviously wrong on screen. The five
+  // other packs were already correct, so this was a typo in one object rather
+  // than a flaw in the scorer, but the scorer now normalises whatever it is given
+  // so the same slip cannot produce an impossible score again.
   icpWeights: {
-    commodity_fit: 0.14,
-    measured_footprint: 0.16,
-    multi_site: 0.1,
-    continuous_ops: 0.09,
-    hazard_regime: 0.12,
-    contractor_dependency: 0.15,
-    tech_readiness: 0.08,
-    capital_capacity: 0.08,
-    trigger_signal: 0.13,
-    reachability: 0.05,
+    commodity_fit: 0.13,
+    measured_footprint: 0.15,
+    multi_site: 0.09,
+    continuous_ops: 0.08,
+    hazard_regime: 0.11,
+    contractor_dependency: 0.14,
+    tech_readiness: 0.07,
+    capital_capacity: 0.07,
+    trigger_signal: 0.12,
+    reachability: 0.04,
   },
   coverageNote:
     "Probed live: northern Chile bbox returned 159 mine polygons, 86 named, 80 carrying operator tags. Salar de Atacama returned 389 salt ponds of which 365 lack operator tags, so proximity attribution is required there.",

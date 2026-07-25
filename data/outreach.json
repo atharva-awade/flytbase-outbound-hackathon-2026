@@ -1161,62 +1161,6 @@
         "No primary filing was available for this account, so no claim is made about its contractor dependency.",
         "Deployment sizing rests on stated engineering assumptions, so its figures are kept out of a first touch and reserved for the discovery call."
       ]
-    },
-    "roletarget-albemarle-head-of-operations": {
-      "contactId": "roletarget-albemarle-head-of-operations",
-      "language": "es-CL",
-      "whyThisPerson": "No individual was sourced, so this is addressed to the Head of Operations role.",
-      "angle": "Contracted inspection crews are the cost and the risk; autonomous coverage removes the exposure without reducing the inspection frequency.",
-      "facts": [
-        {
-          "text": "Albemarle (Salar de Atacama) operates 27 mapped sites totalling 43 km², the largest being Planta Salar Atacama Albemarle at 40.4 km²",
-          "evidenceId": "ev-albemarle-geo-75",
-          "isNumeric": true
-        }
-      ],
-      "proofPoint": {
-        "customer": "SQM (with Adentu)",
-        "claim": "678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year",
-        "sourceUrl": "https://www.flytbase.com/case-studies/sqm-678-km2-mine-autonomous-inspection-adentu-and-flytbase"
-      },
-      "peerCustomer": {
-        "name": "Anglo American",
-        "whyPeer": "a large-scale metals operator running autonomous inspection with FlytBase, in the same commodity family and the same regulatory culture"
-      },
-      "ask": "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it, never for a meeting, and never propose a time.",
-      "withheld": [
-        "DS 132/2004 Reglamento de Seguridad Minera is the instrument that forces inspection cadence here, but its text was not fetched in this run, so it is withheld from the copy. A wrong decree number is worse than none.",
-        "No primary filing was available for this account, so no claim is made about its contractor dependency.",
-        "Deployment sizing rests on stated engineering assumptions, so its figures are kept out of a first touch and reserved for the discovery call."
-      ]
-    },
-    "roletarget-albemarle-vp-of-hse": {
-      "contactId": "roletarget-albemarle-vp-of-hse",
-      "language": "es-CL",
-      "whyThisPerson": "No individual was sourced, so this is addressed to the VP of HSE role.",
-      "angle": "Contracted inspection crews are the cost and the risk; autonomous coverage removes the exposure without reducing the inspection frequency.",
-      "facts": [
-        {
-          "text": "Albemarle (Salar de Atacama) operates 27 mapped sites totalling 43 km², the largest being Planta Salar Atacama Albemarle at 40.4 km²",
-          "evidenceId": "ev-albemarle-geo-75",
-          "isNumeric": true
-        }
-      ],
-      "proofPoint": {
-        "customer": "SQM (with Adentu)",
-        "claim": "678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year",
-        "sourceUrl": "https://www.flytbase.com/case-studies/sqm-678-km2-mine-autonomous-inspection-adentu-and-flytbase"
-      },
-      "peerCustomer": {
-        "name": "Anglo American",
-        "whyPeer": "a large-scale metals operator running autonomous inspection with FlytBase, in the same commodity family and the same regulatory culture"
-      },
-      "ask": "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it, never for a meeting, and never propose a time.",
-      "withheld": [
-        "DS 132/2004 Reglamento de Seguridad Minera is the instrument that forces inspection cadence here, but its text was not fetched in this run, so it is withheld from the copy. A wrong decree number is worse than none.",
-        "No primary filing was available for this account, so no claim is made about its contractor dependency.",
-        "Deployment sizing rests on stated engineering assumptions, so its figures are kept out of a first touch and reserved for the discovery call."
-      ]
     }
   }
 }

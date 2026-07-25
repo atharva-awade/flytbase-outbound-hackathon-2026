@@ -329,3 +329,15 @@ body[data-overlay] header {
   pointer-events: none;
   transition: opacity 160ms ease;
 }
+
+/* A chip is nowrap because most chips are two or three words. The critic gate
+   chips are not: one of them reads "G11 Names a peer operator, and attributes
+   every figure to whoever reported it", which at 342px is wider than the phone
+   it has to fit on, and flex-wrap cannot break inside a chip. This variant is
+   allowed to wrap and to sit flush left over two lines. */
+.chip-wrap {
+  max-width: 100%;
+  white-space: normal;
+  text-align: left;
+  align-items: flex-start;
+}

@@ -42,6 +42,24 @@ import type { EvidenceRow } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
+/**
+ * Does this seat match one of the roles the brief asked for?
+ *
+ * The brief wants Head of Operations, VP of HSE or Site Director. A statutory
+ * transparency roster hands over the entire executive layer, so an account can
+ * arrive with a VP of Finance and a VP of Corporate Affairs listed above the mine
+ * manager who actually owns the exposure. Matching on the words those seats are
+ * really called, in the languages they are published in, marks the ones that
+ * answer the brief instead of leaving a reader to work it out.
+ */
+function matchesBriefRole(c: { titleVerbatim?: string; targetRole: string }): boolean {
+  const t = `${c.titleVerbatim ?? ""} ${c.targetRole}`.toLowerCase();
+  const operations = /operac|operations|faena|mina|mine|planta|plant|producci/.test(t);
+  const hse = /hse|hsec|ssma|ssoma|safety|seguridad|salud|sustentab|sustainab|riesgo|prevenc/.test(t);
+  const siteLead = /gerente general divisi|site director|general manager|superintendent|jefe de/.test(t);
+  return operations || hse || siteLead;
+}
+
 export default async function AccountPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const found = await loadAccount(slug);
@@ -555,6 +573,13 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
                     <div className="flex shrink-0 flex-col items-end gap-1">
                       <span className="chip chip-verified">named · sourced</span>
                       <span className="chip chip-null">{BUYING_ROLE_LABEL[c.buyingRole]}</span>
+                      <span className="t-micro">{c.seniority.replace(/_/g, " ")}</span>
+                      {/* The brief names three roles it wants meetings with. A
+                          statutory roster hands over the whole executive layer,
+                          most of which is finance and corporate affairs, so the
+                          seats that actually match the brief are marked rather
+                          than left for the reader to work out. */}
+                      {matchesBriefRole(c) && <span className="chip chip-accent">matches the brief</span>}
                     </div>
                   </div>
 
@@ -581,6 +606,20 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
                       ))}
                     </ul>
                   ) : null}
+
+                  {/* The brief asks for LinkedIn or email where findable. It was
+                      reaching the CSV export but never the screen, which is the one
+                      place a reviewer actually looks. */}
+                  {c.linkedinUrl && (
+                    <a
+                      href={c.linkedinUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="chip chip-verified mt-2.5 inline-block"
+                    >
+                      LinkedIn profile
+                    </a>
+                  )}
 
                   <div className="mt-2.5 flex items-center gap-2 border-t border-[var(--color-hair)] pt-2">
                     <Citations rows={ev(c.evidenceIds)} max={3} />
