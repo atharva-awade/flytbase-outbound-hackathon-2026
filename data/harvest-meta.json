@@ -1,0 +1,21 @@
+{
+  "osmDataTimestamps": [
+    "2026-07-25T05:08:00Z",
+    "2026-07-25T05:10:06Z",
+    "2026-07-02T16:51:45Z",
+    "2026-06-12T12:14:17Z",
+    "2026-07-25T05:12:03Z"
+  ],
+  "regionsQueried": [
+    "CL-north",
+    "CL-atacama-salar",
+    "PE-south",
+    "PE-central",
+    "BR-minas",
+    "BR-para",
+    "AR-northwest",
+    "MX-sonora"
+  ],
+  "attribution": "Mapped footprint measured from OpenStreetMap geometry. © OpenStreetMap contributors, available under the Open Database Licence (ODbL). Figures describe digitised pit and facility outlines, not lease boundaries or total operational extent.",
+  "generatedAt": "2026-07-25T05:13:22.044Z"
+}

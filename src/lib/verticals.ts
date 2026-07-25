@@ -69,20 +69,32 @@ const MINING: VerticalPack = {
       inspectionSubject: "pit walls, haul roads, benches and stockpiles",
     },
     {
+      // Load-bearing signature. The anchor account is NOT a quarry: SQM's Salar
+      // de Atacama operation is tagged landuse=industrial with
+      // industrial=solution_mine and resource=lithium. A quarry-only query
+      // returns zero SQM and silently drops the reference account the whole
+      // campaign is modelled on. Requiring `resource` keeps brine and solution
+      // mining in scope without admitting every unrelated factory.
+      elements: ["way", "relation"],
+      filters: ['["landuse"="industrial"]', '["resource"]'],
+      assetClass: "solution_mine",
+      inspectionSubject:
+        "brine well fields, pond networks, pipework and process plant",
+    },
+    {
+      // Evaporation ponds are excellent for measuring an attributed operator's
+      // footprint but useless for discovery: of 416 ponds sampled over the
+      // Salar de Atacama, zero carried a name and only 61 an operator. So this
+      // signature requires an operator tag and is a measurement input, never a
+      // lead source.
       elements: ["way"],
-      filters: ['["landuse"="salt_pond"]'],
+      filters: ['["landuse"="salt_pond"]', '["operator"]'],
       assetClass: "brine_pond",
       inspectionSubject: "evaporation pond berms, levels and transfer pipework",
     },
     {
       elements: ["way"],
-      filters: ['["landuse"="industrial"]'],
-      assetClass: "process_plant",
-      inspectionSubject: "concentrator, conveyors, leach pads and tank farms",
-    },
-    {
-      elements: ["way"],
-      filters: ['["landuse"="basin"]'],
+      filters: ['["landuse"="basin"]', '["operator"]'],
       assetClass: "tailings",
       inspectionSubject: "tailings dam crest, beach and decant structures",
     },
@@ -152,9 +164,11 @@ const MINING: VerticalPack = {
     "independent contractors",
     "inspection",
     "tailings",
+    "safety",
     "safety incident",
     "fatality",
     "work stoppage",
+    "loss of life",
     "drone",
     "autonomous",
     "automation",
@@ -183,13 +197,13 @@ const SOLAR: VerticalPack = {
   osmSignatures: [
     {
       elements: ["way", "relation"],
-      filters: ['["power"="plant"]["plant:source"="solar"]'],
+      filters: ['["power"="plant"]', '["plant:source"="solar"]'],
       assetClass: "pv_plant",
       inspectionSubject: "module strings, tracker rows, inverter skids and combiner boxes",
     },
     {
       elements: ["way"],
-      filters: ['["power"="generator"]["generator:source"="solar"]'],
+      filters: ['["power"="generator"]', '["generator:source"="solar"]'],
       assetClass: "pv_array",
       inspectionSubject: "array blocks and thermal hotspots",
     },
@@ -245,7 +259,7 @@ const OIL_GAS: VerticalPack = {
     },
     {
       elements: ["way"],
-      filters: ['["landuse"="industrial"]["industrial"~"oil|gas|refinery|petroleum"]'],
+      filters: ['["landuse"="industrial"]', '["industrial"~"oil|gas|refinery|petroleum"]'],
       assetClass: "oilfield_facility",
       inspectionSubject: "wellpads, gathering lines and tank batteries",
     },
