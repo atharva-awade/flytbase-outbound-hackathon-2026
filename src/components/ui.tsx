@@ -84,10 +84,18 @@ const CONFIDENCE_MARK: Record<Confidence, string> = {
  */
 export function EvidenceChip({ row, compact }: { row: EvidenceRow; compact?: boolean }) {
   const label = SOURCE_CLASS_LABEL[row.sourceClass] ?? row.sourceClass;
+  // A professional profile redirects into a sign-in wall, so its body is never
+  // fetched. The evidence is the search-result title, and the profile link is
+  // the citation — worth saying plainly, because a reviewer who clicks one and
+  // hits a login screen should know that was expected rather than broken.
+  const gated = row.sourceClass === "search_result" && /linkedin\.com/i.test(row.sourceUrl);
   const tip = [
     row.verbatim ? `"${truncate(row.verbatim, 340)}"` : "",
     row.translation ? `EN: "${truncate(row.translation, 240)}"` : "",
     `— ${label}${row.language && row.language !== "en" ? ` · ${row.language}` : ""} · retrieved ${fmtDate(row.fetchedAt)}`,
+    gated
+      ? "This link needs a sign-in. The quoted text above is the public search-result title, which is what was read; the profile body was never fetched."
+      : "",
   ]
     .filter(Boolean)
     .join("\n\n");
