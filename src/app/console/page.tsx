@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import AskPanel from "@/components/AskPanel";
 import { Citations, Footer, Nav, NoRun, Panel, SectionHead, Stat, TierBadge } from "@/components/ui";
 import { fmtDateTime, fmtKm2, loadMeta, loadRun, resolveEvidence } from "@/lib/run";
 import { getPack, PRESET_BRIEFS } from "@/lib/verticals";
@@ -84,6 +85,13 @@ export default async function ConsolePage() {
         </div>
 
         {/* ── Accounts ──────────────────────────────────────────────── */}
+        {/* The question box sits above the account list on purpose. It is the
+            fastest way into this corpus, and putting it first says what the
+            interface is for. */}
+        <section className="mt-10">
+          <AskPanel />
+        </section>
+
         <section className="mt-12">
           <SectionHead
             label={`${pack.label} · ${run.accounts.length} accounts`}
