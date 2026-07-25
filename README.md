@@ -251,6 +251,59 @@ is a losing game. The overlay now reads the position the renderer already publis
 
 ---
 
+## Ask the run, and discover new ground
+
+Two surfaces exist to answer the question a frozen result cannot: is this measuring anything, or was it typed
+in beforehand?
+
+**`/discover` measures ground nobody chose in advance.** Name a place and a vertical. Nominatim resolves the
+place, Overpass returns every feature inside it matching that vertical, each footprint is computed geodesically
+from the returned ring, operators are read off the exact `operator` tag, and each operator gets a costed
+programme. Verified live: Antofagasta returns SQM, Albemarle, Minera Escondida and Codelco across 105 features
+and 421 km²; Rajasthan returns thousands of arrays with almost no operator tags. The second answer is the
+honest one and it is shown, not hidden.
+
+Grouping here uses the exact tag, not the full attribution ladder. Turned loose on an unknown region the
+ladder overreached: it credited `SQM Industrial S.A.`, which carries one tagged feature, with eleven features
+and its sibling company's entire 249 km², because the token "SQM" appears in those site names. Exact tags mean
+the count under each operator adds back up to the operator table above it.
+
+**The question box answers only from what was measured.** Retrieval is ordinary deterministic code that runs
+before any model call: it scores every account, contact, signal, filing, sizing model and recorded gap against
+the question, caps the result at three facts of any one kind so one large category cannot crowd out the rest,
+and hands the model a numbered list with the instruction that it has no other knowledge. Answers carry the
+rows they were written from, with their real source links, in the open rather than behind a disclosure.
+
+Ask who runs Chuquicamata and it names the officer with the Codelco statutory transparency URL. Ask about oil
+rigs in the North Sea and it refuses, then offers to measure the North Sea live with the oil and gas pack
+selected. Ask Tesla's share price and it refuses outright.
+
+---
+
+## The revenue case
+
+Programme sizing answers how many docks, which is an engineering answer. Nobody books a call about a drone
+platform, so each account also carries the argument its recipient is measured on: displaced contracted
+inspection spend, programme cost, payback, three year net, inspection passes before and after, and person-days
+removed from a hazardous working area.
+
+Every input is labelled as one of three kinds, and the labels are the point:
+
+| Kind | What it means | Example |
+|---|---|---|
+| **Published** | Somebody published it, and the source is linked | FlytBase's own USD 70,000 to 80,000 phase one figure |
+| **Derived** | Arithmetic on measured ground, reproducible by hand | crew-days displaced, docks required, person-days out of hazard |
+| **Operator** | Nobody publishes it. Marked unsourced everywhere it appears | contracted crew day rate, value of an hour of downtime |
+
+Generated copy may never assert an operator-supplied figure. Two presentation rules exist because the first
+version broke both: a payback that rounds to zero months reads "under a fortnight", because an obviously
+broken figure costs more trust than a modest one earns; and the case that gets quoted uses the geometric mean
+of each band rather than its edges, because multiplying the extremes of several independent wide bands
+produced "minus 652 thousand to 147 million dollars" and a return of "0.71 to 211 times". Both ends were
+arithmetically true and the pair said nothing. The full span stays on the page, labelled as a span.
+
+---
+
 ## Honesty constraints, enforced in code
 
 - A fact cannot render without an evidence row carrying a source URL and a verbatim snippet.
@@ -263,6 +316,15 @@ is a losing game. The overlay now reads the position the renderer already publis
 - Runs state their execution time. Replay means re-serving a recorded real run, never synthesising one.
 - **/api/run** re-executes the pipeline for one account live and streams every step, so the recorded figures
   can be checked against a fresh run on demand.
+- The question box cannot answer outside the run. Retrieval happens in code before the model is called, and a
+  question about unmeasured ground is refused with an offer to measure it.
+- No em dash appears in any text this project wrote. A prebuild guard fails the build if one returns, and the
+  email critic rejects a draft containing one outright. Quotations from source documents are exempt and are
+  matched by field name: an SEC filing writes what it writes, and editing a quote would make the citation stop
+  matching the page it points at.
+- **/api/send** and **/api/run** are capped per caller, and sending is capped for the whole deployment, because
+  an unauthenticated endpoint that mails an arbitrary address is a relay and one that opens live queries
+  against Overpass and SEC EDGAR is a way to lose that access mid-review.
 
 ---
 

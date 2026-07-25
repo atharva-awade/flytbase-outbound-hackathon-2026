@@ -6,6 +6,7 @@ import { CrossVerify } from "@/components/CrossVerify";
 import { LiveRun } from "@/components/LiveRun";
 import { IcpWaterfall } from "@/components/IcpWaterfall";
 import { Outreach } from "@/components/Outreach";
+import { RevenuePanel } from "@/components/RevenuePanel";
 import { ExportBar } from "@/components/ExportBar";
 import SiteMapClient from "@/components/SiteMapClient";
 import {
@@ -33,6 +34,7 @@ import {
   resolveEvidence,
 } from "@/lib/run";
 import { summariseSites } from "@/lib/geo";
+import { revenueCase } from "@/lib/revenue";
 import { crossVerify } from "@/lib/crossverify";
 import { loadOutreach } from "@/lib/run";
 import { getPack } from "@/lib/verticals";
@@ -332,6 +334,26 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
                   ))}
                 </div>
               </Panel>
+            </div>
+          </section>
+        )}
+
+        {/* ── The money case ───────────────────────────────────────────
+            Sizing answers how many docks, which is an engineering answer. This
+            is the answer to the question the person receiving the email is
+            actually measured on. */}
+        {account.sizing && activeSites.length > 0 && (
+          <section className="mt-14">
+            <SectionHead
+              label="Revenue case · what it is worth to them"
+              title="The argument that earns the meeting"
+              note="Nobody books a call about a drone platform. They book a call about displaced contractor spend and about how many person-days their people spend inside a hazardous area. Every figure below is labelled with where it came from: published with a source, computed from measured ground, or the reader's own to supply. The third kind is stated as unsourced everywhere it appears, and generated copy is not permitted to assert it."
+            />
+            <div className="mt-6">
+              <RevenuePanel
+                revenue={revenueCase(account.sizing, summary.totalAreaKm2)}
+                accountName={account.displayName}
+              />
             </div>
           </section>
         )}

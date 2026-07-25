@@ -52,8 +52,35 @@ export interface Band {
   high: number;
 }
 
+/**
+ * A single representative case alongside the span.
+ *
+ * The first version of this led with the span, and the span was useless: the
+ * crew-day band spans thirtyfold and the day rate threefold, so multiplying the
+ * extremes gave "minus 652 thousand to 147 million dollars" and a return of "0.71
+ * to 211 times". Both ends are arithmetically true and the pair says nothing.
+ *
+ * Independent uncertain quantities are not all wrong at once, so the case that
+ * gets quoted uses the geometric mean of each band, which is the right centre for
+ * a quantity that varies multiplicatively. The span stays on the page, clearly
+ * labelled as the full extent of the inputs, because hiding it would be the other
+ * kind of dishonesty.
+ */
+export interface CentralCase {
+  displacedSpendPerYear: number;
+  programmeInvestment: number;
+  paybackMonths: number;
+  netThreeYear: number;
+  returnMultiple: number;
+  hazardPersonDaysPerYear: number;
+}
+
 export interface RevenueCase {
   inputs: MoneyInput[];
+  /** The figure to quote. Midpoints, not extremes. */
+  central: CentralCase;
+  /** True when even the unfavourable end recovers the investment in three years. */
+  paysBackInWorstCase: boolean;
   /** Contracted inspection spend the programme takes off the books, per year. */
   inspectionSpendDisplacedPerYear: Band;
   /** What the programme costs, scaled from the one published deployment. */
@@ -158,6 +185,24 @@ export function revenueCase(sizing: OpportunitySizing, areaKm2: number): Revenue
   const autoLow = sizing.missionsPerMonth.low * 12;
   const autoHigh = sizing.missionsPerMonth.high * 12;
 
+  // Geometric mean, because these bands are multiplicative rather than additive.
+  const gm = (a: number, b: number) => (a > 0 && b > 0 ? Math.sqrt(a * b) : (a + b) / 2);
+  const midCrewDays = gm(crewDaysPerMonth.low, crewDaysPerMonth.high);
+  const midRate = gm(CREW_DAY_RATE.low, CREW_DAY_RATE.high);
+  const midDocks = gm(docks.low, docks.high);
+  const midSpend = round(midCrewDays * 12 * midRate, 0);
+  const midInvest = round(midDocks * gm(REFERENCE.perDockLow, REFERENCE.perDockHigh), 0);
+  const midPayback = round(Math.max(0.5, midInvest / (midSpend / 12)), 1);
+  const midNet3 = round(midSpend * 3 - midInvest, 0);
+  const central: CentralCase = {
+    displacedSpendPerYear: midSpend,
+    programmeInvestment: midInvest,
+    paybackMonths: midPayback,
+    netThreeYear: midNet3,
+    returnMultiple: midInvest > 0 ? round((midSpend * 3) / midInvest, 2) : 0,
+    hazardPersonDaysPerYear: round(midCrewDays * 12, 0),
+  };
+
   const hoursSavedLow = Math.max(0, MANUAL_DETECTION_HOURS.low - 1.5);
   const hoursSavedHigh = Math.max(0, MANUAL_DETECTION_HOURS.high - 1.5);
 
@@ -231,22 +276,28 @@ export function revenueCase(sizing: OpportunitySizing, areaKm2: number): Revenue
     `The same geometry displaces ${crewDaysPerMonth.low} to ${crewDaysPerMonth.high} contracted crew-days a month, which is ${hazardLow.toLocaleString("en-GB")} to ${hazardHigh.toLocaleString("en-GB")} crew-days a year.`,
     `At an unsourced day rate of USD ${CREW_DAY_RATE.low} to ${CREW_DAY_RATE.high}, that is USD ${spendLow.toLocaleString("en-GB")} to ${spendHigh.toLocaleString("en-GB")} of inspection spend a year that no longer needs to be bought.`,
     `Payback is the investment divided by displaced spend: ${paybackFast} months in the favourable case, ${paybackSlow} months in the unfavourable one. The unfavourable case pairs the highest investment with the lowest displaced spend, rather than mixing the best of each. Anything faster than a fortnight is reported as such rather than as a figure that rounds to zero.`,
-    `Across three years the programme is bought once and the spend is displaced each year, giving USD ${net3Low.toLocaleString("en-GB")} to ${net3High.toLocaleString("en-GB")} net, a ${mult3Low} to ${mult3High} times return.`,
+    `Taking the middle of each band rather than its extremes, the case to quote is USD ${central.displacedSpendPerYear.toLocaleString("en-GB")} displaced a year against a USD ${central.programmeInvestment.toLocaleString("en-GB")} programme, paying back in ${central.paybackMonths} months and returning ${central.returnMultiple} times across three years.`,
+    `The full span of the inputs runs from USD ${net3Low.toLocaleString("en-GB")} to ${net3High.toLocaleString("en-GB")} net over three years. That span is wide because the inspection cadence alone varies thirtyfold, and quoting either end of it would be quoting an accident of the input ranges rather than a finding.`,
     `Inspection passes go from ${manualPassesLow} to ${manualPassesHigh} a year on foot, to ${autoLow} to ${autoHigh} flown. The reference account did not simply cut inspection cost, it doubled frequency at lower exposure.`,
     `Every displaced crew-day is a person-day nobody spends inside the hazardous area: ${hazardLow.toLocaleString("en-GB")} to ${hazardHigh.toLocaleString("en-GB")} person-days a year. This is the number an HSE lead is accountable for, and it is derived purely from geometry.`,
   ];
 
   const caveats = [
+    net3Low <= 0
+      ? "At the unfavourable end of every band at once, the programme does not recover its cost inside three years. That combination requires the lowest inspection cadence, the lowest day rate and the highest dock count simultaneously, which is why the case above is quoted from the middle of each band rather than from its edges."
+      : "Even at the unfavourable end of every band, the programme recovers its cost inside three years.",
     "The day rate and the downtime value are the operator's to supply. They are not published for any real company, they are labelled unsourced everywhere they appear, and generated outreach is not permitted to assert them.",
     "The programme cost scales one published deployment linearly by dock count. Real quotes vary with connectivity, power, permitting and the number of use cases, so treat it as an order of magnitude rather than a price.",
     "Displaced spend assumes the contracted inspection currently happening is the inspection the programme replaces. Where a contract bundles other scope, only the inspection share is displaced.",
     "Footprint comes from mapped features. Where mapping is incomplete the sizing is conservative, since unmapped ground cannot be counted.",
   ];
 
-  const headline = `${round(areaKm2, 1)} km² of measured ground across ${sizing.siteCount} feature(s) displaces ${hazardLow.toLocaleString("en-GB")} to ${hazardHigh.toLocaleString("en-GB")} contracted crew-days a year.`;
+  const headline = `${round(areaKm2, 1)} km² of measured ground across ${sizing.siteCount} feature(s) displaces roughly ${central.hazardPersonDaysPerYear.toLocaleString("en-GB")} contracted crew-days a year, and pays the programme back in about ${central.paybackMonths} months.`;
 
   return {
     inputs,
+    central,
+    paysBackInWorstCase: net3Low > 0,
     inspectionSpendDisplacedPerYear: { low: spendLow, high: spendHigh },
     programmeInvestment: { low: investLow, high: investHigh },
     paybackMonths: { low: paybackFast, high: paybackSlow },
