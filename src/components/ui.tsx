@@ -238,6 +238,7 @@ export function Nav({ current }: { current?: string }) {
     { href: "/", label: "Overview" },
     { href: "/console", label: "Console" },
     { href: "/how-it-thinks", label: "How it thinks" },
+    { href: "/generality", label: "Generality" },
     { href: "/evidence", label: "Evidence" },
   ];
   return (

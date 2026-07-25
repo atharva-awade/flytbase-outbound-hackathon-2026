@@ -1,17 +1,16 @@
 {
   "drafts": {},
   "strategies": {
-    "contact-sqm-ricardo-ramos": {
-      "contactId": "contact-sqm-ricardo-ramos",
+    "contact-atacama-generacion-fredy-cruces": {
+      "contactId": "contact-atacama-generacion-fredy-cruces",
       "language": "es-CL",
-      "whyThisPerson": "Ricardo Ramos holds Gerente General, which makes them accountable for exactly the exposure this removes.",
+      "whyThisPerson": "Fredy Cruces holds Gerente de Operaciones de Contratos en, which makes them accountable for exactly the exposure this removes.",
       "angle": "Contracted inspection crews are the cost and the risk; autonomous coverage removes the exposure without reducing the inspection frequency.",
       "facts": [
         {
-          "text": "SQM's own 20-F for period ending 2026-04-22 names contractor safety incidents and contractor work stoppages as risks to production, referring to contractors 15 times",
-          "evidenceId": "ev-sqm-filing-62",
-          "isNumeric": true,
-          "dateIso": "2026-04-22"
+          "text": "Atacama Generación operates 2056 mapped sites totalling 17 km², the largest being Complejo Solar Cerro Dominador at 14.4 km²",
+          "evidenceId": "ev-atacama-generacion-geo-1",
+          "isNumeric": true
         }
       ],
       "proofPoint": {
@@ -22,54 +21,7 @@
       "ask": "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it — never for a meeting, and never propose a time.",
       "withheld": [
         "Ley 20.571 / SEC technical norms is the instrument that forces inspection cadence here, but its text was not fetched in this run, so it is withheld from the copy. A wrong decree number is worse than none.",
-        "Deployment sizing rests on stated engineering assumptions, so its figures are kept out of a first touch and reserved for the discovery call."
-      ]
-    },
-    "contact-sqm-pablo-altimiras": {
-      "contactId": "contact-sqm-pablo-altimiras",
-      "language": "es-CL",
-      "whyThisPerson": "Pablo Altimiras holds Gerente General División Yodo - Nutrición Vegetal, which makes them accountable for exactly the exposure this removes.",
-      "angle": "Contracted inspection crews are the cost and the risk; autonomous coverage removes the exposure without reducing the inspection frequency.",
-      "facts": [
-        {
-          "text": "SQM's own 20-F for period ending 2026-04-22 names contractor safety incidents and contractor work stoppages as risks to production, referring to contractors 15 times",
-          "evidenceId": "ev-sqm-filing-62",
-          "isNumeric": true,
-          "dateIso": "2026-04-22"
-        }
-      ],
-      "proofPoint": {
-        "customer": "FlytBase solar operations",
-        "claim": "Automated PV inspection with thermal anomaly detection across large arrays",
-        "sourceUrl": "https://www.flytbase.com/industries/solar-operations"
-      },
-      "ask": "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it — never for a meeting, and never propose a time.",
-      "withheld": [
-        "Ley 20.571 / SEC technical norms is the instrument that forces inspection cadence here, but its text was not fetched in this run, so it is withheld from the copy. A wrong decree number is worse than none.",
-        "Deployment sizing rests on stated engineering assumptions, so its figures are kept out of a first touch and reserved for the discovery call."
-      ]
-    },
-    "contact-sqm-carlos-diaz-ortiz": {
-      "contactId": "contact-sqm-carlos-diaz-ortiz",
-      "language": "es-CL",
-      "whyThisPerson": "Carlos Díaz Ortiz holds Gerente General Nova Andino Litio, which makes them accountable for exactly the exposure this removes.",
-      "angle": "Contracted inspection crews are the cost and the risk; autonomous coverage removes the exposure without reducing the inspection frequency.",
-      "facts": [
-        {
-          "text": "SQM's own 20-F for period ending 2026-04-22 names contractor safety incidents and contractor work stoppages as risks to production, referring to contractors 15 times",
-          "evidenceId": "ev-sqm-filing-62",
-          "isNumeric": true,
-          "dateIso": "2026-04-22"
-        }
-      ],
-      "proofPoint": {
-        "customer": "FlytBase solar operations",
-        "claim": "Automated PV inspection with thermal anomaly detection across large arrays",
-        "sourceUrl": "https://www.flytbase.com/industries/solar-operations"
-      },
-      "ask": "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it — never for a meeting, and never propose a time.",
-      "withheld": [
-        "Ley 20.571 / SEC technical norms is the instrument that forces inspection cadence here, but its text was not fetched in this run, so it is withheld from the copy. A wrong decree number is worse than none.",
+        "No primary filing was available for this account, so no claim is made about its contractor dependency.",
         "Deployment sizing rests on stated engineering assumptions, so its figures are kept out of a first touch and reserved for the discovery call."
       ]
     }

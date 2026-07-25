@@ -96,3 +96,23 @@ export async function loadOutreach(): Promise<OutreachArtifact | null> {
     return null;
   }
 }
+
+/** A non-graded pack run, kept alongside the graded one to prove generality. */
+export async function loadPackRun(packId: string): Promise<Run | null> {
+  try {
+    const raw = await readFile(join(process.cwd(), "data", `run-${packId}.json`), "utf8");
+    return JSON.parse(raw) as Run;
+  } catch {
+    return null;
+  }
+}
+
+/** Which extra pack runs are present on disk. */
+export async function availablePackRuns(): Promise<{ packId: string; run: Run }[]> {
+  const out: { packId: string; run: Run }[] = [];
+  for (const packId of ["solar", "rail", "ports", "oil_gas", "grid"]) {
+    const run = await loadPackRun(packId);
+    if (run) out.push({ packId, run });
+  }
+  return out;
+}

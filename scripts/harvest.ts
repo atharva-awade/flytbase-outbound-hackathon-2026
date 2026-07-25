@@ -856,10 +856,26 @@ async function main() {
     });
   }
 
-  // Ensure the anchor is present even if its geometry sits outside the sampled
-  // regions, since the whole ICP is modelled on it.
+  // Ensure the brief's reference account is present even if its geometry sits
+  // outside the sampled regions, since the whole ICP is modelled on it. Resolved
+  // from the brief rather than hardcoded, so a different pack anchors correctly.
   const universeKeys = new Set(resolved.map((r) => r.identity!.key));
-  universeKeys.add("sqm");
+  const anchorIdentity = identityForOperator(brief.referenceAccount);
+  if (anchorIdentity) {
+    universeKeys.add(anchorIdentity.key);
+  } else {
+    noteNull({
+      subject: "Account universe",
+      question: `Could the brief's reference account "${brief.referenceAccount}" be resolved to a known identity?`,
+      attempts: [
+        { source: "Identity registry", outcome: "No entry matched the reference account named in the brief." },
+      ],
+      interpretation:
+        "The ICP is calibrated against the reference account's own measured profile, so without it the scoring falls back to whichever qualified account leads the ranking.",
+      remediation: "Add the reference account to the identity registry, or name an operator already present.",
+      producedBy: "anchor_analyst",
+    });
+  }
 
   // Stages 2 and 3, per account.
   const accounts: Account[] = [];
@@ -950,7 +966,7 @@ async function main() {
       signals,
       anchorComparison: { value: "", evidenceIds: [] },
       contacts: peopleResult.contacts,
-      isAnchor: identity.isAnchor,
+      isAnchor: anchorIdentity ? identity.key === anchorIdentity.key : identity.isAnchor,
     };
 
     emit("terrain_surveyor", "note",
