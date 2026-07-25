@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 import type { Confidence, EvidenceRow, IcpScore } from "@/lib/types";
-import { SOURCE_CLASS_LABEL, fmtDate } from "@/lib/run";
+import { SOURCE_CLASS_LABEL, fmtDate } from "@/lib/format";
 
 export function cx(...parts: (string | false | null | undefined)[]): string {
   return parts.filter(Boolean).join(" ");
