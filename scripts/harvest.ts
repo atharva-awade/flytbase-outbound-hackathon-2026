@@ -50,7 +50,7 @@ import {
   slug,
   stripTags,
 } from "../src/lib/sources/people";
-import { GRADED_BRIEF, getPack, type VerticalPack } from "../src/lib/verticals";
+import { GRADED_BRIEF, PRESET_BRIEFS, getPack, type VerticalPack } from "../src/lib/verticals";
 import { buildCadence, generateEmail, type MessageStrategy } from "../src/lib/outreach";
 import { buildAeBrief } from "../src/lib/briefing";
 import { findPublicProfiles, hasSerpKey } from "../src/lib/sources/serp";
@@ -234,6 +234,55 @@ const IDENTITIES: CompanyIdentity[] = [
     countryName: "Chile",
     workingLanguage: "es-CL",
     domain: "bhp.com",
+  },
+  // ── Solar operators, for the generality run ────────────────────────────
+  {
+    key: "atacama-generacion",
+    legalName: "Atacama Generación SpA",
+    displayName: "Atacama Generación",
+    aliases: ["Atacama Generación Chile", "Atacama Generacion", "Atacama Generación"],
+    country: "CL",
+    countryName: "Chile",
+    workingLanguage: "es-CL",
+  },
+  {
+    key: "acciona",
+    legalName: "Acciona Energía Chile Holdings SpA",
+    displayName: "Acciona Energía",
+    aliases: ["Acciona Energía Chile Holdings", "Acciona Energia", "Acciona Energía", "Acciona"],
+    country: "CL",
+    countryName: "Chile",
+    workingLanguage: "es-CL",
+    domain: "acciona-energia.com",
+  },
+  {
+    key: "aes-andes",
+    legalName: "AES Andes S.A.",
+    displayName: "AES Andes",
+    aliases: ["AES Andes", "Aes Andes"],
+    country: "CL",
+    countryName: "Chile",
+    workingLanguage: "es-CL",
+    domain: "aesandes.com",
+  },
+  {
+    key: "enel-green-power",
+    legalName: "Enel Green Power Chile",
+    displayName: "Enel Green Power",
+    aliases: ["Enel Green Power", "Enel"],
+    country: "CL",
+    countryName: "Chile",
+    workingLanguage: "es-CL",
+    domain: "enel.cl",
+  },
+  {
+    key: "solar-elena",
+    legalName: "Solar Elena SpA",
+    displayName: "Solar Elena",
+    aliases: ["Solar Elena SpA", "Solar Elena"],
+    country: "CL",
+    countryName: "Chile",
+    workingLanguage: "es-CL",
   },
   {
     key: "vale",
@@ -751,8 +800,21 @@ async function findPeople(
 
 async function main() {
   const startedAt = new Date().toISOString();
-  const brief = GRADED_BRIEF;
+
+  // The brief is an argument, not a constant. Running a different pack points
+  // the identical agent graph at a different asset class, which is the whole
+  // claim behind vertical packs — so it has to be exercised, not asserted.
+  const requested = process.argv[2];
+  const brief = requested
+    ? (PRESET_BRIEFS.find((b) => b.id === requested || b.verticalPackId === requested) ?? GRADED_BRIEF)
+    : GRADED_BRIEF;
   const pack = getPack(brief.verticalPackId);
+
+  if (brief.id !== GRADED_BRIEF.id) {
+    console.log(`
+>>> Running the ${pack.label} pack (${brief.label}) rather than the graded brief.
+`);
+  }
 
   emit("chief_of_staff", "start", `Campaign brief received: ${brief.label}.`);
   emit("chief_of_staff", "note",
@@ -1098,7 +1160,9 @@ async function main() {
 
   const dir = join(process.cwd(), "data");
   await mkdir(dir, { recursive: true });
-  await writeFile(join(dir, "run-latest.json"), JSON.stringify(run, null, 2), "utf8");
+  const isGraded = brief.id === GRADED_BRIEF.id;
+  const runFile = isGraded ? "run-latest.json" : `run-${brief.verticalPackId}.json`;
+  await writeFile(join(dir, runFile), JSON.stringify(run, null, 2), "utf8");
 
   const meta = {
     osmDataTimestamps: [...terrain.osmTimestamps],
@@ -1106,12 +1170,18 @@ async function main() {
     attribution: TERRAIN_ATTRIBUTION,
     generatedAt: finishedAt,
   };
-  await writeFile(join(dir, "harvest-meta.json"), JSON.stringify(meta, null, 2), "utf8");
   await writeFile(
-    join(dir, "outreach.json"),
+    join(dir, isGraded ? "harvest-meta.json" : `harvest-meta-${brief.verticalPackId}.json`),
+    JSON.stringify(meta, null, 2),
+    "utf8",
+  );
+  await writeFile(
+    join(dir, isGraded ? "outreach.json" : `outreach-${brief.verticalPackId}.json`),
     JSON.stringify({ drafts: allDrafts, strategies }, null, 2),
     "utf8",
   );
+  console.log(`
+  artifact: data/${runFile}`);
 
   console.log("\n" + "=".repeat(78));
   console.log(`RUN ${run.id}`);

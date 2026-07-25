@@ -1,0 +1,13 @@
+{
+  "osmDataTimestamps": [
+    "2026-05-31T22:37:44Z",
+    "2026-07-25T06:20:20Z"
+  ],
+  "regionsQueried": [
+    "CL-north",
+    "CL-atacama-salar",
+    "CL-central"
+  ],
+  "attribution": "Mapped footprint measured from OpenStreetMap geometry. © OpenStreetMap contributors, available under the Open Database Licence (ODbL). Figures describe digitised pit and facility outlines, not lease boundaries or total operational extent.",
+  "generatedAt": "2026-07-25T06:21:55.758Z"
+}

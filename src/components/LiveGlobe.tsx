@@ -1,6 +1,6 @@
 "use client";
 
-import createGlobe, { type Arc, type Globe as CobeGlobe } from "cobe";
+import createGlobe, { type Arc, type Globe as CobeGlobe, type Marker } from "cobe";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { cx } from "./ui";
@@ -20,27 +20,28 @@ export interface GlobeSite {
   tier: string;
   /** 0..1 — drives dot size and pulse rate. */
   weight: number;
-  /** Highest-urgency signal on the owning account, when there is one. */
   signalHeadline?: string;
   signalUrgency?: number;
 }
 
 /** FlytBase's engineering base. Arcs originate here, which is literally true. */
 const HQ = { lat: 18.5204, lon: 73.8567, label: "FlytBase · Pune" };
-
-const DEG = Math.PI / 180;
+const HQ_ID = "hq";
 
 /**
  * Live globe.
  *
- * Markers are DOM elements positioned from the same rotation the canvas is
- * rendering, rather than drawn into the canvas. That is a deliberate trade:
- * hit-testing, hover, focus and the pulse animation all become native browser
- * behaviour, so a site is genuinely clickable and keyboard-reachable instead of
- * being a coloured pixel that needs raycasting to identify.
+ * Positions are taken from the renderer rather than recomputed. Given a marker
+ * with an id, cobe maintains a one-pixel anchor element whose left and top track
+ * that marker's projected position, and writes a `--cobe-visible-<id>` custom
+ * property while the marker is on the near side of the sphere. Reading those two
+ * things gives pixel-exact overlay placement that cannot drift from the dots the
+ * canvas is drawing — an earlier attempt at reprojecting the coordinates
+ * independently put markers in arcs off the edge of the globe, because matching a
+ * renderer's own projection by hand is a losing game.
  *
- * Rotation pauses whenever the pointer is over the globe, because asking someone
- * to click a moving 6-pixel target is hostile.
+ * Rotation holds whenever the pointer is over the globe, because asking someone
+ * to click a moving six-pixel target is hostile.
  */
 export default function LiveGlobe({
   sites,
@@ -51,34 +52,56 @@ export default function LiveGlobe({
   onSelect?: (site: GlobeSite) => void;
   size?: number;
 }) {
-  const wrap = useRef<HTMLDivElement | null>(null);
   const canvas = useRef<HTMLCanvasElement | null>(null);
   const [ready, setReady] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
   const [hovered, setHovered] = useState<string | null>(null);
-  const [tick, setTick] = useState(0);
+  const [linked, setLinked] = useState<string | null>(null);
 
-  // Rotation state lives in refs so the render loop never triggers React work.
+  /** Rendered positions, keyed by marker id, in container percentages. */
+  const [placed, setPlaced] = useState<Record<string, { x: number; y: number; visible: boolean }>>({});
+
   const phi = useRef(4.3);
   const theta = useRef(0.28);
   const paused = useRef(false);
   const drag = useRef<{ x: number; y: number; phi: number; theta: number } | null>(null);
   const velocity = useRef(0);
-  const projected = useRef<Map<string, { x: number; y: number; z: number }>>(new Map());
 
+  // Stable, CSS-safe ids. cobe interpolates these into custom property names.
+  const idFor = useCallback((osmId: string) => `s${osmId.replace(/[^a-z0-9]/gi, "")}`, []);
+  const siteById = useMemo(() => {
+    const m = new Map<string, GlobeSite>();
+    for (const s of sites) m.set(idFor(s.osmId), s);
+    return m;
+  }, [sites, idFor]);
+
+  const markers: Marker[] = useMemo(
+    () => [
+      ...sites.map((s) => ({
+        id: idFor(s.osmId),
+        location: [s.lat, s.lon] as [number, number],
+        size: Math.max(0.028, Math.min(0.085, 0.026 + s.weight * 0.06)),
+      })),
+      { id: HQ_ID, location: [HQ.lat, HQ.lon] as [number, number], size: 0.05, color: [0.71, 0.33, 0.04] as [number, number, number] },
+    ],
+    [sites, idFor],
+  );
+
+  // Arcs are hidden until a site is selected. A sky full of lines on load is
+  // decoration; one line drawn on demand is information.
   const arcs: Arc[] = useMemo(() => {
-    // One arc per account, to its largest site, so the sky is legible.
-    const byAccount = new Map<string, GlobeSite>();
-    for (const s of sites) {
-      const cur = byAccount.get(s.accountSlug);
-      if (!cur || s.areaKm2 > cur.areaKm2) byAccount.set(s.accountSlug, s);
-    }
-    return [...byAccount.values()].slice(0, 14).map((s) => ({
-      from: [HQ.lat, HQ.lon] as [number, number],
-      to: [s.lat, s.lon] as [number, number],
-      color: [0.106, 0.31, 0.847] as [number, number, number],
-    }));
-  }, [sites]);
+    if (!linked) return [];
+    const s = siteById.get(linked);
+    if (!s) return [];
+    return [
+      {
+        id: `link${linked}`,
+        from: [HQ.lat, HQ.lon] as [number, number],
+        to: [s.lat, s.lon] as [number, number],
+        color: [0.106, 0.31, 0.847] as [number, number, number],
+      },
+    ];
+  }, [linked, siteById]);
 
   useEffect(() => {
     const el = canvas.current;
@@ -87,6 +110,8 @@ export default function LiveGlobe({
     let width = el.offsetWidth || size;
     let frame = 0;
     let globe: CobeGlobe | null = null;
+    let anchors: Map<string, HTMLElement> | null = null;
+    let visStyle: HTMLStyleElement | null = null;
 
     const onResize = () => {
       width = el.offsetWidth || size;
@@ -108,15 +133,36 @@ export default function LiveGlobe({
       markerColor: [0.106, 0.31, 0.847],
       glowColor: [0.965, 0.968, 0.976],
       opacity: 0.97,
+      markers,
       arcs,
       arcColor: [0.106, 0.31, 0.847],
-      arcWidth: 0.3,
-      arcHeight: 0.36,
-      // Markers are rendered as DOM overlays, so the canvas draws none.
-      markers: [],
+      // Raised so the link reads as an arc leaving the surface rather than a
+      // line drawn across it.
+      arcWidth: 0.6,
+      arcHeight: 0.6,
     });
 
+    /** cobe inserts a relative wrapper around the canvas and appends its anchors there. */
+    const collectAnchors = () => {
+      const wrap = el.parentElement;
+      if (!wrap) return null;
+      const found = new Map<string, HTMLElement>();
+      for (const child of Array.from(wrap.children)) {
+        if (!(child instanceof HTMLElement) || child === el) continue;
+        const m = /--cobe-(?:arc-)?([a-z0-9_-]+)/i.exec(child.getAttribute("style") ?? "");
+        if (m) found.set(m[1], child);
+      }
+      return found.size ? found : null;
+    };
+
+    const findVisStyle = () =>
+      Array.from(document.head.querySelectorAll("style")).find((s) =>
+        (s.textContent ?? "").includes("--cobe-visible-"),
+      ) ?? null;
+
     let last = performance.now();
+    let sinceSync = 0;
+
     const loop = (now: number) => {
       const dt = Math.min(48, now - last);
       last = now;
@@ -127,22 +173,37 @@ export default function LiveGlobe({
       }
       globe?.update({ phi: phi.current, theta: theta.current, width: width * 2, height: width * 2 });
 
-      // Recompute overlay positions from the same rotation.
-      const r = width / 2;
-      const next = new Map<string, { x: number; y: number; z: number }>();
-      for (const s of sites) {
-        next.set(s.osmId, project(s.lat, s.lon, phi.current, theta.current, r));
+      // Read the renderer's own placement a few times per second. Every frame
+      // would be wasted work; the globe turns slowly.
+      sinceSync += dt;
+      if (sinceSync > 55) {
+        sinceSync = 0;
+        anchors ??= collectAnchors();
+        visStyle ??= findVisStyle();
+
+        if (anchors) {
+          const visibleIds = new Set(
+            Array.from((visStyle?.textContent ?? "").matchAll(/--cobe-visible-([a-z0-9_-]+)/gi)).map(
+              (m) => m[1],
+            ),
+          );
+          const next: Record<string, { x: number; y: number; visible: boolean }> = {};
+          for (const [id, node] of anchors) {
+            const x = Number.parseFloat(node.style.left);
+            const y = Number.parseFloat(node.style.top);
+            if (Number.isNaN(x) || Number.isNaN(y)) continue;
+            next[id] = { x, y, visible: visibleIds.size === 0 ? true : visibleIds.has(id) };
+          }
+          setPlaced(next);
+        }
       }
-      projected.current = next;
-      // One state bump per frame drives the overlay transform.
-      setTick((t) => (t + 1) % 1_000_000);
 
       frame = requestAnimationFrame(loop);
     };
     frame = requestAnimationFrame(loop);
 
     window.addEventListener("resize", onResize);
-    const reveal = setTimeout(() => setReady(true), 80);
+    const reveal = setTimeout(() => setReady(true), 90);
 
     return () => {
       cancelAnimationFrame(frame);
@@ -150,9 +211,8 @@ export default function LiveGlobe({
       window.removeEventListener("resize", onResize);
       globe?.destroy();
     };
-  }, [sites, arcs, size, fullscreen]);
+  }, [markers, arcs, size, fullscreen]);
 
-  // Escape leaves fullscreen, which is the behaviour people expect.
   useEffect(() => {
     if (!fullscreen) return;
     const onKey = (e: KeyboardEvent) => {
@@ -169,7 +229,6 @@ export default function LiveGlobe({
   const onPointerDown = useCallback((e: React.PointerEvent) => {
     drag.current = { x: e.clientX, y: e.clientY, phi: phi.current, theta: theta.current };
   }, []);
-
   const onPointerMove = useCallback((e: React.PointerEvent) => {
     if (!drag.current) return;
     const dx = e.clientX - drag.current.x;
@@ -177,24 +236,20 @@ export default function LiveGlobe({
     const nextPhi = drag.current.phi + dx / 220;
     velocity.current = (nextPhi - phi.current) * 0.2;
     phi.current = nextPhi;
-    // Clamp the tilt so the globe cannot be flipped upside down.
     theta.current = Math.max(-0.85, Math.min(0.85, drag.current.theta + dy / 340));
   }, []);
-
   const endDrag = useCallback(() => {
     drag.current = null;
   }, []);
 
-  const dim = fullscreen ? undefined : size;
-
-  const body = (
+  const inner = (
     <div
-      ref={wrap}
-      className={cx(
-        "relative select-none",
-        fullscreen ? "h-full w-full" : "mx-auto",
-      )}
-      style={fullscreen ? undefined : { width: "100%", maxWidth: dim }}
+      className="relative"
+      style={
+        fullscreen
+          ? { width: "min(84vh, 84vw)", height: "min(84vh, 84vw)" }
+          : { width: "100%", aspectRatio: "1" }
+      }
       onPointerEnter={() => {
         paused.current = true;
       }}
@@ -204,133 +259,155 @@ export default function LiveGlobe({
         setHovered(null);
       }}
     >
-      <div
-        className={cx("relative", fullscreen && "flex h-full items-center justify-center")}
-        style={fullscreen ? undefined : { aspectRatio: "1" }}
-      >
-        <div
-          className="relative"
-          style={
-            fullscreen
-              ? { width: "min(86vh, 86vw)", height: "min(86vh, 86vw)" }
-              : { width: "100%", height: "100%" }
-          }
-        >
-          <canvas
-            ref={canvas}
-            aria-label={`Interactive globe showing ${sites.length} measured industrial sites`}
-            onPointerDown={onPointerDown}
-            onPointerMove={onPointerMove}
-            onPointerUp={endDrag}
-            style={{
-              width: "100%",
-              height: "100%",
-              cursor: drag.current ? "grabbing" : "grab",
-              contain: "layout paint size",
-              opacity: ready ? 1 : 0,
-              transition: "opacity 900ms ease",
-              touchAction: "none",
-            }}
-          />
+      <canvas
+        ref={canvas}
+        aria-label={`Interactive globe showing ${sites.length} measured industrial sites`}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={endDrag}
+        style={{
+          width: "100%",
+          height: "100%",
+          cursor: "grab",
+          contain: "layout paint size",
+          opacity: ready ? 1 : 0,
+          transition: "opacity 900ms ease",
+          touchAction: "none",
+        }}
+      />
 
-          {/* Marker overlay. Positioned from the live rotation. */}
-          <div className="pointer-events-none absolute inset-0" data-tick={tick}>
-            {sites.map((s) => {
-              const p = projected.current.get(s.osmId);
-              if (!p || p.z <= 0.02) return null;
-              const isHover = hovered === s.osmId;
-              const urgent = (s.signalUrgency ?? 0) >= 0.8;
-              const px = 9 + s.weight * 12;
-              // Fade near the limb so markers appear to wrap the sphere.
-              const edge = Math.min(1, p.z * 3.2);
-
-              return (
-                <button
-                  key={s.osmId}
-                  type="button"
-                  onPointerEnter={() => setHovered(s.osmId)}
-                  onFocus={() => setHovered(s.osmId)}
-                  onBlur={() => setHovered(null)}
-                  onClick={() => onSelect?.(s)}
-                  aria-label={`${s.name}, ${s.areaKm2.toFixed(2)} square kilometres, ${s.accountName}`}
-                  className="pointer-events-auto absolute -translate-x-1/2 -translate-y-1/2 rounded-full outline-none"
-                  style={{
-                    left: `calc(50% + ${p.x}px)`,
-                    top: `calc(50% + ${p.y}px)`,
-                    width: px,
-                    height: px,
-                    opacity: edge,
-                    zIndex: isHover ? 30 : 10,
-                    cursor: "pointer",
-                  }}
-                >
-                  {/* Pulse ring — rate carries urgency, so the globe reads as live. */}
+      {/* Interactive overlay, placed from the renderer's own anchors. */}
+      <div className="pointer-events-none absolute inset-0">
+        {Object.entries(placed).map(([id, p]) => {
+          if (!p.visible) return null;
+          if (id === HQ_ID) {
+            return (
+              <span
+                key={id}
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ left: `${p.x}%`, top: `${p.y}%` }}
+                title={HQ.label}
+              >
+                <span className="relative block h-3 w-3">
                   <span
                     className="absolute inset-0 rounded-full"
                     style={{
-                      background: urgent ? "rgba(27,79,216,0.34)" : "rgba(27,79,216,0.2)",
-                      animation: `globe-pulse ${urgent ? 1.5 : 2.6}s cubic-bezier(0.36,0.11,0.29,1) infinite`,
+                      background: "rgba(180,83,10,0.32)",
+                      animation: "globe-pulse 2.1s cubic-bezier(0.36,0.11,0.29,1) infinite",
                     }}
                   />
-                  <span
-                    className="absolute rounded-full"
-                    style={{
-                      inset: "28%",
-                      background: isHover ? "#12245f" : "#1b4fd8",
-                      boxShadow: isHover ? "0 0 0 3px rgba(27,79,216,0.28)" : "0 0 0 1.5px rgba(255,255,255,0.9)",
-                    }}
-                  />
-                </button>
-              );
-            })}
+                  <span className="absolute inset-[26%] rounded-full bg-[var(--color-v-mining)] shadow-[0_0_0_1.5px_rgba(255,255,255,0.95)]" />
+                </span>
+              </span>
+            );
+          }
 
-            {/* Home marker for the arc origin. */}
-            <HomeMarker phi={phi.current} theta={theta.current} tick={tick} wrapRef={wrap} />
-          </div>
+          const s = siteById.get(id);
+          if (!s) return null;
+          const isHover = hovered === id;
+          const isLinked = linked === id;
+          const urgent = (s.signalUrgency ?? 0) >= 0.8;
+          const px = 16 + s.weight * 14;
 
-          {/* Hover card */}
-          {hovered &&
-            (() => {
-              const s = sites.find((x) => x.osmId === hovered);
-              const p = projected.current.get(hovered);
-              if (!s || !p) return null;
-              return (
-                <div
-                  className="pointer-events-none absolute z-40 w-56 rounded-[10px] bg-[rgba(255,255,255,0.97)] p-2.5 shadow-[var(--shadow-lift)]"
-                  style={{
-                    left: `calc(50% + ${p.x}px)`,
-                    top: `calc(50% + ${p.y + 18}px)`,
-                    transform: "translate(-50%, 0)",
-                  }}
-                >
-                  <p className="text-[0.82rem] font-[600] leading-tight">{s.name}</p>
-                  <p className="t-micro mt-0.5">
-                    {s.accountName} · {s.countryName}
-                  </p>
-                  <div className="mt-1.5 flex gap-3">
-                    <span className="tnum text-[0.9rem] font-[560]">
-                      {s.areaKm2.toFixed(2)}
-                      <span className="t-micro ml-0.5">km²</span>
-                    </span>
-                    <span className="tnum text-[0.9rem] font-[560]">
-                      {s.perimeterKm.toFixed(1)}
-                      <span className="t-micro ml-0.5">km</span>
-                    </span>
-                  </div>
-                  {s.signalHeadline && (
-                    <p className="t-micro mt-1.5 border-t border-[var(--color-hair)] pt-1.5">
-                      {s.signalHeadline.slice(0, 110)}
-                    </p>
-                  )}
-                  <p className="t-micro mt-1.5 opacity-60">click to open the site</p>
-                </div>
-              );
-            })()}
-        </div>
+          return (
+            <button
+              key={id}
+              type="button"
+              onPointerEnter={() => setHovered(id)}
+              onFocus={() => setHovered(id)}
+              onBlur={() => setHovered(null)}
+              onClick={() => {
+                setLinked(id);
+                onSelect?.(s);
+              }}
+              aria-label={`${s.name}, ${s.areaKm2.toFixed(2)} square kilometres, ${s.accountName}`}
+              className="pointer-events-auto absolute -translate-x-1/2 -translate-y-1/2 rounded-full outline-none"
+              style={{
+                left: `${p.x}%`,
+                top: `${p.y}%`,
+                width: px,
+                height: px,
+                zIndex: isHover ? 30 : 10,
+                cursor: "pointer",
+              }}
+            >
+              {/* Pulse rate carries urgency, so the globe reads as live. */}
+              <span
+                className="absolute inset-0 rounded-full"
+                style={{
+                  background: isLinked
+                    ? "rgba(18,36,95,0.4)"
+                    : urgent
+                      ? "rgba(27,79,216,0.32)"
+                      : "rgba(27,79,216,0.18)",
+                  animation: `globe-pulse ${urgent ? 1.5 : 2.7}s cubic-bezier(0.36,0.11,0.29,1) infinite`,
+                }}
+              />
+              {isHover && (
+                <span className="absolute inset-[18%] rounded-full ring-2 ring-[var(--color-accent)]" />
+              )}
+            </button>
+          );
+        })}
       </div>
 
-      {/* Controls */}
-      <div className={cx("absolute z-40 flex gap-1.5", fullscreen ? "right-5 top-5" : "right-1 top-1")}>
+      {/* Hover card */}
+      {hovered &&
+        placed[hovered]?.visible &&
+        (() => {
+          const s = siteById.get(hovered);
+          const p = placed[hovered];
+          if (!s) return null;
+          const flip = p.y > 62;
+          return (
+            <div
+              className="pointer-events-none absolute z-40 w-56 rounded-[10px] bg-[rgba(255,255,255,0.97)] p-2.5 shadow-[var(--shadow-lift)]"
+              style={{
+                left: `${Math.min(88, Math.max(12, p.x))}%`,
+                top: `${p.y}%`,
+                transform: flip ? "translate(-50%, -118%)" : "translate(-50%, 14px)",
+              }}
+            >
+              <p className="text-[0.82rem] font-[600] leading-tight">{s.name}</p>
+              <p className="t-micro mt-0.5">
+                {s.accountName} · {s.countryName}
+              </p>
+              <div className="mt-1.5 flex gap-3">
+                <span className="tnum text-[0.9rem] font-[560]">
+                  {s.areaKm2.toFixed(2)}
+                  <span className="t-micro ml-0.5">km²</span>
+                </span>
+                <span className="tnum text-[0.9rem] font-[560]">
+                  {s.perimeterKm.toFixed(1)}
+                  <span className="t-micro ml-0.5">km</span>
+                </span>
+              </div>
+              {s.signalHeadline && (
+                <p className="t-micro mt-1.5 border-t border-[var(--color-hair)] pt-1.5">
+                  {s.signalHeadline.slice(0, 110)}
+                </p>
+              )}
+              <p className="t-micro mt-1.5 opacity-60">click to open · draws the link to Pune</p>
+            </div>
+          );
+        })()}
+
+      {!ready && <div className="shimmer absolute inset-0 rounded-full bg-[var(--color-panel-sunk)]" />}
+    </div>
+  );
+
+  const chrome = (
+    <>
+      <div className={cx("absolute z-40 flex gap-1.5", fullscreen ? "right-5 top-5" : "-top-1 right-0")}>
+        {linked && (
+          <button
+            type="button"
+            onClick={() => setLinked(null)}
+            className="rounded-[7px] bg-[rgba(255,255,255,0.92)] px-2 py-1.5 text-[0.72rem] font-[520] shadow-[var(--shadow-hair)] transition-shadow hover:shadow-[var(--shadow-panel)]"
+          >
+            clear link
+          </button>
+        )}
         <button
           type="button"
           onClick={() => setFullscreen((v) => !v)}
@@ -341,11 +418,10 @@ export default function LiveGlobe({
         </button>
       </div>
 
-      {/* Legend */}
       <div
         className={cx(
           "absolute z-30 flex flex-wrap items-center gap-x-3 gap-y-1",
-          fullscreen ? "bottom-5 left-5" : "bottom-0 left-0",
+          fullscreen ? "bottom-5 left-5" : "-bottom-5 left-0",
         )}
       >
         <span className="t-micro flex items-center gap-1.5">
@@ -356,99 +432,42 @@ export default function LiveGlobe({
           <span className="pulse-ring inline-block h-2 w-2 rounded-full bg-[var(--color-accent)]" />
           faster pulse · live timing signal
         </span>
-        <span className="t-micro">arcs originate at {HQ.label}</span>
+        <span className="t-micro flex items-center gap-1.5">
+          <span className="inline-block h-2 w-2 rounded-full bg-[var(--color-v-mining)]" />
+          {HQ.label}
+        </span>
       </div>
-
-      {!ready && (
-        <div className="shimmer absolute inset-0 rounded-full bg-[var(--color-panel-sunk)]" />
-      )}
 
       <style>{`
         @keyframes globe-pulse {
-          0%   { transform: scale(0.55); opacity: 0.85; }
-          70%  { transform: scale(1.9);  opacity: 0; }
-          100% { transform: scale(1.9);  opacity: 0; }
+          0%   { transform: scale(0.5); opacity: 0.9; }
+          70%  { transform: scale(1.85); opacity: 0; }
+          100% { transform: scale(1.85); opacity: 0; }
         }
       `}</style>
-    </div>
+    </>
   );
 
-  if (!fullscreen) return body;
+  if (!fullscreen) {
+    return (
+      <div className="relative mx-auto" style={{ width: "100%", maxWidth: size }}>
+        {inner}
+        {chrome}
+      </div>
+    );
+  }
 
   return (
     <div className="fixed inset-0 z-[100] bg-[rgba(251,251,250,0.98)] backdrop-blur-sm">
       <div className="absolute left-6 top-5 z-40">
         <p className="t-label">Measured sites · live view</p>
         <p className="t-micro mt-0.5">
-          {sites.length} sites · drag to rotate · hover to hold · click a site to open it · Esc to close
+          {sites.length} sites · drag to rotate · hover holds the rotation · click a site to open it and draw
+          its link to Pune · Esc to close
         </p>
       </div>
-      {body}
+      <div className="flex h-full items-center justify-center">{inner}</div>
+      {chrome}
     </div>
   );
-}
-
-/** The arc origin, drawn with the same projection so it sits on Pune. */
-function HomeMarker({
-  phi,
-  theta,
-  tick,
-  wrapRef,
-}: {
-  phi: number;
-  theta: number;
-  tick: number;
-  wrapRef: React.RefObject<HTMLDivElement | null>;
-}) {
-  const w = wrapRef.current?.clientWidth ?? 0;
-  if (!w) return null;
-  const p = project(HQ.lat, HQ.lon, phi, theta, w / 2);
-  if (p.z <= 0.02) return null;
-  return (
-    <div
-      className="absolute -translate-x-1/2 -translate-y-1/2"
-      style={{ left: `calc(50% + ${p.x}px)`, top: `calc(50% + ${p.y}px)`, opacity: Math.min(1, p.z * 3) }}
-      data-tick={tick}
-    >
-      <span className="relative block h-2.5 w-2.5">
-        <span
-          className="absolute inset-0 rounded-full"
-          style={{
-            background: "rgba(180,83,10,0.35)",
-            animation: "globe-pulse 2s cubic-bezier(0.36,0.11,0.29,1) infinite",
-          }}
-        />
-        <span className="absolute inset-[22%] rounded-full bg-[var(--color-v-mining)] shadow-[0_0_0_1.5px_rgba(255,255,255,0.9)]" />
-      </span>
-    </div>
-  );
-}
-
-/**
- * Project a geographic coordinate onto the canvas using the same convention the
- * globe renderer uses, so an overlay marker lands on the landmass beneath it.
- * Returns z as a facing term: positive means the point is on the near side.
- */
-function project(
-  lat: number,
-  lon: number,
-  phi: number,
-  theta: number,
-  radius: number,
-): { x: number; y: number; z: number } {
-  const polar = (90 - lat) * DEG;
-  const azim = (lon + 180) * DEG + phi;
-
-  // Unit sphere, y up.
-  const sx = Math.sin(polar) * Math.cos(azim);
-  const sy = Math.cos(polar);
-  const sz = Math.sin(polar) * Math.sin(azim);
-
-  // Tilt about the horizontal axis.
-  const ct = Math.cos(theta);
-  const st = Math.sin(theta);
-  const ry = sy * ct - sz * st;
-  const rz = sy * st + sz * ct;
-
-  return { x: sx * radius, y: -ry * radius, z: rz };
 }
