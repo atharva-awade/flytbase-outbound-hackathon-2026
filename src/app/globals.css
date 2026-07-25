@@ -1,4 +1,8 @@
 @import "tailwindcss";
+/* Imported here rather than inside the dynamically-loaded map component: when it
+   travels with a lazy chunk the stylesheet can arrive after the map initialises,
+   leaving MapLibre's canvas sized 0x0 and the map blank. */
+@import "maplibre-gl/dist/maplibre-gl.css";
 
 /* ───────────────────────────────────────────────────────────────
    Aerion design system — light "instrument panel"

@@ -1,30 +1,49 @@
 import Link from "next/link";
 
-import GlobeClient from "@/components/GlobeClient";
+import GlobeExplorer, { type ExplorerSite } from "@/components/GlobeExplorer";
 import { Footer, Nav, Panel, SectionHead, Stat, cx } from "@/components/ui";
 import { fmtDateTime, fmtKm2, loadMeta, loadRun } from "@/lib/run";
 import { VERTICAL_PACKS } from "@/lib/verticals";
-import type { GlobeMarker } from "@/components/Globe";
+import { osmUrl } from "@/lib/geo";
 
 export const dynamic = "force-dynamic";
-
-const ACCENT: [number, number, number] = [0.106, 0.31, 0.847];
 
 export default async function Home() {
   const run = await loadRun();
   const meta = await loadMeta();
 
-  const markers: GlobeMarker[] = [];
+  // Every dot on the globe is a measured feature, carrying enough context that
+  // clicking it can open the operation without another round trip.
+  const explorerSites: ExplorerSite[] = [];
   if (run) {
     const maxArea = Math.max(...run.accounts.flatMap((a) => a.sites.map((s) => s.areaKm2)), 1);
     for (const account of run.accounts) {
-      for (const site of account.sites.filter((s) => !s.excluded).slice(0, 12)) {
-        markers.push({
+      const topSignal = [...account.signals].sort((x, y) => y.urgency - x.urgency)[0];
+      const active = account.sites.filter((s) => !s.excluded);
+      // Cap per account so one heavily-mapped operator cannot swamp the globe.
+      for (const site of [...active].sort((a, b) => b.areaKm2 - a.areaKm2).slice(0, 10)) {
+        const owner = account.contacts.find((c) => c.siteOsmId === site.osmId);
+        explorerSites.push({
+          osmId: site.osmId,
+          name: site.name ?? site.assetClass.replace(/_/g, " "),
+          accountSlug: account.slug,
+          accountName: account.displayName,
+          countryName: account.countryName,
           lat: site.centroid.lat,
           lon: site.centroid.lon,
+          areaKm2: site.areaKm2,
+          perimeterKm: site.perimeterKm,
+          assetClass: site.assetClass,
+          attributionMethod: site.attributionMethod,
+          tier: account.icp.tier,
           weight: Math.sqrt(site.areaKm2 / maxArea),
-          label: site.name ?? account.displayName,
-          accent: ACCENT,
+          signalHeadline: topSignal?.headline,
+          signalUrgency: topSignal?.urgency,
+          geometry: site,
+          siblings: active.slice(0, 40),
+          osmUrl: osmUrl(site.osmId),
+          contactName: owner?.name,
+          contactTitle: owner?.titleVerbatim,
         });
       }
     }
@@ -80,8 +99,12 @@ export default async function Home() {
             )}
           </div>
 
-          <div className="flex justify-center lg:justify-end">
-            <GlobeClient markers={markers} size={560} />
+          <div className="flex flex-col items-center lg:items-end">
+            <GlobeExplorer sites={explorerSites} maptilerKey={process.env.MAPTILER_KEY} />
+            <p className="t-micro mt-3 max-w-sm text-center lg:text-right">
+              {explorerSites.length} measured sites, each a real mapped feature. Hover to hold the rotation,
+              click any site to open its satellite view and figures. Arcs originate at FlytBase in Pune.
+            </p>
           </div>
         </div>
 

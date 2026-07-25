@@ -307,8 +307,15 @@ interface TerrainOutcome {
 async function surveyTerrain(pack: VerticalPack, regionKeys: string[]): Promise<TerrainOutcome> {
   emit("terrain_surveyor", "start", `Measuring mapped ${pack.label.toLowerCase()} geometry across ${regionKeys.length} regions.`);
 
+  // Region bounding boxes deliberately overlap so no operator falls between
+  // them, which means the same feature is returned by more than one query.
+  // Deduplicating by OSM id is essential: without it a feature inside an
+  // overlap is counted twice and the reported footprint is inflated. This was
+  // measured — SQM read 1025 km² before dedup against 548 km² after.
+  const seenOsmIds = new Set<string>();
   const allSites: SiteGeometry[] = [];
   const operatorTotals = new Map<string, { features: number; areaKm2: number }>();
+  let duplicatesDropped = 0;
   const osmTimestamps = new Set<string>();
   const queried: string[] = [];
 
@@ -327,13 +334,16 @@ async function surveyTerrain(pack: VerticalPack, regionKeys: string[]): Promise<
         { tool: "overpass", url: res.endpoint, latencyMs: Date.now() - started },
       );
 
-      allSites.push(...res.sites);
-      for (const op of res.operators) {
-        const cur = operatorTotals.get(op.operator) ?? { features: 0, areaKm2: 0 };
-        cur.features += op.features;
-        cur.areaKm2 += op.areaKm2;
-        operatorTotals.set(op.operator, cur);
+      for (const site of res.sites) {
+        if (seenOsmIds.has(site.osmId)) {
+          duplicatesDropped++;
+          continue;
+        }
+        seenOsmIds.add(site.osmId);
+        allSites.push(site);
       }
+      // Operator totals are recomputed from the deduplicated set below rather
+      // than accumulated per region, for the same reason.
     } catch (err) {
       emit("terrain_surveyor", "error", `${key} failed: ${(err as Error).message}`);
       noteNull({
@@ -349,8 +359,17 @@ async function surveyTerrain(pack: VerticalPack, regionKeys: string[]): Promise<
     }
   }
 
+  // Recompute operator totals from the deduplicated feature set.
+  for (const site of allSites) {
+    if (!site.operatorTag) continue;
+    const cur = operatorTotals.get(site.operatorTag) ?? { features: 0, areaKm2: 0 };
+    cur.features++;
+    cur.areaKm2 += site.areaKm2;
+    operatorTotals.set(site.operatorTag, cur);
+  }
+
   emit("terrain_surveyor", "finish",
-    `Measured ${allSites.length} features totalling ${round(allSites.reduce((a, s) => a + s.areaKm2, 0), 1)} km² of mapped footprint across ${queried.length} regions.`,
+    `Measured ${allSites.length} distinct features totalling ${round(allSites.reduce((a, s) => a + s.areaKm2, 0), 1)} km² of mapped footprint across ${queried.length} regions. Dropped ${duplicatesDropped} duplicate feature(s) returned by overlapping region queries.`,
   );
 
   return { allSites, operatorTotals, osmTimestamps, regionsQueried: queried };

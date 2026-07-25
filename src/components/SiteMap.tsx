@@ -5,8 +5,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 import type { SiteGeometry } from "@/lib/types";
 
-import "maplibre-gl/dist/maplibre-gl.css";
-
 /**
  * Satellite imagery for the measured polygons.
  *
@@ -46,17 +44,27 @@ function basemap(maptilerKey?: string): maplibregl.StyleSpecification {
 
 export interface SiteMapProps {
   sites: SiteGeometry[];
-  /** Highlighted feature, drawn in the accent colour. */
+  /** Highlighted feature, drawn in the accent colour with a halo. */
   focusOsmId?: string;
   height?: number;
   maptilerKey?: string;
   onSelect?: (osmId: string) => void;
+  /** Show the full-screen control. */
+  allowFullscreen?: boolean;
 }
 
-export default function SiteMap({ sites, focusOsmId, height = 420, maptilerKey, onSelect }: SiteMapProps) {
+export default function SiteMap({
+  sites,
+  focusOsmId,
+  height = 420,
+  maptilerKey,
+  onSelect,
+  allowFullscreen = true,
+}: SiteMapProps) {
   const holder = useRef<HTMLDivElement | null>(null);
   const map = useRef<MlMap | null>(null);
   const [ready, setReady] = useState(false);
+  const [fullscreen, setFullscreen] = useState(false);
 
   const featureCollection = useMemo(
     () => ({
@@ -92,13 +100,46 @@ export default function SiteMap({ sites, focusOsmId, height = 420, maptilerKey, 
     });
     m.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
     m.addControl(new maplibregl.ScaleControl({ maxWidth: 110, unit: "metric" }), "bottom-left");
-    m.on("load", () => setReady(true));
+    m.on("load", () => {
+      // The container may have been laid out after construction; without this
+      // MapLibre keeps a stale zero size and paints nothing.
+      m.resize();
+      setReady(true);
+    });
+
+    // Keep the canvas in step with its container for the life of the map.
+    const ro = new ResizeObserver(() => m.resize());
+    ro.observe(holder.current);
+
     map.current = m;
     return () => {
+      ro.disconnect();
       m.remove();
       map.current = null;
     };
   }, [maptilerKey]);
+
+  // Leaving full screen with Escape is the expected behaviour, and MapLibre
+  // needs an explicit resize when its container changes size.
+  useEffect(() => {
+    if (!fullscreen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setFullscreen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [fullscreen]);
+
+  useEffect(() => {
+    const m = map.current;
+    if (!m) return;
+    const t = setTimeout(() => m.resize(), 60);
+    return () => clearTimeout(t);
+  }, [fullscreen]);
 
   useEffect(() => {
     const m = map.current;
@@ -129,6 +170,21 @@ export default function SiteMap({ sites, focusOsmId, height = 420, maptilerKey, 
         },
       });
 
+      // A wide, soft outline under the focused feature. Without this the
+      // selected polygon is hard to pick out against satellite imagery.
+      m.addLayer({
+        id: "sites-halo",
+        type: "line",
+        source: "sites",
+        filter: ["==", ["get", "focused"], 1],
+        paint: {
+          "line-color": "#1b4fd8",
+          "line-width": 11,
+          "line-blur": 7,
+          "line-opacity": 0.55,
+        },
+      });
+
       m.addLayer({
         id: "sites-line",
         type: "line",
@@ -152,6 +208,24 @@ export default function SiteMap({ sites, focusOsmId, height = 420, maptilerKey, 
             ["literal", [2, 1.6]],
             ["literal", [1, 0]],
           ],
+        },
+      });
+
+      m.addLayer({
+        id: "sites-focus-label",
+        type: "symbol",
+        source: "sites",
+        filter: ["==", ["get", "focused"], 1],
+        layout: {
+          "text-field": ["concat", ["get", "name"], "  ·  ", ["to-string", ["get", "areaKm2"]], " km²"],
+          "text-size": 12,
+          "text-offset": [0, 0.2],
+          "text-allow-overlap": true,
+        },
+        paint: {
+          "text-color": "#ffffff",
+          "text-halo-color": "rgba(18,36,95,0.9)",
+          "text-halo-width": 1.6,
         },
       });
 
@@ -188,6 +262,7 @@ export default function SiteMap({ sites, focusOsmId, height = 420, maptilerKey, 
     // Frame the geometry we actually have.
     const coords = featureCollection.features.flatMap((f) => f.geometry.coordinates[0]);
     if (coords.length) {
+      m.resize();
       const b = coords.reduce(
         (acc, [lon, lat]) => acc.extend([lon, lat] as [number, number]),
         new maplibregl.LngLatBounds(coords[0] as [number, number], coords[0] as [number, number]),
@@ -196,14 +271,46 @@ export default function SiteMap({ sites, focusOsmId, height = 420, maptilerKey, 
     }
   }, [ready, featureCollection, onSelect]);
 
-  return (
-    <div className="relative overflow-hidden rounded-[12px]" style={{ height }}>
+  const shell = (
+    <div
+      className="relative overflow-hidden rounded-[12px]"
+      style={fullscreen ? { height: "100%" } : { height }}
+    >
       <div ref={holder} className="absolute inset-0" />
       {!ready && <div className="shimmer absolute inset-0 bg-[var(--color-panel-sunk)]" />}
+
+      {allowFullscreen && (
+        <button
+          type="button"
+          onClick={() => setFullscreen((v) => !v)}
+          className="absolute left-2 top-2 z-20 rounded-[7px] bg-[rgba(255,255,255,0.94)] px-2 py-1.5 text-[0.72rem] font-[520] shadow-[var(--shadow-hair)] transition-shadow hover:shadow-[var(--shadow-panel)]"
+          title={fullscreen ? "Exit full screen (Esc)" : "Full screen"}
+        >
+          {fullscreen ? "✕ Close" : "⤢ Full screen"}
+        </button>
+      )}
+
       <div className="pointer-events-none absolute bottom-2 right-2 flex flex-col items-end gap-1">
         <Legend swatch="#19a068" label="operator attributed" />
         <Legend swatch="#c58a2a" label="proximity inferred" dashed />
+        {focusOsmId && <Legend swatch="#1b4fd8" label="selected site" />}
       </div>
+    </div>
+  );
+
+  if (!fullscreen) return shell;
+
+  return (
+    <div className="fixed inset-0 z-[100] bg-[rgba(251,251,250,0.98)] p-4 backdrop-blur-sm sm:p-6">
+      <div className="mb-3 flex items-baseline justify-between gap-4">
+        <div>
+          <p className="t-label">Measured geometry · satellite</p>
+          <p className="t-micro mt-0.5">
+            {sites.filter((s) => !s.excluded).length} features · scroll to zoom · drag to pan · Esc to close
+          </p>
+        </div>
+      </div>
+      <div style={{ height: "calc(100% - 3.5rem)" }}>{shell}</div>
     </div>
   );
 }

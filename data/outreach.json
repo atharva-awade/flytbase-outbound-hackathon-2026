@@ -4,290 +4,8 @@
       {
         "id": "contact-sqm-ricardo-ramos-t1-i1",
         "iteration": 1,
-        "subject": "Riesgos de paradas laborales",
-        "body": "SQM opera 71 sitios. La seguridad de contratistas es un riesgo. Contratistas absorbieron paradas laborales. Un cliente logró reducir el tiempo de inspección. ¿Puedo enviar un resumen de cómo lo lograron? \nAtharva Awade, Business Development, FlytBase",
-        "language": "es-CL",
-        "wordCount": 36,
-        "sentenceCount": 6,
-        "citedFacts": [
-          {
-            "text": "SQM's own 20-F for period ending 2026-04-22 names contractor safety incidents and contractor work stoppages as risks to production, referring to contractors 27 times",
-            "evidenceId": "ev-sqm-filing-15"
-          },
-          {
-            "text": "SQM operates 71 mapped sites totalling 1025 km², the largest being SQM Salar de Atacama at 236.5 km²",
-            "evidenceId": "ev-sqm-geo-1"
-          }
-        ],
-        "gates": [
-          {
-            "gate": "G1",
-            "label": "No placeholder tokens",
-            "passed": true,
-            "detail": "No merge fields, brackets or TBD markers present."
-          },
-          {
-            "gate": "G2",
-            "label": "No template or model-tell phrasing",
-            "passed": true,
-            "detail": "Clean of known template openers and model vocabulary."
-          },
-          {
-            "gate": "G3",
-            "label": "Opener length 55–95 words",
-            "passed": false,
-            "detail": "36 words across 6 sentences; longest sentence 8 words. Reply rates peak in the 50–100 word band."
-          },
-          {
-            "gate": "G4",
-            "label": "Two or more cited, verifiable specifics",
-            "passed": true,
-            "detail": "2 cited fact(s), 2 numeric, 1 dated within 18 months."
-          },
-          {
-            "gate": "G5",
-            "label": "Single interest-based ask, no meeting request",
-            "passed": true,
-            "detail": "One interest-based ask, no links, no calendar request."
-          },
-          {
-            "gate": "G6",
-            "label": "Plain language",
-            "passed": false,
-            "detail": "Fernández-Huerta (higher is easier): 54.8. Too dense for a message that gets read between shifts."
-          },
-          {
-            "gate": "G7",
-            "label": "Reader-centred and signed",
-            "passed": false,
-            "detail": "Second-person to first-person ratio 0.0:1, signature present."
-          }
-        ],
-        "score": 58,
-        "accepted": false,
-        "rejectionReasons": [
-          "G3 Opener length 55–95 words: 36 words across 6 sentences; longest sentence 8 words. Reply rates peak in the 50–100 word band.",
-          "G6 Plain language: Fernández-Huerta (higher is easier): 54.8. Too dense for a message that gets read between shifts.",
-          "G7 Reader-centred and signed: Second-person to first-person ratio 0.0:1, signature present."
-        ],
-        "model": "llama-3.3-70b-versatile"
-      },
-      {
-        "id": "contact-sqm-ricardo-ramos-t1-i2",
-        "iteration": 2,
-        "subject": "Riesgos de producción",
-        "body": "Usted opera 71 sitios. Usted maneja 1025 km². Sus contratistas absorben riesgos. Un cliente alcanzó mayor frecuencia de inspección. ¿Puedo enviar un resumen de cómo lo lograron? Atharva Awade, Business Development, FlytBase",
-        "language": "es-CL",
-        "wordCount": 32,
-        "sentenceCount": 6,
-        "citedFacts": [
-          {
-            "text": "SQM's own 20-F for period ending 2026-04-22 names contractor safety incidents and contractor work stoppages as risks to production, referring to contractors 27 times",
-            "evidenceId": "ev-sqm-filing-15"
-          },
-          {
-            "text": "SQM operates 71 mapped sites totalling 1025 km², the largest being SQM Salar de Atacama at 236.5 km²",
-            "evidenceId": "ev-sqm-geo-1"
-          }
-        ],
-        "gates": [
-          {
-            "gate": "G1",
-            "label": "No placeholder tokens",
-            "passed": true,
-            "detail": "No merge fields, brackets or TBD markers present."
-          },
-          {
-            "gate": "G2",
-            "label": "No template or model-tell phrasing",
-            "passed": true,
-            "detail": "Clean of known template openers and model vocabulary."
-          },
-          {
-            "gate": "G3",
-            "label": "Opener length 55–95 words",
-            "passed": false,
-            "detail": "32 words across 6 sentences; longest sentence 8 words. Reply rates peak in the 50–100 word band."
-          },
-          {
-            "gate": "G4",
-            "label": "Two or more cited, verifiable specifics",
-            "passed": true,
-            "detail": "2 cited fact(s), 2 numeric, 1 dated within 18 months."
-          },
-          {
-            "gate": "G5",
-            "label": "Single interest-based ask, no meeting request",
-            "passed": true,
-            "detail": "One interest-based ask, no links, no calendar request."
-          },
-          {
-            "gate": "G6",
-            "label": "Plain language",
-            "passed": false,
-            "detail": "Fernández-Huerta (higher is easier): 56.5. Too dense for a message that gets read between shifts."
-          },
-          {
-            "gate": "G7",
-            "label": "Reader-centred and signed",
-            "passed": true,
-            "detail": "Second-person to first-person ratio all second-person:1, signature present."
-          }
-        ],
-        "score": 72,
-        "accepted": false,
-        "rejectionReasons": [
-          "G3 Opener length 55–95 words: 32 words across 6 sentences; longest sentence 8 words. Reply rates peak in the 50–100 word band.",
-          "G6 Plain language: Fernández-Huerta (higher is easier): 56.5. Too dense for a message that gets read between shifts."
-        ],
-        "model": "llama-3.3-70b-versatile"
-      },
-      {
-        "id": "contact-sqm-ricardo-ramos-t1-i3",
-        "iteration": 3,
-        "subject": "Riesgos de paradas laborales",
-        "body": "SQM opera 71 sitios. La seguridad es un riesgo. SQM maneja 1025 km². Los contratos de inspección son costosos. ¿Puedo enviar un resumen de cómo otro cliente redujo el tiempo de inspección a horas? \nAtharva Awade, Business Development, FlytBase",
-        "language": "es-CL",
-        "wordCount": 39,
-        "sentenceCount": 6,
-        "citedFacts": [
-          {
-            "text": "SQM's own 20-F for period ending 2026-04-22 names contractor safety incidents and contractor work stoppages as risks to production, referring to contractors 27 times",
-            "evidenceId": "ev-sqm-filing-15"
-          },
-          {
-            "text": "SQM operates 71 mapped sites totalling 1025 km², the largest being SQM Salar de Atacama at 236.5 km²",
-            "evidenceId": "ev-sqm-geo-1"
-          }
-        ],
-        "gates": [
-          {
-            "gate": "G1",
-            "label": "No placeholder tokens",
-            "passed": true,
-            "detail": "No merge fields, brackets or TBD markers present."
-          },
-          {
-            "gate": "G2",
-            "label": "No template or model-tell phrasing",
-            "passed": true,
-            "detail": "Clean of known template openers and model vocabulary."
-          },
-          {
-            "gate": "G3",
-            "label": "Opener length 55–95 words",
-            "passed": false,
-            "detail": "39 words across 6 sentences; longest sentence 15 words. Reply rates peak in the 50–100 word band."
-          },
-          {
-            "gate": "G4",
-            "label": "Two or more cited, verifiable specifics",
-            "passed": true,
-            "detail": "2 cited fact(s), 2 numeric, 1 dated within 18 months."
-          },
-          {
-            "gate": "G5",
-            "label": "Single interest-based ask, no meeting request",
-            "passed": true,
-            "detail": "One interest-based ask, no links, no calendar request."
-          },
-          {
-            "gate": "G6",
-            "label": "Plain language",
-            "passed": true,
-            "detail": "Fernández-Huerta (higher is easier): 72.7. Reads plainly."
-          },
-          {
-            "gate": "G7",
-            "label": "Reader-centred and signed",
-            "passed": false,
-            "detail": "Second-person to first-person ratio 0.0:1, signature present."
-          }
-        ],
-        "score": 72,
-        "accepted": false,
-        "rejectionReasons": [
-          "G3 Opener length 55–95 words: 39 words across 6 sentences; longest sentence 15 words. Reply rates peak in the 50–100 word band.",
-          "G7 Reader-centred and signed: Second-person to first-person ratio 0.0:1, signature present."
-        ],
-        "model": "llama-3.3-70b-versatile"
-      },
-      {
-        "id": "contact-sqm-ricardo-ramos-t1-i4",
-        "iteration": 4,
-        "subject": "Riesgos de contratistas en inspección",
-        "body": "Usted gestiona 71 sitios mapeados que suman 1025 km², siendo el Salar de Atacama 236.5 km².\nEn su reporte 20‑F aparecen 27 menciones a incidentes de seguridad y paros de contratistas.\nActualmente sus equipos contratados absorben esos riesgos y costos, limitando la producción.\nCon Adentu, SQM redujo el tiempo de inspección a horas y alcanzó más del 95 % de fiabilidad en misiones.\n¿Me permite enviar un breve resumen escrito de cómo se logró ese cambio?\nAtharva Awade, Business Development, FlytBase",
-        "language": "es-CL",
-        "wordCount": 82,
-        "sentenceCount": 6,
-        "citedFacts": [
-          {
-            "text": "SQM's own 20-F for period ending 2026-04-22 names contractor safety incidents and contractor work stoppages as risks to production, referring to contractors 27 times",
-            "evidenceId": "ev-sqm-filing-15"
-          },
-          {
-            "text": "SQM operates 71 mapped sites totalling 1025 km², the largest being SQM Salar de Atacama at 236.5 km²",
-            "evidenceId": "ev-sqm-geo-1"
-          }
-        ],
-        "gates": [
-          {
-            "gate": "G1",
-            "label": "No placeholder tokens",
-            "passed": true,
-            "detail": "No merge fields, brackets or TBD markers present."
-          },
-          {
-            "gate": "G2",
-            "label": "No template or model-tell phrasing",
-            "passed": true,
-            "detail": "Clean of known template openers and model vocabulary."
-          },
-          {
-            "gate": "G3",
-            "label": "Opener length 55–95 words",
-            "passed": true,
-            "detail": "82 words across 6 sentences; longest sentence 19 words. Reply rates peak in the 50–100 word band."
-          },
-          {
-            "gate": "G4",
-            "label": "Two or more cited, verifiable specifics",
-            "passed": true,
-            "detail": "2 cited fact(s), 2 numeric, 1 dated within 18 months."
-          },
-          {
-            "gate": "G5",
-            "label": "Single interest-based ask, no meeting request",
-            "passed": false,
-            "detail": "No recognisable interest-based ask — the reader is not told what they are agreeing to receive."
-          },
-          {
-            "gate": "G6",
-            "label": "Plain language",
-            "passed": true,
-            "detail": "Fernández-Huerta (higher is easier): 77.9. Reads plainly."
-          },
-          {
-            "gate": "G7",
-            "label": "Reader-centred and signed",
-            "passed": true,
-            "detail": "Second-person to first-person ratio all second-person:1, signature present."
-          }
-        ],
-        "score": 86,
-        "accepted": false,
-        "rejectionReasons": [
-          "G5 Single interest-based ask, no meeting request: No recognisable interest-based ask — the reader is not told what they are agreeing to receive."
-        ],
-        "model": "openai/gpt-oss-120b"
-      }
-    ],
-    "contact-sqm-pablo-altimiras": [
-      {
-        "id": "contact-sqm-pablo-altimiras-t1-i1",
-        "iteration": 1,
-        "subject": "Riesgos de contratistas en inspección",
-        "body": "Usted gestiona 71 sitios mapeados que abarcan 1025 km², incluido el Salar de Atacama.\nSu reporte 20‑F señala incidentes de seguridad de contratistas y paros de trabajo como riesgos críticos.\nActualmente, los equipos contratados absorben costos elevados y exposición al riesgo mientras mantienen la frecuencia de inspección.\nCon Adentu, SQM redujo el tiempo de inspección de días a horas, duplicando la frecuencia.\n¿Podría enviarle un breve resumen escrito detallado de este caso?\nAtharva Awade, Business Development, FlytBase",
+        "subject": "Riesgos de inspección en sus sitios",
+        "body": "Usted opera 49 sitios mapeados que suman 548 km², siendo el Salar de Atacama 236.5 km².\nEn su 20‑F se citan 27 incidentes de seguridad y paros de contratistas como riesgos.\nEstos riesgos obligan a sus equipos a absorber costos y demoras de inspección.\nCon Adentu, SQM redujo el tiempo de inspección de días a horas, duplicando la frecuencia.\n¿Podría enviarle un breve resumen escrito de estos resultados para su evaluación?\nAtharva Awade, Business Development, FlytBase",
         "language": "es-CL",
         "wordCount": 78,
         "sentenceCount": 6,
@@ -297,7 +15,7 @@
             "evidenceId": "ev-sqm-filing-15"
           },
           {
-            "text": "SQM operates 71 mapped sites totalling 1025 km², the largest being SQM Salar de Atacama at 236.5 km²",
+            "text": "SQM operates 49 mapped sites totalling 548 km², the largest being SQM Salar de Atacama at 236.5 km²",
             "evidenceId": "ev-sqm-geo-1"
           }
         ],
@@ -336,76 +54,7 @@
             "gate": "G6",
             "label": "Plain language",
             "passed": true,
-            "detail": "Fernández-Huerta (higher is easier): 65.9. Reads plainly."
-          },
-          {
-            "gate": "G7",
-            "label": "Reader-centred and signed",
-            "passed": true,
-            "detail": "Second-person to first-person ratio all second-person:1, signature present."
-          }
-        ],
-        "score": 100,
-        "accepted": true,
-        "rejectionReasons": [],
-        "model": "openai/gpt-oss-120b"
-      }
-    ],
-    "contact-sqm-carlos-diaz-ortiz": [
-      {
-        "id": "contact-sqm-carlos-diaz-ortiz-t1-i1",
-        "iteration": 1,
-        "subject": "Riesgos de inspección contratada",
-        "body": "Usted gestiona 71 sitios mapeados que suman 1025 km², el mayor en Salar de Atacama.\nSu reporte 20‑F indica incidentes de seguridad y paros de contratistas como riesgos críticos.\nActualmente, los equipos contratados absorben costos elevados y exposición a esos riesgos operacionales.\nCon Adentu, SQM redujo el tiempo de inspección de días a horas, duplicando la frecuencia.\n¿Puedo enviar un breve resumen escrito sobre este cambio de cadencia?\nAtharva Awade, Business Development, FlytBase",
-        "language": "es-CL",
-        "wordCount": 74,
-        "sentenceCount": 6,
-        "citedFacts": [
-          {
-            "text": "SQM's own 20-F for period ending 2026-04-22 names contractor safety incidents and contractor work stoppages as risks to production, referring to contractors 27 times",
-            "evidenceId": "ev-sqm-filing-15"
-          },
-          {
-            "text": "SQM operates 71 mapped sites totalling 1025 km², the largest being SQM Salar de Atacama at 236.5 km²",
-            "evidenceId": "ev-sqm-geo-1"
-          }
-        ],
-        "gates": [
-          {
-            "gate": "G1",
-            "label": "No placeholder tokens",
-            "passed": true,
-            "detail": "No merge fields, brackets or TBD markers present."
-          },
-          {
-            "gate": "G2",
-            "label": "No template or model-tell phrasing",
-            "passed": true,
-            "detail": "Clean of known template openers and model vocabulary."
-          },
-          {
-            "gate": "G3",
-            "label": "Opener length 55–95 words",
-            "passed": true,
-            "detail": "74 words across 6 sentences; longest sentence 15 words. Reply rates peak in the 50–100 word band."
-          },
-          {
-            "gate": "G4",
-            "label": "Two or more cited, verifiable specifics",
-            "passed": true,
-            "detail": "2 cited fact(s), 2 numeric, 1 dated within 18 months."
-          },
-          {
-            "gate": "G5",
-            "label": "Single interest-based ask, no meeting request",
-            "passed": true,
-            "detail": "One interest-based ask, no links, no calendar request."
-          },
-          {
-            "gate": "G6",
-            "label": "Plain language",
-            "passed": true,
-            "detail": "Fernández-Huerta (higher is easier): 66.4. Reads plainly."
+            "detail": "Fernández-Huerta (higher is easier): 79.8. Reads plainly."
           },
           {
             "gate": "G7",
@@ -631,14 +280,14 @@
       {
         "id": "contact-codelco-jorge-gomez-diaz-t1-i1",
         "iteration": 1,
-        "subject": "Costos y riesgos de inspección",
-        "body": "Usted gestiona 27 sitios mapeados que suman 179 km², siendo Radomiro Tomic 44.7 km².\nEl Vicepresidente de Operaciones, Lindor Quiroga B., ocupa el cargo de forma interina.\nActualmente, los equipos contratados absorben gran parte del costo y el riesgo de inspección.\nSQM redujo su tiempo de inspección de varios días a solo horas, duplicando la frecuencia.\n¿Podría enviarle un resumen escrito de este caso para su revisión?\nAtharva Awade, Business Development, FlytBase",
+        "subject": "Costos y riesgo de inspecciones",
+        "body": "Codelgo opera 24 sitios mapeados totalizando 177 km², siendo la División Radomiro Tomic 44.7 km². El Vicepresidente de Operaciones (i) está a cargo interinamente de Lindor Quiroga B. Sus equipos contratados absorben costos altos y riesgos mientras mantienen la frecuencia de inspección. SQM redujo su tiempo de inspección de varios días a solo horas, manteniendo alta confiabilidad. ¿Puedo enviarle un breve resumen escrito de cómo lograron duplicar la frecuencia?\nAtharva Awade, Business Development, FlytBase",
         "language": "es-CL",
-        "wordCount": 73,
+        "wordCount": 75,
         "sentenceCount": 6,
         "citedFacts": [
           {
-            "text": "Codelco operates 27 mapped sites totalling 179 km², the largest being División Radomiro Tomic at 44.7 km²",
+            "text": "Codelco operates 24 mapped sites totalling 177 km², the largest being División Radomiro Tomic at 44.7 km²",
             "evidenceId": "ev-codelco-geo-27"
           },
           {
@@ -663,7 +312,7 @@
             "gate": "G3",
             "label": "Opener length 55–95 words",
             "passed": true,
-            "detail": "73 words across 6 sentences; longest sentence 15 words. Reply rates peak in the 50–100 word band."
+            "detail": "75 words across 6 sentences; longest sentence 16 words. Reply rates peak in the 50–100 word band."
           },
           {
             "gate": "G4",
@@ -681,7 +330,7 @@
             "gate": "G6",
             "label": "Plain language",
             "passed": true,
-            "detail": "Fernández-Huerta (higher is easier): 71.9. Reads plainly."
+            "detail": "Fernández-Huerta (higher is easier): 62.7. Reads plainly."
           },
           {
             "gate": "G7",
@@ -694,337 +343,6 @@
         "accepted": true,
         "rejectionReasons": [],
         "model": "openai/gpt-oss-120b"
-      }
-    ],
-    "contact-codelco-alejandro-sanhueza-diaz": [
-      {
-        "id": "contact-codelco-alejandro-sanhueza-diaz-t1-i1",
-        "iteration": 1,
-        "subject": "Costos y riesgos de inspección",
-        "body": "Usted gestiona 27 sitios mapeados que suman 179 km², siendo el mayor 44.7 km².\nEl cargo de Vicepresidente de Operaciones está temporalmente ocupado por Lindor Quiroga B.\nActualmente los equipos contratados absorben costos altos y riesgos mientras mantienen la frecuencia de inspección.\nSQM redujo su tiempo de inspección de días a horas, logrando ROI en menos de un año.\n¿Podría enviarle un resumen escrito de cómo logramos duplicar la frecuencia de inspección?\nAtharva Awade, Business Development, FlytBase",
-        "language": "es-CL",
-        "wordCount": 78,
-        "sentenceCount": 6,
-        "citedFacts": [
-          {
-            "text": "Codelco operates 27 mapped sites totalling 179 km², the largest being División Radomiro Tomic at 44.7 km²",
-            "evidenceId": "ev-codelco-geo-27"
-          },
-          {
-            "text": "Vicepresidente de Operaciones (i) is held on an interim basis by Lindor Quiroga B.",
-            "evidenceId": "ev-codelco-person-47"
-          }
-        ],
-        "gates": [
-          {
-            "gate": "G1",
-            "label": "No placeholder tokens",
-            "passed": true,
-            "detail": "No merge fields, brackets or TBD markers present."
-          },
-          {
-            "gate": "G2",
-            "label": "No template or model-tell phrasing",
-            "passed": true,
-            "detail": "Clean of known template openers and model vocabulary."
-          },
-          {
-            "gate": "G3",
-            "label": "Opener length 55–95 words",
-            "passed": true,
-            "detail": "78 words across 6 sentences; longest sentence 17 words. Reply rates peak in the 50–100 word band."
-          },
-          {
-            "gate": "G4",
-            "label": "Two or more cited, verifiable specifics",
-            "passed": true,
-            "detail": "2 cited fact(s), 1 numeric, 1 dated within 18 months."
-          },
-          {
-            "gate": "G5",
-            "label": "Single interest-based ask, no meeting request",
-            "passed": true,
-            "detail": "One interest-based ask, no links, no calendar request."
-          },
-          {
-            "gate": "G6",
-            "label": "Plain language",
-            "passed": true,
-            "detail": "Fernández-Huerta (higher is easier): 72.8. Reads plainly."
-          },
-          {
-            "gate": "G7",
-            "label": "Reader-centred and signed",
-            "passed": true,
-            "detail": "Second-person to first-person ratio all second-person:1, signature present."
-          }
-        ],
-        "score": 100,
-        "accepted": true,
-        "rejectionReasons": [],
-        "model": "openai/gpt-oss-120b"
-      }
-    ],
-    "contact-codelco-gabriel-mendez-serqueira": [
-      {
-        "id": "contact-codelco-gabriel-mendez-serqueira-t1-i1",
-        "iteration": 1,
-        "subject": "Costos y riesgos en inspecciones",
-        "body": "Codelco opera 27 sitios mapeados que suman 179 km², con Radomiro Tomic como el más grande con 44.7 km². Los equipos contratados de inspección absorben tiempo y exponen a riesgos operativos. SQM logró duplicar la frecuencia de inspección en su operación de 678 km². ¿Podemos enviarle un resumen escrito de ese cambio de cadencia? Atharva Awade, Business Development, FlytBase",
-        "language": "es-CL",
-        "wordCount": 60,
-        "sentenceCount": 5,
-        "citedFacts": [
-          {
-            "text": "Codelco operates 27 mapped sites totalling 179 km², the largest being División Radomiro Tomic at 44.7 km²",
-            "evidenceId": "ev-codelco-geo-27"
-          }
-        ],
-        "gates": [
-          {
-            "gate": "G1",
-            "label": "No placeholder tokens",
-            "passed": true,
-            "detail": "No merge fields, brackets or TBD markers present."
-          },
-          {
-            "gate": "G2",
-            "label": "No template or model-tell phrasing",
-            "passed": true,
-            "detail": "Clean of known template openers and model vocabulary."
-          },
-          {
-            "gate": "G3",
-            "label": "Opener length 55–95 words",
-            "passed": true,
-            "detail": "60 words across 5 sentences; longest sentence 20 words. Reply rates peak in the 50–100 word band."
-          },
-          {
-            "gate": "G4",
-            "label": "Two or more cited, verifiable specifics",
-            "passed": false,
-            "detail": "1 cited fact(s), 1 numeric, 0 dated within 18 months."
-          },
-          {
-            "gate": "G5",
-            "label": "Single interest-based ask, no meeting request",
-            "passed": true,
-            "detail": "One interest-based ask, no links, no calendar request."
-          },
-          {
-            "gate": "G6",
-            "label": "Plain language",
-            "passed": true,
-            "detail": "Fernández-Huerta (higher is easier): 75.3. Reads plainly."
-          },
-          {
-            "gate": "G7",
-            "label": "Reader-centred and signed",
-            "passed": true,
-            "detail": "Second-person to first-person ratio all second-person:1, signature present."
-          }
-        ],
-        "score": 86,
-        "accepted": false,
-        "rejectionReasons": [
-          "G4 Two or more cited, verifiable specifics: 1 cited fact(s), 1 numeric, 0 dated within 18 months."
-        ],
-        "model": "deepseek-ai/deepseek-v4-flash"
-      },
-      {
-        "id": "contact-codelco-gabriel-mendez-serqueira-t1-i2",
-        "iteration": 2,
-        "subject": "Cobertura de 179 km² en Codelco",
-        "body": "Codelco opera 27 sitios mapeados que suman 179 km², con Radomiro Tomic como la división más grande con 44,7 km². Los equipos de inspección contratados actualmente absorben costos y riesgos en esa extensa superficie. SQM, con una operación de 678 km², redujo el tiempo de inspección de días a horas usando cobertura autónoma. ¿Podemos enviarle un resumen escrito sobre este cambio de cadencia? Atharva Awade, Business Development, FlytBase",
-        "language": "es-CL",
-        "wordCount": 69,
-        "sentenceCount": 5,
-        "citedFacts": [
-          {
-            "text": "Codelco operates 27 mapped sites totalling 179 km², the largest being División Radomiro Tomic at 44.7 km²",
-            "evidenceId": "ev-codelco-geo-27"
-          }
-        ],
-        "gates": [
-          {
-            "gate": "G1",
-            "label": "No placeholder tokens",
-            "passed": true,
-            "detail": "No merge fields, brackets or TBD markers present."
-          },
-          {
-            "gate": "G2",
-            "label": "No template or model-tell phrasing",
-            "passed": true,
-            "detail": "Clean of known template openers and model vocabulary."
-          },
-          {
-            "gate": "G3",
-            "label": "Opener length 55–95 words",
-            "passed": true,
-            "detail": "69 words across 5 sentences; longest sentence 21 words. Reply rates peak in the 50–100 word band."
-          },
-          {
-            "gate": "G4",
-            "label": "Two or more cited, verifiable specifics",
-            "passed": false,
-            "detail": "1 cited fact(s), 1 numeric, 0 dated within 18 months."
-          },
-          {
-            "gate": "G5",
-            "label": "Single interest-based ask, no meeting request",
-            "passed": true,
-            "detail": "One interest-based ask, no links, no calendar request."
-          },
-          {
-            "gate": "G6",
-            "label": "Plain language",
-            "passed": true,
-            "detail": "Fernández-Huerta (higher is easier): 72.5. Reads plainly."
-          },
-          {
-            "gate": "G7",
-            "label": "Reader-centred and signed",
-            "passed": true,
-            "detail": "Second-person to first-person ratio all second-person:1, signature present."
-          }
-        ],
-        "score": 86,
-        "accepted": false,
-        "rejectionReasons": [
-          "G4 Two or more cited, verifiable specifics: 1 cited fact(s), 1 numeric, 0 dated within 18 months."
-        ],
-        "model": "deepseek-ai/deepseek-v4-flash"
-      },
-      {
-        "id": "contact-codelco-gabriel-mendez-serqueira-t1-i3",
-        "iteration": 3,
-        "subject": "Cobertura de 179 km² en Codelco",
-        "body": "Codelco opera 27 sitios mapeados que suman 179 km², con Radomiro Tomic como la división más grande con 44,7 km². Los equipos de inspección contratados actualmente absorben costos y riesgos en esa extensa superficie. SQM, con una operación de 678 km², redujo el tiempo de inspección de días a horas usando cobertura autónoma. ¿Podemos enviarle un resumen escrito sobre este cambio de cadencia? Atharva Awade, Business Development, FlytBase",
-        "language": "es-CL",
-        "wordCount": 69,
-        "sentenceCount": 5,
-        "citedFacts": [
-          {
-            "text": "Codelco operates 27 mapped sites totalling 179 km², the largest being División Radomiro Tomic at 44.7 km²",
-            "evidenceId": "ev-codelco-geo-27"
-          }
-        ],
-        "gates": [
-          {
-            "gate": "G1",
-            "label": "No placeholder tokens",
-            "passed": true,
-            "detail": "No merge fields, brackets or TBD markers present."
-          },
-          {
-            "gate": "G2",
-            "label": "No template or model-tell phrasing",
-            "passed": true,
-            "detail": "Clean of known template openers and model vocabulary."
-          },
-          {
-            "gate": "G3",
-            "label": "Opener length 55–95 words",
-            "passed": true,
-            "detail": "69 words across 5 sentences; longest sentence 21 words. Reply rates peak in the 50–100 word band."
-          },
-          {
-            "gate": "G4",
-            "label": "Two or more cited, verifiable specifics",
-            "passed": false,
-            "detail": "1 cited fact(s), 1 numeric, 0 dated within 18 months."
-          },
-          {
-            "gate": "G5",
-            "label": "Single interest-based ask, no meeting request",
-            "passed": true,
-            "detail": "One interest-based ask, no links, no calendar request."
-          },
-          {
-            "gate": "G6",
-            "label": "Plain language",
-            "passed": true,
-            "detail": "Fernández-Huerta (higher is easier): 72.5. Reads plainly."
-          },
-          {
-            "gate": "G7",
-            "label": "Reader-centred and signed",
-            "passed": true,
-            "detail": "Second-person to first-person ratio all second-person:1, signature present."
-          }
-        ],
-        "score": 86,
-        "accepted": false,
-        "rejectionReasons": [
-          "G4 Two or more cited, verifiable specifics: 1 cited fact(s), 1 numeric, 0 dated within 18 months."
-        ],
-        "model": "deepseek-ai/deepseek-v4-flash"
-      },
-      {
-        "id": "contact-codelco-gabriel-mendez-serqueira-t1-i4",
-        "iteration": 4,
-        "subject": "Cobertura de 179 km² en Codelco",
-        "body": "Codelco opera 27 sitios mapeados que suman 179 km², con Radomiro Tomic como la división más grande con 44,7 km². Los equipos de inspección contratados actualmente absorben costos y riesgos en esa extensa superficie. SQM, con una operación de 678 km², redujo el tiempo de inspección de días a horas usando cobertura autónoma. ¿Podemos enviarle un resumen escrito sobre este cambio de cadencia? Atharva Awade, Business Development, FlytBase",
-        "language": "es-CL",
-        "wordCount": 69,
-        "sentenceCount": 5,
-        "citedFacts": [
-          {
-            "text": "Codelco operates 27 mapped sites totalling 179 km², the largest being División Radomiro Tomic at 44.7 km²",
-            "evidenceId": "ev-codelco-geo-27"
-          }
-        ],
-        "gates": [
-          {
-            "gate": "G1",
-            "label": "No placeholder tokens",
-            "passed": true,
-            "detail": "No merge fields, brackets or TBD markers present."
-          },
-          {
-            "gate": "G2",
-            "label": "No template or model-tell phrasing",
-            "passed": true,
-            "detail": "Clean of known template openers and model vocabulary."
-          },
-          {
-            "gate": "G3",
-            "label": "Opener length 55–95 words",
-            "passed": true,
-            "detail": "69 words across 5 sentences; longest sentence 21 words. Reply rates peak in the 50–100 word band."
-          },
-          {
-            "gate": "G4",
-            "label": "Two or more cited, verifiable specifics",
-            "passed": false,
-            "detail": "1 cited fact(s), 1 numeric, 0 dated within 18 months."
-          },
-          {
-            "gate": "G5",
-            "label": "Single interest-based ask, no meeting request",
-            "passed": true,
-            "detail": "One interest-based ask, no links, no calendar request."
-          },
-          {
-            "gate": "G6",
-            "label": "Plain language",
-            "passed": true,
-            "detail": "Fernández-Huerta (higher is easier): 72.5. Reads plainly."
-          },
-          {
-            "gate": "G7",
-            "label": "Reader-centred and signed",
-            "passed": true,
-            "detail": "Second-person to first-person ratio all second-person:1, signature present."
-          }
-        ],
-        "score": 86,
-        "accepted": false,
-        "rejectionReasons": [
-          "G4 Two or more cited, verifiable specifics: 1 cited fact(s), 1 numeric, 0 dated within 18 months."
-        ],
-        "model": "deepseek-ai/deepseek-v4-flash"
       }
     ]
   },
@@ -1042,7 +360,7 @@
           "dateIso": "2026-04-22"
         },
         {
-          "text": "SQM operates 71 mapped sites totalling 1025 km², the largest being SQM Salar de Atacama at 236.5 km²",
+          "text": "SQM operates 49 mapped sites totalling 548 km², the largest being SQM Salar de Atacama at 236.5 km²",
           "evidenceId": "ev-sqm-geo-1",
           "isNumeric": true
         }
@@ -1071,7 +389,7 @@
           "dateIso": "2026-04-22"
         },
         {
-          "text": "SQM operates 71 mapped sites totalling 1025 km², the largest being SQM Salar de Atacama at 236.5 km²",
+          "text": "SQM operates 49 mapped sites totalling 548 km², the largest being SQM Salar de Atacama at 236.5 km²",
           "evidenceId": "ev-sqm-geo-1",
           "isNumeric": true
         }
@@ -1100,7 +418,7 @@
           "dateIso": "2026-04-22"
         },
         {
-          "text": "SQM operates 71 mapped sites totalling 1025 km², the largest being SQM Salar de Atacama at 236.5 km²",
+          "text": "SQM operates 49 mapped sites totalling 548 km², the largest being SQM Salar de Atacama at 236.5 km²",
           "evidenceId": "ev-sqm-geo-1",
           "isNumeric": true
         }
@@ -1174,54 +492,6 @@
         "Deployment sizing rests on stated engineering assumptions, so its figures are kept out of a first touch and reserved for the discovery call."
       ]
     },
-    "roletarget-albemarle-head-of-operations": {
-      "contactId": "roletarget-albemarle-head-of-operations",
-      "language": "es-CL",
-      "whyThisPerson": "No individual was sourced, so this is addressed to the Head of Operations role.",
-      "angle": "Contracted inspection crews are the cost and the risk; autonomous coverage removes the exposure without reducing the inspection frequency.",
-      "facts": [
-        {
-          "text": "Albemarle (Salar de Atacama) operates 81 mapped sites totalling 129 km², the largest being Planta Salar Atacama Albemarle at 40.4 km²",
-          "evidenceId": "ev-albemarle-geo-61",
-          "isNumeric": true
-        }
-      ],
-      "proofPoint": {
-        "customer": "SQM (with Adentu)",
-        "claim": "678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year",
-        "sourceUrl": "https://www.flytbase.com/case-studies/sqm-678-km2-mine-autonomous-inspection-adentu-and-flytbase"
-      },
-      "ask": "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it — never for a meeting, and never propose a time.",
-      "withheld": [
-        "DS 132/2004 Reglamento de Seguridad Minera is the instrument that forces inspection cadence here, but its text was not fetched in this run, so it is withheld from the copy. A wrong decree number is worse than none.",
-        "No primary filing was available for this account, so no claim is made about its contractor dependency.",
-        "Deployment sizing rests on stated engineering assumptions, so its figures are kept out of a first touch and reserved for the discovery call."
-      ]
-    },
-    "roletarget-albemarle-vp-of-hse": {
-      "contactId": "roletarget-albemarle-vp-of-hse",
-      "language": "es-CL",
-      "whyThisPerson": "No individual was sourced, so this is addressed to the VP of HSE role.",
-      "angle": "Contracted inspection crews are the cost and the risk; autonomous coverage removes the exposure without reducing the inspection frequency.",
-      "facts": [
-        {
-          "text": "Albemarle (Salar de Atacama) operates 81 mapped sites totalling 129 km², the largest being Planta Salar Atacama Albemarle at 40.4 km²",
-          "evidenceId": "ev-albemarle-geo-61",
-          "isNumeric": true
-        }
-      ],
-      "proofPoint": {
-        "customer": "SQM (with Adentu)",
-        "claim": "678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year",
-        "sourceUrl": "https://www.flytbase.com/case-studies/sqm-678-km2-mine-autonomous-inspection-adentu-and-flytbase"
-      },
-      "ask": "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it — never for a meeting, and never propose a time.",
-      "withheld": [
-        "DS 132/2004 Reglamento de Seguridad Minera is the instrument that forces inspection cadence here, but its text was not fetched in this run, so it is withheld from the copy. A wrong decree number is worse than none.",
-        "No primary filing was available for this account, so no claim is made about its contractor dependency.",
-        "Deployment sizing rests on stated engineering assumptions, so its figures are kept out of a first touch and reserved for the discovery call."
-      ]
-    },
     "contact-codelco-jorge-gomez-diaz": {
       "contactId": "contact-codelco-jorge-gomez-diaz",
       "language": "es-CL",
@@ -1229,7 +499,7 @@
       "angle": "Contracted inspection crews are the cost and the risk; autonomous coverage removes the exposure without reducing the inspection frequency.",
       "facts": [
         {
-          "text": "Codelco operates 27 mapped sites totalling 179 km², the largest being División Radomiro Tomic at 44.7 km²",
+          "text": "Codelco operates 24 mapped sites totalling 177 km², the largest being División Radomiro Tomic at 44.7 km²",
           "evidenceId": "ev-codelco-geo-27",
           "isNumeric": true
         },
@@ -1259,7 +529,7 @@
       "angle": "Contracted inspection crews are the cost and the risk; autonomous coverage removes the exposure without reducing the inspection frequency.",
       "facts": [
         {
-          "text": "Codelco operates 27 mapped sites totalling 179 km², the largest being División Radomiro Tomic at 44.7 km²",
+          "text": "Codelco operates 24 mapped sites totalling 177 km², the largest being División Radomiro Tomic at 44.7 km²",
           "evidenceId": "ev-codelco-geo-27",
           "isNumeric": true
         },
@@ -1289,7 +559,7 @@
       "angle": "Contracted inspection crews are the cost and the risk; autonomous coverage removes the exposure without reducing the inspection frequency.",
       "facts": [
         {
-          "text": "Codelco operates 27 mapped sites totalling 179 km², the largest being División Radomiro Tomic at 44.7 km²",
+          "text": "Codelco operates 24 mapped sites totalling 177 km², the largest being División Radomiro Tomic at 44.7 km²",
           "evidenceId": "ev-codelco-geo-27",
           "isNumeric": true
         },
@@ -1298,6 +568,54 @@
           "evidenceId": "ev-codelco-person-47",
           "isNumeric": false,
           "dateIso": "2026-02-13"
+        }
+      ],
+      "proofPoint": {
+        "customer": "SQM (with Adentu)",
+        "claim": "678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year",
+        "sourceUrl": "https://www.flytbase.com/case-studies/sqm-678-km2-mine-autonomous-inspection-adentu-and-flytbase"
+      },
+      "ask": "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it — never for a meeting, and never propose a time.",
+      "withheld": [
+        "DS 132/2004 Reglamento de Seguridad Minera is the instrument that forces inspection cadence here, but its text was not fetched in this run, so it is withheld from the copy. A wrong decree number is worse than none.",
+        "No primary filing was available for this account, so no claim is made about its contractor dependency.",
+        "Deployment sizing rests on stated engineering assumptions, so its figures are kept out of a first touch and reserved for the discovery call."
+      ]
+    },
+    "roletarget-albemarle-head-of-operations": {
+      "contactId": "roletarget-albemarle-head-of-operations",
+      "language": "es-CL",
+      "whyThisPerson": "No individual was sourced, so this is addressed to the Head of Operations role.",
+      "angle": "Contracted inspection crews are the cost and the risk; autonomous coverage removes the exposure without reducing the inspection frequency.",
+      "facts": [
+        {
+          "text": "Albemarle (Salar de Atacama) operates 27 mapped sites totalling 43 km², the largest being Planta Salar Atacama Albemarle at 40.4 km²",
+          "evidenceId": "ev-albemarle-geo-71",
+          "isNumeric": true
+        }
+      ],
+      "proofPoint": {
+        "customer": "SQM (with Adentu)",
+        "claim": "678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year",
+        "sourceUrl": "https://www.flytbase.com/case-studies/sqm-678-km2-mine-autonomous-inspection-adentu-and-flytbase"
+      },
+      "ask": "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it — never for a meeting, and never propose a time.",
+      "withheld": [
+        "DS 132/2004 Reglamento de Seguridad Minera is the instrument that forces inspection cadence here, but its text was not fetched in this run, so it is withheld from the copy. A wrong decree number is worse than none.",
+        "No primary filing was available for this account, so no claim is made about its contractor dependency.",
+        "Deployment sizing rests on stated engineering assumptions, so its figures are kept out of a first touch and reserved for the discovery call."
+      ]
+    },
+    "roletarget-albemarle-vp-of-hse": {
+      "contactId": "roletarget-albemarle-vp-of-hse",
+      "language": "es-CL",
+      "whyThisPerson": "No individual was sourced, so this is addressed to the VP of HSE role.",
+      "angle": "Contracted inspection crews are the cost and the risk; autonomous coverage removes the exposure without reducing the inspection frequency.",
+      "facts": [
+        {
+          "text": "Albemarle (Salar de Atacama) operates 27 mapped sites totalling 43 km², the largest being Planta Salar Atacama Albemarle at 40.4 km²",
+          "evidenceId": "ev-albemarle-geo-71",
+          "isNumeric": true
         }
       ],
       "proofPoint": {
