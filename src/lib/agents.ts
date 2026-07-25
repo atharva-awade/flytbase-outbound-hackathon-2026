@@ -248,7 +248,7 @@ export const AGENTS: AgentNode[] = [
     title: "Red Team critic",
     plainJob:
       "Tries to reject the writer's draft. It checks length, banned phrasing, whether the facts are cited, whether the ask is reasonable, and how the copy reads — and sends it back if any check fails.",
-    tools: ["seven hard gates", "banned-phrase list", "language-correct readability"],
+    tools: ["ten hard gates", "banned-phrase list", "language-correct readability"],
     produces: "A pass or fail with reasons, and the rejected drafts kept on the record",
     kind: "deterministic",
     dependsOn: ["copywriter"],
