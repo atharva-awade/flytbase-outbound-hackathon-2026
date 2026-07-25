@@ -52,6 +52,7 @@ import {
 } from "../src/lib/sources/people";
 import { GRADED_BRIEF, getPack, type VerticalPack } from "../src/lib/verticals";
 import { buildCadence, generateEmail, type MessageStrategy } from "../src/lib/outreach";
+import { findPublicProfiles, hasSerpKey } from "../src/lib/sources/serp";
 import { hasKey } from "../src/lib/llm";
 import type {
   Account,
@@ -569,6 +570,102 @@ async function findPeople(
         remediation: "Retry, or resolve officers from the annual filing's executive-officers section.",
         producedBy: "people_finder",
       });
+    }
+  }
+
+  // ── Supplementary pass: public professional profiles ──────────────────
+  // Company and statutory pages reliably publish executives, but they
+  // structurally omit the health-and-safety tier at site level — the exact
+  // people this campaign targets. Public profiles surfaced through a search
+  // engine fill that gap. The profile body is never fetched, because a direct
+  // request redirects into an authentication wall; the search-result title is
+  // the evidence and the profile URL is the citation.
+  const haveHse = contacts.some((c) => c.buyingRole === "risk_validator");
+  if (hasSerpKey() && (!haveHse || contacts.length < 4)) {
+    try {
+      const { candidates, queriesRun, creditsUsed, errors: serpErrors, rejected: serpRejected } =
+        await findPublicProfiles({
+          companyNames: [identity.displayName, identity.legalName, ...identity.aliases],
+          country: identity.country,
+          language: identity.workingLanguage,
+          maxQueries: 2,
+          // Every other operator in the run. A profile naming one of these
+          // belongs to that operator, not this one.
+          otherCompanies: IDENTITIES.filter((i) => i.key !== identity.key).flatMap((i) => [
+            i.displayName,
+            i.legalName,
+          ]),
+        });
+
+      emit("people_finder", "tool",
+        `${identity.displayName}: ran ${queriesRun.length} public-profile search(es), ${candidates.length} candidate(s) returned${serpErrors.length ? `, ${serpErrors.length} query error(s)` : ""}.`,
+        { tool: "public_profile_search", latencyMs: 0 },
+      );
+
+      let added = 0;
+      for (const cand of candidates.slice(0, 4)) {
+        const nameKey = cand.name.toLowerCase();
+        if (seenNames.has(nameKey)) continue;
+        seenNames.add(nameKey);
+
+        const id = ev(
+          {
+            claim: `${cand.name} publicly states the role "${cand.titleVerbatim}" at ${identity.displayName}`,
+            sourceUrl: cand.profileUrl,
+            sourceTitle: "Public professional profile, surfaced via search result title",
+            sourceClass: "search_result",
+            fetchedAt: new Date().toISOString(),
+            verbatim: cand.serpTitle,
+            language: identity.workingLanguage,
+            // A search snippet is weaker than a company's own disclosure, and is
+            // graded accordingly rather than being presented as confirmed.
+            confidence: "UNVERIFIED",
+            producedBy: "people_finder",
+          },
+          `${identity.key}-serp`,
+        );
+        evidenceIds.push(id);
+
+        const contact = buildContact({
+          person: { name: cand.name, titleVerbatim: cand.titleVerbatim, attributes: {} },
+          accountId: identity.key,
+          sourceUrl: cand.profileUrl,
+          tier: "NAMED_PUBLIC_PROFILE",
+          sites,
+          language: identity.workingLanguage,
+          evidenceIds: [id],
+        });
+        contact.linkedinUrl = cand.profileUrl;
+        contact.findingPlaybook = [
+          "Sourced from a public profile listing rather than a company disclosure, so the title is self-stated and should be confirmed on a second source before outreach.",
+          ...(contact.findingPlaybook ?? []),
+        ];
+        contacts.push(contact);
+        added++;
+      }
+
+      emit("people_finder", "note",
+        `${identity.displayName}: added ${added} public-profile contact(s) at a lower confidence grade; ${serpRejected.length} candidate(s) discarded on employer or seniority checks; ${creditsUsed} search credit(s) used.`,
+        { evidenceCreated: added },
+      );
+
+      if (candidates.length === 0) {
+        noteNull({
+          subject: identity.displayName,
+          question: `Do public professional profiles name an operations or safety lead at ${identity.displayName}?`,
+          attempts: queriesRun.map((q) => ({
+            source: "Public-profile search",
+            outcome: `No parseable name and title returned for: ${q}`,
+          })),
+          interpretation:
+            "Either nobody at this operator lists these titles publicly, or the result titles did not carry a parseable name and role. No name is asserted either way.",
+          remediation:
+            "Widen the title vocabulary for this jurisdiction, or accept role-level targeting for this account.",
+          producedBy: "people_finder",
+        });
+      }
+    } catch (err) {
+      emit("people_finder", "error", `${identity.displayName} public-profile search: ${(err as Error).message}`);
     }
   }
 
