@@ -1,3 +1,14 @@
 allowBuilds:
   esbuild: true
   sharp: true
+
+minimumReleaseAgeExclude:
+  - postcss@8.5.23
+
+# next pulls both of these in transitively at versions carrying published
+# advisories (libvips CVEs in sharp, the </style> stringify escape in postcss).
+# Neither is reachable from anything this app does, but a clean audit costs one
+# pin each.
+overrides:
+  sharp: ^0.35.3
+  postcss: ^8.5.23

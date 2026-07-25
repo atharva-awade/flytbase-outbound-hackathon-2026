@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+import { callerKey, limitResponse, take } from "@/lib/ratelimit";
 import { loadAccount, loadOutreach } from "@/lib/run";
 
 export const dynamic = "force-dynamic";
@@ -19,6 +20,11 @@ export const maxDuration = 60;
  *    zero-DNS path that can, which is why it is the primary transport here.
  *  - Nothing is sent unless the copy passed the critic. An unreviewed draft is
  *    not eligible for delivery.
+ *
+ * The endpoint is unauthenticated, because a reviewer should be able to prove
+ * delivery without an account. That makes it a relay unless it is capped, so it
+ * is capped twice: a short window per caller, and a day's ceiling for the whole
+ * deployment to protect the mailbox behind it.
  */
 export async function POST(req: Request) {
   let payload: { slug?: string; to?: string };
@@ -95,6 +101,24 @@ export async function POST(req: Request) {
     `Every sentence above rests on one of those sources. Nothing was asserted without one.`,
   ].join("\n");
 
+  // Counted here rather than at the top of the handler: a mistyped address, an
+  // unknown account or a deployment with no mailbox should not consume a
+  // caller's allowance, because nothing was sent.
+  const burst = take(`send:${callerKey(req)}`, 3, 10 * 60_000);
+  if (!burst.ok) {
+    return limitResponse(
+      burst,
+      `This deployment allows three sends per ten minutes from one address, so a public demonstration cannot be used as a relay. Try again in ${burst.retryAfter}s — the CSV and JSON exports are not limited.`,
+    );
+  }
+  const daily = take("send:all", 40, 24 * 60 * 60_000);
+  if (!daily.ok) {
+    return limitResponse(
+      daily,
+      "The daily send ceiling for this deployment has been reached. The drafts and their sources are all still on the page, and the exports still work.",
+    );
+  }
+
   try {
     const transport = nodemailer.createTransport({
       host: "smtp.gmail.com",
@@ -121,11 +145,10 @@ export async function POST(req: Request) {
       detail: `Sent to ${to} — message id ${info.messageId}. Check your inbox.`,
     });
   } catch (err) {
-    return NextResponse.json(
-      {
-        error: `The mail server refused the message: ${(err as Error).message}`,
-      },
-      { status: 502 },
-    );
+    // The operator needs to know why a send failed, but an SMTP rejection can
+    // quote the authenticating mailbox back, so only the reason is returned.
+    const reason = (err as Error).message.replace(/[\w.+-]+@[\w.-]+/g, "the configured mailbox");
+    console.error("send failed", err);
+    return NextResponse.json({ error: `The mail server refused the message: ${reason}` }, { status: 502 });
   }
 }

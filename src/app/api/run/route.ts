@@ -14,6 +14,7 @@ import {
   PEOPLE_SOURCES,
 } from "@/lib/sources/people";
 import { getPack, GRADED_BRIEF } from "@/lib/verticals";
+import { callerKey, limitResponse, take } from "@/lib/ratelimit";
 import { loadRun } from "@/lib/run";
 import type { EvidenceRow, SiteGeometry } from "@/lib/types";
 
@@ -46,6 +47,18 @@ export async function GET(req: Request) {
   const account = frozen?.accounts.find((a) => a.slug === slug);
   if (!frozen || !account) {
     return NextResponse.json({ error: "Unknown account." }, { status: 404 });
+  }
+
+  // Counted only once there is real work to do. Each run opens live queries
+  // against Overpass, SEC EDGAR and company sites; those are shared resources
+  // with published etiquette, and losing our access mid-review would be
+  // self-inflicted.
+  const gate = take(`run:${callerKey(req)}`, 6, 5 * 60_000);
+  if (!gate.ok) {
+    return limitResponse(
+      gate,
+      `A live run opens real queries against OpenStreetMap, SEC EDGAR and company sites, so it is capped at six every five minutes per caller. Try again in ${gate.retryAfter}s — the frozen runs on the page are the same pipeline's output and are always available.`,
+    );
   }
 
   const pack = getPack(account.verticalPackId);
