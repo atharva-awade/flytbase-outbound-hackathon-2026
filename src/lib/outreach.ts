@@ -47,6 +47,8 @@ export interface MessageStrategy {
   facts: CitedFact[];
   /** The published customer story that proves the claim, with its source. */
   proofPoint: { customer: string; claim: string; sourceUrl: string } | null;
+  /** A FlytBase customer the writer must name, as a peer, never as a figure. */
+  peerCustomer: { name: string; whyPeer: string } | null;
   /** The single interest-based ask. */
   ask: string;
   /** Site the recipient owns, when known, the specificity that lands. */
@@ -175,6 +177,7 @@ export function buildStrategy(args: {
   }
 
   const proofPoint = pack.proofPoints[0] ?? null;
+  const peerCustomer = pack.peerCustomer ?? null;
 
   const angle = site
     ? `Contracted crews currently walk ${site.name ?? "this operation"}; the same coverage can be flown from a dock without putting people in front of the hazard.`
@@ -192,6 +195,7 @@ export function buildStrategy(args: {
     angle,
     facts: facts.filter((f) => evidence[f.evidenceId]),
     proofPoint,
+    peerCustomer,
     ask:
       "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it, never for a meeting, and never propose a time.",
     site,
@@ -273,10 +277,22 @@ function buildUserPrompt(args: {
     `ASK: ${strategy.ask}`,
   ];
 
+  if (strategy.peerCustomer) {
+    lines.push(
+      "",
+      // Kept to two short lines on purpose. The first version of this block ran
+      // to three long sentences, and the extra tokens pushed every call past the
+      // free tier's 8,000 per minute ceiling, so the entire outreach stage failed
+      // with rate limits and truncated JSON. Instruction quality is not word count.
+      `NAME ONCE, as a peer already doing this: ${strategy.peerCustomer.name}.`,
+      `Attach no figure or outcome to ${strategy.peerCustomer.name}.`,
+    );
+  }
+
   if (strategy.proofPoint) {
     lines.push(
       "",
-      `REFERENCE CUSTOMER you may name: ${strategy.proofPoint.customer}.`,
+      `Figures below belong to ${strategy.proofPoint.customer}. Quote one only if you name them in the same sentence.`,
       `Published outcomes, quotable ONLY in these exact terms:`,
       ...PROOF_QUOTABLES.map((q) => `  - ${q}`),
       `Use at most ONE of those. Express it IN THE TARGET LANGUAGE, translate the meaning exactly and keep any figure identical. Do NOT copy the English wording into the message; the list above is in English only because these instructions are.`,
@@ -288,7 +304,13 @@ function buildUserPrompt(args: {
     "",
     `SIGN AS (this exact block must be the last line of the body): ${senderName}, ${senderTitle}, FlytBase`,
     "",
-    "REMINDER: 55 to 95 words. Four to seven sentences. At least two FACTS including their numbers. Ends with the signature line.",
+    // The final line carries the most weight, which is why the peer requirement is
+    // repeated here. Stated only once, further up, it was missed on eight of ten
+    // first attempts and every one of those cost a repair round against a
+    // per-minute token ceiling.
+    `REMINDER: 55 to 95 words. Four to seven sentences. At least two FACTS including their numbers.${
+      strategy.peerCustomer ? ` Name ${strategy.peerCustomer.name} once, with no figure attached.` : ""
+    } Ends with the signature line.`,
   );
 
   if (args.previousRejections?.length) {
@@ -372,6 +394,13 @@ export async function generateEmail(args: {
   let repairHint: string | undefined;
 
   for (let iteration = 1; iteration <= maxIterations; iteration++) {
+    // A generation plus its repairs costs roughly ten thousand tokens, against a
+    // free tier ceiling of eight thousand a minute. Fired back to back, the third
+    // attempt onward returned 429 and the contact ended as a null result even
+    // though the copy was one gate away from passing. Pausing between attempts is
+    // the difference between a message and a recorded failure.
+    if (iteration > 1) await new Promise((r) => setTimeout(r, 9_000));
+
     let out: WriterOutput;
     let model = "unknown";
     try {
@@ -387,7 +416,11 @@ export async function generateEmail(args: {
           previousRejections: rejections.length ? rejections : undefined,
           repairHint,
         }),
-        maxTokens: 900,
+        // Raised from 900. The failure was "max completion tokens reached before
+        // generating a complete JSON": reasoning tokens are charged against this
+        // budget, so a tight ceiling truncates the object instead of producing a
+        // shorter email.
+        maxTokens: 1_600,
         temperature: iteration === 1 ? 0.6 : 0.78,
         json: true,
       });
@@ -430,6 +463,8 @@ export async function generateEmail(args: {
         ...strategy.facts.flatMap((f) => f.text.match(/\d+(?:[.,]\d+)?/g) ?? []),
         ...(strategy.proofPoint ? ["95", "90", "70", "80", "70,000", "80,000", "1", "2"] : []),
       ],
+      peerCustomer: strategy.peerCustomer?.name,
+      proofCustomer: strategy.proofPoint?.customer,
     });
 
     const draft: EmailDraft = {
@@ -503,6 +538,12 @@ function buildRepairHint(verdict: CriticVerdict, strategy: MessageStrategy): str
   if (verdict.gates.some((g) => g.gate === "G8" && !g.passed)) {
     parts.push(
       `Remove every number that was not in the FACTS. Do not convert a described risk into a count of incidents, and do not describe the investment figure as a saving, it is what the customer spent.`,
+    );
+  }
+  if (verdict.gates.some((g) => g.gate === "G11" && !g.passed)) {
+    const g11 = verdict.gates.find((g) => g.gate === "G11");
+    parts.push(
+      `${g11?.detail ?? ""} Name the peer operator once, in a clause of your own, and keep every figure in the same sentence as the customer who reported it.`,
     );
   }
   if (verdict.gates.some((g) => g.gate === "G10" && !g.passed)) {

@@ -1,5 +1,5 @@
 {
-  "id": "run-2026-07-25-ms00dqdq",
+  "id": "run-2026-07-25-ms070k74",
   "brief": {
     "id": "brief-latam-mining",
     "verticalPackId": "mining",
@@ -21,8 +21,8 @@
     "angle": "Autonomous drone inspection replacing contracted crews at hazardous, 24/7 extraction sites"
   },
   "mode": "live",
-  "startedAt": "2026-07-25T06:48:34.851Z",
-  "finishedAt": "2026-07-25T06:49:16.238Z",
+  "startedAt": "2026-07-25T09:52:08.035Z",
+  "finishedAt": "2026-07-25T09:54:59.007Z",
   "plan": [
     {
       "agent": "terrain_surveyor",
@@ -3526,9 +3526,9 @@
         }
       ],
       "icp": {
-        "total": 94.6,
+        "total": 103.4,
         "tier": "A",
-        "tierRationale": "Scores 94.6 of 100, carried by measured site footprint (16), contractor dependency (15), commodity & extraction match (14). 1 dimension could not be scored from public evidence and contributed zero rather than an estimate: timing trigger. Tier A: work this account now.",
+        "tierRationale": "Scores 103.4 of 100, carried by measured site footprint (16), contractor dependency (15), commodity & extraction match (14). Tier A: work this account now.",
         "dimensions": [
           {
             "key": "measured_footprint",
@@ -3637,6 +3637,18 @@
             "unscored": false
           },
           {
+            "key": "trigger_signal",
+            "label": "Timing trigger",
+            "rationale": "A dated, cited event that makes contact relevant now, leadership change, incident, regulatory action, or expansion.",
+            "weight": 0.13,
+            "raw": 0.645,
+            "contribution": 8.4,
+            "evidenceIds": [
+              "ev-sqm-filing-15"
+            ],
+            "unscored": false
+          },
+          {
             "key": "capital_capacity",
             "label": "Capital capacity",
             "rationale": "Ability to fund a programme, inferred from public-market listing status and disclosed scale.",
@@ -3651,8 +3663,8 @@
             "label": "Automation readiness",
             "rationale": "Signals of digital or automation investment. Some readiness shortens the sale; a fully solved autonomy programme removes the opportunity.",
             "weight": 0.08,
-            "raw": 0.7,
-            "contribution": 5.6,
+            "raw": 0.75,
+            "contribution": 6,
             "evidenceIds": [],
             "unscored": false
           },
@@ -3669,16 +3681,6 @@
               "ev-sqm-person-23"
             ],
             "unscored": false
-          },
-          {
-            "key": "trigger_signal",
-            "label": "Timing trigger",
-            "rationale": "A dated, cited event that makes contact relevant now, leadership change, incident, regulatory action, or expansion.",
-            "weight": 0.13,
-            "raw": 0,
-            "contribution": 0,
-            "evidenceIds": [],
-            "unscored": true
           }
         ],
         "disqualifiers": []
@@ -3814,7 +3816,19 @@
         ],
         "interpretation": "The filing refers to contractors 31 time(s), including in its risk factors, contractor dependency is disclosed as material to production. Safety incidents are named as a risk to operations (2 reference(s)). No autonomy programme is disclosed at filing level: drone, autonomous and automation each appear zero times. This indicates undisclosed whitespace rather than a solved problem, and is a conversation opener rather than a conclusion."
       },
-      "signals": [],
+      "signals": [
+        {
+          "id": "sig-sqm-tech-whitespace",
+          "kind": "technology",
+          "headline": "SQM's own annual filing never uses the words drone, autonomous, automation, while referring to contractors 27 time(s)",
+          "occurredAt": "2026-04-22",
+          "soWhat": "Automated inspection is absent from the document the company files about its own operations, so there is no incumbent programme to displace and no internal position to argue against. The exposure it would remove, contracted crews at hazardous sites, is disclosed in the same document. Greenfield, evidenced by the company itself rather than by our reading of the market.",
+          "urgency": 0.7,
+          "evidenceIds": [
+            "ev-sqm-filing-15"
+          ]
+        }
+      ],
       "anchorComparison": {
         "value": "SQM is the reference account. Its measured profile defines the target: 548.5 km² of mapped footprint across 49 site(s), with 34 contractor reference(s) in its own primary filing.",
         "evidenceIds": [
@@ -22437,9 +22451,9 @@
         }
       ],
       "icp": {
-        "total": 67.2,
-        "tier": "B",
-        "tierRationale": "Scores 67.2 of 100, carried by contractor dependency (15), regulated hazard exposure (12), measured site footprint (11.2). 1 dimension could not be scored from public evidence and contributed zero rather than an estimate: timing trigger. Tier B: worth a sequence once Tier A is in motion.",
+        "total": 76.8,
+        "tier": "A",
+        "tierRationale": "Scores 76.8 of 100, carried by contractor dependency (15), regulated hazard exposure (12), measured site footprint (11.2). Tier A: work this account now.",
         "dimensions": [
           {
             "key": "contractor_dependency",
@@ -22493,6 +22507,19 @@
               "ev-vale-geo-102",
               "ev-vale-geo-103",
               "ev-vale-geo-104"
+            ],
+            "unscored": false
+          },
+          {
+            "key": "trigger_signal",
+            "label": "Timing trigger",
+            "rationale": "A dated, cited event that makes contact relevant now, leadership change, incident, regulatory action, or expansion.",
+            "weight": 0.13,
+            "raw": 0.737,
+            "contribution": 9.6,
+            "evidenceIds": [
+              "ev-vale-filing-105",
+              "ev-vale-filing-105"
             ],
             "unscored": false
           },
@@ -22579,16 +22606,6 @@
               "ev-vale-geo-92"
             ],
             "unscored": false
-          },
-          {
-            "key": "trigger_signal",
-            "label": "Timing trigger",
-            "rationale": "A dated, cited event that makes contact relevant now, leadership change, incident, regulatory action, or expansion.",
-            "weight": 0.13,
-            "raw": 0,
-            "contribution": 0,
-            "evidenceIds": [],
-            "unscored": true
           }
         ],
         "disqualifiers": []
@@ -22695,7 +22712,30 @@
         ],
         "interpretation": "The filing refers to contractors 44 time(s), including in its risk factors, contractor dependency is disclosed as material to production. Safety incidents are named as a risk to operations (1 reference(s))."
       },
-      "signals": [],
+      "signals": [
+        {
+          "id": "sig-vale-tech-whitespace",
+          "kind": "technology",
+          "headline": "Vale's own annual filing never uses the words drone, automation, while referring to contractors 44 time(s)",
+          "occurredAt": "2026-03-27",
+          "soWhat": "Automated inspection is absent from the document the company files about its own operations, so there is no incumbent programme to displace and no internal position to argue against. The exposure it would remove, contracted crews at hazardous sites, is disclosed in the same document. Greenfield, evidenced by the company itself rather than by our reading of the market.",
+          "urgency": 0.7,
+          "evidenceIds": [
+            "ev-vale-filing-105"
+          ]
+        },
+        {
+          "id": "sig-vale-tech-invested",
+          "kind": "technology",
+          "headline": "Vale's annual filing already discusses autonomous",
+          "occurredAt": "2026-03-27",
+          "soWhat": "The company has already accepted the category in a filed document, so the conversation starts at scope and integration rather than at whether autonomous inspection is credible. Ask what is deployed today and where it stops.",
+          "urgency": 0.75,
+          "evidenceIds": [
+            "ev-vale-filing-105"
+          ]
+        }
+      ],
       "anchorComparison": {
         "value": "Vale carries 81.5 km² of mapped footprint across 36 site(s), which is 0.15× the reference account's measured footprint. Commodities recorded on its geometry: gold, iron_ore. The strongest single entry point is way/978837129 at 16.85 km², which is where a one-dock phase one would sit. Its own annual filing refers to contractors 44 time(s), which is the incumbent cost the angle displaces.",
         "evidenceIds": [
@@ -33462,8 +33502,8 @@
           "id": "contact-teck-qb-cristian-soto-araneda",
           "tier": "NAMED_PUBLIC_PROFILE",
           "name": "Cristian Soto araneda",
-          "titleVerbatim": "Gerente Seguridad , Salud y",
-          "titleEnglish": "Gerente Seguridad , Salud y",
+          "titleVerbatim": "Gerente Seguridad",
+          "titleEnglish": "Gerente Seguridad",
           "targetRole": "VP of HSE",
           "buyingRole": "risk_validator",
           "seniority": "head",
@@ -38402,7 +38442,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/865810492",
       "sourceTitle": "OpenStreetMap way/865810492",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.895Z",
+      "fetchedAt": "2026-07-25T09:52:08.082Z",
       "verbatim": "way/865810492 · industrial=solution_mine · landuse=industrial · name=SQM Salar de Atacama · operator=SQM S.A. · resource=lithium · website=https://www.sqm.com/",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38417,7 +38457,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/1230670131",
       "sourceTitle": "OpenStreetMap way/1230670131",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.895Z",
+      "fetchedAt": "2026-07-25T09:52:08.082Z",
       "verbatim": "way/1230670131 · industrial=mine · landuse=industrial · name=Area de Mina Norte 5 Nueva Victoria · operator=SQM Industrial S.A. · resource=iodine;nitrate",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38432,7 +38472,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/1230670130",
       "sourceTitle": "OpenStreetMap way/1230670130",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.895Z",
+      "fetchedAt": "2026-07-25T09:52:08.082Z",
       "verbatim": "way/1230670130 · industrial=mine · landuse=industrial · name=Área Mina Sur 1 Nueva Victoria · operator=SQM Industrial S.A. · resource=iodine;nitrate",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38447,7 +38487,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/1230670128",
       "sourceTitle": "OpenStreetMap way/1230670128",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.895Z",
+      "fetchedAt": "2026-07-25T09:52:08.082Z",
       "verbatim": "way/1230670128 · industrial=mine · landuse=industrial · name=Mina Nueva Victoria · operator=SQM Industrial S.A. · resource=iodine;nitrate",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38462,7 +38502,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/1230670129",
       "sourceTitle": "OpenStreetMap way/1230670129",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.895Z",
+      "fetchedAt": "2026-07-25T09:52:08.082Z",
       "verbatim": "way/1230670129 · industrial=mine · landuse=industrial · name=Área Mina Sur 2 Nueva Victoria · operator=SQM Industrial S.A. · resource=iodine;nitrate",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38477,7 +38517,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/1230670127",
       "sourceTitle": "OpenStreetMap way/1230670127",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.895Z",
+      "fetchedAt": "2026-07-25T09:52:08.082Z",
       "verbatim": "way/1230670127 · industrial=mine · landuse=industrial · name=Área Mina Sur 5 Nueva Victoria · operator=SQM Industrial S.A. · resource=iodine;nitrate",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38492,7 +38532,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/1034267692",
       "sourceTitle": "OpenStreetMap way/1034267692",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.895Z",
+      "fetchedAt": "2026-07-25T09:52:08.082Z",
       "verbatim": "way/1034267692 · industrial=solution_mine · landuse=industrial · name=Faena Nueva Victoria SQM S.A. · resource=iodine",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38507,7 +38547,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/1230572986",
       "sourceTitle": "OpenStreetMap way/1230572986",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.895Z",
+      "fetchedAt": "2026-07-25T09:52:08.082Z",
       "verbatim": "way/1230572986 · industrial=mine · landuse=industrial · name=Mina Pampa Blanca · operator=SQM Industrial S.A. · resource=iodine;nitrate",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38522,7 +38562,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/93763635",
       "sourceTitle": "OpenStreetMap way/93763635",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.895Z",
+      "fetchedAt": "2026-07-25T09:52:08.082Z",
       "verbatim": "way/93763635 · industrial=solution_mine · landuse=industrial · name=Planta de Evaporacion Solar Coya Sur (SQM) · resource=nitrate",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38537,7 +38577,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/171600008",
       "sourceTitle": "OpenStreetMap way/171600008",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.895Z",
+      "fetchedAt": "2026-07-25T09:52:08.082Z",
       "verbatim": "way/171600008 · industrial=mineral_processing · landuse=industrial · name=SQM Salar del Carmen · resource=lithium · website=https://www.sqm.com/producto/carbonato-de-litio/",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38552,7 +38592,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/354932476",
       "sourceTitle": "OpenStreetMap way/354932476",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.895Z",
+      "fetchedAt": "2026-07-25T09:52:08.082Z",
       "verbatim": "way/354932476 · landuse=quarry",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38567,7 +38607,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/338256822",
       "sourceTitle": "OpenStreetMap way/338256822",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.895Z",
+      "fetchedAt": "2026-07-25T09:52:08.082Z",
       "verbatim": "way/338256822 · industrial=solution_mine · landuse=industrial · name=Planta de Yodo Iris-Granja · owner=DSM Minera S.C.M. · resource=iodine · website=https://www.dsm.com/corporate/home.html",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38582,7 +38622,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/874420135",
       "sourceTitle": "OpenStreetMap way/874420135",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.895Z",
+      "fetchedAt": "2026-07-25T09:52:08.082Z",
       "verbatim": "way/874420135 · landuse=salt_pond · operator=SQM S.A.",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38597,7 +38637,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/874420134",
       "sourceTitle": "OpenStreetMap way/874420134",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.895Z",
+      "fetchedAt": "2026-07-25T09:52:08.082Z",
       "verbatim": "way/874420134 · landuse=salt_pond · operator=SQM S.A.",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38610,7 +38650,7 @@
       "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909037/000090903726000023/sqm-20251231.htm",
       "sourceTitle": "CHEMICAL & MINING CO OF CHILE INC 20-F filed 2026-04-22",
       "sourceClass": "primary_filing",
-      "fetchedAt": "2026-07-25T06:48:34.912Z",
+      "fetchedAt": "2026-07-25T09:52:08.100Z",
       "verbatim": "d regulations could expose us to higher costs, liabilities, claims, failure to meet current and future production targets or cause material changes, delays or stoppages in our operations. • The occurrence of an accident or safety incident involving employees, contractors or others can result in injuries, disabilities or loss of life, which could expose us to operational slowdowns, stoppages or delays, significant financial losses and reputational harm, as well as civil and criminal liabilities. • Our exports pose special ris",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38622,7 +38662,7 @@
       "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909037/000090903726000023/sqm-20251231.htm",
       "sourceTitle": "CHEMICAL & MINING CO OF CHILE INC 20-F filed 2026-04-22",
       "sourceClass": "primary_filing",
-      "fetchedAt": "2026-07-25T06:48:34.912Z",
+      "fetchedAt": "2026-07-25T09:52:08.100Z",
       "verbatim": "on Division and 3 to the Lithium Chile Division. We are exposed to labor strikes and illegal work stoppages by both our own employees and our independent contractors' employees that could impact our production levels in both our own plants and our independent contractors' plants. If a strike or illegal work stoppage occurs and continues for a sustained period of time, we could be faced with increased costs and even disruption in our product flow that could have a material adverse effect on our business, financial condition a",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38634,7 +38674,7 @@
       "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909037/000090903726000023/sqm-20251231.htm",
       "sourceTitle": "CHEMICAL & MINING CO OF CHILE INC 20-F filed 2026-04-22",
       "sourceClass": "primary_filing",
-      "fetchedAt": "2026-07-25T06:48:34.912Z",
+      "fetchedAt": "2026-07-25T09:52:08.100Z",
       "verbatim": "d regulations could expose us to higher costs, liabilities, claims, failure to meet current and future production targets or cause material changes, delays or stoppages in our operations. • The occurrence of an accident or safety incident involving employees, contractors or others can result in injuries, disabilities or loss of life, which could expose us to operational slowdowns, stoppages or delays, significant financial losses and reputational harm, as well as civil and criminal liabilities. • Our exports pose special risk",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38646,7 +38686,7 @@
       "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909037/000090903726000023/sqm-20251231.htm",
       "sourceTitle": "CHEMICAL & MINING CO OF CHILE INC 20-F filed 2026-04-22",
       "sourceClass": "primary_filing",
-      "fetchedAt": "2026-07-25T06:48:34.912Z",
+      "fetchedAt": "2026-07-25T09:52:08.100Z",
       "verbatim": "on Division and 3 to the Lithium Chile Division. We are exposed to labor strikes and illegal work stoppages by both our own employees and our independent contractors' employees that could impact our production levels in both our own plants and our independent contractors' plants. If a strike or illegal work stoppage occurs and continues for a sustained period of time, we could be faced with increased costs and even disruption in our product flow that could have a material adverse effect on our business, financial condition an",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38658,7 +38698,7 @@
       "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909037/000090903726000023/sqm-20251231.htm",
       "sourceTitle": "CHEMICAL & MINING CO OF CHILE INC 20-F filed 2026-04-22",
       "sourceClass": "primary_filing",
-      "fetchedAt": "2026-07-25T06:48:34.912Z",
+      "fetchedAt": "2026-07-25T09:52:08.100Z",
       "verbatim": "al condition and results of operations. In April 2023, Law No. 21,561 was published, which established a reduction in the weekly working day from 45 to 40 hours. This reduction in working hours will imply increases in labor costs for both direct employees and subcontracted personnel. See \"Item 3.D. Risk Factors—Risks Relating to Our Business—We are exposed to labor strikes and labor liabilities that could impact our production levels and costs.\" In addition, we are subject to Law No. 20,393, which establishes criminal liabili",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38670,7 +38710,7 @@
       "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909037/000090903726000023/sqm-20251231.htm",
       "sourceTitle": "CHEMICAL & MINING CO OF CHILE INC 20-F filed 2026-04-22",
       "sourceClass": "primary_filing",
-      "fetchedAt": "2026-07-25T06:48:34.912Z",
+      "fetchedAt": "2026-07-25T09:52:08.100Z",
       "verbatim": ", in 2022 Law No. 21,420 was published (later modified by Law No. 21,649 of 2023 and Law No. 21,713 of 2024) which considerably increased the amount payable for mining exploitation and exploration patents. We are also subject to the Chilean Labor Code and the Subcontracting Law No 20,123, which are overseen by the Labor Authority ( Dirección del Trabajo), the National Geology and Mining Service ( Servicio Nacional de Geología y Minería) or \"Sernageomin\", and the National Health Service. Recent changes to these laws and their",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38682,8 +38722,8 @@
       "sourceUrl": "https://sqm.com/acerca-de-sqm/directorio-y-administracion/administracion/",
       "sourceTitle": "Company-published administration page. Several plausible English-language paths return HTTP 200 while silently serving the homepage, so the Spanish path is treated as authoritative and soft-404 detection is applied.",
       "sourceClass": "company_primary",
-      "fetchedAt": "2026-07-25T06:48:34.925Z",
-      "verbatim": "Gerente General — Ricardo Ramos",
+      "fetchedAt": "2026-07-25T09:52:08.114Z",
+      "verbatim": "Gerente General: Ricardo Ramos",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -38694,8 +38734,8 @@
       "sourceUrl": "https://sqm.com/acerca-de-sqm/directorio-y-administracion/administracion/",
       "sourceTitle": "Company-published administration page. Several plausible English-language paths return HTTP 200 while silently serving the homepage, so the Spanish path is treated as authoritative and soft-404 detection is applied.",
       "sourceClass": "company_primary",
-      "fetchedAt": "2026-07-25T06:48:34.926Z",
-      "verbatim": "Gerente General División Yodo - Nutrición Vegetal — Pablo Altimiras",
+      "fetchedAt": "2026-07-25T09:52:08.115Z",
+      "verbatim": "Gerente General División Yodo - Nutrición Vegetal: Pablo Altimiras",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -38706,8 +38746,8 @@
       "sourceUrl": "https://sqm.com/acerca-de-sqm/directorio-y-administracion/administracion/",
       "sourceTitle": "Company-published administration page. Several plausible English-language paths return HTTP 200 while silently serving the homepage, so the Spanish path is treated as authoritative and soft-404 detection is applied.",
       "sourceClass": "company_primary",
-      "fetchedAt": "2026-07-25T06:48:34.926Z",
-      "verbatim": "Gerente General Nova Andino Litio — Carlos Díaz Ortiz",
+      "fetchedAt": "2026-07-25T09:52:08.115Z",
+      "verbatim": "Gerente General Nova Andino Litio: Carlos Díaz Ortiz",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -38718,8 +38758,8 @@
       "sourceUrl": "https://sqm.com/acerca-de-sqm/directorio-y-administracion/administracion/",
       "sourceTitle": "Company-published administration page. Several plausible English-language paths return HTTP 200 while silently serving the homepage, so the Spanish path is treated as authoritative and soft-404 detection is applied.",
       "sourceClass": "company_primary",
-      "fetchedAt": "2026-07-25T06:48:34.926Z",
-      "verbatim": "Vicepresidente de Finanzas — Gerardo Illanes",
+      "fetchedAt": "2026-07-25T09:52:08.116Z",
+      "verbatim": "Vicepresidente de Finanzas: Gerardo Illanes",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -38730,8 +38770,8 @@
       "sourceUrl": "https://sqm.com/acerca-de-sqm/directorio-y-administracion/administracion/",
       "sourceTitle": "Company-published administration page. Several plausible English-language paths return HTTP 200 while silently serving the homepage, so the Spanish path is treated as authoritative and soft-404 detection is applied.",
       "sourceClass": "company_primary",
-      "fetchedAt": "2026-07-25T06:48:34.927Z",
-      "verbatim": "Gerente General División Litio Internacional — Mark Fones",
+      "fetchedAt": "2026-07-25T09:52:08.116Z",
+      "verbatim": "Gerente General División Litio Internacional: Mark Fones",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -38742,7 +38782,7 @@
       "sourceUrl": "https://dns.google/resolve?name=sqm.com&type=MX",
       "sourceTitle": "MX records for sqm.com",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.932Z",
+      "fetchedAt": "2026-07-25T09:52:08.122Z",
       "verbatim": "MX lookup for sqm.com resolves to Microsoft 365 (sqm-com.mail.protection.outlook.com)",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38756,7 +38796,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/355143359",
       "sourceTitle": "OpenStreetMap way/355143359",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.934Z",
+      "fetchedAt": "2026-07-25T09:52:08.124Z",
       "verbatim": "way/355143359 · industrial=mine · landuse=industrial · name=División Radomiro Tomic · operator=Codelco · resource=copper · website=https://www.codelco.com/radomirotomic · wikipedia=es:Radomiro Tomic (mina)",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38771,7 +38811,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/355143364",
       "sourceTitle": "OpenStreetMap way/355143364",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.934Z",
+      "fetchedAt": "2026-07-25T09:52:08.124Z",
       "verbatim": "way/355143364 · industrial=mine · landuse=industrial · name=División Chuquicamata · operator=Codelco · resource=copper · website=https://www.codelco.com/prontus_codelco/site/edic/base/port/inicio.html · wikidata=Q746606 · wikipedia=es:Chuquicamata",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38786,7 +38826,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/251446165",
       "sourceTitle": "OpenStreetMap way/251446165",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.934Z",
+      "fetchedAt": "2026-07-25T09:52:08.124Z",
       "verbatim": "way/251446165 · industrial=mine · landuse=industrial · name=Codelco Chile División Andina · operator=Codelco · resource=copper;molybdenum · website=https://www.codelco.com/division-andina",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38801,7 +38841,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/355367015",
       "sourceTitle": "OpenStreetMap way/355367015",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.934Z",
+      "fetchedAt": "2026-07-25T09:52:08.124Z",
       "verbatim": "way/355367015 · check_date=2025-08-03 · industrial=mine · landuse=industrial · name=Mina El Teniente · official_name=Codelco División El Teniente · operator=Codelco · resource=copper · start_date=1905 · website=https://www.codelco.com/division-el-teniente · wikidata=Q529024 · wikimedia_commons=Category:El Teniente · wikipedia=es:El Teniente",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38816,7 +38856,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/376595696",
       "sourceTitle": "OpenStreetMap way/376595696",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.934Z",
+      "fetchedAt": "2026-07-25T09:52:08.124Z",
       "verbatim": "way/376595696 · industrial=mine · landuse=industrial · name=Mina Sur · operator=Codelco · resource=copper",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38831,7 +38871,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/886558255",
       "sourceTitle": "OpenStreetMap way/886558255",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.934Z",
+      "fetchedAt": "2026-07-25T09:52:08.124Z",
       "verbatim": "way/886558255 · landuse=quarry · name=Mina Chuquicamata · operator=Codelco Chile · resource=copper",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38846,7 +38886,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/868439606",
       "sourceTitle": "OpenStreetMap way/868439606",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.934Z",
+      "fetchedAt": "2026-07-25T09:52:08.124Z",
       "verbatim": "way/868439606 · landuse=quarry · name=Mina Radomiro Tomic · operator=Codelco · resource=copper · wikidata=Q7281555 · wikipedia=es:Radomiro Tomic (mina)",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38861,7 +38901,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/1264484617",
       "sourceTitle": "OpenStreetMap way/1264484617",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.934Z",
+      "fetchedAt": "2026-07-25T09:52:08.124Z",
       "verbatim": "way/1264484617 · landuse=quarry · name=Rajo Don Luis · operator=Codelco Chile División Andina · resource=copper;molybdenum",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38876,7 +38916,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/884219252",
       "sourceTitle": "OpenStreetMap way/884219252",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.934Z",
+      "fetchedAt": "2026-07-25T09:52:08.124Z",
       "verbatim": "way/884219252 · disused=quarry · landuse=quarry · name=Mina Sur · operator=Codelco Chile · resource=copper",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38891,7 +38931,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/868387958",
       "sourceTitle": "OpenStreetMap way/868387958",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.934Z",
+      "fetchedAt": "2026-07-25T09:52:08.124Z",
       "verbatim": "way/868387958 · landuse=quarry · name=Mina Ministro Hales · operator=Codelco Chile · resource=copper;molybdenium",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38906,7 +38946,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/354926375",
       "sourceTitle": "OpenStreetMap way/354926375",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.934Z",
+      "fetchedAt": "2026-07-25T09:52:08.124Z",
       "verbatim": "way/354926375 · landuse=quarry · name=Mina Gabriela Mistral · operator=Codelco Chile · resource=copper · website=https://www.codelco.com/gabrielamistral · wikipedia=es:Gran Minería del Cobre en Chile#Empresas productoras de la gran miner.C3.ADa del cobre",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38921,7 +38961,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/1228683118",
       "sourceTitle": "OpenStreetMap way/1228683118",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.934Z",
+      "fetchedAt": "2026-07-25T09:52:08.124Z",
       "verbatim": "way/1228683118 · landuse=quarry · name=Rajo Campamento Antiguo · operator=Codelco · resource=copper",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38936,7 +38976,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/354926376",
       "sourceTitle": "OpenStreetMap way/354926376",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.934Z",
+      "fetchedAt": "2026-07-25T09:52:08.124Z",
       "verbatim": "way/354926376 · landuse=quarry · name=Mina Gabriela Mistral · operator=Codelco Chile · resource=copper · website=https://www.codelco.com/gabrielamistral · wikipedia=es:Gran Minería del Cobre en Chile#Empresas productoras de la gran miner.C3.ADa del cobre",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38951,7 +38991,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/1228823334",
       "sourceTitle": "OpenStreetMap way/1228823334",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.934Z",
+      "fetchedAt": "2026-07-25T09:52:08.124Z",
       "verbatim": "way/1228823334 · landuse=quarry · name=Rajo Damiana Central · operator=Codelco · resource=copper",
       "language": "en",
       "confidence": "VERIFIED",
@@ -38964,8 +39004,8 @@
       "sourceUrl": "https://www.codelco.com/transparencia/responsables-de-la-administracion",
       "sourceTitle": "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública, which obliges state-owned enterprises to disclose the officers responsible for administration, the date each entered the role, and whether the appointment is permanent or interim.",
       "sourceClass": "statutory_disclosure",
-      "fetchedAt": "2026-07-25T06:48:34.936Z",
-      "verbatim": "Presidente Ejecutivo — Jorge Gómez Díaz · Fecha ingreso al cargo: 2026-07-13 · Carácter del cargo: Indefinido",
+      "fetchedAt": "2026-07-25T09:52:08.126Z",
+      "verbatim": "Presidente Ejecutivo: Jorge Gómez Díaz · Fecha ingreso al cargo: 2026-07-13 · Carácter del cargo: Indefinido",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -38976,8 +39016,8 @@
       "sourceUrl": "https://www.codelco.com/transparencia/responsables-de-la-administracion",
       "sourceTitle": "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública, which obliges state-owned enterprises to disclose the officers responsible for administration, the date each entered the role, and whether the appointment is permanent or interim.",
       "sourceClass": "statutory_disclosure",
-      "fetchedAt": "2026-07-25T06:48:34.936Z",
-      "verbatim": "Vicepresidente de Finanzas — Alejandro Sanhueza Díaz · Fecha ingreso al cargo: 2024-02-01 · Carácter del cargo: Indefinido",
+      "fetchedAt": "2026-07-25T09:52:08.127Z",
+      "verbatim": "Vicepresidente de Finanzas: Alejandro Sanhueza Díaz · Fecha ingreso al cargo: 2024-02-01 · Carácter del cargo: Indefinido",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -38988,8 +39028,8 @@
       "sourceUrl": "https://www.codelco.com/transparencia/responsables-de-la-administracion",
       "sourceTitle": "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública, which obliges state-owned enterprises to disclose the officers responsible for administration, the date each entered the role, and whether the appointment is permanent or interim.",
       "sourceClass": "statutory_disclosure",
-      "fetchedAt": "2026-07-25T06:48:34.937Z",
-      "verbatim": "Vicepresidente de Asuntos Corporativos y Sustentabilidad — Gabriel Méndez Serqueira · Fecha ingreso al cargo: 2024-04-22 · Carácter del cargo: Indefinido",
+      "fetchedAt": "2026-07-25T09:52:08.127Z",
+      "verbatim": "Vicepresidente de Asuntos Corporativos y Sustentabilidad: Gabriel Méndez Serqueira · Fecha ingreso al cargo: 2024-04-22 · Carácter del cargo: Indefinido",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -39000,8 +39040,8 @@
       "sourceUrl": "https://www.codelco.com/transparencia/responsables-de-la-administracion",
       "sourceTitle": "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública, which obliges state-owned enterprises to disclose the officers responsible for administration, the date each entered the role, and whether the appointment is permanent or interim.",
       "sourceClass": "statutory_disclosure",
-      "fetchedAt": "2026-07-25T06:48:34.937Z",
-      "verbatim": "Vicepresidencia de Recursos Mineros, Desarrollo e Innovación — Julio Díaz Rivera · Fecha ingreso al cargo: 2025-02-01 · Carácter del cargo: Indefinido",
+      "fetchedAt": "2026-07-25T09:52:08.127Z",
+      "verbatim": "Vicepresidencia de Recursos Mineros, Desarrollo e Innovación: Julio Díaz Rivera · Fecha ingreso al cargo: 2025-02-01 · Carácter del cargo: Indefinido",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -39012,8 +39052,8 @@
       "sourceUrl": "https://www.codelco.com/transparencia/responsables-de-la-administracion",
       "sourceTitle": "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública, which obliges state-owned enterprises to disclose the officers responsible for administration, the date each entered the role, and whether the appointment is permanent or interim.",
       "sourceClass": "statutory_disclosure",
-      "fetchedAt": "2026-07-25T06:48:34.937Z",
-      "verbatim": "Vicepresidente de Proyectos — Julio Cuevas Ross · Fecha ingreso al cargo: 2022-12-12 · Carácter del cargo: Indefinido",
+      "fetchedAt": "2026-07-25T09:52:08.127Z",
+      "verbatim": "Vicepresidente de Proyectos: Julio Cuevas Ross · Fecha ingreso al cargo: 2022-12-12 · Carácter del cargo: Indefinido",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -39024,8 +39064,8 @@
       "sourceUrl": "https://www.codelco.com/transparencia/responsables-de-la-administracion",
       "sourceTitle": "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública, which obliges state-owned enterprises to disclose the officers responsible for administration, the date each entered the role, and whether the appointment is permanent or interim.",
       "sourceClass": "statutory_disclosure",
-      "fetchedAt": "2026-07-25T06:48:34.937Z",
-      "verbatim": "Vicepresidencia de Integración de Operaciones Andina — Gonzalo Lara Skiba · Fecha ingreso al cargo: 2025-11-01 · Carácter del cargo: Indefinido",
+      "fetchedAt": "2026-07-25T09:52:08.127Z",
+      "verbatim": "Vicepresidencia de Integración de Operaciones Andina: Gonzalo Lara Skiba · Fecha ingreso al cargo: 2025-11-01 · Carácter del cargo: Indefinido",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -39036,8 +39076,8 @@
       "sourceUrl": "https://www.codelco.com/transparencia/responsables-de-la-administracion",
       "sourceTitle": "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública, which obliges state-owned enterprises to disclose the officers responsible for administration, the date each entered the role, and whether the appointment is permanent or interim.",
       "sourceClass": "statutory_disclosure",
-      "fetchedAt": "2026-07-25T06:48:34.937Z",
-      "verbatim": "Vicepresidente de Operaciones (i) — Lindor Quiroga B. · Fecha ingreso al cargo: 2026-02-13 · Carácter del cargo: Interino",
+      "fetchedAt": "2026-07-25T09:52:08.127Z",
+      "verbatim": "Vicepresidente de Operaciones (i): Lindor Quiroga B. · Fecha ingreso al cargo: 2026-02-13 · Carácter del cargo: Interino",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -39048,8 +39088,8 @@
       "sourceUrl": "https://www.codelco.com/transparencia/responsables-de-la-administracion",
       "sourceTitle": "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública, which obliges state-owned enterprises to disclose the officers responsible for administration, the date each entered the role, and whether the appointment is permanent or interim.",
       "sourceClass": "statutory_disclosure",
-      "fetchedAt": "2026-07-25T06:48:34.937Z",
-      "verbatim": "Gerente General División Radomiro Tomic — Claudia Domínguez Sepúlveda · Fecha ingreso al cargo: 2025-02-01 · Carácter del cargo: Indefinido",
+      "fetchedAt": "2026-07-25T09:52:08.127Z",
+      "verbatim": "Gerente General División Radomiro Tomic: Claudia Domínguez Sepúlveda · Fecha ingreso al cargo: 2025-02-01 · Carácter del cargo: Indefinido",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -39060,8 +39100,8 @@
       "sourceUrl": "https://www.codelco.com/transparencia/responsables-de-la-administracion",
       "sourceTitle": "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública, which obliges state-owned enterprises to disclose the officers responsible for administration, the date each entered the role, and whether the appointment is permanent or interim.",
       "sourceClass": "statutory_disclosure",
-      "fetchedAt": "2026-07-25T06:48:34.937Z",
-      "verbatim": "Gerente General División Chuquicamata — René Galleguillos Pallauta · Fecha ingreso al cargo: 2024-07-23 · Carácter del cargo: Indefinido",
+      "fetchedAt": "2026-07-25T09:52:08.127Z",
+      "verbatim": "Gerente General División Chuquicamata: René Galleguillos Pallauta · Fecha ingreso al cargo: 2024-07-23 · Carácter del cargo: Indefinido",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -39072,8 +39112,8 @@
       "sourceUrl": "https://www.codelco.com/transparencia/responsables-de-la-administracion",
       "sourceTitle": "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública, which obliges state-owned enterprises to disclose the officers responsible for administration, the date each entered the role, and whether the appointment is permanent or interim.",
       "sourceClass": "statutory_disclosure",
-      "fetchedAt": "2026-07-25T06:48:34.937Z",
-      "verbatim": "Gerente General División Gabriela Mistral — Claudia Cabrera Correa · Fecha ingreso al cargo: 2023-06-01 · Carácter del cargo: Indefinido",
+      "fetchedAt": "2026-07-25T09:52:08.127Z",
+      "verbatim": "Gerente General División Gabriela Mistral: Claudia Cabrera Correa · Fecha ingreso al cargo: 2023-06-01 · Carácter del cargo: Indefinido",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -39084,8 +39124,8 @@
       "sourceUrl": "https://www.codelco.com/transparencia/responsables-de-la-administracion",
       "sourceTitle": "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública, which obliges state-owned enterprises to disclose the officers responsible for administration, the date each entered the role, and whether the appointment is permanent or interim.",
       "sourceClass": "statutory_disclosure",
-      "fetchedAt": "2026-07-25T06:48:34.937Z",
-      "verbatim": "Gerente General División Ministro Hales (i) — César Jiménez Soto · Fecha ingreso al cargo: 2025-11-01 · Carácter del cargo: Interino",
+      "fetchedAt": "2026-07-25T09:52:08.127Z",
+      "verbatim": "Gerente General División Ministro Hales (i): César Jiménez Soto · Fecha ingreso al cargo: 2025-11-01 · Carácter del cargo: Interino",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -39096,8 +39136,8 @@
       "sourceUrl": "https://www.codelco.com/transparencia/responsables-de-la-administracion",
       "sourceTitle": "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública, which obliges state-owned enterprises to disclose the officers responsible for administration, the date each entered the role, and whether the appointment is permanent or interim.",
       "sourceClass": "statutory_disclosure",
-      "fetchedAt": "2026-07-25T06:48:34.937Z",
-      "verbatim": "Gerente General División Salvador — Patricio Viveros L. · Fecha ingreso al cargo: 2025-09-26 · Carácter del cargo: Indefinido",
+      "fetchedAt": "2026-07-25T09:52:08.127Z",
+      "verbatim": "Gerente General División Salvador: Patricio Viveros L. · Fecha ingreso al cargo: 2025-09-26 · Carácter del cargo: Indefinido",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -39108,8 +39148,8 @@
       "sourceUrl": "https://www.codelco.com/transparencia/responsables-de-la-administracion",
       "sourceTitle": "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública, which obliges state-owned enterprises to disclose the officers responsible for administration, the date each entered the role, and whether the appointment is permanent or interim.",
       "sourceClass": "statutory_disclosure",
-      "fetchedAt": "2026-07-25T06:48:34.937Z",
-      "verbatim": "Gerente General División Andina (s) — Claudio Canut D. · Fecha ingreso al cargo: 2026-02-13 · Carácter del cargo: Subrogante",
+      "fetchedAt": "2026-07-25T09:52:08.127Z",
+      "verbatim": "Gerente General División Andina (s): Claudio Canut D. · Fecha ingreso al cargo: 2026-02-13 · Carácter del cargo: Subrogante",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -39120,8 +39160,8 @@
       "sourceUrl": "https://www.codelco.com/transparencia/responsables-de-la-administracion",
       "sourceTitle": "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública, which obliges state-owned enterprises to disclose the officers responsible for administration, the date each entered the role, and whether the appointment is permanent or interim.",
       "sourceClass": "statutory_disclosure",
-      "fetchedAt": "2026-07-25T06:48:34.937Z",
-      "verbatim": "Gerente General División Ventanas — Ricardo Weishaupt Hidalgo · Fecha ingreso al cargo: 2020-11-01 · Carácter del cargo: Indefinido",
+      "fetchedAt": "2026-07-25T09:52:08.127Z",
+      "verbatim": "Gerente General División Ventanas: Ricardo Weishaupt Hidalgo · Fecha ingreso al cargo: 2020-11-01 · Carácter del cargo: Indefinido",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -39132,8 +39172,8 @@
       "sourceUrl": "https://www.codelco.com/transparencia/responsables-de-la-administracion",
       "sourceTitle": "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública, which obliges state-owned enterprises to disclose the officers responsible for administration, the date each entered the role, and whether the appointment is permanent or interim.",
       "sourceClass": "statutory_disclosure",
-      "fetchedAt": "2026-07-25T06:48:34.937Z",
-      "verbatim": "Gerente General División El Teniente (i) — Gustavo Reyes B. · Fecha ingreso al cargo: 2026-02-13 · Carácter del cargo: Interino",
+      "fetchedAt": "2026-07-25T09:52:08.128Z",
+      "verbatim": "Gerente General División El Teniente (i): Gustavo Reyes B. · Fecha ingreso al cargo: 2026-02-13 · Carácter del cargo: Interino",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -39144,8 +39184,8 @@
       "sourceUrl": "https://www.codelco.com/transparencia/gerencias-divisionales",
       "sourceTitle": "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública. Lists the General Manager of each operating division.",
       "sourceClass": "statutory_disclosure",
-      "fetchedAt": "2026-07-25T06:48:34.938Z",
-      "verbatim": "Gerente General División Chuquicamata — René Galleguillos P.",
+      "fetchedAt": "2026-07-25T09:52:08.129Z",
+      "verbatim": "Gerente General División Chuquicamata: René Galleguillos P.",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -39156,8 +39196,8 @@
       "sourceUrl": "https://www.codelco.com/transparencia/gerencias-divisionales",
       "sourceTitle": "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública. Lists the General Manager of each operating division.",
       "sourceClass": "statutory_disclosure",
-      "fetchedAt": "2026-07-25T06:48:34.938Z",
-      "verbatim": "Gerente General División Radomiro Tomic — Claudia Domínguez Sepúlveda",
+      "fetchedAt": "2026-07-25T09:52:08.129Z",
+      "verbatim": "Gerente General División Radomiro Tomic: Claudia Domínguez Sepúlveda",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -39168,8 +39208,8 @@
       "sourceUrl": "https://www.codelco.com/transparencia/gerencias-divisionales",
       "sourceTitle": "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública. Lists the General Manager of each operating division.",
       "sourceClass": "statutory_disclosure",
-      "fetchedAt": "2026-07-25T06:48:34.938Z",
-      "verbatim": "Gerente General División Ministro Hales — César Jiménez Soto (i)",
+      "fetchedAt": "2026-07-25T09:52:08.129Z",
+      "verbatim": "Gerente General División Ministro Hales: César Jiménez Soto (i)",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -39180,8 +39220,8 @@
       "sourceUrl": "https://www.codelco.com/transparencia/gerencias-divisionales",
       "sourceTitle": "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública. Lists the General Manager of each operating division.",
       "sourceClass": "statutory_disclosure",
-      "fetchedAt": "2026-07-25T06:48:34.938Z",
-      "verbatim": "Gerente General División Gabriela Mistral — Claudia Cabrera C.",
+      "fetchedAt": "2026-07-25T09:52:08.129Z",
+      "verbatim": "Gerente General División Gabriela Mistral: Claudia Cabrera C.",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -39192,8 +39232,8 @@
       "sourceUrl": "https://www.codelco.com/transparencia/gerencias-divisionales",
       "sourceTitle": "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública. Lists the General Manager of each operating division.",
       "sourceClass": "statutory_disclosure",
-      "fetchedAt": "2026-07-25T06:48:34.938Z",
-      "verbatim": "Gerente General División Salvador — Patricio Viveros L.",
+      "fetchedAt": "2026-07-25T09:52:08.129Z",
+      "verbatim": "Gerente General División Salvador: Patricio Viveros L.",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -39204,8 +39244,8 @@
       "sourceUrl": "https://www.codelco.com/transparencia/gerencias-divisionales",
       "sourceTitle": "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública. Lists the General Manager of each operating division.",
       "sourceClass": "statutory_disclosure",
-      "fetchedAt": "2026-07-25T06:48:34.938Z",
-      "verbatim": "Gerente General División Andina (s) — Claudio Canut",
+      "fetchedAt": "2026-07-25T09:52:08.129Z",
+      "verbatim": "Gerente General División Andina (s): Claudio Canut",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -39216,8 +39256,8 @@
       "sourceUrl": "https://www.codelco.com/transparencia/gerencias-divisionales",
       "sourceTitle": "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública. Lists the General Manager of each operating division.",
       "sourceClass": "statutory_disclosure",
-      "fetchedAt": "2026-07-25T06:48:34.938Z",
-      "verbatim": "Gerente General División El Teniente (i) — Gustavo Reyes B.",
+      "fetchedAt": "2026-07-25T09:52:08.129Z",
+      "verbatim": "Gerente General División El Teniente (i): Gustavo Reyes B.",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -39228,8 +39268,8 @@
       "sourceUrl": "https://www.codelco.com/transparencia/gerencias-divisionales",
       "sourceTitle": "Published under Chile's Ley 20.285 sobre Acceso a la Información Pública. Lists the General Manager of each operating division.",
       "sourceClass": "statutory_disclosure",
-      "fetchedAt": "2026-07-25T06:48:34.938Z",
-      "verbatim": "Gerente General División Ventanas — Ricardo Weishaupt H.",
+      "fetchedAt": "2026-07-25T09:52:08.129Z",
+      "verbatim": "Gerente General División Ventanas: Ricardo Weishaupt H.",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -39240,7 +39280,7 @@
       "sourceUrl": "https://dns.google/resolve?name=codelco.cl&type=MX",
       "sourceTitle": "MX records for codelco.cl",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.938Z",
+      "fetchedAt": "2026-07-25T09:52:08.129Z",
       "verbatim": "MX lookup for codelco.cl resolves to Proofpoint gateway (pphosted.com)",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39254,7 +39294,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/872024767",
       "sourceTitle": "OpenStreetMap way/872024767",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.940Z",
+      "fetchedAt": "2026-07-25T09:52:08.130Z",
       "verbatim": "way/872024767 · industrial=mine · landuse=industrial · name=Mina Quebrada Blanca · name:en=Quebrada Blanca Copper Mine · operator=Compañía Minera Teck Quebrada Blanca · resource=copper · website=https://www.teck.com/operaciones-es/chile-es/operaciones-es/quebrada-blanca-es/ · wikidata=Q22635967",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39269,7 +39309,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/1238089804",
       "sourceTitle": "OpenStreetMap way/1238089804",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.940Z",
+      "fetchedAt": "2026-07-25T09:52:08.130Z",
       "verbatim": "way/1238089804 · industrial=mine · landuse=industrial · name=Mina Teck Carmen · operator=Compañía Minera Teck Carmen de Andacollo · resource=copper",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39284,7 +39324,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/330489642",
       "sourceTitle": "OpenStreetMap way/330489642",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.940Z",
+      "fetchedAt": "2026-07-25T09:52:08.130Z",
       "verbatim": "way/330489642 · landuse=quarry · name=Rajo Quebrada Blanca · operator=Compañía  Minera  Teck  Quebrada  Blanca · resource=copper",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39299,7 +39339,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/1238089805",
       "sourceTitle": "OpenStreetMap way/1238089805",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.940Z",
+      "fetchedAt": "2026-07-25T09:52:08.130Z",
       "verbatim": "way/1238089805 · landuse=quarry · name=Rajo Teck CDA · operator=Compañía Minera Teck Carmen de Andacollo · resource=copper",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39314,7 +39354,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/685517731",
       "sourceTitle": "OpenStreetMap way/685517731",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.940Z",
+      "fetchedAt": "2026-07-25T09:52:08.130Z",
       "verbatim": "way/685517731 · landuse=quarry",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39327,7 +39367,7 @@
       "sourceUrl": "https://cl.linkedin.com/in/mario-ortiz-054a30128",
       "sourceTitle": "Public professional profile, surfaced via search result title",
       "sourceClass": "search_result",
-      "fetchedAt": "2026-07-25T06:48:34.943Z",
+      "fetchedAt": "2026-07-25T09:52:08.134Z",
       "verbatim": "Mario Ortiz - General Manager, Quebrada Blanca",
       "language": "es-CL",
       "confidence": "UNVERIFIED",
@@ -39339,7 +39379,7 @@
       "sourceUrl": "https://pe.linkedin.com/in/danielarodriguezmena",
       "sourceTitle": "Public professional profile, surfaced via search result title",
       "sourceClass": "search_result",
-      "fetchedAt": "2026-07-25T06:48:34.943Z",
+      "fetchedAt": "2026-07-25T09:52:08.134Z",
       "verbatim": "Daniela Rodríguez Mena - Gerente Mina Teck Quebrada ...",
       "language": "es-CL",
       "confidence": "UNVERIFIED",
@@ -39351,7 +39391,7 @@
       "sourceUrl": "https://cl.linkedin.com/in/jaime-maldonado-8370b83a",
       "sourceTitle": "Public professional profile, surfaced via search result title",
       "sourceClass": "search_result",
-      "fetchedAt": "2026-07-25T06:48:34.944Z",
+      "fetchedAt": "2026-07-25T09:52:08.134Z",
       "verbatim": "Jaime Maldonado - Superintendente mantenimiento ...",
       "language": "es-CL",
       "confidence": "UNVERIFIED",
@@ -39359,11 +39399,11 @@
     },
     "ev-teck-qb-serp-73": {
       "id": "ev-teck-qb-serp-73",
-      "claim": "Cristian Soto araneda publicly states the role \"Gerente Seguridad , Salud y\" at Teck Quebrada Blanca",
+      "claim": "Cristian Soto araneda publicly states the role \"Gerente Seguridad\" at Teck Quebrada Blanca",
       "sourceUrl": "https://cl.linkedin.com/in/cristian-soto-araneda-40062a34",
       "sourceTitle": "Public professional profile, surfaced via search result title",
       "sourceClass": "search_result",
-      "fetchedAt": "2026-07-25T06:48:34.944Z",
+      "fetchedAt": "2026-07-25T09:52:08.134Z",
       "verbatim": "Cristian Soto araneda - Gerente Seguridad , Salud y ...",
       "language": "es-CL",
       "confidence": "UNVERIFIED",
@@ -39375,7 +39415,7 @@
       "sourceUrl": "https://dns.google/resolve?name=teck.com&type=MX",
       "sourceTitle": "MX records for teck.com",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.944Z",
+      "fetchedAt": "2026-07-25T09:52:08.134Z",
       "verbatim": "MX lookup for teck.com resolves to Proofpoint gateway (pphosted.com)",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39389,7 +39429,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/865802731",
       "sourceTitle": "OpenStreetMap way/865802731",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.945Z",
+      "fetchedAt": "2026-07-25T09:52:08.136Z",
       "verbatim": "way/865802731 · industrial=mine · landuse=industrial · name=Planta Salar Atacama Albemarle · operator=Albemarle Ltda. · resource=lithium · website=https://www.albemarlelitio.cl/materials-applications/plantas-salar-atacama",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39404,7 +39444,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/354932476",
       "sourceTitle": "OpenStreetMap way/354932476",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.945Z",
+      "fetchedAt": "2026-07-25T09:52:08.136Z",
       "verbatim": "way/354932476 · landuse=quarry",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39419,7 +39459,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/874430551",
       "sourceTitle": "OpenStreetMap way/874430551",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.945Z",
+      "fetchedAt": "2026-07-25T09:52:08.136Z",
       "verbatim": "way/874430551 · landuse=salt_pond · operator=Albemarle Ltda.",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39434,7 +39474,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/874430542",
       "sourceTitle": "OpenStreetMap way/874430542",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.945Z",
+      "fetchedAt": "2026-07-25T09:52:08.136Z",
       "verbatim": "way/874430542 · basin=evaporation · landuse=salt_pond · operator=Albemarle Ltda.",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39449,7 +39489,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/874430543",
       "sourceTitle": "OpenStreetMap way/874430543",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.945Z",
+      "fetchedAt": "2026-07-25T09:52:08.136Z",
       "verbatim": "way/874430543 · basin=evaporation · landuse=salt_pond · operator=Albemarle Ltda.",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39464,7 +39504,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/874430547",
       "sourceTitle": "OpenStreetMap way/874430547",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.945Z",
+      "fetchedAt": "2026-07-25T09:52:08.136Z",
       "verbatim": "way/874430547 · basin=evaporation · landuse=salt_pond · operator=Albemarle Ltda.",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39479,7 +39519,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/874430546",
       "sourceTitle": "OpenStreetMap way/874430546",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.945Z",
+      "fetchedAt": "2026-07-25T09:52:08.136Z",
       "verbatim": "way/874430546 · basin=evaporation · landuse=salt_pond · operator=Albemarle Ltda.",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39494,7 +39534,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/874430544",
       "sourceTitle": "OpenStreetMap way/874430544",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.945Z",
+      "fetchedAt": "2026-07-25T09:52:08.136Z",
       "verbatim": "way/874430544 · basin=evaporation · landuse=salt_pond · operator=Albemarle Ltda.",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39509,7 +39549,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/875516308",
       "sourceTitle": "OpenStreetMap way/875516308",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.945Z",
+      "fetchedAt": "2026-07-25T09:52:08.136Z",
       "verbatim": "way/875516308 · basin=evaporation · landuse=salt_pond · operator=Albemarle Ltda.",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39524,7 +39564,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/875516317",
       "sourceTitle": "OpenStreetMap way/875516317",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.945Z",
+      "fetchedAt": "2026-07-25T09:52:08.136Z",
       "verbatim": "way/875516317 · basin=evaporation · landuse=salt_pond · operator=Albemarle Ltda.",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39539,7 +39579,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/875516313",
       "sourceTitle": "OpenStreetMap way/875516313",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.945Z",
+      "fetchedAt": "2026-07-25T09:52:08.136Z",
       "verbatim": "way/875516313 · basin=evaporation · landuse=salt_pond · operator=Albemarle Ltda.",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39554,7 +39594,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/875516310",
       "sourceTitle": "OpenStreetMap way/875516310",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.945Z",
+      "fetchedAt": "2026-07-25T09:52:08.136Z",
       "verbatim": "way/875516310 · basin=evaporation · landuse=salt_pond · operator=Albemarle Ltda.",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39569,7 +39609,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/875516302",
       "sourceTitle": "OpenStreetMap way/875516302",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.945Z",
+      "fetchedAt": "2026-07-25T09:52:08.136Z",
       "verbatim": "way/875516302 · landuse=salt_pond · operator=Albemarle Ltda.",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39584,7 +39624,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/875516304",
       "sourceTitle": "OpenStreetMap way/875516304",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.945Z",
+      "fetchedAt": "2026-07-25T09:52:08.136Z",
       "verbatim": "way/875516304 · basin=evaporation · landuse=salt_pond · operator=Albemarle Ltda.",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39596,7 +39636,7 @@
       "claim": "No individually named operations or HSE leader could be sourced for Albemarle (Salar de Atacama)",
       "sourceUrl": "https://albemarle.com",
       "sourceClass": "company_primary",
-      "fetchedAt": "2026-07-25T06:48:34.947Z",
+      "fetchedAt": "2026-07-25T09:52:08.138Z",
       "verbatim": "No officer roster published at a discoverable path during this run.",
       "language": "en",
       "confidence": "UNVERIFIED",
@@ -39608,7 +39648,7 @@
       "sourceUrl": "https://dns.google/resolve?name=albemarle.com&type=MX",
       "sourceTitle": "MX records for albemarle.com",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.948Z",
+      "fetchedAt": "2026-07-25T09:52:08.138Z",
       "verbatim": "MX lookup for albemarle.com resolves to Microsoft 365 (albemarle-com.mail.protection.outlook.com)",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39622,7 +39662,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/978837129",
       "sourceTitle": "OpenStreetMap way/978837129",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.949Z",
+      "fetchedAt": "2026-07-25T09:52:08.140Z",
       "verbatim": "way/978837129 · landuse=quarry · source=Bing",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39637,7 +39677,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/387706250",
       "sourceTitle": "OpenStreetMap way/387706250",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.949Z",
+      "fetchedAt": "2026-07-25T09:52:08.140Z",
       "verbatim": "way/387706250 · landuse=quarry · name=Vale S/A Mina João Pereira · source=Bing",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39652,7 +39692,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/249614306",
       "sourceTitle": "OpenStreetMap way/249614306",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.949Z",
+      "fetchedAt": "2026-07-25T09:52:08.140Z",
       "verbatim": "way/249614306 · landuse=quarry · name=Mina do Azul - Manganês · operator=Vale S.A. · source=Estração de Manganês",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39667,7 +39707,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/150289104",
       "sourceTitle": "OpenStreetMap way/150289104",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.949Z",
+      "fetchedAt": "2026-07-25T09:52:08.140Z",
       "verbatim": "way/150289104 · depth=100 · headframe=yes · landuse=quarry · mineshaft_type=air · name=Projeto Igarapé Bahia · operator=Vale S.A. · resource=gold · source=Extração de Ouro e Cobre",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39682,7 +39722,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/379239345",
       "sourceTitle": "OpenStreetMap way/379239345",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.949Z",
+      "fetchedAt": "2026-07-25T09:52:08.140Z",
       "verbatim": "way/379239345 · landuse=quarry · name=Mina da Alegria · operator=Vale · resource=iron_ore",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39697,7 +39737,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/315221699",
       "sourceTitle": "OpenStreetMap way/315221699",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.949Z",
+      "fetchedAt": "2026-07-25T09:52:08.140Z",
       "verbatim": "way/315221699 · landuse=quarry · name=Mina Capitão do Mato · resource=iron_ore · source=Bing",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39712,7 +39752,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/391304914",
       "sourceTitle": "OpenStreetMap way/391304914",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.949Z",
+      "fetchedAt": "2026-07-25T09:52:08.140Z",
       "verbatim": "way/391304914 · landuse=quarry · source=Bing",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39727,7 +39767,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/1137135676",
       "sourceTitle": "OpenStreetMap way/1137135676",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.949Z",
+      "fetchedAt": "2026-07-25T09:52:08.140Z",
       "verbatim": "way/1137135676 · landuse=quarry · name=Vale S/A Mina de Viga · operator=Vale · resource=iron_ore",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39742,7 +39782,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/380322148",
       "sourceTitle": "OpenStreetMap way/380322148",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.949Z",
+      "fetchedAt": "2026-07-25T09:52:08.140Z",
       "verbatim": "way/380322148 · disused=yes · landuse=quarry · name=Cava da Mina de Capanema · operator=Vale · resource=iron_ore · source=Bing",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39757,7 +39797,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/31823364",
       "sourceTitle": "OpenStreetMap way/31823364",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.949Z",
+      "fetchedAt": "2026-07-25T09:52:08.140Z",
       "verbatim": "way/31823364 · landuse=quarry",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39772,7 +39812,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/380319993",
       "sourceTitle": "OpenStreetMap way/380319993",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.949Z",
+      "fetchedAt": "2026-07-25T09:52:08.140Z",
       "verbatim": "way/380319993 · landuse=quarry · name=Cava da Mina de Água Limpa · operator=Vale · resource=iron_ore",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39787,7 +39827,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/379239342",
       "sourceTitle": "OpenStreetMap way/379239342",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.949Z",
+      "fetchedAt": "2026-07-25T09:52:08.140Z",
       "verbatim": "way/379239342 · landuse=quarry · name=Mina do Germano · note=Mina a céu aberto · resource=iron_ore",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39802,7 +39842,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/979374384",
       "sourceTitle": "OpenStreetMap way/979374384",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.949Z",
+      "fetchedAt": "2026-07-25T09:52:08.140Z",
       "verbatim": "way/979374384 · landuse=quarry",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39817,7 +39857,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/380458248",
       "sourceTitle": "OpenStreetMap way/380458248",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.949Z",
+      "fetchedAt": "2026-07-25T09:52:08.140Z",
       "verbatim": "way/380458248 · landuse=quarry · name=Cava da Mina de Gongo Soco · operator=Vale · resource=iron_ore · source=Bing",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39830,7 +39870,7 @@
       "sourceUrl": "https://www.sec.gov/Archives/edgar/data/917851/000129281426001844/valeform20f_2025.htm",
       "sourceTitle": "Vale S.A. 20-F filed 2026-03-27",
       "sourceClass": "primary_filing",
-      "fetchedAt": "2026-07-25T06:48:34.963Z",
+      "fetchedAt": "2026-07-25T09:52:08.153Z",
       "verbatim": "cation, assessment, or control of such risks. The materialization of these risks can generate environmental, social, and human rights impacts, damage to or destruction of mines or production facilities, injuries, illnesses, and fatalities involving employees, contractors and/or community members near our operations, as well as financial and legal losses and liabilities. Our business may be adversely affected by social, cultural, environmental and health and safety regulation, including regulations pertaining to climate chang",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39842,7 +39882,7 @@
       "sourceUrl": "https://www.sec.gov/Archives/edgar/data/917851/000129281426001844/valeform20f_2025.htm",
       "sourceTitle": "Vale S.A. 20-F filed 2026-03-27",
       "sourceClass": "primary_filing",
-      "fetchedAt": "2026-07-25T06:48:34.963Z",
+      "fetchedAt": "2026-07-25T09:52:08.153Z",
       "verbatim": "umber of our businesses in various countries, see Information on the Company—Regulatory Matters—Environmental Regulations . Labor disputes may disrupt our operations from time to time. A substantial number of our employees, and some of the employees of our subcontractors, are unionized and governed by collective bargaining agreements or other labor arrangements that require regular renegotiation. Strikes or other labor disruptions at any of our operations could adversely affect operational efficiency, delay project completio",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39854,7 +39894,7 @@
       "sourceUrl": "https://www.sec.gov/Archives/edgar/data/917851/000129281426001844/valeform20f_2025.htm",
       "sourceTitle": "Vale S.A. 20-F filed 2026-03-27",
       "sourceClass": "primary_filing",
-      "fetchedAt": "2026-07-25T06:48:34.963Z",
+      "fetchedAt": "2026-07-25T09:52:08.153Z",
       "verbatim": "cation, assessment, or control of such risks. The materialization of these risks can generate environmental, social, and human rights impacts, damage to or destruction of mines or production facilities, injuries, illnesses, and fatalities involving employees, contractors and/or community members near our operations, as well as financial and legal losses and liabilities. Our business may be adversely affected by social, cultural, environmental and health and safety regulation, including regulations pertaining to climate change",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39866,7 +39906,7 @@
       "sourceUrl": "https://www.sec.gov/Archives/edgar/data/917851/000129281426001844/valeform20f_2025.htm",
       "sourceTitle": "Vale S.A. 20-F filed 2026-03-27",
       "sourceClass": "primary_filing",
-      "fetchedAt": "2026-07-25T06:48:34.963Z",
+      "fetchedAt": "2026-07-25T09:52:08.153Z",
       "verbatim": "umber of our businesses in various countries, see Information on the Company—Regulatory Matters—Environmental Regulations . Labor disputes may disrupt our operations from time to time. A substantial number of our employees, and some of the employees of our subcontractors, are unionized and governed by collective bargaining agreements or other labor arrangements that require regular renegotiation. Strikes or other labor disruptions at any of our operations could adversely affect operational efficiency, delay project completion",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39878,7 +39918,7 @@
       "sourceUrl": "https://www.sec.gov/Archives/edgar/data/917851/000129281426001844/valeform20f_2025.htm",
       "sourceTitle": "Vale S.A. 20-F filed 2026-03-27",
       "sourceClass": "primary_filing",
-      "fetchedAt": "2026-07-25T06:48:34.963Z",
+      "fetchedAt": "2026-07-25T09:52:08.153Z",
       "verbatim": "a number of our businesses in various countries, see Information on the Company—Regulatory Matters—Environmental Regulations . Labor disputes may disrupt our operations from time to time. A substantial number of our employees, and some of the employees of our subcontractors, are unionized and governed by collective bargaining agreements or other labor arrangements that require regular renegotiation. Strikes or other labor disruptions at any of our operations could adversely affect operational efficiency, delay project complet",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39890,7 +39930,7 @@
       "sourceUrl": "https://www.sec.gov/Archives/edgar/data/917851/000129281426001844/valeform20f_2025.htm",
       "sourceTitle": "Vale S.A. 20-F filed 2026-03-27",
       "sourceClass": "primary_filing",
-      "fetchedAt": "2026-07-25T06:48:34.963Z",
+      "fetchedAt": "2026-07-25T09:52:08.153Z",
       "verbatim": "articularly as it relates to rising costs and supply chain delays and disruptions. Measures taken by governmental authorities in response to such events may also impact our business, including upon restrictions to our operations, lockdowns, shutdowns, reduced inspections, assessments and authorizations, among other difficulties. We cannot predict when and if any such events will occur and evolve, neither their scope and duration, and therefore cannot estimate the potential impact in our financial condition, results of operat",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39902,7 +39942,7 @@
       "sourceUrl": "https://br.linkedin.com/in/henrique-candian-90685b21",
       "sourceTitle": "Public professional profile, surfaced via search result title",
       "sourceClass": "search_result",
-      "fetchedAt": "2026-07-25T06:48:34.966Z",
+      "fetchedAt": "2026-07-25T09:52:08.157Z",
       "verbatim": "Henrique Candian - Gerente de Manutenção na Vale",
       "language": "pt-BR",
       "confidence": "UNVERIFIED",
@@ -39914,7 +39954,7 @@
       "sourceUrl": "https://br.linkedin.com/in/marlon-reis-2807aa3b",
       "sourceTitle": "Public professional profile, surfaced via search result title",
       "sourceClass": "search_result",
-      "fetchedAt": "2026-07-25T06:48:34.966Z",
+      "fetchedAt": "2026-07-25T09:52:08.157Z",
       "verbatim": "Marlon Reis - Gerente de Manutenção Elétrica ...",
       "language": "pt-BR",
       "confidence": "UNVERIFIED",
@@ -39926,7 +39966,7 @@
       "sourceUrl": "https://dns.google/resolve?name=vale.com&type=MX",
       "sourceTitle": "MX records for vale.com",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.966Z",
+      "fetchedAt": "2026-07-25T09:52:08.157Z",
       "verbatim": "MX lookup for vale.com resolves to Microsoft 365 (vale-com.mail.protection.outlook.com)",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39940,7 +39980,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/849970365",
       "sourceTitle": "OpenStreetMap way/849970365",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.968Z",
+      "fetchedAt": "2026-07-25T09:52:08.158Z",
       "verbatim": "way/849970365 · landuse=quarry · name=Rajo Escondida · operator=Minera Escondida Ltda. · resource=copper",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39955,7 +39995,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/238374865",
       "sourceTitle": "OpenStreetMap way/238374865",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.968Z",
+      "fetchedAt": "2026-07-25T09:52:08.158Z",
       "verbatim": "way/238374865 · landuse=quarry · name=Rajo Spence · operator=BHP · resource=copper;molybdenum",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39970,7 +40010,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/849970129",
       "sourceTitle": "OpenStreetMap way/849970129",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.968Z",
+      "fetchedAt": "2026-07-25T09:52:08.158Z",
       "verbatim": "way/849970129 · landuse=quarry · name=Rajo Escondida Norte · operator=Minera Escondida Ltda. · resource=copper",
       "language": "en",
       "confidence": "VERIFIED",
@@ -39983,7 +40023,7 @@
       "sourceUrl": "https://cl.linkedin.com/in/july-amas-aranda-b4929495",
       "sourceTitle": "Public professional profile, surfaced via search result title",
       "sourceClass": "search_result",
-      "fetchedAt": "2026-07-25T06:48:34.971Z",
+      "fetchedAt": "2026-07-25T09:52:08.162Z",
       "verbatim": "July Amas Aranda - Gerente de Operaciones de Manejo de ...",
       "language": "es-CL",
       "confidence": "UNVERIFIED",
@@ -39995,7 +40035,7 @@
       "sourceUrl": "https://cl.linkedin.com/in/sergio-maya-quintana-92bb136a",
       "sourceTitle": "Public professional profile, surfaced via search result title",
       "sourceClass": "search_result",
-      "fetchedAt": "2026-07-25T06:48:34.971Z",
+      "fetchedAt": "2026-07-25T09:52:08.162Z",
       "verbatim": "Sergio Maya Quintana - Manager NPI & CHO Maintenance",
       "language": "es-CL",
       "confidence": "UNVERIFIED",
@@ -40007,7 +40047,7 @@
       "sourceUrl": "https://cl.linkedin.com/in/mariacarolinatapiatapia1983",
       "sourceTitle": "Public professional profile, surfaced via search result title",
       "sourceClass": "search_result",
-      "fetchedAt": "2026-07-25T06:48:34.971Z",
+      "fetchedAt": "2026-07-25T09:52:08.162Z",
       "verbatim": "María Carolina Tapia Tapia - Superintendente Producción ...",
       "language": "es-CL",
       "confidence": "UNVERIFIED",
@@ -40019,7 +40059,7 @@
       "sourceUrl": "https://dns.google/resolve?name=bhp.com&type=MX",
       "sourceTitle": "MX records for bhp.com",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.971Z",
+      "fetchedAt": "2026-07-25T09:52:08.162Z",
       "verbatim": "MX lookup for bhp.com resolves to Proofpoint gateway (pphosted.com)",
       "language": "en",
       "confidence": "VERIFIED",
@@ -40033,7 +40073,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/849970931",
       "sourceTitle": "OpenStreetMap way/849970931",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.972Z",
+      "fetchedAt": "2026-07-25T09:52:08.163Z",
       "verbatim": "way/849970931 · landuse=quarry · name=Rajo Zaldívar · operator=Antofagasta Minerals S.A. · resource=copper",
       "language": "en",
       "confidence": "VERIFIED",
@@ -40048,7 +40088,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/827991840",
       "sourceTitle": "OpenStreetMap way/827991840",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.972Z",
+      "fetchedAt": "2026-07-25T09:52:08.163Z",
       "verbatim": "way/827991840 · landuse=quarry · name=Rajo Esperanza · operator=Antofagasta Minerals S.A. · resource=copper;molybdenum",
       "language": "en",
       "confidence": "VERIFIED",
@@ -40063,7 +40103,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/416165483",
       "sourceTitle": "OpenStreetMap way/416165483",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.972Z",
+      "fetchedAt": "2026-07-25T09:52:08.163Z",
       "verbatim": "way/416165483 · description=Rajo Tesoro Central · landuse=quarry · name=Rajo Tesoro Central · operator=Antofagasta Minerals S.A. · resource=copper;molybdenum",
       "language": "en",
       "confidence": "VERIFIED",
@@ -40078,7 +40118,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/853562536",
       "sourceTitle": "OpenStreetMap way/853562536",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.972Z",
+      "fetchedAt": "2026-07-25T09:52:08.163Z",
       "verbatim": "way/853562536 · landuse=quarry · name=Rajo Encuentro Súlfuro · operator=Minera Centinela · resource=copper;molybdenum",
       "language": "en",
       "confidence": "VERIFIED",
@@ -40093,7 +40133,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/416165485",
       "sourceTitle": "OpenStreetMap way/416165485",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.972Z",
+      "fetchedAt": "2026-07-25T09:52:08.163Z",
       "verbatim": "way/416165485 · description=Rajo Tesoro Noreste · landuse=quarry · name=Rajo Tesoro Noreste · operator=Antofagasta Minerals S.A. · resource=copper;molybdenum",
       "language": "en",
       "confidence": "VERIFIED",
@@ -40108,7 +40148,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/416165486",
       "sourceTitle": "OpenStreetMap way/416165486",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.972Z",
+      "fetchedAt": "2026-07-25T09:52:08.163Z",
       "verbatim": "way/416165486 · description=Rajo Tesoro Mirador · landuse=quarry · name=Rajo Tesoro Mirador · operator=Antofagasta Minerals S.A. · resource=copper;molybdenum",
       "language": "en",
       "confidence": "VERIFIED",
@@ -40121,8 +40161,8 @@
       "sourceUrl": "https://www.aminerals.cl/nosotros/quienes-somos/ejecutivos",
       "sourceTitle": "Company-published executive team page. Not linked from the site's main navigation; the shorter /quienes-somos/gobierno-corporativo/ path returns 404.",
       "sourceClass": "company_primary",
-      "fetchedAt": "2026-07-25T06:48:34.975Z",
-      "verbatim": "CEO DE ANTOFAGASTA PLC — Iván Arriagada",
+      "fetchedAt": "2026-07-25T09:52:08.166Z",
+      "verbatim": "CEO DE ANTOFAGASTA PLC: Iván Arriagada",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -40133,8 +40173,8 @@
       "sourceUrl": "https://www.aminerals.cl/nosotros/quienes-somos/ejecutivos",
       "sourceTitle": "Company-published executive team page. Not linked from the site's main navigation; the shorter /quienes-somos/gobierno-corporativo/ path returns 404.",
       "sourceClass": "company_primary",
-      "fetchedAt": "2026-07-25T06:48:34.975Z",
-      "verbatim": "CHIEF OPERATING OFFICER — Octavio Araneda",
+      "fetchedAt": "2026-07-25T09:52:08.166Z",
+      "verbatim": "CHIEF OPERATING OFFICER: Octavio Araneda",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -40145,8 +40185,8 @@
       "sourceUrl": "https://www.aminerals.cl/nosotros/quienes-somos/ejecutivos",
       "sourceTitle": "Company-published executive team page. Not linked from the site's main navigation; the shorter /quienes-somos/gobierno-corporativo/ path returns 404.",
       "sourceClass": "company_primary",
-      "fetchedAt": "2026-07-25T06:48:34.975Z",
-      "verbatim": "VICEPRESIDENTE DE EXPLORACIONES Y RECURSOS MINEROS — Sergio Giglio",
+      "fetchedAt": "2026-07-25T09:52:08.166Z",
+      "verbatim": "VICEPRESIDENTE DE EXPLORACIONES Y RECURSOS MINEROS: Sergio Giglio",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -40157,8 +40197,8 @@
       "sourceUrl": "https://www.aminerals.cl/nosotros/quienes-somos/ejecutivos",
       "sourceTitle": "Company-published executive team page. Not linked from the site's main navigation; the shorter /quienes-somos/gobierno-corporativo/ path returns 404.",
       "sourceClass": "company_primary",
-      "fetchedAt": "2026-07-25T06:48:34.975Z",
-      "verbatim": "VICEPRESIDENTE DE FINANZAS — Mauricio Ortiz",
+      "fetchedAt": "2026-07-25T09:52:08.166Z",
+      "verbatim": "VICEPRESIDENTE DE FINANZAS: Mauricio Ortiz",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -40169,8 +40209,8 @@
       "sourceUrl": "https://www.aminerals.cl/nosotros/quienes-somos/ejecutivos",
       "sourceTitle": "Company-published executive team page. Not linked from the site's main navigation; the shorter /quienes-somos/gobierno-corporativo/ path returns 404.",
       "sourceClass": "company_primary",
-      "fetchedAt": "2026-07-25T06:48:34.975Z",
-      "verbatim": "VICEPRESIDENTE DE PROYECTOS — Jorge Bermúdez García",
+      "fetchedAt": "2026-07-25T09:52:08.166Z",
+      "verbatim": "VICEPRESIDENTE DE PROYECTOS: Jorge Bermúdez García",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -40181,8 +40221,8 @@
       "sourceUrl": "https://www.aminerals.cl/nosotros/quienes-somos/ejecutivos",
       "sourceTitle": "Company-published executive team page. Not linked from the site's main navigation; the shorter /quienes-somos/gobierno-corporativo/ path returns 404.",
       "sourceClass": "company_primary",
-      "fetchedAt": "2026-07-25T06:48:34.975Z",
-      "verbatim": "VICEPRESIDENTA DE SUSTENTABILIDAD — Alejandra Vial",
+      "fetchedAt": "2026-07-25T09:52:08.166Z",
+      "verbatim": "VICEPRESIDENTA DE SUSTENTABILIDAD: Alejandra Vial",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -40193,8 +40233,8 @@
       "sourceUrl": "https://www.aminerals.cl/nosotros/quienes-somos/ejecutivos",
       "sourceTitle": "Company-published executive team page. Not linked from the site's main navigation; the shorter /quienes-somos/gobierno-corporativo/ path returns 404.",
       "sourceClass": "company_primary",
-      "fetchedAt": "2026-07-25T06:48:34.975Z",
-      "verbatim": "VICEPRESIDENTE DE DESARROLLO DE NEGOCIOS E INNOVACIÓN — Héctor Flores",
+      "fetchedAt": "2026-07-25T09:52:08.166Z",
+      "verbatim": "VICEPRESIDENTE DE DESARROLLO DE NEGOCIOS E INNOVACIÓN: Héctor Flores",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -40205,8 +40245,8 @@
       "sourceUrl": "https://www.aminerals.cl/nosotros/quienes-somos/ejecutivos",
       "sourceTitle": "Company-published executive team page. Not linked from the site's main navigation; the shorter /quienes-somos/gobierno-corporativo/ path returns 404.",
       "sourceClass": "company_primary",
-      "fetchedAt": "2026-07-25T06:48:34.975Z",
-      "verbatim": "VICEPRESIDENTE PLANIFICACIÓN Y SERVICIOS TÉCNICOS — Mauricio Larraín",
+      "fetchedAt": "2026-07-25T09:52:08.166Z",
+      "verbatim": "VICEPRESIDENTE PLANIFICACIÓN Y SERVICIOS TÉCNICOS: Mauricio Larraín",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -40217,8 +40257,8 @@
       "sourceUrl": "https://www.aminerals.cl/nosotros/quienes-somos/ejecutivos",
       "sourceTitle": "Company-published executive team page. Not linked from the site's main navigation; the shorter /quienes-somos/gobierno-corporativo/ path returns 404.",
       "sourceClass": "company_primary",
-      "fetchedAt": "2026-07-25T06:48:34.975Z",
-      "verbatim": "GERENTE GENERAL MINERA LOS PELAMBRES — Patricio Chacana",
+      "fetchedAt": "2026-07-25T09:52:08.166Z",
+      "verbatim": "GERENTE GENERAL MINERA LOS PELAMBRES: Patricio Chacana",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -40229,8 +40269,8 @@
       "sourceUrl": "https://www.aminerals.cl/nosotros/quienes-somos/ejecutivos",
       "sourceTitle": "Company-published executive team page. Not linked from the site's main navigation; the shorter /quienes-somos/gobierno-corporativo/ path returns 404.",
       "sourceClass": "company_primary",
-      "fetchedAt": "2026-07-25T06:48:34.975Z",
-      "verbatim": "GERENTE GENERAL MINERA CENTINELA — Nicolás Rivera",
+      "fetchedAt": "2026-07-25T09:52:08.166Z",
+      "verbatim": "GERENTE GENERAL MINERA CENTINELA: Nicolás Rivera",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -40241,8 +40281,8 @@
       "sourceUrl": "https://www.aminerals.cl/nosotros/quienes-somos/ejecutivos",
       "sourceTitle": "Company-published executive team page. Not linked from the site's main navigation; the shorter /quienes-somos/gobierno-corporativo/ path returns 404.",
       "sourceClass": "company_primary",
-      "fetchedAt": "2026-07-25T06:48:34.975Z",
-      "verbatim": "GERENTE GENERAL MINERA ANTUCOYA — Ivo Fadic",
+      "fetchedAt": "2026-07-25T09:52:08.167Z",
+      "verbatim": "GERENTE GENERAL MINERA ANTUCOYA: Ivo Fadic",
       "language": "es-CL",
       "confidence": "VERIFIED",
       "producedBy": "people_finder"
@@ -40253,7 +40293,7 @@
       "sourceUrl": "https://dns.google/resolve?name=aminerals.cl&type=MX",
       "sourceTitle": "MX records for aminerals.cl",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.976Z",
+      "fetchedAt": "2026-07-25T09:52:08.167Z",
       "verbatim": "MX lookup for aminerals.cl resolves to Mimecast gateway (mimecast.com)",
       "language": "en",
       "confidence": "VERIFIED",
@@ -40267,7 +40307,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/826017919",
       "sourceTitle": "OpenStreetMap way/826017919",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.977Z",
+      "fetchedAt": "2026-07-25T09:52:08.168Z",
       "verbatim": "way/826017919 · landuse=quarry · name=Rajo Rosario · operator=Compañía Minera Doña Inés de Collahuasi SCM · resource=copper;molybdenum",
       "language": "en",
       "confidence": "VERIFIED",
@@ -40282,7 +40322,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/330489641",
       "sourceTitle": "OpenStreetMap way/330489641",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.977Z",
+      "fetchedAt": "2026-07-25T09:52:08.168Z",
       "verbatim": "way/330489641 · landuse=quarry · name=Rajo Ujina · operator=Compañía Minera Doña Inés de Collahuasi SCM · resource=copper;molybdenum",
       "language": "en",
       "confidence": "VERIFIED",
@@ -40295,7 +40335,7 @@
       "sourceUrl": "https://cl.linkedin.com/in/aldo-tosetti-munizaga-07888137",
       "sourceTitle": "Public professional profile, surfaced via search result title",
       "sourceClass": "search_result",
-      "fetchedAt": "2026-07-25T06:48:34.980Z",
+      "fetchedAt": "2026-07-25T09:52:08.171Z",
       "verbatim": "Aldo Tosetti Munizaga - Gerente de Operaciones Planta en ...",
       "language": "es-CL",
       "confidence": "UNVERIFIED",
@@ -40307,7 +40347,7 @@
       "sourceUrl": "https://cl.linkedin.com/in/jofre-aldo-87a6a774",
       "sourceTitle": "Public professional profile, surfaced via search result title",
       "sourceClass": "search_result",
-      "fetchedAt": "2026-07-25T06:48:34.980Z",
+      "fetchedAt": "2026-07-25T09:52:08.171Z",
       "verbatim": "Jofre Aldo - Senior Operaciones Mina / Jefe de ...",
       "language": "es-CL",
       "confidence": "UNVERIFIED",
@@ -40319,7 +40359,7 @@
       "sourceUrl": "https://cl.linkedin.com/in/daniel-ortega-8aa347117",
       "sourceTitle": "Public professional profile, surfaced via search result title",
       "sourceClass": "search_result",
-      "fetchedAt": "2026-07-25T06:48:34.980Z",
+      "fetchedAt": "2026-07-25T09:52:08.171Z",
       "verbatim": "Daniel Ortega - Jefe de Mantención en Compañía Minera ...",
       "language": "es-CL",
       "confidence": "UNVERIFIED",
@@ -40331,7 +40371,7 @@
       "sourceUrl": "https://cl.linkedin.com/in/roberto-ponce-641675318",
       "sourceTitle": "Public professional profile, surfaced via search result title",
       "sourceClass": "search_result",
-      "fetchedAt": "2026-07-25T06:48:34.980Z",
+      "fetchedAt": "2026-07-25T09:52:08.171Z",
       "verbatim": "Roberto Ponce - Jefe de mantención en Compañía Minera ...",
       "language": "es-CL",
       "confidence": "UNVERIFIED",
@@ -40343,7 +40383,7 @@
       "sourceUrl": "https://dns.google/resolve?name=collahuasi.cl&type=MX",
       "sourceTitle": "MX records for collahuasi.cl",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.980Z",
+      "fetchedAt": "2026-07-25T09:52:08.171Z",
       "verbatim": "MX lookup for collahuasi.cl resolves to Proofpoint gateway (pphosted.com)",
       "language": "en",
       "confidence": "VERIFIED",
@@ -40357,7 +40397,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/238374865",
       "sourceTitle": "OpenStreetMap way/238374865",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.981Z",
+      "fetchedAt": "2026-07-25T09:52:08.172Z",
       "verbatim": "way/238374865 · landuse=quarry · name=Rajo Spence · operator=BHP · resource=copper;molybdenum",
       "language": "en",
       "confidence": "VERIFIED",
@@ -40370,7 +40410,7 @@
       "sourceUrl": "https://cl.linkedin.com/in/arturo-ardiles-alfaro-9a774058",
       "sourceTitle": "Public professional profile, surfaced via search result title",
       "sourceClass": "search_result",
-      "fetchedAt": "2026-07-25T06:48:34.983Z",
+      "fetchedAt": "2026-07-25T09:52:08.175Z",
       "verbatim": "Arturo Ardiles Alfaro - Superintendente de Producción ...",
       "language": "es-CL",
       "confidence": "UNVERIFIED",
@@ -40382,7 +40422,7 @@
       "sourceUrl": "https://cl.linkedin.com/in/pablo-medina-alvarez",
       "sourceTitle": "Public professional profile, surfaced via search result title",
       "sourceClass": "search_result",
-      "fetchedAt": "2026-07-25T06:48:34.983Z",
+      "fetchedAt": "2026-07-25T09:52:08.175Z",
       "verbatim": "Pablo Medina Alvarez - Gerente de Operaciones I ...",
       "language": "es-CL",
       "confidence": "UNVERIFIED",
@@ -40396,7 +40436,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/555287940",
       "sourceTitle": "OpenStreetMap way/555287940",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.984Z",
+      "fetchedAt": "2026-07-25T09:52:08.176Z",
       "verbatim": "way/555287940 · landuse=quarry · name=Rajo Catabel · operator=Sierra Gorda SCM · resource=copper;molybdenum",
       "language": "en",
       "confidence": "VERIFIED",
@@ -40409,7 +40449,7 @@
       "sourceUrl": "https://cl.linkedin.com/in/mario-castro-walker-954047a1",
       "sourceTitle": "Public professional profile, surfaced via search result title",
       "sourceClass": "search_result",
-      "fetchedAt": "2026-07-25T06:48:34.986Z",
+      "fetchedAt": "2026-07-25T09:52:08.178Z",
       "verbatim": "Mario Castro Walker - Jefe de mantenimiento en Minera ...",
       "language": "es-CL",
       "confidence": "UNVERIFIED",
@@ -40421,7 +40461,7 @@
       "sourceUrl": "https://cl.linkedin.com/in/marcelo-carre%C3%B1o-55628561",
       "sourceTitle": "Public professional profile, surfaced via search result title",
       "sourceClass": "search_result",
-      "fetchedAt": "2026-07-25T06:48:34.986Z",
+      "fetchedAt": "2026-07-25T09:52:08.178Z",
       "verbatim": "Marcelo Carreño - Jefe HSEC en Sierra Gorda Sociedad ...",
       "language": "es-CL",
       "confidence": "UNVERIFIED",
@@ -40435,7 +40475,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/853549747",
       "sourceTitle": "OpenStreetMap way/853549747",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.987Z",
+      "fetchedAt": "2026-07-25T09:52:08.179Z",
       "verbatim": "way/853549747 · landuse=quarry · name=Rajo Santa Bárbara · operator=Mantos Copper S.A. · resource=copper",
       "language": "en",
       "confidence": "VERIFIED",
@@ -40448,7 +40488,7 @@
       "sourceUrl": "https://cl.linkedin.com/in/carlos-novoa-irribarra-a9ba4555",
       "sourceTitle": "Public professional profile, surfaced via search result title",
       "sourceClass": "search_result",
-      "fetchedAt": "2026-07-25T06:48:34.989Z",
+      "fetchedAt": "2026-07-25T09:52:08.181Z",
       "verbatim": "Carlos Novoa Irribarra - Líder Seguridad y Salud ...",
       "language": "es-CL",
       "confidence": "UNVERIFIED",
@@ -40460,7 +40500,7 @@
       "sourceUrl": "https://cl.linkedin.com/in/olga-sep%C3%BAlveda-peralta-5bba542a",
       "sourceTitle": "Public professional profile, surfaced via search result title",
       "sourceClass": "search_result",
-      "fetchedAt": "2026-07-25T06:48:34.989Z",
+      "fetchedAt": "2026-07-25T09:52:08.181Z",
       "verbatim": "Olga Sepúlveda Peralta - Gerente Medio Ambiente y ...",
       "language": "es-CL",
       "confidence": "UNVERIFIED",
@@ -40472,7 +40512,7 @@
       "sourceUrl": "https://cl.linkedin.com/in/rene-vallejos-osorio-a6650343",
       "sourceTitle": "Public professional profile, surfaced via search result title",
       "sourceClass": "search_result",
-      "fetchedAt": "2026-07-25T06:48:34.989Z",
+      "fetchedAt": "2026-07-25T09:52:08.181Z",
       "verbatim": "Rene Vallejos Osorio - Director de Seguridad y Salud ...",
       "language": "es-CL",
       "confidence": "UNVERIFIED",
@@ -40486,7 +40526,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/781456373",
       "sourceTitle": "OpenStreetMap way/781456373",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.990Z",
+      "fetchedAt": "2026-07-25T09:52:08.182Z",
       "verbatim": "way/781456373 · landuse=quarry · name=Rajo Lomas Bayas I · operator=Glencore · resource=copper",
       "language": "en",
       "confidence": "VERIFIED",
@@ -40501,7 +40541,7 @@
       "sourceUrl": "https://www.openstreetmap.org/way/781456372",
       "sourceTitle": "OpenStreetMap way/781456372",
       "sourceClass": "geospatial",
-      "fetchedAt": "2026-07-25T06:48:34.990Z",
+      "fetchedAt": "2026-07-25T09:52:08.182Z",
       "verbatim": "way/781456372 · landuse=quarry · name=Rajo Fortuna Lomas Bayas II · operator=Glencore · resource=copper",
       "language": "en",
       "confidence": "VERIFIED",
@@ -40513,7 +40553,7 @@
       "claim": "No individually named operations or HSE leader could be sourced for Glencore (Lomas Bayas)",
       "sourceUrl": "https://glencore.com",
       "sourceClass": "company_primary",
-      "fetchedAt": "2026-07-25T06:48:34.993Z",
+      "fetchedAt": "2026-07-25T09:52:08.184Z",
       "verbatim": "No officer roster published at a discoverable path during this run.",
       "language": "en",
       "confidence": "UNVERIFIED",
@@ -40523,57 +40563,57 @@
   "nullResults": [
     {
       "id": "null-1",
-      "recordedAt": "2026-07-25T06:48:34.891Z",
+      "recordedAt": "2026-07-25T09:52:08.079Z",
       "subject": "Account universe",
       "question": "Which mapped operators could not be resolved to a corporate identity?",
       "attempts": [
         {
           "source": "OSM operator tag",
-          "outcome": "\"Yacimientos de Litio Bolivianos\", 1 feature(s), 502 km² mapped, no identity match"
+          "outcome": "\"Yacimientos de Litio Bolivianos\": 1 feature(s), 502 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"SQM Industrial S.A.\", 6 feature(s), 286.45 km² mapped, no identity match"
+          "outcome": "\"SQM Industrial S.A.\": 6 feature(s), 286.45 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Anglo American Sur S.A.\", 5 feature(s), 58.24 km² mapped, no identity match"
+          "outcome": "\"Anglo American Sur S.A.\": 5 feature(s), 58.24 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Minera Los Pelambres\", 3 feature(s), 56.89 km² mapped, no identity match"
+          "outcome": "\"Minera Los Pelambres\": 3 feature(s), 56.89 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Atacama Minerals Chile S.C.M.\", 1 feature(s), 44.15 km² mapped, no identity match"
+          "outcome": "\"Atacama Minerals Chile S.C.M.\": 1 feature(s), 44.15 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Anglo American Minério de Ferro Brasil S/A\", 1 feature(s), 43.22 km² mapped, no identity match"
+          "outcome": "\"Anglo American Minério de Ferro Brasil S/A\": 1 feature(s), 43.22 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Algorta Norte S.A.\", 1 feature(s), 37.47 km² mapped, no identity match"
+          "outcome": "\"Algorta Norte S.A.\": 1 feature(s), 37.47 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"CSN Mineração S.A.\", 1 feature(s), 31.84 km² mapped, no identity match"
+          "outcome": "\"CSN Mineração S.A.\": 1 feature(s), 31.84 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Compañía Minera Cerro Colorado Limitada\", 2 feature(s), 28.22 km² mapped, no identity match"
+          "outcome": "\"Compañía Minera Cerro Colorado Limitada\": 2 feature(s), 28.22 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Usiminas\", 1 feature(s), 17.44 km² mapped, no identity match"
+          "outcome": "\"Usiminas\": 1 feature(s), 17.44 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Mexicana de Cobre, S.A.\", 1 feature(s), 15.51 km² mapped, no identity match"
+          "outcome": "\"Mexicana de Cobre, S.A.\": 1 feature(s), 15.51 km² mapped, no identity match"
         },
         {
           "source": "OSM operator tag",
-          "outcome": "\"Sociedad Contractual Minera Corporación de Desarrollo del Norte\", 1 feature(s), 14.09 km² mapped, no identity match"
+          "outcome": "\"Sociedad Contractual Minera Corporación de Desarrollo del Norte\": 1 feature(s), 14.09 km² mapped, no identity match"
         }
       ],
       "interpretation": "These are real operators with real measured geometry, but resolving a local legal entity to a parent group needs a corporate registry we did not query. They are excluded from the account list rather than being guessed at.",
@@ -40582,7 +40622,7 @@
     },
     {
       "id": "null-2",
-      "recordedAt": "2026-07-25T06:48:34.932Z",
+      "recordedAt": "2026-07-25T09:52:08.122Z",
       "subject": "SQM",
       "question": "Do public professional profiles name an operations or safety lead at SQM?",
       "attempts": [
@@ -40601,7 +40641,7 @@
     },
     {
       "id": "null-3",
-      "recordedAt": "2026-07-25T06:48:34.947Z",
+      "recordedAt": "2026-07-25T09:52:08.138Z",
       "subject": "Albemarle (Salar de Atacama)",
       "question": "Do public professional profiles name an operations or safety lead at Albemarle (Salar de Atacama)?",
       "attempts": [
@@ -40620,7 +40660,7 @@
     },
     {
       "id": "null-4",
-      "recordedAt": "2026-07-25T06:48:34.948Z",
+      "recordedAt": "2026-07-25T09:52:08.138Z",
       "subject": "Albemarle (Salar de Atacama)",
       "question": "Who runs operations and HSE at this account?",
       "attempts": [
@@ -40636,7 +40676,7 @@
     },
     {
       "id": "null-5",
-      "recordedAt": "2026-07-25T06:48:34.993Z",
+      "recordedAt": "2026-07-25T09:52:08.184Z",
       "subject": "Glencore (Lomas Bayas)",
       "question": "Do public professional profiles name an operations or safety lead at Glencore (Lomas Bayas)?",
       "attempts": [
@@ -40655,7 +40695,7 @@
     },
     {
       "id": "null-6",
-      "recordedAt": "2026-07-25T06:48:34.993Z",
+      "recordedAt": "2026-07-25T09:52:08.184Z",
       "subject": "Glencore (Lomas Bayas)",
       "question": "Who runs operations and HSE at this account?",
       "attempts": [
@@ -40671,52 +40711,7 @@
     },
     {
       "id": "null-7",
-      "recordedAt": "2026-07-25T06:48:39.679Z",
-      "subject": "SQM",
-      "question": "Could a compliant first-touch message be produced for Ricardo Ramos?",
-      "attempts": [
-        {
-          "source": "Copywriter then Red Team critic",
-          "outcome": "Generation failed on iteration 1: openai/gpt-oss-120b -> HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"max completion tokens reached before gener"
-        }
-      ],
-      "interpretation": "The critic is deliberately strict. It would rather emit nothing than emit a message that fails a gate, because a weak message spends the one first impression this account has.",
-      "remediation": "Either supply the missing sourced fact the gate requires, or relax the specific gate deliberately and record that decision.",
-      "producedBy": "red_team"
-    },
-    {
-      "id": "null-8",
-      "recordedAt": "2026-07-25T06:49:11.408Z",
-      "subject": "Codelco",
-      "question": "Could a compliant first-touch message be produced for Alejandro Sanhueza Díaz?",
-      "attempts": [
-        {
-          "source": "Copywriter then Red Team critic",
-          "outcome": "Generation failed on iteration 1: openai/gpt-oss-120b -> HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kxxbp9k1ef4rq3g9gah445cr` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7095, Requested 2122. Please try again in 9.1275s"
-        }
-      ],
-      "interpretation": "The critic is deliberately strict. It would rather emit nothing than emit a message that fails a gate, because a weak message spends the one first impression this account has.",
-      "remediation": "Either supply the missing sourced fact the gate requires, or relax the specific gate deliberately and record that decision.",
-      "producedBy": "red_team"
-    },
-    {
-      "id": "null-9",
-      "recordedAt": "2026-07-25T06:49:16.233Z",
-      "subject": "Codelco",
-      "question": "Could a compliant first-touch message be produced for Gabriel Méndez Serqueira?",
-      "attempts": [
-        {
-          "source": "Copywriter then Red Team critic",
-          "outcome": "Generation failed on iteration 1: openai/gpt-oss-120b -> HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kxxbp9k1ef4rq3g9gah445cr` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6453, Requested 2129. Please try again in 4.36499"
-        }
-      ],
-      "interpretation": "The critic is deliberately strict. It would rather emit nothing than emit a message that fails a gate, because a weak message spends the one first impression this account has.",
-      "remediation": "Either supply the missing sourced fact the gate requires, or relax the specific gate deliberately and record that decision.",
-      "producedBy": "red_team"
-    },
-    {
-      "id": "null-10",
-      "recordedAt": "2026-07-25T06:49:16.233Z",
+      "recordedAt": "2026-07-25T09:54:36.974Z",
       "subject": "Albemarle (Salar de Atacama)",
       "question": "Could a compliant first-touch message be produced for Head of Operations?",
       "attempts": [
@@ -40730,8 +40725,8 @@
       "producedBy": "red_team"
     },
     {
-      "id": "null-11",
-      "recordedAt": "2026-07-25T06:49:16.233Z",
+      "id": "null-8",
+      "recordedAt": "2026-07-25T09:54:58.988Z",
       "subject": "Albemarle (Salar de Atacama)",
       "question": "Could a compliant first-touch message be produced for VP of HSE?",
       "attempts": [
@@ -40752,29 +40747,14 @@
         "channel": "email",
         "contactId": "contact-sqm-ricardo-ramos",
         "intent": "Open on their own operation, ask permission to send the written breakdown.",
-        "rationale": "Site-level leadership out-replies the executive layer, so the sequence opens there rather than at the top. The ask is interest-based because at first contact that outperforms a meeting request roughly two to one."
-      },
-      {
-        "dayOffset": 3,
-        "channel": "linkedin",
-        "contactId": "contact-sqm-ricardo-ramos",
-        "intent": "Short connection note referencing the same operational fact, no pitch.",
-        "rationale": "A three-day gap places materially better than a one-day gap. Switching channel rather than resending keeps the thread from reading as automation.",
-        "script": "Connection note for Ricardo Ramos: reference the same measured fact used in the first email, state you sent a note about inspection cadence, and offer nothing further. Two sentences."
-      },
-      {
-        "dayOffset": 5,
-        "channel": "email",
-        "contactId": "contact-sqm-pablo-altimiras",
-        "intent": "Multi-thread to the second committee member with the risk framing rather than the cost framing.",
-        "rationale": "Multi-threading raises the chance the account engages without increasing pressure on any single person. The framing changes because a risk validator and an operations owner are not persuaded by the same sentence.",
+        "rationale": "Site-level leadership out-replies the executive layer, so the sequence opens there rather than at the top. The ask is interest-based because at first contact that outperforms a meeting request roughly two to one.",
         "draft": {
-          "id": "contact-sqm-pablo-altimiras-t1-i1",
-          "iteration": 1,
-          "subject": "Riesgos de contratistas en inspección",
-          "body": "Usted opera 49 sitios mapeados que suman 548 km², siendo el Salar de Atacama 236.5 km². Según su informe 20‑F, los incidentes de seguridad de contratistas y paros son riesgos críticos. Actualmente, sus equipos contratados absorben costos elevados y exposición a esos riesgos operativos. Con Adentu, SQM redujo el tiempo de inspección de días a horas. ¿Podría enviarle un breve resumen escrito de este cambio operacional?\nAtharva Awade, Business Development, FlytBase",
+          "id": "contact-sqm-ricardo-ramos-t1-i2",
+          "iteration": 2,
+          "subject": "Riesgos de inspección contratada",
+          "body": "Usted gestiona 49 sitios mapeados que suman 548 km², siendo el Salar de Atacama el mayor.\nSu informe 20-F señala incidentes de seguridad de contratistas y paradas de obra como riesgos a la producción.\nActualmente, los equipos de inspección contratados absorben esos costos y riesgos sin reducir la frecuencia.\nAnglo American vio que el tiempo de inspección pasó de días a horas, con fiabilidad superior al 95 %.\n¿Puedo enviarle un breve resumen escrito de cómo cambiaron la cadencia de inspección?\nAtharva Awade, Business Development, FlytBase",
           "language": "es-CL",
-          "wordCount": 73,
+          "wordCount": 85,
           "sentenceCount": 6,
           "citedFacts": [
             {
@@ -40797,13 +40777,13 @@
               "gate": "G2",
               "label": "No template or model-tell phrasing",
               "passed": true,
-              "detail": "Clean of known template openers and model vocabulary."
+              "detail": "Clean of known template openers, model vocabulary and em dashes."
             },
             {
               "gate": "G3",
               "label": "Opener length 55–95 words",
               "passed": true,
-              "detail": "73 words across 6 sentences; longest sentence 17 words. Reply rates peak in the 50–100 word band."
+              "detail": "85 words across 6 sentences; longest sentence 18 words. Reply rates peak in the 50–100 word band."
             },
             {
               "gate": "G4",
@@ -40821,7 +40801,7 @@
               "gate": "G6",
               "label": "Plain language",
               "passed": true,
-              "detail": "Fernández-Huerta (higher is easier): 70.2. Reads plainly."
+              "detail": "Fernández-Huerta (higher is easier): 75.4. Reads plainly."
             },
             {
               "gate": "G7",
@@ -40846,6 +40826,118 @@
               "label": "Written wholly in the target language",
               "passed": true,
               "detail": "No English wording leaked into the target-language copy."
+            },
+            {
+              "gate": "G11",
+              "label": "Names a peer operator, and attributes every figure to whoever reported it",
+              "passed": true,
+              "detail": "Names Anglo American as a peer, and any quoted figure sits with the customer who reported it."
+            }
+          ],
+          "score": 100,
+          "accepted": true,
+          "rejectionReasons": [],
+          "model": "openai/gpt-oss-120b"
+        }
+      },
+      {
+        "dayOffset": 3,
+        "channel": "linkedin",
+        "contactId": "contact-sqm-ricardo-ramos",
+        "intent": "Short connection note referencing the same operational fact, no pitch.",
+        "rationale": "A three-day gap places materially better than a one-day gap. Switching channel rather than resending keeps the thread from reading as automation.",
+        "script": "Connection note for Ricardo Ramos: reference the same measured fact used in the first email, state you sent a note about inspection cadence, and offer nothing further. Two sentences."
+      },
+      {
+        "dayOffset": 5,
+        "channel": "email",
+        "contactId": "contact-sqm-pablo-altimiras",
+        "intent": "Multi-thread to the second committee member with the risk framing rather than the cost framing.",
+        "rationale": "Multi-threading raises the chance the account engages without increasing pressure on any single person. The framing changes because a risk validator and an operations owner are not persuaded by the same sentence.",
+        "draft": {
+          "id": "contact-sqm-pablo-altimiras-t1-i1",
+          "iteration": 1,
+          "subject": "Riesgos de inspección contratada",
+          "body": "Usted opera 49 sitios mapeados que suman 548 km², siendo el Salar de Atacama 236.5 km². Su reporte 20‑F indica incidentes de seguridad de contratistas y paros de trabajo como riesgos a la producción. Actualmente, los equipos contratados absorben esos costos y riesgos mientras mantienen la frecuencia de inspección. Nuestro cliente Anglo American logró que el tiempo de inspección pasara de días a horas. ¿Podemos enviarle un breve resumen escrito sobre cómo se modificó la cadencia de inspección?\nAtharva Awade, Business Development, FlytBase",
+          "language": "es-CL",
+          "wordCount": 85,
+          "sentenceCount": 6,
+          "citedFacts": [
+            {
+              "text": "SQM's own 20-F for period ending 2026-04-22 names contractor safety incidents and contractor work stoppages among its risks to production",
+              "evidenceId": "ev-sqm-filing-15"
+            },
+            {
+              "text": "SQM operates 49 mapped sites totalling 548 km², the largest being SQM Salar de Atacama at 236.5 km²",
+              "evidenceId": "ev-sqm-geo-1"
+            }
+          ],
+          "gates": [
+            {
+              "gate": "G1",
+              "label": "No placeholder tokens",
+              "passed": true,
+              "detail": "No merge fields, brackets or TBD markers present."
+            },
+            {
+              "gate": "G2",
+              "label": "No template or model-tell phrasing",
+              "passed": true,
+              "detail": "Clean of known template openers, model vocabulary and em dashes."
+            },
+            {
+              "gate": "G3",
+              "label": "Opener length 55–95 words",
+              "passed": true,
+              "detail": "85 words across 6 sentences; longest sentence 19 words. Reply rates peak in the 50–100 word band."
+            },
+            {
+              "gate": "G4",
+              "label": "Two or more cited, verifiable specifics",
+              "passed": true,
+              "detail": "2 cited fact(s), 1 numeric, 1 dated within 18 months."
+            },
+            {
+              "gate": "G5",
+              "label": "Single interest-based ask, no meeting request",
+              "passed": true,
+              "detail": "One interest-based ask, no links, no calendar request."
+            },
+            {
+              "gate": "G6",
+              "label": "Plain language",
+              "passed": true,
+              "detail": "Fernández-Huerta (higher is easier): 74.0. Reads plainly."
+            },
+            {
+              "gate": "G7",
+              "label": "Reader-centred and signed",
+              "passed": true,
+              "detail": "Second-person to first-person ratio 3.0:1, signature present."
+            },
+            {
+              "gate": "G8",
+              "label": "Every number traces to a supplied fact",
+              "passed": true,
+              "detail": "All 4 numeral(s) in the draft trace to a fact the writer was given."
+            },
+            {
+              "gate": "G9",
+              "label": "Account name spelled correctly",
+              "passed": true,
+              "detail": "Account name not used in the body."
+            },
+            {
+              "gate": "G10",
+              "label": "Written wholly in the target language",
+              "passed": true,
+              "detail": "No English wording leaked into the target-language copy."
+            },
+            {
+              "gate": "G11",
+              "label": "Names a peer operator, and attributes every figure to whoever reported it",
+              "passed": true,
+              "detail": "Names Anglo American as a peer, and any quoted figure sits with the customer who reported it."
             }
           ],
           "score": 100,
@@ -40878,12 +40970,12 @@
         "intent": "Open on their own operation, ask permission to send the written breakdown.",
         "rationale": "Site-level leadership out-replies the executive layer, so the sequence opens there rather than at the top. The ask is interest-based because at first contact that outperforms a meeting request roughly two to one.",
         "draft": {
-          "id": "contact-vale-henrique-candian-t1-i2",
-          "iteration": 2,
-          "subject": "Riscos de inspeção contratada",
-          "body": "Você gerencia 36 sites mapeados, totalizando 82 km², incluindo a maior cava de 16,8 km².\nSeu relatório 20‑F destaca incidentes de segurança de contratados e paralisações como riscos à produção.\nEsses riscos forçam suas equipes contratadas a absorver custos elevados e exposição constante.\nA SQM reduziu o tempo de inspeção de dias para horas, mantendo confiabilidade acima de 95%.\nPosso enviar um resumo escrito sobre como essa mudança duplicou a frequência de inspeções?\nAtharva Awade, Business Development, FlytBase",
+          "id": "contact-vale-henrique-candian-t1-i3",
+          "iteration": 3,
+          "subject": "Riscos de inspeções terceirizadas",
+          "body": "A Vale opera 36 sites mapeados totalizando 82 km², sendo o maior um poço de 16,8 km².\nSeu relatório 20‑F indica incidentes de segurança de contratados e paralisações de trabalho como riscos à produção.\nEsses incidentes obrigam suas equipes terceirizadas a absorver custos elevados e riscos operacionais.\nA Anglo American já viu o tempo de inspeção cair de dias para horas.\nPosso enviar-lhe um breve resumo escrito de como a Anglo American alterou sua cadência de inspeção?\nAtharva Awade, Business Development, FlytBase",
           "language": "pt-BR",
-          "wordCount": 80,
+          "wordCount": 84,
           "sentenceCount": 6,
           "citedFacts": [
             {
@@ -40906,13 +40998,13 @@
               "gate": "G2",
               "label": "No template or model-tell phrasing",
               "passed": true,
-              "detail": "Clean of known template openers and model vocabulary."
+              "detail": "Clean of known template openers, model vocabulary and em dashes."
             },
             {
               "gate": "G3",
               "label": "Opener length 55–95 words",
               "passed": true,
-              "detail": "80 words across 6 sentences; longest sentence 16 words. Reply rates peak in the 50–100 word band."
+              "detail": "84 words across 6 sentences; longest sentence 18 words. Reply rates peak in the 50–100 word band."
             },
             {
               "gate": "G4",
@@ -40930,19 +41022,19 @@
               "gate": "G6",
               "label": "Plain language",
               "passed": true,
-              "detail": "Fernández-Huerta (higher is easier): 66.4. Reads plainly."
+              "detail": "Fernández-Huerta (higher is easier): 70.3. Reads plainly."
             },
             {
               "gate": "G7",
               "label": "Reader-centred and signed",
               "passed": true,
-              "detail": "Second-person to first-person ratio 2.0:1, signature present."
+              "detail": "Second-person to first-person ratio 3.0:1, signature present."
             },
             {
               "gate": "G8",
               "label": "Every number traces to a supplied fact",
               "passed": true,
-              "detail": "All 5 numeral(s) in the draft trace to a fact the writer was given."
+              "detail": "All 4 numeral(s) in the draft trace to a fact the writer was given."
             },
             {
               "gate": "G9",
@@ -40955,6 +41047,12 @@
               "label": "Written wholly in the target language",
               "passed": true,
               "detail": "No English wording leaked into the target-language copy."
+            },
+            {
+              "gate": "G11",
+              "label": "Names a peer operator, and attributes every figure to whoever reported it",
+              "passed": true,
+              "detail": "Names Anglo American as a peer, and any quoted figure sits with the customer who reported it."
             }
           ],
           "score": 100,
@@ -40978,12 +41076,12 @@
         "intent": "Multi-thread to the second committee member with the risk framing rather than the cost framing.",
         "rationale": "Multi-threading raises the chance the account engages without increasing pressure on any single person. The framing changes because a risk validator and an operations owner are not persuaded by the same sentence.",
         "draft": {
-          "id": "contact-vale-marlon-reis-t1-i1",
-          "iteration": 1,
-          "subject": "Riscos de inspeções contratadas",
-          "body": "Vocês operam 36 sites mapeados totalizando 82 km², sendo o maior um poço de 16,8 km². Sabemos que incidentes de segurança de contratados e paralisações de trabalho são riscos críticos à produção. Essas equipes contratadas absorvem custos elevados e expõem sua operação a interrupções frequentes. A SQM, com a Adentu, dobrou a frequência de inspeções mantendo confiabilidade acima de 95%. Posso enviar um resumo escrito sobre como essa mudança foi implementada?\nAtharva Awade, Business Development, FlytBase",
+          "id": "contact-vale-marlon-reis-t1-i2",
+          "iteration": 2,
+          "subject": "Riscos de paradas de inspeção",
+          "body": "Você gerencia 36 sites mapeados que totalizam 82 km², sendo o maior com 16,8 km². Seu relatório anual destaca incidentes de segurança de contratados e paralisações como riscos críticos à produção. Essas paradas forçam suas equipes contratadas a absorver custos elevados e exposição ao risco. O Anglo American reduziu o tempo de inspeção de dias para horas. Posso enviar um resumo escrito sobre como alteramos a cadência de inspeção?\nAtharva Awade, Business Development, FlytBase",
           "language": "pt-BR",
-          "wordCount": 77,
+          "wordCount": 75,
           "sentenceCount": 6,
           "citedFacts": [
             {
@@ -41006,13 +41104,13 @@
               "gate": "G2",
               "label": "No template or model-tell phrasing",
               "passed": true,
-              "detail": "Clean of known template openers and model vocabulary."
+              "detail": "Clean of known template openers, model vocabulary and em dashes."
             },
             {
               "gate": "G3",
               "label": "Opener length 55–95 words",
               "passed": true,
-              "detail": "77 words across 6 sentences; longest sentence 17 words. Reply rates peak in the 50–100 word band."
+              "detail": "75 words across 6 sentences; longest sentence 16 words. Reply rates peak in the 50–100 word band."
             },
             {
               "gate": "G4",
@@ -41030,19 +41128,19 @@
               "gate": "G6",
               "label": "Plain language",
               "passed": true,
-              "detail": "Fernández-Huerta (higher is easier): 64.1. Reads plainly."
+              "detail": "Fernández-Huerta (higher is easier): 66.7. Reads plainly."
             },
             {
               "gate": "G7",
               "label": "Reader-centred and signed",
               "passed": true,
-              "detail": "Second-person to first-person ratio all second-person:1, signature present."
+              "detail": "Second-person to first-person ratio 2.0:1, signature present."
             },
             {
               "gate": "G8",
               "label": "Every number traces to a supplied fact",
               "passed": true,
-              "detail": "All 4 numeral(s) in the draft trace to a fact the writer was given."
+              "detail": "All 3 numeral(s) in the draft trace to a fact the writer was given."
             },
             {
               "gate": "G9",
@@ -41055,6 +41153,12 @@
               "label": "Written wholly in the target language",
               "passed": true,
               "detail": "No English wording leaked into the target-language copy."
+            },
+            {
+              "gate": "G11",
+              "label": "Names a peer operator, and attributes every figure to whoever reported it",
+              "passed": true,
+              "detail": "Names Anglo American as a peer, and any quoted figure sits with the customer who reported it."
             }
           ],
           "score": 100,
@@ -41085,7 +41189,98 @@
         "channel": "email",
         "contactId": "contact-codelco-alejandro-sanhueza-diaz",
         "intent": "Open on their own operation, ask permission to send the written breakdown.",
-        "rationale": "Site-level leadership out-replies the executive layer, so the sequence opens there rather than at the top. The ask is interest-based because at first contact that outperforms a meeting request roughly two to one."
+        "rationale": "Site-level leadership out-replies the executive layer, so the sequence opens there rather than at the top. The ask is interest-based because at first contact that outperforms a meeting request roughly two to one.",
+        "draft": {
+          "id": "contact-codelco-alejandro-sanhueza-diaz-t1-i1",
+          "iteration": 1,
+          "subject": "Costos y riesgo de inspecciones",
+          "body": "Codelco opera 24 sitios mapeados que suman 177 km², siendo la División Radomiro Tomic 44.7 km².\nEl Vicepresidente de Operaciones está cubierto interinamente por Lindor Quiroga B actualmente.\nLos equipos de inspección contratados representan costos altos y riesgo que su operación absorbe actualmente.\nAnglo American logró que el tiempo de inspección cayó de días a horas.\n¿Puedo enviarle un resumen escrito sobre cómo cambiaron la frecuencia de inspección?\nAtharva Awade, Business Development, FlytBase",
+          "language": "es-CL",
+          "wordCount": 74,
+          "sentenceCount": 6,
+          "citedFacts": [
+            {
+              "text": "Codelco operates 24 mapped sites totalling 177 km², the largest being División Radomiro Tomic at 44.7 km²",
+              "evidenceId": "ev-codelco-geo-27"
+            },
+            {
+              "text": "Vicepresidente de Operaciones (i) is held on an interim basis by Lindor Quiroga B.",
+              "evidenceId": "ev-codelco-person-47"
+            }
+          ],
+          "gates": [
+            {
+              "gate": "G1",
+              "label": "No placeholder tokens",
+              "passed": true,
+              "detail": "No merge fields, brackets or TBD markers present."
+            },
+            {
+              "gate": "G2",
+              "label": "No template or model-tell phrasing",
+              "passed": true,
+              "detail": "Clean of known template openers, model vocabulary and em dashes."
+            },
+            {
+              "gate": "G3",
+              "label": "Opener length 55–95 words",
+              "passed": true,
+              "detail": "74 words across 6 sentences; longest sentence 17 words. Reply rates peak in the 50–100 word band."
+            },
+            {
+              "gate": "G4",
+              "label": "Two or more cited, verifiable specifics",
+              "passed": true,
+              "detail": "2 cited fact(s), 1 numeric, 1 dated within 18 months."
+            },
+            {
+              "gate": "G5",
+              "label": "Single interest-based ask, no meeting request",
+              "passed": true,
+              "detail": "One interest-based ask, no links, no calendar request."
+            },
+            {
+              "gate": "G6",
+              "label": "Plain language",
+              "passed": true,
+              "detail": "Fernández-Huerta (higher is easier): 62.4. Reads plainly."
+            },
+            {
+              "gate": "G7",
+              "label": "Reader-centred and signed",
+              "passed": true,
+              "detail": "Second-person to first-person ratio all second-person:1, signature present."
+            },
+            {
+              "gate": "G8",
+              "label": "Every number traces to a supplied fact",
+              "passed": true,
+              "detail": "All 3 numeral(s) in the draft trace to a fact the writer was given."
+            },
+            {
+              "gate": "G9",
+              "label": "Account name spelled correctly",
+              "passed": true,
+              "detail": "\"Codelco\" spelled correctly."
+            },
+            {
+              "gate": "G10",
+              "label": "Written wholly in the target language",
+              "passed": true,
+              "detail": "No English wording leaked into the target-language copy."
+            },
+            {
+              "gate": "G11",
+              "label": "Names a peer operator, and attributes every figure to whoever reported it",
+              "passed": true,
+              "detail": "Names Anglo American as a peer, and any quoted figure sits with the customer who reported it."
+            }
+          ],
+          "score": 100,
+          "accepted": true,
+          "rejectionReasons": [],
+          "model": "openai/gpt-oss-120b"
+        }
       },
       {
         "dayOffset": 3,
@@ -41098,9 +41293,100 @@
       {
         "dayOffset": 5,
         "channel": "email",
-        "contactId": "contact-codelco-gabriel-mendez-serqueira",
+        "contactId": "contact-codelco-jorge-gomez-diaz",
         "intent": "Multi-thread to the second committee member with the risk framing rather than the cost framing.",
-        "rationale": "Multi-threading raises the chance the account engages without increasing pressure on any single person. The framing changes because a risk validator and an operations owner are not persuaded by the same sentence."
+        "rationale": "Multi-threading raises the chance the account engages without increasing pressure on any single person. The framing changes because a risk validator and an operations owner are not persuaded by the same sentence.",
+        "draft": {
+          "id": "contact-codelco-jorge-gomez-diaz-t1-i1",
+          "iteration": 1,
+          "subject": "Costos y riesgos de inspección",
+          "body": "Usted supervisa 24 sitios mapeados que cubren 177 km², siendo la División Radomiro Tomic 44.7 km².\nAdemás, el Vicepresidente de Operaciones está temporalmente a cargo de Lindor Quiroga B.\nLos equipos contratados absorben gran parte del costo y el riesgo de inspecciones frecuentes.\nAnglo American ya vio que el tiempo de inspección cayó de días a horas.\n¿Podría enviarle un resumen escrito sobre cómo cambiaron la cadencia de inspección?\nAtharva Awade, Business Development, FlytBase",
+          "language": "es-CL",
+          "wordCount": 75,
+          "sentenceCount": 6,
+          "citedFacts": [
+            {
+              "text": "Codelco operates 24 mapped sites totalling 177 km², the largest being División Radomiro Tomic at 44.7 km²",
+              "evidenceId": "ev-codelco-geo-27"
+            },
+            {
+              "text": "Vicepresidente de Operaciones (i) is held on an interim basis by Lindor Quiroga B.",
+              "evidenceId": "ev-codelco-person-47"
+            }
+          ],
+          "gates": [
+            {
+              "gate": "G1",
+              "label": "No placeholder tokens",
+              "passed": true,
+              "detail": "No merge fields, brackets or TBD markers present."
+            },
+            {
+              "gate": "G2",
+              "label": "No template or model-tell phrasing",
+              "passed": true,
+              "detail": "Clean of known template openers, model vocabulary and em dashes."
+            },
+            {
+              "gate": "G3",
+              "label": "Opener length 55–95 words",
+              "passed": true,
+              "detail": "75 words across 6 sentences; longest sentence 17 words. Reply rates peak in the 50–100 word band."
+            },
+            {
+              "gate": "G4",
+              "label": "Two or more cited, verifiable specifics",
+              "passed": true,
+              "detail": "2 cited fact(s), 1 numeric, 1 dated within 18 months."
+            },
+            {
+              "gate": "G5",
+              "label": "Single interest-based ask, no meeting request",
+              "passed": true,
+              "detail": "One interest-based ask, no links, no calendar request."
+            },
+            {
+              "gate": "G6",
+              "label": "Plain language",
+              "passed": true,
+              "detail": "Fernández-Huerta (higher is easier): 71.5. Reads plainly."
+            },
+            {
+              "gate": "G7",
+              "label": "Reader-centred and signed",
+              "passed": true,
+              "detail": "Second-person to first-person ratio all second-person:1, signature present."
+            },
+            {
+              "gate": "G8",
+              "label": "Every number traces to a supplied fact",
+              "passed": true,
+              "detail": "All 3 numeral(s) in the draft trace to a fact the writer was given."
+            },
+            {
+              "gate": "G9",
+              "label": "Account name spelled correctly",
+              "passed": true,
+              "detail": "Account name not used in the body."
+            },
+            {
+              "gate": "G10",
+              "label": "Written wholly in the target language",
+              "passed": true,
+              "detail": "No English wording leaked into the target-language copy."
+            },
+            {
+              "gate": "G11",
+              "label": "Names a peer operator, and attributes every figure to whoever reported it",
+              "passed": true,
+              "detail": "Names Anglo American as a peer, and any quoted figure sits with the customer who reported it."
+            }
+          ],
+          "score": 100,
+          "accepted": true,
+          "rejectionReasons": [],
+          "model": "openai/gpt-oss-120b"
+        }
       },
       {
         "dayOffset": 7,
@@ -41162,7 +41448,7 @@
     "sqm": {
       "accountId": "sqm",
       "headline": "SQM is the reference profile this campaign is modelled on. Its measured footprint and disclosed contractor dependency define what a good account looks like.",
-      "whyNow": "No dated trigger event was found, so the reason to call is structural rather than circumstantial: their own filing names contractor dependency as a production risk 30 times and discloses no autonomy programme.",
+      "whyNow": "SQM's own annual filing never uses the words drone, autonomous, automation, while referring to contractors 27 time(s). Automated inspection is absent from the document the company files about its own operations, so there is no incumbent programme to displace and no internal position to argue against. The exposure it would remove, contracted crews at hazardous sites, is disclosed in the same document. Greenfield, evidenced by the company itself rather than by our reading of the market.",
       "positioning": "SQM runs 49 mapped operating areas totalling 548.5 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection, same coverage or better, without a person in front of the hazard.",
       "stakeholderMap": [
         {
@@ -41219,6 +41505,13 @@
           ]
         },
         {
+          "question": "Given SQM's own annual filing never uses the words drone, autonomous, automation, while referrin, what does that change about how the site is monitored?",
+          "whyItLands": "Tied to a dated, cited event rather than a guess about their priorities. Automated inspection is absent from the document the company files about its own operations, so there is no incumbent programme to displace and no internal position to argue against.",
+          "evidenceIds": [
+            "ev-sqm-filing-15"
+          ]
+        },
+        {
           "question": "If inspection frequency were not constrained by crew availability, what would you want to look at more often than you currently can?",
           "whyItLands": "Reframes from cost reduction to capability. The reference deployment did not cut inspection, it doubled frequency at lower exposure, and this question finds the asset the operator already wishes they watched more closely.",
           "evidenceIds": []
@@ -41263,8 +41556,8 @@
     },
     "vale": {
       "accountId": "vale",
-      "headline": "Worth a sequence once tier A is moving. Vale resembles Sociedad Química y Minera de Chile (SQM) on the dimensions that matter.",
-      "whyNow": "No dated trigger event was found, so the reason to call is structural rather than circumstantial: their own filing names contractor dependency as a production risk 45 times and discloses no autonomy programme.",
+      "headline": "Work this now. Vale resembles Sociedad Química y Minera de Chile (SQM) on the dimensions that matter.",
+      "whyNow": "Vale's annual filing already discusses autonomous. The company has already accepted the category in a filed document, so the conversation starts at scope and integration rather than at whether autonomous inspection is credible. Ask what is deployed today and where it stops.",
       "positioning": "Vale runs 36 mapped operating areas totalling 81.5 km², and contracted crews currently absorb the exposure of inspecting them on foot. We replace the exposure, not the inspection, same coverage or better, without a person in front of the hazard.",
       "stakeholderMap": [
         {
@@ -41303,6 +41596,13 @@
           "whyItLands": "Travel between separated sites is pure overhead and is invisible on a cost line. We measured the sites as 8 spatially separate cluster(s), so we can be specific about which ones share infrastructure.",
           "evidenceIds": [
             "ev-vale-geo-91"
+          ]
+        },
+        {
+          "question": "Given Vale's annual filing already discusses autonomous, what does that change about how the site is monitored?",
+          "whyItLands": "Tied to a dated, cited event rather than a guess about their priorities. The company has already accepted the category in a filed document, so the conversation starts at scope and integration rather than at whether autonomous inspection is credible.",
+          "evidenceIds": [
+            "ev-vale-filing-105"
           ]
         },
         {
@@ -42188,38 +42488,38 @@
   "trace": [
     {
       "seq": 1,
-      "at": "2026-07-25T06:48:34.852Z",
+      "at": "2026-07-25T09:52:08.035Z",
       "agent": "chief_of_staff",
       "phase": "start",
       "message": "Campaign brief received: LatAm mining, the assigned brief."
     },
     {
       "seq": 2,
-      "at": "2026-07-25T06:48:34.852Z",
+      "at": "2026-07-25T09:52:08.036Z",
       "agent": "chief_of_staff",
       "phase": "note",
       "message": "Plan: measure mapped mining & extraction geometry across CL, PE, BR, AR, MX, derive the account universe from operator attribution on that geometry, mine primary filings for contractor dependency, source named officers from statutory and company disclosures, score deterministically, then size the opportunity per account."
     },
     {
       "seq": 3,
-      "at": "2026-07-25T06:48:34.852Z",
+      "at": "2026-07-25T09:52:08.036Z",
       "agent": "terrain_surveyor",
       "phase": "start",
       "message": "Measuring mapped mining & extraction geometry across 9 regions."
     },
     {
       "seq": 4,
-      "at": "2026-07-25T06:48:34.861Z",
+      "at": "2026-07-25T09:52:08.046Z",
       "agent": "terrain_surveyor",
       "phase": "tool",
       "message": "CL-north: 256 features measured, 55 distinct operators, 88 unattributed (cached).",
       "tool": "overpass",
       "url": "https://overpass-api.de/api/interpreter",
-      "latencyMs": 8
+      "latencyMs": 10
     },
     {
       "seq": 5,
-      "at": "2026-07-25T06:48:34.862Z",
+      "at": "2026-07-25T09:52:08.047Z",
       "agent": "terrain_surveyor",
       "phase": "tool",
       "message": "CL-atacama-salar: 43 features measured, 3 distinct operators, 5 unattributed (cached).",
@@ -42229,47 +42529,47 @@
     },
     {
       "seq": 6,
-      "at": "2026-07-25T06:48:34.869Z",
+      "at": "2026-07-25T09:52:08.054Z",
       "agent": "terrain_surveyor",
       "phase": "tool",
       "message": "CL-central: 310 features measured, 52 distinct operators, 211 unattributed (cached).",
       "tool": "overpass",
       "url": "https://overpass-api.de/api/interpreter",
-      "latencyMs": 7
+      "latencyMs": 6
     },
     {
       "seq": 7,
-      "at": "2026-07-25T06:48:34.874Z",
+      "at": "2026-07-25T09:52:08.060Z",
       "agent": "terrain_surveyor",
       "phase": "tool",
       "message": "PE-south: 97 features measured, 1 distinct operators, 96 unattributed (cached).",
       "tool": "overpass",
       "url": "https://overpass-api.de/api/interpreter",
-      "latencyMs": 4
+      "latencyMs": 5
     },
     {
       "seq": 8,
-      "at": "2026-07-25T06:48:34.876Z",
+      "at": "2026-07-25T09:52:08.061Z",
       "agent": "terrain_surveyor",
       "phase": "tool",
       "message": "PE-central: 93 features measured, 5 distinct operators, 87 unattributed (cached).",
       "tool": "overpass",
       "url": "https://overpass-api.de/api/interpreter",
-      "latencyMs": 2
+      "latencyMs": 1
     },
     {
       "seq": 9,
-      "at": "2026-07-25T06:48:34.881Z",
+      "at": "2026-07-25T09:52:08.068Z",
       "agent": "terrain_surveyor",
       "phase": "tool",
       "message": "BR-minas: 256 features measured, 10 distinct operators, 237 unattributed (cached).",
       "tool": "overpass",
       "url": "https://overpass.kumi.systems/api/interpreter",
-      "latencyMs": 5
+      "latencyMs": 6
     },
     {
       "seq": 10,
-      "at": "2026-07-25T06:48:34.882Z",
+      "at": "2026-07-25T09:52:08.070Z",
       "agent": "terrain_surveyor",
       "phase": "tool",
       "message": "BR-para: 13 features measured, 1 distinct operators, 11 unattributed (cached).",
@@ -42279,55 +42579,55 @@
     },
     {
       "seq": 11,
-      "at": "2026-07-25T06:48:34.884Z",
+      "at": "2026-07-25T09:52:08.071Z",
       "agent": "terrain_surveyor",
       "phase": "tool",
       "message": "AR-northwest: 161 features measured, 5 distinct operators, 122 unattributed (cached).",
       "tool": "overpass",
       "url": "https://overpass-api.de/api/interpreter",
-      "latencyMs": 2
+      "latencyMs": 1
     },
     {
       "seq": 12,
-      "at": "2026-07-25T06:48:34.885Z",
+      "at": "2026-07-25T09:52:08.073Z",
       "agent": "terrain_surveyor",
       "phase": "tool",
       "message": "MX-sonora: 35 features measured, 2 distinct operators, 33 unattributed (cached).",
       "tool": "overpass",
       "url": "https://overpass-api.de/api/interpreter",
-      "latencyMs": 1
+      "latencyMs": 2
     },
     {
       "seq": 13,
-      "at": "2026-07-25T06:48:34.885Z",
+      "at": "2026-07-25T09:52:08.073Z",
       "agent": "terrain_surveyor",
       "phase": "finish",
       "message": "Measured 1158 distinct features totalling 2601.3 km² of mapped footprint across 9 regions. Dropped 106 duplicate feature(s) returned by overlapping region queries."
     },
     {
       "seq": 14,
-      "at": "2026-07-25T06:48:34.885Z",
+      "at": "2026-07-25T09:52:08.073Z",
       "agent": "universe_scout",
       "phase": "start",
       "message": "Deriving the account universe from operator attribution on measured geometry."
     },
     {
       "seq": 15,
-      "at": "2026-07-25T06:48:34.891Z",
+      "at": "2026-07-25T09:52:08.079Z",
       "agent": "universe_scout",
       "phase": "note",
       "message": "127 distinct operator tags observed; 20 resolved to known corporate identities, 107 left unresolved and excluded rather than guessed."
     },
     {
       "seq": 16,
-      "at": "2026-07-25T06:48:34.891Z",
+      "at": "2026-07-25T09:52:08.079Z",
       "agent": "universe_scout",
       "phase": "note",
       "message": "Recorded a null result: Which mapped operators could not be resolved to a corporate identity?"
     },
     {
       "seq": 17,
-      "at": "2026-07-25T06:48:34.895Z",
+      "at": "2026-07-25T09:52:08.083Z",
       "agent": "filings_analyst",
       "phase": "tool",
       "message": "Resolving filings for SQM.",
@@ -42336,16 +42636,16 @@
     },
     {
       "seq": 18,
-      "at": "2026-07-25T06:48:34.922Z",
+      "at": "2026-07-25T09:52:08.111Z",
       "agent": "filings_analyst",
       "phase": "note",
       "message": "SQM: 20-F (2026-04-22), 15,16,285 chars. Contractor family 30, safety 67. Absent: drone, autonomous, automation.",
-      "latencyMs": 25,
+      "latencyMs": 27,
       "evidenceCreated": 6
     },
     {
       "seq": 19,
-      "at": "2026-07-25T06:48:34.923Z",
+      "at": "2026-07-25T09:52:08.111Z",
       "agent": "people_finder",
       "phase": "tool",
       "message": "Reading sqm.com/acerca-de-sqm/directorio-y-administracion/administracion/",
@@ -42354,7 +42654,7 @@
     },
     {
       "seq": 20,
-      "at": "2026-07-25T06:48:34.927Z",
+      "at": "2026-07-25T09:52:08.116Z",
       "agent": "people_finder",
       "phase": "note",
       "message": "SQM: kept 5 of 5 officers as buying-committee relevant.",
@@ -42362,7 +42662,7 @@
     },
     {
       "seq": 21,
-      "at": "2026-07-25T06:48:34.932Z",
+      "at": "2026-07-25T09:52:08.122Z",
       "agent": "people_finder",
       "phase": "tool",
       "message": "SQM: ran 2 public-profile search(es), 0 candidate(s) returned.",
@@ -42371,7 +42671,7 @@
     },
     {
       "seq": 22,
-      "at": "2026-07-25T06:48:34.932Z",
+      "at": "2026-07-25T09:52:08.122Z",
       "agent": "people_finder",
       "phase": "note",
       "message": "SQM: added 0 public-profile contact(s) at a lower confidence grade; 18 candidate(s) discarded on employer or seniority checks; 2 search credit(s) used.",
@@ -42379,14 +42679,14 @@
     },
     {
       "seq": 23,
-      "at": "2026-07-25T06:48:34.932Z",
+      "at": "2026-07-25T09:52:08.122Z",
       "agent": "people_finder",
       "phase": "note",
       "message": "Recorded a null result: Do public professional profiles name an operations or safety lead at SQM?"
     },
     {
       "seq": 24,
-      "at": "2026-07-25T06:48:34.932Z",
+      "at": "2026-07-25T09:52:08.122Z",
       "agent": "terrain_surveyor",
       "phase": "note",
       "message": "SQM: 49 site(s), 548.482 km² mapped footprint.",
@@ -42394,7 +42694,7 @@
     },
     {
       "seq": 25,
-      "at": "2026-07-25T06:48:34.934Z",
+      "at": "2026-07-25T09:52:08.124Z",
       "agent": "people_finder",
       "phase": "tool",
       "message": "Reading www.codelco.com/transparencia/responsables-de-la-administracion",
@@ -42403,7 +42703,7 @@
     },
     {
       "seq": 26,
-      "at": "2026-07-25T06:48:34.937Z",
+      "at": "2026-07-25T09:52:08.128Z",
       "agent": "people_finder",
       "phase": "note",
       "message": "Codelco: kept 15 of 23 officers as buying-committee relevant.",
@@ -42411,7 +42711,7 @@
     },
     {
       "seq": 27,
-      "at": "2026-07-25T06:48:34.937Z",
+      "at": "2026-07-25T09:52:08.128Z",
       "agent": "people_finder",
       "phase": "tool",
       "message": "Reading www.codelco.com/transparencia/gerencias-divisionales",
@@ -42420,7 +42720,7 @@
     },
     {
       "seq": 28,
-      "at": "2026-07-25T06:48:34.938Z",
+      "at": "2026-07-25T09:52:08.129Z",
       "agent": "people_finder",
       "phase": "note",
       "message": "Codelco: kept 4 of 8 officers as buying-committee relevant, and confirmed 4 already-known officer(s) on a second independent source.",
@@ -42428,7 +42728,7 @@
     },
     {
       "seq": 29,
-      "at": "2026-07-25T06:48:34.939Z",
+      "at": "2026-07-25T09:52:08.129Z",
       "agent": "terrain_surveyor",
       "phase": "note",
       "message": "Codelco: 24 site(s), 177.229 km² mapped footprint, 1 excluded as disused.",
@@ -42436,7 +42736,7 @@
     },
     {
       "seq": 30,
-      "at": "2026-07-25T06:48:34.943Z",
+      "at": "2026-07-25T09:52:08.134Z",
       "agent": "people_finder",
       "phase": "tool",
       "message": "Teck Quebrada Blanca: ran 2 public-profile search(es), 5 candidate(s) returned.",
@@ -42445,7 +42745,7 @@
     },
     {
       "seq": 31,
-      "at": "2026-07-25T06:48:34.944Z",
+      "at": "2026-07-25T09:52:08.134Z",
       "agent": "people_finder",
       "phase": "note",
       "message": "Teck Quebrada Blanca: added 4 public-profile contact(s) at a lower confidence grade; 14 candidate(s) discarded on employer or seniority checks; 2 search credit(s) used.",
@@ -42453,7 +42753,7 @@
     },
     {
       "seq": 32,
-      "at": "2026-07-25T06:48:34.944Z",
+      "at": "2026-07-25T09:52:08.134Z",
       "agent": "terrain_surveyor",
       "phase": "note",
       "message": "Teck Quebrada Blanca: 5 site(s), 64.628 km² mapped footprint.",
@@ -42461,7 +42761,7 @@
     },
     {
       "seq": 33,
-      "at": "2026-07-25T06:48:34.947Z",
+      "at": "2026-07-25T09:52:08.138Z",
       "agent": "people_finder",
       "phase": "tool",
       "message": "Albemarle (Salar de Atacama): ran 2 public-profile search(es), 0 candidate(s) returned.",
@@ -42470,7 +42770,7 @@
     },
     {
       "seq": 34,
-      "at": "2026-07-25T06:48:34.947Z",
+      "at": "2026-07-25T09:52:08.138Z",
       "agent": "people_finder",
       "phase": "note",
       "message": "Albemarle (Salar de Atacama): added 0 public-profile contact(s) at a lower confidence grade; 4 candidate(s) discarded on employer or seniority checks; 2 search credit(s) used.",
@@ -42478,21 +42778,21 @@
     },
     {
       "seq": 35,
-      "at": "2026-07-25T06:48:34.947Z",
+      "at": "2026-07-25T09:52:08.138Z",
       "agent": "people_finder",
       "phase": "note",
       "message": "Recorded a null result: Do public professional profiles name an operations or safety lead at Albemarle (Salar de Atacama)?"
     },
     {
       "seq": 36,
-      "at": "2026-07-25T06:48:34.948Z",
+      "at": "2026-07-25T09:52:08.138Z",
       "agent": "people_finder",
       "phase": "note",
       "message": "Recorded a null result: Who runs operations and HSE at this account?"
     },
     {
       "seq": 37,
-      "at": "2026-07-25T06:48:34.948Z",
+      "at": "2026-07-25T09:52:08.139Z",
       "agent": "terrain_surveyor",
       "phase": "note",
       "message": "Albemarle (Salar de Atacama): 27 site(s), 42.957 km² mapped footprint.",
@@ -42500,7 +42800,7 @@
     },
     {
       "seq": 38,
-      "at": "2026-07-25T06:48:34.949Z",
+      "at": "2026-07-25T09:52:08.140Z",
       "agent": "filings_analyst",
       "phase": "tool",
       "message": "Resolving filings for Vale.",
@@ -42509,7 +42809,7 @@
     },
     {
       "seq": 39,
-      "at": "2026-07-25T06:48:34.963Z",
+      "at": "2026-07-25T09:52:08.154Z",
       "agent": "filings_analyst",
       "phase": "note",
       "message": "Vale: 20-F (2026-03-27), 10,78,188 chars. Contractor family 45, safety 85. Absent: drone, automation.",
@@ -42518,7 +42818,7 @@
     },
     {
       "seq": 40,
-      "at": "2026-07-25T06:48:34.966Z",
+      "at": "2026-07-25T09:52:08.157Z",
       "agent": "people_finder",
       "phase": "tool",
       "message": "Vale: ran 2 public-profile search(es), 2 candidate(s) returned.",
@@ -42527,7 +42827,7 @@
     },
     {
       "seq": 41,
-      "at": "2026-07-25T06:48:34.966Z",
+      "at": "2026-07-25T09:52:08.157Z",
       "agent": "people_finder",
       "phase": "note",
       "message": "Vale: added 2 public-profile contact(s) at a lower confidence grade; 17 candidate(s) discarded on employer or seniority checks; 2 search credit(s) used.",
@@ -42535,7 +42835,7 @@
     },
     {
       "seq": 42,
-      "at": "2026-07-25T06:48:34.966Z",
+      "at": "2026-07-25T09:52:08.157Z",
       "agent": "terrain_surveyor",
       "phase": "note",
       "message": "Vale: 36 site(s), 81.534 km² mapped footprint, 1 excluded as disused.",
@@ -42543,7 +42843,7 @@
     },
     {
       "seq": 43,
-      "at": "2026-07-25T06:48:34.971Z",
+      "at": "2026-07-25T09:52:08.162Z",
       "agent": "people_finder",
       "phase": "tool",
       "message": "Minera Escondida (BHP): ran 2 public-profile search(es), 3 candidate(s) returned.",
@@ -42552,7 +42852,7 @@
     },
     {
       "seq": 44,
-      "at": "2026-07-25T06:48:34.971Z",
+      "at": "2026-07-25T09:52:08.162Z",
       "agent": "people_finder",
       "phase": "note",
       "message": "Minera Escondida (BHP): added 3 public-profile contact(s) at a lower confidence grade; 14 candidate(s) discarded on employer or seniority checks; 2 search credit(s) used.",
@@ -42560,7 +42860,7 @@
     },
     {
       "seq": 45,
-      "at": "2026-07-25T06:48:34.971Z",
+      "at": "2026-07-25T09:52:08.162Z",
       "agent": "terrain_surveyor",
       "phase": "note",
       "message": "Minera Escondida (BHP): 3 site(s), 18.22 km² mapped footprint.",
@@ -42568,7 +42868,7 @@
     },
     {
       "seq": 46,
-      "at": "2026-07-25T06:48:34.972Z",
+      "at": "2026-07-25T09:52:08.163Z",
       "agent": "people_finder",
       "phase": "tool",
       "message": "Reading www.aminerals.cl/nosotros/quienes-somos/ejecutivos",
@@ -42577,7 +42877,7 @@
     },
     {
       "seq": 47,
-      "at": "2026-07-25T06:48:34.975Z",
+      "at": "2026-07-25T09:52:08.167Z",
       "agent": "people_finder",
       "phase": "note",
       "message": "Antofagasta Minerals: kept 11 of 15 officers as buying-committee relevant.",
@@ -42585,7 +42885,7 @@
     },
     {
       "seq": 48,
-      "at": "2026-07-25T06:48:34.976Z",
+      "at": "2026-07-25T09:52:08.167Z",
       "agent": "terrain_surveyor",
       "phase": "note",
       "message": "Antofagasta Minerals: 6 site(s), 11.444 km² mapped footprint.",
@@ -42593,7 +42893,7 @@
     },
     {
       "seq": 49,
-      "at": "2026-07-25T06:48:34.980Z",
+      "at": "2026-07-25T09:52:08.171Z",
       "agent": "people_finder",
       "phase": "tool",
       "message": "Collahuasi: ran 2 public-profile search(es), 9 candidate(s) returned.",
@@ -42602,7 +42902,7 @@
     },
     {
       "seq": 50,
-      "at": "2026-07-25T06:48:34.980Z",
+      "at": "2026-07-25T09:52:08.171Z",
       "agent": "people_finder",
       "phase": "note",
       "message": "Collahuasi: added 4 public-profile contact(s) at a lower confidence grade; 9 candidate(s) discarded on employer or seniority checks; 2 search credit(s) used.",
@@ -42610,7 +42910,7 @@
     },
     {
       "seq": 51,
-      "at": "2026-07-25T06:48:34.980Z",
+      "at": "2026-07-25T09:52:08.171Z",
       "agent": "terrain_surveyor",
       "phase": "note",
       "message": "Collahuasi: 2 site(s), 7.544 km² mapped footprint.",
@@ -42618,7 +42918,7 @@
     },
     {
       "seq": 52,
-      "at": "2026-07-25T06:48:34.983Z",
+      "at": "2026-07-25T09:52:08.175Z",
       "agent": "people_finder",
       "phase": "tool",
       "message": "BHP Spence: ran 2 public-profile search(es), 2 candidate(s) returned.",
@@ -42627,7 +42927,7 @@
     },
     {
       "seq": 53,
-      "at": "2026-07-25T06:48:34.983Z",
+      "at": "2026-07-25T09:52:08.175Z",
       "agent": "people_finder",
       "phase": "note",
       "message": "BHP Spence: added 2 public-profile contact(s) at a lower confidence grade; 17 candidate(s) discarded on employer or seniority checks; 2 search credit(s) used.",
@@ -42635,7 +42935,7 @@
     },
     {
       "seq": 54,
-      "at": "2026-07-25T06:48:34.983Z",
+      "at": "2026-07-25T09:52:08.175Z",
       "agent": "terrain_surveyor",
       "phase": "note",
       "message": "BHP Spence: 1 site(s), 4.381 km² mapped footprint.",
@@ -42643,7 +42943,7 @@
     },
     {
       "seq": 55,
-      "at": "2026-07-25T06:48:34.986Z",
+      "at": "2026-07-25T09:52:08.178Z",
       "agent": "people_finder",
       "phase": "tool",
       "message": "Sierra Gorda: ran 2 public-profile search(es), 2 candidate(s) returned.",
@@ -42652,7 +42952,7 @@
     },
     {
       "seq": 56,
-      "at": "2026-07-25T06:48:34.986Z",
+      "at": "2026-07-25T09:52:08.178Z",
       "agent": "people_finder",
       "phase": "note",
       "message": "Sierra Gorda: added 2 public-profile contact(s) at a lower confidence grade; 16 candidate(s) discarded on employer or seniority checks; 2 search credit(s) used.",
@@ -42660,7 +42960,7 @@
     },
     {
       "seq": 57,
-      "at": "2026-07-25T06:48:34.986Z",
+      "at": "2026-07-25T09:52:08.178Z",
       "agent": "terrain_surveyor",
       "phase": "note",
       "message": "Sierra Gorda: 1 site(s), 2.974 km² mapped footprint.",
@@ -42668,7 +42968,7 @@
     },
     {
       "seq": 58,
-      "at": "2026-07-25T06:48:34.989Z",
+      "at": "2026-07-25T09:52:08.181Z",
       "agent": "people_finder",
       "phase": "tool",
       "message": "Mantos Copper: ran 2 public-profile search(es), 3 candidate(s) returned.",
@@ -42677,7 +42977,7 @@
     },
     {
       "seq": 59,
-      "at": "2026-07-25T06:48:34.989Z",
+      "at": "2026-07-25T09:52:08.181Z",
       "agent": "people_finder",
       "phase": "note",
       "message": "Mantos Copper: added 3 public-profile contact(s) at a lower confidence grade; 14 candidate(s) discarded on employer or seniority checks; 2 search credit(s) used.",
@@ -42685,7 +42985,7 @@
     },
     {
       "seq": 60,
-      "at": "2026-07-25T06:48:34.989Z",
+      "at": "2026-07-25T09:52:08.181Z",
       "agent": "terrain_surveyor",
       "phase": "note",
       "message": "Mantos Copper: 1 site(s), 2.755 km² mapped footprint.",
@@ -42693,7 +42993,7 @@
     },
     {
       "seq": 61,
-      "at": "2026-07-25T06:48:34.993Z",
+      "at": "2026-07-25T09:52:08.184Z",
       "agent": "people_finder",
       "phase": "tool",
       "message": "Glencore (Lomas Bayas): ran 2 public-profile search(es), 0 candidate(s) returned.",
@@ -42702,7 +43002,7 @@
     },
     {
       "seq": 62,
-      "at": "2026-07-25T06:48:34.993Z",
+      "at": "2026-07-25T09:52:08.184Z",
       "agent": "people_finder",
       "phase": "note",
       "message": "Glencore (Lomas Bayas): added 0 public-profile contact(s) at a lower confidence grade; 11 candidate(s) discarded on employer or seniority checks; 2 search credit(s) used.",
@@ -42710,21 +43010,21 @@
     },
     {
       "seq": 63,
-      "at": "2026-07-25T06:48:34.993Z",
+      "at": "2026-07-25T09:52:08.184Z",
       "agent": "people_finder",
       "phase": "note",
       "message": "Recorded a null result: Do public professional profiles name an operations or safety lead at Glencore (Lomas Bayas)?"
     },
     {
       "seq": 64,
-      "at": "2026-07-25T06:48:34.993Z",
+      "at": "2026-07-25T09:52:08.184Z",
       "agent": "people_finder",
       "phase": "note",
       "message": "Recorded a null result: Who runs operations and HSE at this account?"
     },
     {
       "seq": 65,
-      "at": "2026-07-25T06:48:34.993Z",
+      "at": "2026-07-25T09:52:08.184Z",
       "agent": "terrain_surveyor",
       "phase": "note",
       "message": "Glencore (Lomas Bayas): 2 site(s), 2.359 km² mapped footprint.",
@@ -42732,234 +43032,227 @@
     },
     {
       "seq": 66,
-      "at": "2026-07-25T06:48:34.993Z",
+      "at": "2026-07-25T09:52:08.185Z",
       "agent": "anchor_analyst",
       "phase": "finish",
       "message": "Anchor profile from SQM: 548.5 km² across 49 mapped site(s), 34 contractor reference(s) in its primary filing, autonomy disclosed: no."
     },
     {
       "seq": 67,
-      "at": "2026-07-25T06:48:34.993Z",
+      "at": "2026-07-25T09:52:08.185Z",
       "agent": "icp_scorer",
       "phase": "start",
       "message": "Scoring every account against the anchor profile using published weights."
     },
     {
       "seq": 68,
-      "at": "2026-07-25T06:48:34.995Z",
+      "at": "2026-07-25T09:52:08.186Z",
       "agent": "icp_scorer",
       "phase": "note",
-      "message": "SQM: 94.6/100 → Tier A."
+      "message": "SQM: 103.4/100 → Tier A."
     },
     {
       "seq": 69,
-      "at": "2026-07-25T06:48:34.995Z",
+      "at": "2026-07-25T09:52:08.186Z",
       "agent": "icp_scorer",
       "phase": "note",
       "message": "Codelco: 55.8/100 → Tier B."
     },
     {
       "seq": 70,
-      "at": "2026-07-25T06:48:34.995Z",
+      "at": "2026-07-25T09:52:08.186Z",
       "agent": "icp_scorer",
       "phase": "note",
       "message": "Teck Quebrada Blanca: 38.4/100 → Tier C."
     },
     {
       "seq": 71,
-      "at": "2026-07-25T06:48:34.995Z",
+      "at": "2026-07-25T09:52:08.186Z",
       "agent": "icp_scorer",
       "phase": "note",
       "message": "Albemarle (Salar de Atacama): 54.3/100 → Tier B."
     },
     {
       "seq": 72,
-      "at": "2026-07-25T06:48:34.995Z",
+      "at": "2026-07-25T09:52:08.187Z",
       "agent": "icp_scorer",
       "phase": "note",
-      "message": "Vale: 67.2/100 → Tier B."
+      "message": "Vale: 76.8/100 → Tier A."
     },
     {
       "seq": 73,
-      "at": "2026-07-25T06:48:34.995Z",
+      "at": "2026-07-25T09:52:08.187Z",
       "agent": "icp_scorer",
       "phase": "note",
       "message": "Minera Escondida (BHP): 34.2/100 → Tier C."
     },
     {
       "seq": 74,
-      "at": "2026-07-25T06:48:34.995Z",
+      "at": "2026-07-25T09:52:08.187Z",
       "agent": "icp_scorer",
       "phase": "note",
       "message": "Antofagasta Minerals: 34.6/100 → Tier C."
     },
     {
       "seq": 75,
-      "at": "2026-07-25T06:48:34.995Z",
+      "at": "2026-07-25T09:52:08.187Z",
       "agent": "icp_scorer",
       "phase": "note",
       "message": "Collahuasi: 31.4/100 → Tier C."
     },
     {
       "seq": 76,
-      "at": "2026-07-25T06:48:34.996Z",
+      "at": "2026-07-25T09:52:08.187Z",
       "agent": "icp_scorer",
       "phase": "note",
       "message": "BHP Spence: 23.5/100 → Tier C."
     },
     {
       "seq": 77,
-      "at": "2026-07-25T06:48:34.996Z",
+      "at": "2026-07-25T09:52:08.187Z",
       "agent": "icp_scorer",
       "phase": "note",
       "message": "Sierra Gorda: 22.7/100 → Tier C."
     },
     {
       "seq": 78,
-      "at": "2026-07-25T06:48:34.996Z",
+      "at": "2026-07-25T09:52:08.187Z",
       "agent": "icp_scorer",
       "phase": "note",
       "message": "Mantos Copper: 23.6/100 → Tier C."
     },
     {
       "seq": 79,
-      "at": "2026-07-25T06:48:34.996Z",
+      "at": "2026-07-25T09:52:08.187Z",
       "agent": "icp_scorer",
       "phase": "note",
       "message": "Glencore (Lomas Bayas): 19.3/100 → Tier C."
     },
     {
       "seq": 80,
-      "at": "2026-07-25T06:48:34.996Z",
+      "at": "2026-07-25T09:52:08.187Z",
       "agent": "message_strategist",
       "phase": "start",
       "message": "Composing outreach for the top accounts."
     },
     {
       "seq": 81,
-      "at": "2026-07-25T06:48:39.679Z",
+      "at": "2026-07-25T09:52:27.054Z",
       "agent": "red_team",
       "phase": "note",
-      "message": "SQM / Ricardo Ramos: Generation failed on iteration 1: openai/gpt-oss-120b -> HTTP 400: {\"error\":{\"message\":\"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"max completion tokens reached before gener"
+      "message": "SQM / Ricardo Ramos: accepted on iteration 2 with score 100."
     },
     {
       "seq": 82,
-      "at": "2026-07-25T06:48:39.679Z",
-      "agent": "red_team",
+      "at": "2026-07-25T09:52:27.054Z",
+      "agent": "copywriter",
       "phase": "note",
-      "message": "Recorded a null result: Could a compliant first-touch message be produced for Ricardo Ramos?"
+      "message": "Pausing 22s so the per-minute token ceiling recovers."
     },
     {
       "seq": 83,
-      "at": "2026-07-25T06:48:44.329Z",
+      "at": "2026-07-25T09:52:53.566Z",
       "agent": "red_team",
       "phase": "note",
       "message": "SQM / Pablo Altimiras: accepted on iteration 1 with score 100."
     },
     {
       "seq": 84,
-      "at": "2026-07-25T06:48:49.043Z",
+      "at": "2026-07-25T09:53:25.828Z",
       "agent": "red_team",
       "phase": "note",
-      "message": "SQM / Carlos Díaz Ortiz: accepted on iteration 1 with score 100."
+      "message": "Vale / Henrique Candian: accepted on iteration 3 with score 100."
     },
     {
       "seq": 85,
-      "at": "2026-07-25T06:48:58.630Z",
-      "agent": "red_team",
+      "at": "2026-07-25T09:53:25.828Z",
+      "agent": "copywriter",
       "phase": "note",
-      "message": "Vale / Henrique Candian: accepted on iteration 2 with score 100."
+      "message": "Pausing 22s so the per-minute token ceiling recovers."
     },
     {
       "seq": 86,
-      "at": "2026-07-25T06:49:04.149Z",
+      "at": "2026-07-25T09:54:05.794Z",
       "agent": "red_team",
       "phase": "note",
-      "message": "Vale / Marlon Reis: accepted on iteration 1 with score 100."
+      "message": "Vale / Marlon Reis: accepted on iteration 2 with score 100."
     },
     {
       "seq": 87,
-      "at": "2026-07-25T06:49:08.518Z",
+      "at": "2026-07-25T09:54:10.706Z",
       "agent": "red_team",
       "phase": "note",
       "message": "Codelco / Jorge Gómez Díaz: accepted on iteration 1 with score 100."
     },
     {
       "seq": 88,
-      "at": "2026-07-25T06:49:11.408Z",
-      "agent": "red_team",
+      "at": "2026-07-25T09:54:10.707Z",
+      "agent": "copywriter",
       "phase": "note",
-      "message": "Codelco / Alejandro Sanhueza Díaz: Generation failed on iteration 1: openai/gpt-oss-120b -> HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kxxbp9k1ef4rq3g9gah445cr` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7095, Requested 2122. Please try again in 9.1275s"
+      "message": "Pausing 22s so the per-minute token ceiling recovers."
     },
     {
       "seq": 89,
-      "at": "2026-07-25T06:49:11.408Z",
+      "at": "2026-07-25T09:54:36.973Z",
       "agent": "red_team",
       "phase": "note",
-      "message": "Recorded a null result: Could a compliant first-touch message be produced for Alejandro Sanhueza Díaz?"
+      "message": "Codelco / Alejandro Sanhueza Díaz: accepted on iteration 1 with score 100."
     },
     {
       "seq": 90,
-      "at": "2026-07-25T06:49:16.233Z",
-      "agent": "red_team",
-      "phase": "note",
-      "message": "Codelco / Gabriel Méndez Serqueira: Generation failed on iteration 1: openai/gpt-oss-120b -> HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kxxbp9k1ef4rq3g9gah445cr` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6453, Requested 2129. Please try again in 4.36499"
-    },
-    {
-      "seq": 91,
-      "at": "2026-07-25T06:49:16.233Z",
-      "agent": "red_team",
-      "phase": "note",
-      "message": "Recorded a null result: Could a compliant first-touch message be produced for Gabriel Méndez Serqueira?"
-    },
-    {
-      "seq": 92,
-      "at": "2026-07-25T06:49:16.233Z",
+      "at": "2026-07-25T09:54:36.974Z",
       "agent": "red_team",
       "phase": "note",
       "message": "Albemarle (Salar de Atacama) / Head of Operations: Only 1 sourced fact(s) available for this contact. The critic requires at least two verifiable specifics, so no message was generated rather than one padded with industry generalities."
     },
     {
-      "seq": 93,
-      "at": "2026-07-25T06:49:16.233Z",
+      "seq": 91,
+      "at": "2026-07-25T09:54:36.974Z",
       "agent": "red_team",
       "phase": "note",
       "message": "Recorded a null result: Could a compliant first-touch message be produced for Head of Operations?"
     },
     {
-      "seq": 94,
-      "at": "2026-07-25T06:49:16.233Z",
+      "seq": 92,
+      "at": "2026-07-25T09:54:36.974Z",
+      "agent": "copywriter",
+      "phase": "note",
+      "message": "Pausing 22s so the per-minute token ceiling recovers."
+    },
+    {
+      "seq": 93,
+      "at": "2026-07-25T09:54:58.988Z",
       "agent": "red_team",
       "phase": "note",
       "message": "Albemarle (Salar de Atacama) / VP of HSE: Only 1 sourced fact(s) available for this contact. The critic requires at least two verifiable specifics, so no message was generated rather than one padded with industry generalities."
     },
     {
-      "seq": 95,
-      "at": "2026-07-25T06:49:16.233Z",
+      "seq": 94,
+      "at": "2026-07-25T09:54:58.988Z",
       "agent": "red_team",
       "phase": "note",
       "message": "Recorded a null result: Could a compliant first-touch message be produced for VP of HSE?"
     },
     {
-      "seq": 96,
-      "at": "2026-07-25T06:49:16.233Z",
+      "seq": 95,
+      "at": "2026-07-25T09:54:58.988Z",
       "agent": "ae_briefer",
       "phase": "start",
       "message": "Writing the account executive hand-off for every qualified account."
     },
     {
-      "seq": 97,
-      "at": "2026-07-25T06:49:16.238Z",
+      "seq": 96,
+      "at": "2026-07-25T09:54:59.006Z",
       "agent": "ae_briefer",
       "phase": "finish",
       "message": "Wrote 12 hand-off brief(s), each with discovery questions and objection handling tied to that account's own filings and measured ground."
     },
     {
-      "seq": 98,
-      "at": "2026-07-25T06:49:16.238Z",
+      "seq": 97,
+      "at": "2026-07-25T09:54:59.007Z",
       "agent": "sequence_architect",
       "phase": "finish",
-      "message": "Built 4 cadence(s); 5 message(s) passed the critic, 1 draft(s) were rejected."
+      "message": "Built 4 cadence(s); 6 message(s) passed the critic, 4 draft(s) were rejected."
     }
   ],
   "stats": {
@@ -42970,8 +43263,8 @@
     "evidenceRows": 158,
     "namedContacts": 55,
     "roleTargets": 6,
-    "emailsAccepted": 5,
-    "emailsRejected": 1,
+    "emailsAccepted": 6,
+    "emailsRejected": 4,
     "sourcesFetched": 17,
     "languages": [
       "en",

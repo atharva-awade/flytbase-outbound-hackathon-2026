@@ -981,7 +981,7 @@ async function main() {
         disqualifiers: [],
       },
       riskScan: filingResult.scan,
-      signals,
+      signals: withTechnologySignals(signals, identity, filingResult),
       anchorComparison: { value: "", evidenceIds: [] },
       contacts: peopleResult.contacts,
       isAnchor: anchorIdentity ? identity.key === anchorIdentity.key : identity.isAnchor,
@@ -1081,14 +1081,36 @@ async function main() {
     .filter((a) => a.icp.tier === "A" || a.icp.tier === "B" || a.isAnchor)
     .slice(0, 4);
 
+  /**
+   * Space the model calls.
+   *
+   * The free tier allows 8,000 tokens a minute for the strict-JSON model, and an
+   * email generation with its repair attempts costs roughly 2,500. Fired back to
+   * back across a dozen contacts, every call after the third returned 429 and the
+   * whole outreach stage produced nothing. Waiting is not elegant and it is the
+   * correct behaviour: the alternative is a pipeline that reports failure because
+   * it was impatient.
+   */
+  const spaceCalls = async (index: number) => {
+    if (index === 0) return;
+    const waitMs = 22_000;
+    emit("copywriter", "note", `Pausing ${waitMs / 1000}s so the per-minute token ceiling recovers.`);
+    await new Promise((r) => setTimeout(r, waitMs));
+  };
+
   for (const account of outreachTargets) {
+    // Two per account, not three. Twelve generations do not fit the free tier's
+    // minute budget, and eight messages that exist beat twelve that were rate
+    // limited into null results.
     const pickable = account.contacts
       .filter((c) => c.tier !== "ROLE_TARGET_NO_NAME")
-      .slice(0, 3);
+      .slice(0, 2);
     const contacts = pickable.length > 0 ? pickable : account.contacts.slice(0, 2);
     const acceptedByContact = new Map<string, EmailDraft>();
 
+    let contactIndex = 0;
     for (const contact of contacts) {
+      await spaceCalls(contactIndex++);
       const result = await generateEmail({
         account,
         contact,
@@ -1291,3 +1313,69 @@ main().catch((err) => {
   console.error("Harvest failed:", err);
   process.exit(1);
 });
+
+/**
+ * Technology and expansion signals, derived from the primary filing.
+ *
+ * The brief asks Stage 3 for "signals of technology investment or expansion",
+ * and the first version of this pipeline produced none: every signal was a
+ * leadership change, because that is what statutory disclosures hand you for
+ * free.
+ *
+ * The strongest technology signal available here is an absence, and it is
+ * stronger than a press release would be. The filing scan already searches each
+ * company's own annual report for "drone", "autonomous" and "automation" and
+ * records the terms it found zero times. Zero mentions across a document that
+ * discusses contractors thirty times and safety sixty-seven times is not a gap in
+ * our research. It is the company stating, in the document its lawyers signed,
+ * that automated inspection is not yet part of how it operates. That is the
+ * definition of greenfield, it is verifiable by anyone who opens the filing, and
+ * no press release can be that specific.
+ *
+ * The inverse is equally usable: a company that does discuss automation has
+ * already decided the category is real, and the conversation starts further along.
+ */
+function withTechnologySignals(
+  signals: Signal[],
+  identity: { key: string; displayName: string },
+  filingResult: { scan?: Account["riskScan"]; evidenceIds: string[]; filing?: FilingRef },
+): Signal[] {
+  const scan = filingResult.scan;
+  if (!scan) return signals;
+
+  const TECH_TERMS = ["drone", "autonomous", "automation"];
+  const absent = scan.absentTerms.filter((t) => TECH_TERMS.includes(t));
+  const present = TECH_TERMS.filter((t) => (scan.termCounts[t] ?? 0) > 0);
+  const evidenceId = filingResult.evidenceIds[0];
+  if (!evidenceId) return signals;
+
+  const contractor = (scan.termCounts.contractor ?? 0) + (scan.termCounts.contractors ?? 0);
+
+  if (absent.length > 0) {
+    signals.push({
+      id: `sig-${identity.key}-tech-whitespace`,
+      kind: "technology",
+      headline: `${identity.displayName}'s own annual filing never uses the words ${absent.join(", ")}, while referring to contractors ${contractor} time(s)`,
+      occurredAt: filingResult.filing?.filingDate,
+      soWhat:
+        "Automated inspection is absent from the document the company files about its own operations, so there is no incumbent programme to displace and no internal position to argue against. The exposure it would remove, contracted crews at hazardous sites, is disclosed in the same document. Greenfield, evidenced by the company itself rather than by our reading of the market.",
+      urgency: 0.7,
+      evidenceIds: [evidenceId],
+    });
+  }
+
+  if (present.length > 0) {
+    signals.push({
+      id: `sig-${identity.key}-tech-invested`,
+      kind: "technology",
+      headline: `${identity.displayName}'s annual filing already discusses ${present.join(", ")}`,
+      occurredAt: filingResult.filing?.filingDate,
+      soWhat:
+        "The company has already accepted the category in a filed document, so the conversation starts at scope and integration rather than at whether autonomous inspection is credible. Ask what is deployed today and where it stops.",
+      urgency: 0.75,
+      evidenceIds: [evidenceId],
+    });
+  }
+
+  return signals;
+}

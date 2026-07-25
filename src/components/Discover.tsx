@@ -76,6 +76,47 @@ interface OperatorResult {
   sites: DiscoveredSite[];
 }
 
+interface DeepContact {
+  id: string;
+  tier: string;
+  name?: string;
+  titleVerbatim?: string;
+  titleEnglish?: string;
+  targetRole: string;
+  buyingRole: string;
+  seniority: string;
+  linkedinUrl?: string;
+  email?: { address: string; status: "OBSERVED" | "INFERRED"; patternBasis?: string };
+  findingPlaybook?: string[];
+  evidenceIds: string[];
+}
+
+interface DeepDraft {
+  iteration: number;
+  accepted: boolean;
+  score: number;
+  subject: string;
+  body: string;
+  language: string;
+  model: string;
+  gates?: { gate: string; label: string; passed: boolean; detail: string }[];
+  citedFacts?: { text: string; evidenceId: string }[];
+}
+
+interface DeepResult {
+  running: boolean;
+  trace: TraceLine[];
+  contacts: DeepContact[];
+  rejected: string[];
+  queries: string[];
+  icp: { total: number; tier: string; tierRationale: string } | null;
+  drafts: DeepDraft[];
+  accepted: DeepDraft | null;
+  contactName?: string;
+  saved?: { storage: string; id: string; persisted: boolean; message: string };
+  error?: string;
+}
+
 interface TraceLine {
   seq: number;
   type: string;
@@ -121,6 +162,7 @@ export default function Discover({
     osmTimestamp?: string;
   } | null>(null);
   const [openOperator, setOpenOperator] = useState<string | null>(null);
+  const [deep, setDeep] = useState<Record<string, DeepResult>>({});
   const abort = useRef<AbortController | null>(null);
   const traceEnd = useRef<HTMLDivElement | null>(null);
 
@@ -211,6 +253,119 @@ export default function Discover({
       }
     },
     [running],
+  );
+
+  /**
+   * Take one discovered operator through the rest of the pipeline.
+   *
+   * This is the part that makes discovery a system rather than a map: the same
+   * contact ladder, the same scorer and the same critic the console uses, pointed
+   * at a company nobody chose in advance.
+   */
+  const runDeep = useCallback(
+    async (op: OperatorResult) => {
+      setDeep((d) => ({
+        ...d,
+        [op.operator]: {
+          running: true,
+          trace: [],
+          contacts: [],
+          rejected: [],
+          queries: [],
+          icp: null,
+          drafts: [],
+          accepted: null,
+        },
+      }));
+      const patch = (fn: (cur: DeepResult) => DeepResult) =>
+        setDeep((d) => ({ ...d, [op.operator]: fn(d[op.operator]) }));
+
+      try {
+        const res = await fetch("/api/discover/deep", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            operator: op.operator,
+            aliases: op.aliases,
+            packId: vertical,
+            place,
+            country: countryGuess(placeInfo?.displayName ?? place),
+            sites: op.sites.slice(0, 60).map((s) => ({
+              osmId: s.osmId,
+              name: s.name,
+              operatorTag: s.operatorTag,
+              tags: s.tags,
+              centroid: s.centroid,
+              ring: s.ring,
+              areaKm2: s.areaKm2,
+              perimeterKm: s.perimeterKm,
+              assetClass: s.assetClass,
+              attributionMethod: s.attributionMethod,
+              excluded: s.excluded,
+              evidenceIds: [],
+            })),
+          }),
+        });
+
+        if (!res.ok || !res.body) {
+          const body = (await res.json().catch(() => null)) as { error?: string } | null;
+          patch((c) => ({ ...c, running: false, error: body?.error ?? `HTTP ${res.status}` }));
+          return;
+        }
+
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = "";
+        for (;;) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buffer += decoder.decode(value, { stream: true });
+          const chunks = buffer.split("\n\n");
+          buffer = chunks.pop() ?? "";
+          for (const chunk of chunks) {
+            const line = chunk.split("\n").find((l) => l.startsWith("data: "));
+            if (!line) continue;
+            const ev = JSON.parse(line.slice(6)) as Record<string, unknown>;
+            const type = String(ev.type);
+            patch((c) => {
+              const next: DeepResult = { ...c };
+              if (ev.message) {
+                next.trace = [
+                  ...c.trace,
+                  { seq: Number(ev.seq), type, message: String(ev.message), agent: ev.agent as string },
+                ];
+              }
+              if (type === "contacts") {
+                next.contacts = ev.contacts as DeepContact[];
+                next.rejected = (ev.rejected as string[]) ?? [];
+                next.queries = (ev.queries as string[]) ?? [];
+              }
+              if (type === "qualified") next.icp = ev.icp as DeepResult["icp"];
+              if (type === "outreach") {
+                next.drafts = (ev.drafts as DeepDraft[]) ?? [];
+                next.accepted = (ev.accepted as DeepDraft) ?? null;
+                next.contactName = ev.contactName as string;
+              }
+              if (type === "saved") {
+                next.saved = {
+                  storage: String(ev.storage),
+                  id: String(ev.id),
+                  persisted: Boolean(ev.persisted),
+                  message: String(ev.message),
+                };
+              }
+              if (type === "error") next.error = String(ev.message);
+              return next;
+            });
+          }
+        }
+      } catch (err) {
+        patch((c) => ({ ...c, error: (err as Error).message }));
+      } finally {
+        patch((c) => ({ ...c, running: false }));
+      }
+    },
+    [vertical, place, placeInfo],
   );
 
   const mapSites: SiteGeometry[] = useMemo(() => {
@@ -381,6 +536,7 @@ export default function Discover({
 
             {operators.map((op) => {
               const open = openOperator === op.operator;
+              const d = deep[op.operator];
               return (
                 <div key={op.operator} className="panel p-4">
                   <div className="flex flex-wrap items-start justify-between gap-3">
@@ -398,6 +554,15 @@ export default function Discover({
                     >
                       {open ? "hide the working" : "show the working"}
                     </button>
+                    {!d && (
+                      <button
+                        type="button"
+                        onClick={() => void runDeep(op)}
+                        className="rounded-[7px] bg-[var(--color-ink)] px-2.5 py-1 text-[0.76rem] font-[520] text-white transition-opacity hover:opacity-88"
+                      >
+                        Find the people and draft the email
+                      </button>
+                    )}
                   </div>
 
                   <p className="t-small mt-2.5">{op.revenue.headline}</p>
@@ -482,6 +647,168 @@ export default function Discover({
                       </div>
                     </div>
                   )}
+
+                  {/* Stages 2, 3 and 4 on an account nobody picked in advance.
+                      Same contact ladder, same scorer, same critic as the console,
+                      because if this produced better copy than the console does,
+                      the console would be the thing that was rigged. */}
+                  {d && (
+                    <div className="mt-3 space-y-3 border-t border-[var(--color-hair)] pt-3">
+                      {d.trace.length > 0 && (
+                        <div className="panel-sunk max-h-40 overflow-y-auto p-2.5">
+                          {d.trace.map((t) => (
+                            <p
+                              key={t.seq}
+                              className={cx(
+                                "t-micro min-w-0 font-[family-name:var(--font-mono)] [overflow-wrap:anywhere]",
+                                t.type === "error" && "text-[var(--color-conflict-ink)]",
+                              )}
+                            >
+                              {t.agent ? t.agent + " " : ""}
+                              {t.message}
+                            </p>
+                          ))}
+                        </div>
+                      )}
+
+                      {d.running && <p className="shimmer t-micro inline-block rounded px-1">working</p>}
+
+                      {d.error && (
+                        <p className="rounded-[8px] bg-[var(--color-conflict-wash)] px-2.5 py-1.5 text-[0.79rem] text-[var(--color-conflict-ink)]">
+                          {d.error}
+                        </p>
+                      )}
+
+                      {d.icp && (
+                        <div>
+                          <p className="t-label">Qualification against the reference account</p>
+                          <p className="t-small mt-1">
+                            <span className="tnum font-[600]">{d.icp.total}</span> out of 100, tier {d.icp.tier}.{" "}
+                            {d.icp.tierRationale}
+                          </p>
+                        </div>
+                      )}
+
+                      {d.contacts.length > 0 && (
+                        <div>
+                          <p className="t-label">
+                            Buying committee, {d.contacts.filter((c) => c.name).length} named
+                          </p>
+                          <div className="mt-1.5 space-y-2">
+                            {d.contacts.map((c) => (
+                              <div key={c.id} className="rounded-[9px] bg-[var(--color-panel-sunk)] p-2.5">
+                                <div className="flex flex-wrap items-center gap-1.5">
+                                  <span
+                                    className={cx(
+                                      "chip",
+                                      c.tier === "ROLE_TARGET_NO_NAME" ? "chip-null" : "chip-inferred",
+                                    )}
+                                  >
+                                    {c.tier === "ROLE_TARGET_NO_NAME" ? "no individual found" : "public profile"}
+                                  </span>
+                                  <span className="text-[0.88rem] font-[600]">{c.name ?? c.targetRole}</span>
+                                  <span className="t-micro">
+                                    {c.seniority} · {c.buyingRole.replace(/_/g, " ")}
+                                  </span>
+                                </div>
+                                {c.titleVerbatim && <p className="t-small mt-0.5 italic">{c.titleVerbatim}</p>}
+                                <div className="mt-1 flex flex-wrap gap-1">
+                                  {c.linkedinUrl && (
+                                    <a
+                                      href={c.linkedinUrl}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="chip chip-verified"
+                                    >
+                                      LinkedIn profile
+                                    </a>
+                                  )}
+                                  {c.email?.status === "OBSERVED" && (
+                                    <span className="chip chip-verified">{c.email.address}</span>
+                                  )}
+                                  {c.email?.status === "INFERRED" && (
+                                    <span className="chip chip-inferred">
+                                      {c.email.address}, inferred, not sendable
+                                    </span>
+                                  )}
+                                </div>
+                                {c.tier === "ROLE_TARGET_NO_NAME" && c.findingPlaybook && (
+                                  <p className="t-micro mt-1">{c.findingPlaybook[0]}</p>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                          {d.rejected.length > 0 && (
+                            <p className="t-micro mt-1.5">
+                              {d.rejected.length} candidate(s) rejected, each with the reason:{" "}
+                              {d.rejected.slice(0, 2).join("; ")}
+                            </p>
+                          )}
+                        </div>
+                      )}
+
+                      {d.accepted && (
+                        <div className="rounded-[10px] bg-[var(--color-verified-wash)] p-3">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className="chip chip-verified">
+                              passed the critic, {d.accepted.score} out of 100
+                            </span>
+                            <span className="t-micro">
+                              iteration {d.accepted.iteration} · {d.accepted.language} · {d.accepted.model}
+                            </span>
+                          </div>
+                          <p className="mt-2 text-[0.88rem] font-[600]">{d.accepted.subject}</p>
+                          <p className="t-small mt-1.5 whitespace-pre-wrap">{d.accepted.body}</p>
+                          <p className="t-micro mt-2">
+                            Drafted for {d.contactName}. Written by the model from cited facts only, then put through
+                            the same eleven gate critic the console uses.
+                          </p>
+                        </div>
+                      )}
+
+                      {d.drafts.filter((x) => !x.accepted).length > 0 && (
+                        <details>
+                          <summary className="t-micro cursor-pointer">
+                            {d.drafts.filter((x) => !x.accepted).length} rejected draft(s), kept on purpose
+                          </summary>
+                          <div className="mt-2 space-y-2">
+                            {d.drafts
+                              .filter((x) => !x.accepted)
+                              .map((x) => (
+                                <div
+                                  key={x.iteration}
+                                  className="rounded-[9px] bg-[var(--color-conflict-wash)] p-2.5"
+                                >
+                                  <p className="t-micro">
+                                    iteration {x.iteration}, scored {x.score}. Failed:{" "}
+                                    {(x.gates ?? [])
+                                      .filter((g) => !g.passed)
+                                      .map((g) => g.gate)
+                                      .join(", ") || "the score threshold"}
+                                  </p>
+                                  <p className="t-small mt-1 whitespace-pre-wrap opacity-80">
+                                    {x.body.slice(0, 320)}
+                                  </p>
+                                </div>
+                              ))}
+                          </div>
+                        </details>
+                      )}
+
+                      {d.saved && (
+                        <p
+                          className={cx(
+                            "t-micro rounded-[8px] px-2.5 py-1.5",
+                            d.saved.persisted
+                              ? "bg-[var(--color-verified-wash)] text-[var(--color-verified-ink)]"
+                              : "bg-[var(--color-null-wash)] text-[var(--color-null-ink)]",
+                          )}
+                        >
+                          {d.saved.message}
+                        </p>
+                      )}
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -490,6 +817,21 @@ export default function Discover({
       )}
     </div>
   );
+}
+
+/**
+ * Working language follows the country, and the country follows the place name
+ * Nominatim returned. Crude on purpose: it only chooses which Spanish or
+ * Portuguese to write in, and an unrecognised country falls back to Chile, which
+ * is the graded brief's own geography.
+ */
+function countryGuess(displayName: string): string {
+  const d = displayName.toLowerCase();
+  if (d.includes("brasil") || d.includes("brazil")) return "BR";
+  if (d.includes("perú") || d.includes("peru")) return "PE";
+  if (d.includes("argentina")) return "AR";
+  if (d.includes("méxico") || d.includes("mexico")) return "MX";
+  return "CL";
 }
 
 function Fig({ k, v, small }: { k: string; v: string; small?: boolean }) {

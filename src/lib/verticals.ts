@@ -10,6 +10,26 @@
 
 import type { CampaignBrief } from "./types";
 
+/**
+ * FlytBase's own customer base, stated by FlytBase.
+ *
+ * The brief asks outreach to reference these where it strengthens the framing,
+ * and it is right to: a Chilean site director has no reason to care what a
+ * vendor claims, and every reason to care which of their peers already runs it.
+ *
+ * Two rules govern how this is allowed to be used, and the second one matters
+ * more. A customer may be named as a peer already operating this way. A
+ * published outcome may never be attached to a customer who did not report it:
+ * SQM's inspection figures belong to SQM, and writing "Anglo American cut
+ * inspection to hours" would be inventing a result, which is the one thing this
+ * project exists not to do.
+ */
+export const FLYTBASE_CUSTOMERS = {
+  named: ["Shell", "Anglo American", "CSX", "UK Police", "Airbus", "Dole", "Statnett"],
+  scale: "over 300 enterprise sites across more than 40 countries",
+  sourceUrl: "https://www.flytbase.com/customers",
+} as const;
+
 export interface OsmTagSignature {
   /** Overpass element types to query. */
   elements: ("way" | "relation")[];
@@ -22,6 +42,11 @@ export interface OsmTagSignature {
 
 export interface VerticalPack {
   id: string;
+  /**
+   * The FlytBase customer worth naming to this vertical, and why. Named as a
+   * peer operating this way, never as the source of another customer's figures.
+   */
+  peerCustomer?: { name: string; whyPeer: string };
   label: string;
   /** Matches FlytBase's own industry taxonomy so our language mirrors theirs. */
   flytbaseIndustry: string;
@@ -143,6 +168,10 @@ const MINING: VerticalPack = {
       obligation: "Underground and surface mining occupational safety inspection requirements.",
     },
   ],
+  peerCustomer: {
+    name: "Anglo American",
+    whyPeer: "a large-scale metals operator running autonomous inspection with FlytBase, in the same commodity family and the same regulatory culture",
+  },
   proofPoints: [
     {
       customer: "SQM (with Adentu)",
@@ -221,6 +250,10 @@ const SOLAR: VerticalPack = {
       obligation: "Periodic inspection and reporting for connected generation assets.",
     },
   ],
+  peerCustomer: {
+    name: "Statnett",
+    whyPeer: "a grid operator running autonomous inspection with FlytBase across dispersed outdoor assets",
+  },
   proofPoints: [
     {
       customer: "FlytBase solar operations",
@@ -277,6 +310,10 @@ const OIL_GAS: VerticalPack = {
     pt: ["Gerente de Operações", "Gerente de Integridade", "Gerente de SSMA"],
   },
   regulatoryRegimes: [],
+  peerCustomer: {
+    name: "Shell",
+    whyPeer: "an energy major running autonomous inspection with FlytBase at hazardous continuous-process sites",
+  },
   proofPoints: [
     {
       customer: "Shell",
@@ -327,6 +364,10 @@ const PORTS: VerticalPack = {
     pt: ["Diretor de Terminal", "Gerente de Operações", "Gerente de SSMA"],
   },
   regulatoryRegimes: [],
+  peerCustomer: {
+    name: "Shell",
+    whyPeer: "an operator running autonomous inspection with FlytBase across large fenced industrial terrain",
+  },
   proofPoints: [
     {
       customer: "FlytBase maritime",
@@ -377,6 +418,10 @@ const RAIL: VerticalPack = {
     pt: ["Gerente de Operações Ferroviárias", "Gerente de Segurança"],
   },
   regulatoryRegimes: [],
+  peerCustomer: {
+    name: "CSX",
+    whyPeer: "a Class I railroad running autonomous inspection with FlytBase over linear corridor assets",
+  },
   proofPoints: [
     {
       customer: "CSX",
@@ -421,6 +466,10 @@ const GRID: VerticalPack = {
     pt: ["Gerente de Operações", "Gerente de Ativos"],
   },
   regulatoryRegimes: [],
+  peerCustomer: {
+    name: "Statnett",
+    whyPeer: "a transmission system operator running autonomous inspection with FlytBase",
+  },
   proofPoints: [
     {
       customer: "Statnett",

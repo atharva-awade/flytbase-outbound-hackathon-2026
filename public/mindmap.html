@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aerion, the thought process</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --paper: #fbfbfa;
+        --panel: #ffffff;
+        --sunk: #f4f5f7;
+        --ink: #14161a;
+        --ink-2: #3d434e;
+        --ink-3: #7b8494;
+        --line: #e4e7ec;
+        --line-2: #d3d8e0;
+        --accent: #1b4fd8;
+        --accent-wash: #eef2fe;
+        --accent-ink: #12245f;
+        --measured: #0f7a52;
+        --measured-wash: #e8f5ef;
+        --written: #7a4cc4;
+        --written-wash: #f1ebfb;
+        --refuse: #a8442b;
+        --refuse-wash: #fdeee9;
+        --gap: #8a6a12;
+        --gap-wash: #fdf5e2;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: ui-sans-serif, -apple-system, "Segoe UI", sans-serif;
+        font-feature-settings: "cv05", "ss01";
+        padding: 34px 18px 72px;
+        -webkit-font-smoothing: antialiased;
+      }
+      main { width: min(1080px, 100%); margin: 0 auto; }
+      h1, h2, h3, p { margin: 0; }
+      .eyebrow {
+        color: var(--ink-3);
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+      }
+      h1 { margin-top: 8px; font-size: 30px; letter-spacing: -0.035em; line-height: 1.1; }
+      h1 em { font-style: normal; color: var(--accent); }
+      .sub { margin-top: 12px; max-width: 780px; color: var(--ink-2); font-size: 14px; line-height: 1.6; }
+
+      /* the single idea the whole design rests on */
+      .thesis {
+        margin: 24px 0 6px;
+        border-radius: 14px;
+        background: var(--panel);
+        box-shadow: 0 0 0 1px var(--line), 0 1px 2px rgba(16, 24, 40, 0.04);
+        padding: 18px 20px;
+      }
+      .thesis .q { color: var(--ink-3); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+      .thesis .a { margin-top: 8px; font-size: 17px; font-weight: 620; letter-spacing: -0.015em; line-height: 1.45; }
+      .thesis .b { margin-top: 8px; color: var(--ink-2); font-size: 13px; line-height: 1.6; }
+
+      .legend { display: flex; flex-wrap: wrap; gap: 14px; margin: 22px 0 4px; color: var(--ink-2); font-size: 11px; }
+      .lg { display: inline-flex; align-items: center; gap: 6px; }
+      .sw { width: 13px; height: 13px; border-radius: 4px; border: 1.5px solid var(--line-2); background: #fff; }
+      .sw.m { border-color: var(--measured); background: var(--measured-wash); }
+      .sw.w { border-color: var(--written); background: var(--written-wash); }
+      .sw.d { border-color: var(--gap); background: var(--gap-wash); transform: rotate(45deg); width: 11px; height: 11px; }
+      .sw.r { border-color: var(--refuse); background: var(--refuse-wash); }
+
+      .section {
+        width: 100%;
+        margin: 32px 0 14px;
+        border-bottom: 1.5px solid var(--line);
+        padding-bottom: 7px;
+        color: var(--ink-3);
+        font-size: 10.5px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .flow { display: flex; flex-direction: column; align-items: center; }
+      .node, .decision, .refuse, .out, .note {
+        width: min(660px, 100%);
+        border-radius: 12px;
+        padding: 13px 16px;
+      }
+      .node { background: var(--panel); box-shadow: 0 0 0 1.5px var(--line); }
+      .node.measured { box-shadow: 0 0 0 1.5px var(--measured); background: var(--measured-wash); }
+      .node.written { box-shadow: 0 0 0 1.5px var(--written); background: var(--written-wash); }
+      .decision { background: var(--gap-wash); box-shadow: 0 0 0 1.5px var(--gap); }
+      .refuse { background: var(--refuse-wash); box-shadow: 0 0 0 1.5px var(--refuse); }
+      .out { background: var(--accent-wash); box-shadow: 0 0 0 1.5px var(--accent); }
+      .note { background: var(--panel); box-shadow: 0 0 0 1.5px var(--line); }
+
+      .tag { display: block; margin-bottom: 5px; font-size: 9px; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); }
+      .node.measured .tag { color: var(--measured); }
+      .node.written .tag { color: var(--written); }
+      .decision .tag { color: var(--gap); }
+      .refuse .tag { color: var(--refuse); }
+      .out .tag { color: var(--accent); }
+      .title { font-size: 14.5px; font-weight: 700; letter-spacing: -0.01em; }
+      .desc { margin-top: 5px; color: var(--ink-2); font-size: 12px; line-height: 1.55; }
+      .fact {
+        margin-top: 9px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow: inset 0 0 0 1px rgba(20, 22, 26, 0.07);
+        padding: 8px 10px;
+        color: var(--ink-2);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 11px;
+        line-height: 1.55;
+      }
+      .fact b { color: var(--ink); font-weight: 700; }
+      .arrow { position: relative; width: 1.5px; height: 24px; background: var(--line-2); }
+      .arrow::after {
+        content: ""; position: absolute; bottom: -1px; left: -3.75px;
+        border-left: 4.5px solid transparent; border-right: 4.5px solid transparent; border-top: 6px solid var(--line-2);
+      }
+      .split { margin: 6px 0; color: var(--ink-3); font-size: 9.5px; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase; }
+      .branch { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; width: min(660px, 100%); }
+      .branch-col { flex: 1; min-width: 250px; display: flex; flex-direction: column; align-items: stretch; gap: 8px; }
+      .branch-col .refuse, .branch-col .node, .branch-col .out { width: 100%; }
+
+      /* the agent org */
+      .desks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+      .desk { border-radius: 12px; background: var(--panel); box-shadow: 0 0 0 1.5px var(--line); padding: 13px 14px; }
+      .desk h3 { font-size: 13px; font-weight: 700; }
+      .desk .purpose { margin-top: 4px; color: var(--ink-2); font-size: 11.5px; line-height: 1.5; }
+      .agents { margin-top: 9px; display: flex; flex-direction: column; gap: 5px; }
+      .agent { display: flex; align-items: baseline; gap: 6px; font-size: 11px; }
+      .kind { flex-shrink: 0; border-radius: 4px; padding: 1px 5px; font-size: 8.5px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; }
+      .kind.code { background: var(--measured-wash); color: var(--measured); }
+      .kind.fetch { background: var(--accent-wash); color: var(--accent); }
+      .kind.model { background: var(--written-wash); color: var(--written); }
+      .kind.plan { background: var(--sunk); color: var(--ink-3); }
+
+      .proof { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+      .stat { border-radius: 11px; background: var(--panel); box-shadow: 0 0 0 1.5px var(--line); padding: 12px 13px; }
+      .stat .k { color: var(--ink-3); font-size: 9px; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase; }
+      .stat .v { margin-top: 5px; font-size: 21px; font-weight: 650; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+      .stat .n { margin-top: 3px; color: var(--ink-2); font-size: 10.5px; line-height: 1.45; }
+
+      .notes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+      .notes .note { width: 100%; }
+      .notes .desc { font-size: 11.5px; }
+      ul { margin: 6px 0 0; padding-left: 16px; color: var(--ink-2); font-size: 11.5px; line-height: 1.6; }
+      li + li { margin-top: 3px; }
+      footer { margin-top: 40px; border-top: 1.5px solid var(--line); padding-top: 14px; color: var(--ink-3); font-size: 11px; line-height: 1.6; }
+
+      @media (max-width: 860px) {
+        .desks, .proof, .notes { grid-template-columns: 1fr; }
+        h1 { font-size: 24px; }
+      }
+      @media print {
+        body { padding: 0; background: #fff; }
+        .node, .decision, .refuse, .out, .note, .desk, .stat { break-inside: avoid; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">Aerion &middot; outbound account &amp; contact generation &middot; thought process</p>
+      <h1>Everything an AI says about a company<br />could be <em>invented</em>. So nothing here is said by one.</h1>
+      <p class="sub">
+        A campaign brief goes in. An account list, a buying committee, a research brief and a personalised email come
+        out. The interesting part is not the pipeline, it is the one rule the pipeline is built around, and the
+        refusals that rule forces.
+      </p>
+
+      <div class="thesis">
+        <p class="q">The question I started from</p>
+        <p class="a">
+          What would make a reviewer believe an account list they have never seen before?
+        </p>
+        <p class="b">
+          Not fluency. A model writes a plausible list of Chilean mining companies in four seconds, and a plausible
+          Head of Operations to go with it, and there is no way to tell the real ones from the invented ones. So the
+          answer had to be something a model cannot produce: a hole in the ground with coordinates, a filing with a
+          date, a disclosure a government compels. Every account here is discovered by measuring physical terrain.
+          The language model is only ever allowed to write sentences out of facts that ordinary code already fetched.
+        </p>
+      </div>
+
+      <div class="legend">
+        <span class="lg"><span class="sw m"></span>Measured by code, reproducible by hand</span>
+        <span class="lg"><span class="sw w"></span>Written by a model, prose only</span>
+        <span class="lg"><span class="sw d"></span>Decision</span>
+        <span class="lg"><span class="sw r"></span>Refusal, recorded not filled</span>
+        <span class="lg"><span class="sw"></span>Fetch or hand-off</span>
+      </div>
+
+      <section class="flow" aria-label="Solution flow">
+        <div class="section" style="margin-top: 22px">Stage 1 &middot; account identification</div>
+
+        <div class="node">
+          <span class="tag">Input</span>
+          <div class="title">The campaign brief, unchanged</div>
+          <div class="desc">
+            Target vertical, reference account, target roles, angle. Read by a Chief of Staff agent that writes an
+            explicit work plan and names the desk that owns each job. The plan renders verbatim in the app.
+          </div>
+          <div class="fact">
+            vertical &nbsp;lithium, copper, iron ore &middot; Latin America<br />
+            anchor &nbsp;&nbsp;&nbsp;SQM &middot; roles &nbsp;Head of Ops, VP HSE, Site Director
+          </div>
+        </div>
+        <div class="arrow"></div>
+
+        <div class="node measured">
+          <span class="tag">Measured</span>
+          <div class="title">Query the map, not the model</div>
+          <div class="desc">
+            Every mapped mine, quarry, salt pond and industrial site in the target countries is fetched from
+            OpenStreetMap. Area is computed geodesically from each returned boundary by spherical excess, perimeter by
+            summing haversine edges. No figure is ever read from a description.
+          </div>
+          <div class="fact">
+            <b>157</b> features measured &middot; <b>964.5 km&sup2;</b> total &middot; 9 regions<br />
+            every feature id opens on openstreetmap.org and can be re-measured
+          </div>
+        </div>
+        <div class="arrow"></div>
+
+        <div class="decision">
+          <span class="tag">Decision</span>
+          <div class="title">Does this operator resolve to a real company?</div>
+          <div class="desc">
+            OpenStreetMap gives an operator string, not a corporate identity. "SQM S.A." resolves. Hundreds of others
+            are contractors, subsidiaries or misspellings.
+          </div>
+        </div>
+        <div class="split">no &nbsp;/&nbsp; yes</div>
+
+        <div class="branch">
+          <div class="branch-col">
+            <div class="refuse">
+              <span class="tag">Refusal</span>
+              <div class="title">Excluded, and listed</div>
+              <div class="desc">
+                Given no parent company. Guessing parentage is how an invented account enters a list that otherwise
+                could not contain one.
+              </div>
+              <div class="fact"><b>107</b> operator tags left unresolved, on the record</div>
+            </div>
+          </div>
+          <div class="branch-col">
+            <div class="node measured">
+              <span class="tag">Measured</span>
+              <div class="title">Attribution ladder, method labelled per site</div>
+              <div class="desc">
+                Operator tag, then name match, then proximity to a confirmed footprint, then unattributed. The rung
+                used is shown on screen and proximity-inferred ground is drawn dashed and totalled separately.
+              </div>
+              <div class="fact">
+                SQM: <b>547 km&sup2;</b> tagged, the strong claim<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 1.01 km&sup2; adjacent, inferred, shown apart
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">Stage 3 &middot; account research, before contacts, because it decides who matters</div>
+
+        <div class="node measured">
+          <span class="tag">Measured</span>
+          <div class="title">Mine the company's own filing</div>
+          <div class="desc">
+            Its annual filing is fetched and scanned for contractor, safety, inspection and tailings language, counted,
+            and the strongest passages quoted word for word. What is absent is counted too.
+          </div>
+          <div class="fact">
+            SQM 20-F: contractors <b>&times;27</b> &middot; safety <b>&times;67</b><br />
+            drone, autonomous, automation: <b>&times;0</b> &nbsp;&larr; a technology signal made of an absence
+          </div>
+        </div>
+        <div class="arrow"></div>
+
+        <div class="node">
+          <span class="tag">Fetch</span>
+          <div class="title">Dated events, and what they mean</div>
+          <div class="desc">
+            Leadership changes with appointment dates from statutory disclosures, interim seats detected from the
+            "(i)" marker a transparency law requires, and technology signals read from the filing.
+          </div>
+          <div class="fact">
+            13 Feb 2026 &middot; Codelco removed its VP Operations and two site chiefs<br />
+            after an audit found concealment in a rock-burst report to the regulator
+          </div>
+        </div>
+        <div class="arrow"></div>
+
+        <div class="node measured">
+          <span class="tag">Measured</span>
+          <div class="title">Score it with arithmetic, not opinion</div>
+          <div class="desc">
+            Ten weighted dimensions against the reference account. Weights published, per-dimension contribution drawn
+            as a bar, total is visible arithmetic. No model touches this, so a reviewer can argue with a weight rather
+            than with a black box.
+          </div>
+          <div class="fact">SQM <b>94.6</b> &middot; Vale 67.2 &middot; Codelco 55.8 &middot; Glencore 19.3</div>
+        </div>
+
+        <div class="section">Stage 2 &middot; contact discovery</div>
+
+        <div class="decision">
+          <span class="tag">Decision</span>
+          <div class="title">Is there a real person, on a page that names them?</div>
+          <div class="desc">
+            Statutory transparency rosters first, then company leadership pages, then public professional profiles
+            where the search result title itself is the evidence.
+          </div>
+        </div>
+        <div class="split">no &nbsp;/&nbsp; yes</div>
+
+        <div class="branch">
+          <div class="branch-col">
+            <div class="refuse">
+              <span class="tag">Refusal</span>
+              <div class="title">Role target, no name</div>
+              <div class="desc">
+                States the seat, the org-chart reasoning and how a human would find them. A record admitting it could
+                not find someone is worth more than a plausible invented name, and the interface says so.
+              </div>
+              <div class="fact"><b>6</b> role targets carrying no name</div>
+            </div>
+          </div>
+          <div class="branch-col">
+            <div class="node">
+              <span class="tag">Fetch</span>
+              <div class="title">Named, with the exact title quoted</div>
+              <div class="desc">
+                Name, verbatim title, seniority, buying role, LinkedIn where findable, and a provenance tier saying
+                which source class named them.
+              </div>
+              <div class="fact">
+                <b>55</b> named contacts<br />
+                Ren&eacute; Galleguillos Pallauta &middot; Gerente General Divisi&oacute;n Chuquicamata
+              </div>
+            </div>
+            <div class="arrow" style="align-self: center"></div>
+            <div class="refuse">
+              <span class="tag">Refusal</span>
+              <div class="title">An address is only ever observed or inferred</div>
+              <div class="desc">
+                Live mail-server checks establish the infrastructure. A pattern-derived address is labelled inferred
+                and excluded from every sendable column, because a guess that reaches a CRM becomes a real send later
+                by somebody who never saw the warning.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">The one triple that cannot be fabricated</div>
+        <div class="out">
+          <span class="tag">Why this works</span>
+          <div class="title">A named site manager &times; the measured size of their site &times; a dated trigger</div>
+          <div class="desc">
+            Each half comes from a different kind of source, so no single prompt can produce the pair. This is the
+            sentence a first email opens on.
+          </div>
+          <div class="fact">
+            Ren&eacute; Galleguillos Pallauta &nbsp;&rarr;&nbsp; Chuquicamata <b>9.744 km&sup2;</b> (way/886558255)<br />
+            &nbsp;&rarr;&nbsp; three operations seats currently held on an interim basis
+          </div>
+        </div>
+
+        <div class="section">Stage 4 &middot; personalised email</div>
+
+        <div class="node measured">
+          <span class="tag">Measured</span>
+          <div class="title">Strategy is chosen deterministically</div>
+          <div class="desc">
+            Which of their own facts to lead with, which real FlytBase customer to name as a peer, and which language
+            they work in. Spanish for SQM and Codelco, Portuguese for Vale. Composed natively, never translated.
+          </div>
+          <div class="fact">
+            counts are withheld from the writer &middot; quotable outcomes are a fixed closed list<br />
+            a peer may be named, a figure may never be attached to the wrong customer
+          </div>
+        </div>
+        <div class="arrow"></div>
+
+        <div class="node written">
+          <span class="tag">Model</span>
+          <div class="title">The only place a model is trusted</div>
+          <div class="desc">
+            It receives a numbered fact list and writes four to seven sentences. It is told it has no other knowledge.
+            It never chooses an account, a person, a score or a number.
+          </div>
+        </div>
+        <div class="arrow"></div>
+
+        <div class="decision">
+          <span class="tag">Decision</span>
+          <div class="title">Eleven hard gates. Does it pass?</div>
+          <div class="desc">
+            No placeholder, no banned phrase, zero em dashes, correct length, two cited facts, one interest-based ask,
+            language-correct readability, reader-centred and signed, every numeral traceable to a source, the account
+            name spelled correctly, one language throughout, and a named peer with no misattributed figure.
+          </div>
+        </div>
+        <div class="split">fail &nbsp;/&nbsp; pass</div>
+
+        <div class="branch">
+          <div class="branch-col">
+            <div class="refuse">
+              <span class="tag">Refusal</span>
+              <div class="title">Rejected drafts are displayed</div>
+              <div class="desc">
+                Up to four repairs, each told exactly which gate failed. If all four fail, that is recorded as a gap
+                rather than resolved by lowering the bar. Showing the rejects proves the machine wrote them.
+              </div>
+              <div class="fact"><b>4</b> rejected drafts on screen with their failing gate</div>
+            </div>
+          </div>
+          <div class="branch-col">
+            <div class="out">
+              <span class="tag">Output</span>
+              <div class="title">Sendable, and actually sent</div>
+              <div class="desc">
+                A dated multi-channel cadence, an account-executive brief with grounded discovery questions and
+                objection handling, CRM-shaped exports, and a real delivery to an address the operator typed.
+              </div>
+              <div class="fact"><b>6</b> accepted at score <b>100</b> &middot; real send confirmed by message id</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">The claim a frozen demo cannot make</div>
+        <div class="node measured">
+          <span class="tag">Live</span>
+          <div class="title">Name any place on earth and watch it measure</div>
+          <div class="desc">
+            A reviewer cannot tell a real result from a spreadsheet filled in the night before, so the same pipeline
+            runs on ground nobody chose in advance, then carries the discovered operator through contacts, scoring and
+            a critiqued email. Same scorer, same ladder, same critic.
+          </div>
+          <div class="fact">
+            Antofagasta / mining, measured during the request:<br />
+            <b>105</b> features &middot; <b>421 km&sup2;</b> &middot; <b>8</b> operators from exact tags<br />
+            SQM S.A., Albemarle Ltda., Minera Escondida Ltda., Codelco Chile<br /><br />
+            Rajasthan / solar: thousands of arrays, almost no operator tags.<br />
+            No account can be named, and that answer is shown rather than hidden.
+          </div>
+        </div>
+      </section>
+
+      <div class="section">How the work was divided, and why like this</div>
+      <p class="sub" style="margin-bottom: 14px">
+        Nineteen agents across six desks, named and shaped like a sales team rather than a dependency graph, because
+        the people who read this are a revenue organisation. The badge on each one is the honest part: it says whether
+        that agent is ordinary code, a fetch from a named source, or a language model.
+      </p>
+      <section class="desks">
+        <div class="desk">
+          <h3>Chief of Staff</h3>
+          <p class="purpose">Reads the brief, decides who does what, merges the desks, decides when there is enough evidence to stop researching.</p>
+          <div class="agents"><div class="agent"><span class="kind plan">plans</span><span>Run planner and sufficiency check</span></div></div>
+        </div>
+        <div class="desk">
+          <h3>Research desk</h3>
+          <p class="purpose">Establishes what is true. Measures the ground, reads the filings, finds the dated events.</p>
+          <div class="agents">
+            <div class="agent"><span class="kind fetch">fetch</span><span>Terrain Surveyor</span></div>
+            <div class="agent"><span class="kind code">code</span><span>Universe Scout</span></div>
+            <div class="agent"><span class="kind code">code</span><span>Filings Analyst</span></div>
+            <div class="agent"><span class="kind code">code</span><span>Anchor Analyst</span></div>
+            <div class="agent"><span class="kind fetch">fetch</span><span>Signals Desk</span></div>
+            <div class="agent"><span class="kind fetch">fetch</span><span>Regulatory Analyst</span></div>
+          </div>
+        </div>
+        <div class="desk">
+          <h3>Qualification desk</h3>
+          <p class="purpose">Decides which accounts deserve a rep's day, and how large the opportunity is.</p>
+          <div class="agents">
+            <div class="agent"><span class="kind code">code</span><span>Cross-Verification Officer</span></div>
+            <div class="agent"><span class="kind code">code</span><span>ICP Scorer</span></div>
+            <div class="agent"><span class="kind code">code</span><span>Opportunity Engineer</span></div>
+          </div>
+        </div>
+        <div class="desk">
+          <h3>Contact desk</h3>
+          <p class="purpose">Works out who to talk to, and refuses to invent anyone who cannot be found.</p>
+          <div class="agents">
+            <div class="agent"><span class="kind code">code</span><span>Org Cartographer</span></div>
+            <div class="agent"><span class="kind fetch">fetch</span><span>People Finder</span></div>
+            <div class="agent"><span class="kind fetch">fetch</span><span>Reachability Analyst</span></div>
+          </div>
+        </div>
+        <div class="desk">
+          <h3>Outreach desk</h3>
+          <p class="purpose">Writes the message, then tries to tear it apart before a prospect ever sees it.</p>
+          <div class="agents">
+            <div class="agent"><span class="kind code">code</span><span>Message Strategist</span></div>
+            <div class="agent"><span class="kind model">model</span><span>Copywriter</span></div>
+            <div class="agent"><span class="kind code">code</span><span>Red Team critic</span></div>
+            <div class="agent"><span class="kind code">code</span><span>Sequence Architect</span></div>
+          </div>
+        </div>
+        <div class="desk">
+          <h3>Handoff desk</h3>
+          <p class="purpose">Packages everything so an account executive can act without asking a question.</p>
+          <div class="agents">
+            <div class="agent"><span class="kind model">model</span><span>AE Briefer</span></div>
+            <div class="agent"><span class="kind code">code</span><span>Exporter</span></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section">What the run actually produced</div>
+      <section class="proof">
+        <div class="stat"><p class="k">sites measured</p><p class="v">157</p><p class="n">each individually citable on OpenStreetMap</p></div>
+        <div class="stat"><p class="k">mapped footprint</p><p class="v">964.5</p><p class="n">km&sup2;, geodesic from geometry</p></div>
+        <div class="stat"><p class="k">evidence rows</p><p class="v">158</p><p class="n">every fact bound to one source</p></div>
+        <div class="stat"><p class="k">named contacts</p><p class="v">55</p><p class="n">none invented, 6 seats left nameless</p></div>
+        <div class="stat"><p class="k">dated signals</p><p class="v">8</p><p class="n">leadership change and technology whitespace</p></div>
+        <div class="stat"><p class="k">emails accepted</p><p class="v">6</p><p class="n">all at score 100, in Spanish and Portuguese</p></div>
+        <div class="stat"><p class="k">drafts rejected</p><p class="v">4</p><p class="n">shown on screen with the failing gate</p></div>
+        <div class="stat"><p class="k">gaps recorded</p><p class="v">8</p><p class="n">failures kept, with how to close each</p></div>
+      </section>
+
+      <div class="section">What it cost me to learn, and what is still open</div>
+      <section class="notes">
+        <div class="note">
+          <span class="tag">The failure that shaped the critic</span>
+          <div class="desc">
+            An early draft claimed "27 incidentes de seguridad". No such number exists. The model had turned "the word
+            safety appears 27 times" into 27 incidents. Another inverted spend into saving. Both passed the original
+            gates, because those gates checked that facts were <em>cited</em>, not that the paraphrase was
+            <em>faithful</em>.
+          </div>
+          <ul>
+            <li>Counts are now withheld from the writer entirely</li>
+            <li>Quotable outcomes are a fixed closed list</li>
+            <li>Every numeral is checked against the permitted set</li>
+          </ul>
+        </div>
+        <div class="note">
+          <span class="tag">Where it hits a wall</span>
+          <div class="desc">The brief asked to be shown the walls. These are real and each has a stated fix.</div>
+          <ul>
+            <li>The anchor has the thinnest contact surface of any account, so its own leadership page yields no operations seat</li>
+            <li>Corporate mail gateways answer for the gateway, so no email can be verified without probing, which we refuse to do</li>
+            <li>The free model tier allows 8,000 tokens a minute, which is why generation is paced rather than parallel</li>
+            <li>365 of 389 salt ponds carry no operator tag, so proximity inference is required and is labelled</li>
+          </ul>
+        </div>
+        <div class="note">
+          <span class="tag">The honest weak point</span>
+          <div class="desc">
+            The money case mixes three kinds of number and labels each one. A contracted crew day rate is not published
+            by anybody, so it is carried as a wide band marked unsourced, excluded from anything an email may assert,
+            and editable by the reader.
+          </div>
+          <ul>
+            <li>Published: FlytBase's own USD 70&ndash;80k phase one figure, linked</li>
+            <li>Derived: docks, crew-days, person-days out of hazard</li>
+            <li>Operator's own: day rate, value of an hour of downtime</li>
+          </ul>
+        </div>
+      </section>
+
+      <footer>
+        Footprints measured from OpenStreetMap geometry, &copy; OpenStreetMap contributors, Open Database Licence.
+        Filing text from SEC EDGAR. Officer names and appointment dates from statutory transparency disclosures
+        published under Chile's Ley 20.285. Every figure on this page is produced by the system and appears in the
+        deployed application with its source attached.
+      </footer>
+    </main>
+  </body>
+</html>

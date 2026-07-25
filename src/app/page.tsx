@@ -15,6 +15,21 @@ export default async function Home() {
   // Every dot on the globe is a measured feature, carrying enough context that
   // clicking it can open the operation without another round trip.
   const explorerSites: ExplorerSite[] = [];
+
+  // The ranked list beside the globe. Ordered by measured footprint rather than by
+  // score, because footprint is the thing the globe is showing and the two lists
+  // agreeing is what makes the pairing readable.
+  const rankedAccounts = (run?.accounts ?? [])
+    .map((a) => ({
+      slug: a.slug,
+      displayName: a.displayName,
+      areaKm2: a.sites.filter((s) => !s.excluded).reduce((t, s) => t + s.areaKm2, 0),
+      contacts: a.contacts.filter((c) => c.tier !== "ROLE_TARGET_NO_NAME").length,
+      tier: a.icp.tier,
+    }))
+    .sort((x, y) => y.areaKm2 - x.areaKm2)
+    .slice(0, 8);
+
   if (run) {
     const maxArea = Math.max(...run.accounts.flatMap((a) => a.sites.map((s) => s.areaKm2)), 1);
     for (const account of run.accounts) {
@@ -104,7 +119,40 @@ export default async function Home() {
               same space, which is what made the two collide. */}
           <div className="flex flex-col items-center gap-1 lg:items-end">
             <GlobeExplorer sites={explorerSites} maptilerKey={process.env.MAPTILER_KEY} />
-            <p className="t-micro mt-2 max-w-md text-center leading-relaxed lg:text-right">
+            {/* The ranked list, beside the globe rather than on it.
+                Labelling every account on the sphere was tried and abandoned:
+                when all of them sit inside one mining district, three chips do
+                not fit sixty pixels, and staggering them turned an overlap into a
+                stack. A globe is good at showing shape and scale, a list is good
+                at showing names. So each does the job it is better at. */}
+            <div className="mt-4 w-full max-w-md">
+              <p className="t-label">Accounts, ranked by measured footprint</p>
+              <div className="mt-2 space-y-1">
+                {rankedAccounts.map((a, i) => (
+                  <Link
+                    key={a.slug}
+                    href={`/console/account/${a.slug}`}
+                    className="group flex items-baseline gap-2.5 rounded-[7px] px-1.5 py-1 transition-colors hover:bg-[var(--color-panel-sunk)]"
+                  >
+                    <span className="tnum t-micro w-4 shrink-0 text-right opacity-40">{i + 1}</span>
+                    <span className="min-w-0 flex-1 truncate text-[0.86rem] font-[540]">{a.displayName}</span>
+                    <span
+                      className="tnum shrink-0 text-[0.78rem] font-[520]"
+                      style={{ color: "var(--color-accent)" }}
+                    >
+                      {fmtKm2(a.areaKm2)}
+                      <span className="t-micro ml-0.5 opacity-60">km²</span>
+                    </span>
+                    <span className="t-micro w-14 shrink-0 text-right opacity-70">
+                      {a.contacts} named
+                    </span>
+                    <span className="t-micro w-6 shrink-0 text-right">{a.tier}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <p className="t-micro mt-3 max-w-md text-center leading-relaxed lg:text-right">
               {explorerSites.length} measured sites, each a real mapped feature. Hover holds the rotation ·
               click a site to open its satellite view and draw its link to Pune.
             </p>

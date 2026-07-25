@@ -35,6 +35,10 @@ export interface CriticInput {
    * was invented, which is the most dangerous failure mode available to it.
    */
   permittedNumbers?: string[];
+  /** The FlytBase customer the writer was told to name as a peer. */
+  peerCustomer?: string;
+  /** The customer whose published figures the writer was allowed to quote. */
+  proofCustomer?: string;
 }
 
 export interface GateOutcome {
@@ -377,6 +381,40 @@ export function critique(input: CriticInput): CriticVerdict {
     passed: purityOk,
     detail: purityDetail,
   });
+
+  // G11, peer proof and correct attribution.
+  //
+  // Two halves, and the second is the one that matters. The brief asks outreach
+  // to reference FlytBase's real customer base where it strengthens the framing,
+  // and it does strengthen it: a site director has no reason to care what a
+  // supplier claims and every reason to care which of their peers already runs
+  // this. So a peer must be named.
+  //
+  // But naming a peer creates the opening for the worst failure this critic can
+  // catch. SQM's inspection figures belong to SQM. A sentence reading "Anglo
+  // American cut inspection from days to hours" would be inventing a customer
+  // outcome, which is exactly the fabrication the whole project exists to
+  // prevent. So if any published figure appears, the customer who reported it
+  // has to be named alongside it.
+  if (input.peerCustomer) {
+    const peerNamed = body.toLowerCase().includes(input.peerCustomer.toLowerCase());
+    // Strip the account's own name so "SQM" in "at SQM" does not count as
+    // attribution when writing to SQM itself.
+    const proofRoot = (input.proofCustomer ?? "").replace(/\s*\(.*?\)\s*/g, "").trim();
+    const proofNamed = proofRoot.length > 1 && body.toLowerCase().includes(proofRoot.toLowerCase());
+    const quotesFigure = /(95|678|70[.,]?000|80[.,]?000|90\s*min|0[.,]5\s*%|2\s*%)/i.test(body);
+    const misattributed = quotesFigure && !proofNamed;
+    gates.push({
+      gate: "G11",
+      label: "Names a peer operator, and attributes every figure to whoever reported it",
+      passed: peerNamed && !misattributed,
+      detail: !peerNamed
+        ? `Does not name ${input.peerCustomer}. A peer already operating this way is the strongest line available, and the brief asks for it.`
+        : misattributed
+          ? `Quotes a published figure without naming ${proofRoot}, so the outcome reads as though the peer reported it. That would be inventing a customer result.`
+          : `Names ${input.peerCustomer} as a peer, and any quoted figure sits with the customer who reported it.`,
+    });
+  }
 
   // Subject-line discipline is scored rather than gated, since a weak subject
   // is a lost open rather than a disqualifying artefact.

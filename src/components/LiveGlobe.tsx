@@ -57,8 +57,8 @@ function declutter(placed: Record<string, Placed>, widthPx: number) {
   if (ids.length < 2 || widthPx <= 0) return;
 
   // Work in percentages, which is what the anchors give us.
-  const minPct = (27 / widthPx) * 100;
-  const maxPullPct = (30 / widthPx) * 100;
+  const minPct = (30 / widthPx) * 100;
+  const maxPullPct = (34 / widthPx) * 100;
 
   for (let pass = 0; pass < 12; pass++) {
     let moved = false;
@@ -139,7 +139,29 @@ export default function LiveGlobe({
   /** Rendered positions, keyed by marker id, in container percentages. */
   const [placed, setPlaced] = useState<Record<string, Placed>>({});
 
-  const phi = useRef(4.3);
+  /**
+   * Open with the accounts facing the viewer.
+   *
+   * The rotation used to start at a fixed angle, which for a Latin American run
+   * put every mark on the left limb at load: squashed by the curve of the sphere,
+   * with its labels hanging off the edge. The first second of a page is the only
+   * one guaranteed to be seen, so the opening angle is derived from the data
+   * instead of hard coded. cobe's phi runs opposite to longitude, hence the sign.
+   */
+  const openingPhi = useMemo(() => {
+    if (sites.length === 0) return 4.3;
+    const weight = (x: GlobeSite) => Math.max(x.areaKm2, 0.01);
+    const total = sites.reduce((t, x) => t + weight(x), 0);
+    const meanLon = sites.reduce((t, x) => t + x.lon * weight(x), 0) / total;
+    // Established by testing rather than derived: at phi equal to minus the
+    // longitude in radians the target sits on the right limb, and rotating a
+    // quarter turn back brings it to the centre of the visible face. Adding that
+    // quarter instead of subtracting it puts the target behind the globe, which
+    // is how the sign was pinned down.
+    return -(meanLon * Math.PI) / 180 - Math.PI / 2;
+  }, [sites]);
+
+  const phi = useRef(openingPhi);
   const theta = useRef(0.28);
   const paused = useRef(false);
   const drag = useRef<{ x: number; y: number; phi: number; theta: number } | null>(null);
@@ -240,6 +262,13 @@ export default function LiveGlobe({
    * hover through the card that already exists.
    */
   const labelledIds = useMemo(
+    // One, and one only.
+    //
+    // Three was tried and three does not fit: when every account sits inside one
+    // mining district, sixty pixels of sphere cannot hold three chips, and
+    // staggering them vertically only turned an overlap into a stack. The globe
+    // carries the largest name and the shape of the data; the ranked list beside
+    // it carries every name legibly, which is the job a list is better at.
     () => new Set([...clusters].sort((a, b) => b.totalArea - a.totalArea).slice(0, 1).map((c) => c.id)),
     [clusters],
   );
@@ -255,16 +284,25 @@ export default function LiveGlobe({
       ...clusters.map((c) => ({
         id: c.id,
         location: [c.lat, c.lon] as [number, number],
-        // Kept small on purpose. The canvas dot marks the true coordinate; the
-        // legible, interactive dot is the HTML marker in the overlay, which
-        // declutter may have moved a few pixels. A large canvas dot turned a
-        // dense district into one disc with satellites around it.
-        size: Math.max(0.016, Math.min(0.028, 0.014 + c.weight * 0.013)),
+        // Sub-pixel on purpose, so the canvas draws nothing visible.
+        //
+        // This is the fix for the thing that made a dense district look like
+        // spawn. Two marks were being drawn per account: cobe's own dot at the
+        // true coordinate, and the interactive HTML dot in the overlay, which
+        // declutter may have nudged a few pixels away. Every account therefore
+        // appeared twice with a hairline between the two, and ten accounts in the
+        // Atacama became twenty overlapping dots joined by spokes.
+        //
+        // The marker still has to exist, because cobe maintains one anchor
+        // element per marker and reading those anchors is how the overlay knows
+        // where the projection put each account. So the marker stays and the dot
+        // does not.
+        size: 0.0008,
       })),
       {
         id: HQ_ID,
         location: [HQ.lat, HQ.lon] as [number, number],
-        size: 0.03,
+        size: 0.0008,
         color: [0.71, 0.33, 0.04] as [number, number, number],
       },
     ],
@@ -580,9 +618,14 @@ export default function LiveGlobe({
             const isHover = hovered === id;
             const isLinked = linked === id;
             const urgent = (cluster.signalUrgency ?? 0) >= 0.8;
-            // Area to radius on a square root, clamped to a range that keeps the
-            // smallest mark legible and the largest from swamping its neighbours.
-            const core = 8 + Math.sqrt(Math.min(1, cluster.totalArea / maxClusterArea)) * 12;
+            // Area to radius on a square root, over a deliberately wide range.
+            //
+            // Every mark within a few pixels of every other was the second half of
+            // why this read as spawn: a set of near-identical dots carries no
+            // information, so the eye has nothing to rank and sees texture instead
+            // of data. Nine to twenty-six pixels makes the largest operation
+            // unmistakable at a glance, which is the one thing this view is for.
+            const core = 9 + Math.sqrt(Math.min(1, cluster.totalArea / maxClusterArea)) * 17;
             const hit = Math.max(26, core * 2.4);
             const labelled = labelledIds.has(id) || isHover || isLinked;
             // Only a site with a live timing signal pulses. Everything pulsing at
@@ -593,12 +636,20 @@ export default function LiveGlobe({
             const ringSize = Math.min(core * 2.2, 30);
             // Label outward from the centre, so a chip never runs off the sphere.
             const flipLabel = p.x > 68;
-            // The leader points from the drawn dot back to the true anchor.
-            const holderW = canvas.current?.offsetWidth ?? size;
-            const ldx = ((p.ax - p.x) / 100) * holderW;
-            const ldy = ((p.ay - p.y) / 100) * holderW;
-            const leaderLen = Math.hypot(ldx, ldy);
-            const leaderAngle = (Math.atan2(ldy, ldx) * 180) / Math.PI;
+            // Two labelled marks at a similar height put their chips on the same
+            // line, and the wider one covers the narrower. Each subsequent chip in
+            // a band steps down out of the way.
+            const labelStep =
+              labelled && !isHover
+                ? Object.entries(placed).filter(
+                    ([oid, op]) =>
+                      oid !== id &&
+                      op.visible &&
+                      labelledIds.has(oid) &&
+                      Math.abs(op.y - p.y) < 3.4 &&
+                      op.x < p.x,
+                  ).length
+                : 0;
 
             return (
               <button
@@ -626,21 +677,6 @@ export default function LiveGlobe({
                   cursor: "pointer",
                 }}
               >
-                {/* Where declutter moved this dot, a hairline runs back to the
-                    true coordinate so the display never implies a false position. */}
-                {leaderLen > 5 && (
-                  <span
-                    className="absolute left-1/2 top-1/2 origin-left"
-                    style={{
-                      width: leaderLen,
-                      height: 1,
-                      marginTop: -0.5,
-                      background: "rgba(27,79,216,0.17)",
-                      transform: `rotate(${leaderAngle}deg)`,
-                    }}
-                  />
-                )}
-
                 {/* Expanding rings, two, staggered, so a site with a live signal
                     reads as transmitting rather than merely blinking. Drawn as a
                     hairline stroke, not a filled disc: filled pulses bled into one
@@ -717,8 +753,10 @@ export default function LiveGlobe({
                     read as finished. */}
                 {labelled && (
                   <span
-                    className="pointer-events-none absolute top-1/2 -translate-y-1/2 whitespace-nowrap rounded-[6px] bg-[rgba(255,255,255,0.95)] px-1.5 py-0.5 text-[0.62rem] font-[560] tracking-[0.01em] shadow-[var(--shadow-hair)]"
+                    className="pointer-events-none absolute whitespace-nowrap rounded-[6px] bg-[rgba(255,255,255,0.95)] px-1.5 py-0.5 text-[0.62rem] font-[560] tracking-[0.01em] shadow-[var(--shadow-hair)]"
                     style={{
+                      top: "50%",
+                      transform: `translateY(calc(-50% + ${labelStep * 17}px))`,
                       left: flipLabel ? "auto" : `calc(50% + ${core / 2 + 7}px)`,
                       right: flipLabel ? `calc(50% + ${core / 2 + 7}px)` : "auto",
                       color: isHover || isLinked ? "var(--color-accent-ink)" : "var(--color-ink-2)",

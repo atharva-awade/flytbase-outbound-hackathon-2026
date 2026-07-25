@@ -1,13 +1,13 @@
 {
   "drafts": {
-    "contact-sqm-pablo-altimiras": [
+    "contact-sqm-ricardo-ramos": [
       {
-        "id": "contact-sqm-pablo-altimiras-t1-i1",
+        "id": "contact-sqm-ricardo-ramos-t1-i1",
         "iteration": 1,
-        "subject": "Riesgos de contratistas en inspección",
-        "body": "Usted opera 49 sitios mapeados que suman 548 km², siendo el Salar de Atacama 236.5 km². Según su informe 20‑F, los incidentes de seguridad de contratistas y paros son riesgos críticos. Actualmente, sus equipos contratados absorben costos elevados y exposición a esos riesgos operativos. Con Adentu, SQM redujo el tiempo de inspección de días a horas. ¿Podría enviarle un breve resumen escrito de este cambio operacional?\nAtharva Awade, Business Development, FlytBase",
+        "subject": "Riesgos de inspección contratada",
+        "body": "SQM opera 49 sitios mapeados que suman 548 km², siendo el Salar de Atacama 236.5 km². Su reporte 20‑F indica incidentes de seguridad de contratistas y paros de obra como riesgos críticos. Actualmente, los equipos contratados absorben costos altos y exposición a esos riesgos en cada inspección. Con Adentu, el tiempo de inspección cayó de días a horas y la fiabilidad superó el 95 por ciento. ¿Puedo enviarle un resumen escrito sobre cómo se modificó la cadencia de inspección?\nAtharva Awade, Business Development, FlytBase",
         "language": "es-CL",
-        "wordCount": 73,
+        "wordCount": 86,
         "sentenceCount": 6,
         "citedFacts": [
           {
@@ -30,13 +30,13 @@
             "gate": "G2",
             "label": "No template or model-tell phrasing",
             "passed": true,
-            "detail": "Clean of known template openers and model vocabulary."
+            "detail": "Clean of known template openers, model vocabulary and em dashes."
           },
           {
             "gate": "G3",
             "label": "Opener length 55–95 words",
             "passed": true,
-            "detail": "73 words across 6 sentences; longest sentence 17 words. Reply rates peak in the 50–100 word band."
+            "detail": "86 words across 6 sentences; longest sentence 19 words. Reply rates peak in the 50–100 word band."
           },
           {
             "gate": "G4",
@@ -54,7 +54,100 @@
             "gate": "G6",
             "label": "Plain language",
             "passed": true,
-            "detail": "Fernández-Huerta (higher is easier): 70.2. Reads plainly."
+            "detail": "Fernández-Huerta (higher is easier): 77.6. Reads plainly."
+          },
+          {
+            "gate": "G7",
+            "label": "Reader-centred and signed",
+            "passed": true,
+            "detail": "Second-person to first-person ratio all second-person:1, signature present."
+          },
+          {
+            "gate": "G8",
+            "label": "Every number traces to a supplied fact",
+            "passed": true,
+            "detail": "All 5 numeral(s) in the draft trace to a fact the writer was given."
+          },
+          {
+            "gate": "G9",
+            "label": "Account name spelled correctly",
+            "passed": true,
+            "detail": "Account name not used in the body."
+          },
+          {
+            "gate": "G10",
+            "label": "Written wholly in the target language",
+            "passed": true,
+            "detail": "No English wording leaked into the target-language copy."
+          },
+          {
+            "gate": "G11",
+            "label": "Names a peer operator, and attributes every figure to whoever reported it",
+            "passed": false,
+            "detail": "Does not name Anglo American. A peer already operating this way is the strongest line available, and the brief asks for it."
+          }
+        ],
+        "score": 86,
+        "accepted": false,
+        "rejectionReasons": [
+          "G11 Names a peer operator, and attributes every figure to whoever reported it: Does not name Anglo American. A peer already operating this way is the strongest line available, and the brief asks for it."
+        ],
+        "model": "openai/gpt-oss-120b"
+      },
+      {
+        "id": "contact-sqm-ricardo-ramos-t1-i2",
+        "iteration": 2,
+        "subject": "Riesgos de inspección contratada",
+        "body": "Usted gestiona 49 sitios mapeados que suman 548 km², siendo el Salar de Atacama el mayor.\nSu informe 20-F señala incidentes de seguridad de contratistas y paradas de obra como riesgos a la producción.\nActualmente, los equipos de inspección contratados absorben esos costos y riesgos sin reducir la frecuencia.\nAnglo American vio que el tiempo de inspección pasó de días a horas, con fiabilidad superior al 95 %.\n¿Puedo enviarle un breve resumen escrito de cómo cambiaron la cadencia de inspección?\nAtharva Awade, Business Development, FlytBase",
+        "language": "es-CL",
+        "wordCount": 85,
+        "sentenceCount": 6,
+        "citedFacts": [
+          {
+            "text": "SQM's own 20-F for period ending 2026-04-22 names contractor safety incidents and contractor work stoppages among its risks to production",
+            "evidenceId": "ev-sqm-filing-15"
+          },
+          {
+            "text": "SQM operates 49 mapped sites totalling 548 km², the largest being SQM Salar de Atacama at 236.5 km²",
+            "evidenceId": "ev-sqm-geo-1"
+          }
+        ],
+        "gates": [
+          {
+            "gate": "G1",
+            "label": "No placeholder tokens",
+            "passed": true,
+            "detail": "No merge fields, brackets or TBD markers present."
+          },
+          {
+            "gate": "G2",
+            "label": "No template or model-tell phrasing",
+            "passed": true,
+            "detail": "Clean of known template openers, model vocabulary and em dashes."
+          },
+          {
+            "gate": "G3",
+            "label": "Opener length 55–95 words",
+            "passed": true,
+            "detail": "85 words across 6 sentences; longest sentence 18 words. Reply rates peak in the 50–100 word band."
+          },
+          {
+            "gate": "G4",
+            "label": "Two or more cited, verifiable specifics",
+            "passed": true,
+            "detail": "2 cited fact(s), 1 numeric, 1 dated within 18 months."
+          },
+          {
+            "gate": "G5",
+            "label": "Single interest-based ask, no meeting request",
+            "passed": true,
+            "detail": "One interest-based ask, no links, no calendar request."
+          },
+          {
+            "gate": "G6",
+            "label": "Plain language",
+            "passed": true,
+            "detail": "Fernández-Huerta (higher is easier): 75.4. Reads plainly."
           },
           {
             "gate": "G7",
@@ -79,6 +172,12 @@
             "label": "Written wholly in the target language",
             "passed": true,
             "detail": "No English wording leaked into the target-language copy."
+          },
+          {
+            "gate": "G11",
+            "label": "Names a peer operator, and attributes every figure to whoever reported it",
+            "passed": true,
+            "detail": "Names Anglo American as a peer, and any quoted figure sits with the customer who reported it."
           }
         ],
         "score": 100,
@@ -87,14 +186,14 @@
         "model": "openai/gpt-oss-120b"
       }
     ],
-    "contact-sqm-carlos-diaz-ortiz": [
+    "contact-sqm-pablo-altimiras": [
       {
-        "id": "contact-sqm-carlos-diaz-ortiz-t1-i1",
+        "id": "contact-sqm-pablo-altimiras-t1-i1",
         "iteration": 1,
         "subject": "Riesgos de inspección contratada",
-        "body": "Usted opera 49 sitios mapeados que suman 548 km², siendo el Salar de Atacama 236.5 km². Usted también reconoce incidentes de seguridad de contratistas y paros de trabajo como riesgos a la producción. Actualmente, los equipos contratados absorben costos elevados y la exposición al riesgo de esas interrupciones. SQM con Adentu duplicó la frecuencia de inspección y la confiabilidad de misión superó el 95 %. ¿Podría enviarle un breve resumen escrito de cómo logramos ese cambio?\nAtharva Awade, Business Development, FlytBase",
+        "body": "Usted opera 49 sitios mapeados que suman 548 km², siendo el Salar de Atacama 236.5 km². Su reporte 20‑F indica incidentes de seguridad de contratistas y paros de trabajo como riesgos a la producción. Actualmente, los equipos contratados absorben esos costos y riesgos mientras mantienen la frecuencia de inspección. Nuestro cliente Anglo American logró que el tiempo de inspección pasara de días a horas. ¿Podemos enviarle un breve resumen escrito sobre cómo se modificó la cadencia de inspección?\nAtharva Awade, Business Development, FlytBase",
         "language": "es-CL",
-        "wordCount": 81,
+        "wordCount": 85,
         "sentenceCount": 6,
         "citedFacts": [
           {
@@ -117,13 +216,13 @@
             "gate": "G2",
             "label": "No template or model-tell phrasing",
             "passed": true,
-            "detail": "Clean of known template openers and model vocabulary."
+            "detail": "Clean of known template openers, model vocabulary and em dashes."
           },
           {
             "gate": "G3",
             "label": "Opener length 55–95 words",
             "passed": true,
-            "detail": "81 words across 6 sentences; longest sentence 17 words. Reply rates peak in the 50–100 word band."
+            "detail": "85 words across 6 sentences; longest sentence 19 words. Reply rates peak in the 50–100 word band."
           },
           {
             "gate": "G4",
@@ -141,13 +240,13 @@
             "gate": "G6",
             "label": "Plain language",
             "passed": true,
-            "detail": "Fernández-Huerta (higher is easier): 69.7. Reads plainly."
+            "detail": "Fernández-Huerta (higher is easier): 74.0. Reads plainly."
           },
           {
             "gate": "G7",
             "label": "Reader-centred and signed",
             "passed": true,
-            "detail": "Second-person to first-person ratio all second-person:1, signature present."
+            "detail": "Second-person to first-person ratio 3.0:1, signature present."
           },
           {
             "gate": "G8",
@@ -166,6 +265,12 @@
             "label": "Written wholly in the target language",
             "passed": true,
             "detail": "No English wording leaked into the target-language copy."
+          },
+          {
+            "gate": "G11",
+            "label": "Names a peer operator, and attributes every figure to whoever reported it",
+            "passed": true,
+            "detail": "Names Anglo American as a peer, and any quoted figure sits with the customer who reported it."
           }
         ],
         "score": 100,
@@ -178,10 +283,10 @@
       {
         "id": "contact-vale-henrique-candian-t1-i1",
         "iteration": 1,
-        "subject": "Risco e custo de inspeções",
-        "body": "A Vale opera 36 sites mapeados totalizando 82 km², incluindo o maior poço de 16,8 km². Seu relatório 20‑F destaca incidentes de segurança de contratados e paralisações como riscos à produção. Essas equipes contratadas absorvem custos elevados e expõem a operação a interrupções frequentes. Na SQM, o tempo de inspeção caiu de dias para horas significativamente. Posso enviar um resumo escrito sobre como essa mudança de cadência foi alcançada?\nAtharva Awade, Business Development, FlytBase",
+        "subject": "Riscos e custos das inspeções",
+        "body": "Vale opera 36 sites mapeados totalizando 82 km², sendo o maior um poço de 16.8 km². Seu relatório 20‑F aponta incidentes de segurança de contratados e paralisações como riscos à produção. Essas paralisações fazem suas equipes contratadas absorver custos elevados e exposição ao risco. A Anglo American reduziu o tempo de inspeção de dias para horas, com confiabilidade acima de 95 por cento. Posso enviar um resumo escrito sobre como alteraram a cadência de inspeção?\nAtharva Awade, Business Development, FlytBase",
         "language": "pt-BR",
-        "wordCount": 76,
+        "wordCount": 82,
         "sentenceCount": 6,
         "citedFacts": [
           {
@@ -204,13 +309,13 @@
             "gate": "G2",
             "label": "No template or model-tell phrasing",
             "passed": true,
-            "detail": "Clean of known template openers and model vocabulary."
+            "detail": "Clean of known template openers, model vocabulary and em dashes."
           },
           {
             "gate": "G3",
             "label": "Opener length 55–95 words",
             "passed": true,
-            "detail": "76 words across 6 sentences; longest sentence 17 words. Reply rates peak in the 50–100 word band."
+            "detail": "82 words across 6 sentences; longest sentence 19 words. Reply rates peak in the 50–100 word band."
           },
           {
             "gate": "G4",
@@ -228,7 +333,292 @@
             "gate": "G6",
             "label": "Plain language",
             "passed": true,
-            "detail": "Fernández-Huerta (higher is easier): 64.6. Reads plainly."
+            "detail": "Fernández-Huerta (higher is easier): 66.9. Reads plainly."
+          },
+          {
+            "gate": "G7",
+            "label": "Reader-centred and signed",
+            "passed": false,
+            "detail": "Second-person to first-person ratio 1.0:1, signature present."
+          },
+          {
+            "gate": "G8",
+            "label": "Every number traces to a supplied fact",
+            "passed": true,
+            "detail": "All 5 numeral(s) in the draft trace to a fact the writer was given."
+          },
+          {
+            "gate": "G9",
+            "label": "Account name spelled correctly",
+            "passed": true,
+            "detail": "Account name not used in the body."
+          },
+          {
+            "gate": "G10",
+            "label": "Written wholly in the target language",
+            "passed": true,
+            "detail": "No English wording leaked into the target-language copy."
+          },
+          {
+            "gate": "G11",
+            "label": "Names a peer operator, and attributes every figure to whoever reported it",
+            "passed": true,
+            "detail": "Names Anglo American as a peer, and any quoted figure sits with the customer who reported it."
+          }
+        ],
+        "score": 86,
+        "accepted": false,
+        "rejectionReasons": [
+          "G7 Reader-centred and signed: Second-person to first-person ratio 1.0:1, signature present."
+        ],
+        "model": "openai/gpt-oss-120b"
+      },
+      {
+        "id": "contact-vale-henrique-candian-t1-i2",
+        "iteration": 2,
+        "subject": "Risco de inspeções externas",
+        "body": "Vale operates 36 mapped sites totalling 82 km², the largest being an unnamed pit at 16.8 km². Your 20-F for period ending 2026-03-27 lists contractor safety incidents and work stoppages as production risks. These contractor crews currently absorb high costs and expose you to safety and downtime risks. Anglo American saw inspection time fall from days to hours after adopting autonomous drones. May I send you a short written breakdown of how this changed inspection cadence?\nAtharva Awade, Business Development, FlytBase",
+        "language": "pt-BR",
+        "wordCount": 82,
+        "sentenceCount": 6,
+        "citedFacts": [
+          {
+            "text": "Vale's own 20-F for period ending 2026-03-27 names contractor safety incidents and contractor work stoppages among its risks to production",
+            "evidenceId": "ev-vale-filing-105"
+          },
+          {
+            "text": "Vale operates 36 mapped sites totalling 82 km², the largest being an unnamed pit at 16.8 km²",
+            "evidenceId": "ev-vale-geo-91"
+          },
+          {
+            "text": "Vale's annual filing already discusses autonomous",
+            "evidenceId": "ev-vale-filing-105"
+          }
+        ],
+        "gates": [
+          {
+            "gate": "G1",
+            "label": "No placeholder tokens",
+            "passed": true,
+            "detail": "No merge fields, brackets or TBD markers present."
+          },
+          {
+            "gate": "G2",
+            "label": "No template or model-tell phrasing",
+            "passed": true,
+            "detail": "Clean of known template openers, model vocabulary and em dashes."
+          },
+          {
+            "gate": "G3",
+            "label": "Opener length 55–95 words",
+            "passed": true,
+            "detail": "82 words across 6 sentences; longest sentence 18 words. Reply rates peak in the 50–100 word band."
+          },
+          {
+            "gate": "G4",
+            "label": "Two or more cited, verifiable specifics",
+            "passed": true,
+            "detail": "3 cited fact(s), 1 numeric, 2 dated within 18 months."
+          },
+          {
+            "gate": "G5",
+            "label": "Single interest-based ask, no meeting request",
+            "passed": false,
+            "detail": "No recognisable interest-based ask, the reader is not told what they are agreeing to receive."
+          },
+          {
+            "gate": "G6",
+            "label": "Plain language",
+            "passed": true,
+            "detail": "Fernández-Huerta (higher is easier): 93.3. Reads plainly."
+          },
+          {
+            "gate": "G7",
+            "label": "Reader-centred and signed",
+            "passed": false,
+            "detail": "Second-person to first-person ratio 0.0:1, signature present."
+          },
+          {
+            "gate": "G8",
+            "label": "Every number traces to a supplied fact",
+            "passed": true,
+            "detail": "All 6 numeral(s) in the draft trace to a fact the writer was given."
+          },
+          {
+            "gate": "G9",
+            "label": "Account name spelled correctly",
+            "passed": true,
+            "detail": "Account name not used in the body."
+          },
+          {
+            "gate": "G10",
+            "label": "Written wholly in the target language",
+            "passed": false,
+            "detail": "English words present in Portuguese copy: the, and, from, this, hours, days. A message that switches language mid-sentence reads as machine-assembled."
+          },
+          {
+            "gate": "G11",
+            "label": "Names a peer operator, and attributes every figure to whoever reported it",
+            "passed": true,
+            "detail": "Names Anglo American as a peer, and any quoted figure sits with the customer who reported it."
+          }
+        ],
+        "score": 58,
+        "accepted": false,
+        "rejectionReasons": [
+          "G5 Single interest-based ask, no meeting request: No recognisable interest-based ask, the reader is not told what they are agreeing to receive.",
+          "G7 Reader-centred and signed: Second-person to first-person ratio 0.0:1, signature present.",
+          "G10 Written wholly in the target language: English words present in Portuguese copy: the, and, from, this, hours, days. A message that switches language mid-sentence reads as machine-assembled."
+        ],
+        "model": "openai/gpt-oss-120b"
+      },
+      {
+        "id": "contact-vale-henrique-candian-t1-i3",
+        "iteration": 3,
+        "subject": "Riscos de inspeções terceirizadas",
+        "body": "A Vale opera 36 sites mapeados totalizando 82 km², sendo o maior um poço de 16,8 km².\nSeu relatório 20‑F indica incidentes de segurança de contratados e paralisações de trabalho como riscos à produção.\nEsses incidentes obrigam suas equipes terceirizadas a absorver custos elevados e riscos operacionais.\nA Anglo American já viu o tempo de inspeção cair de dias para horas.\nPosso enviar-lhe um breve resumo escrito de como a Anglo American alterou sua cadência de inspeção?\nAtharva Awade, Business Development, FlytBase",
+        "language": "pt-BR",
+        "wordCount": 84,
+        "sentenceCount": 6,
+        "citedFacts": [
+          {
+            "text": "Vale's own 20-F for period ending 2026-03-27 names contractor safety incidents and contractor work stoppages among its risks to production",
+            "evidenceId": "ev-vale-filing-105"
+          },
+          {
+            "text": "Vale operates 36 mapped sites totalling 82 km², the largest being an unnamed pit at 16.8 km²",
+            "evidenceId": "ev-vale-geo-91"
+          }
+        ],
+        "gates": [
+          {
+            "gate": "G1",
+            "label": "No placeholder tokens",
+            "passed": true,
+            "detail": "No merge fields, brackets or TBD markers present."
+          },
+          {
+            "gate": "G2",
+            "label": "No template or model-tell phrasing",
+            "passed": true,
+            "detail": "Clean of known template openers, model vocabulary and em dashes."
+          },
+          {
+            "gate": "G3",
+            "label": "Opener length 55–95 words",
+            "passed": true,
+            "detail": "84 words across 6 sentences; longest sentence 18 words. Reply rates peak in the 50–100 word band."
+          },
+          {
+            "gate": "G4",
+            "label": "Two or more cited, verifiable specifics",
+            "passed": true,
+            "detail": "2 cited fact(s), 1 numeric, 1 dated within 18 months."
+          },
+          {
+            "gate": "G5",
+            "label": "Single interest-based ask, no meeting request",
+            "passed": true,
+            "detail": "One interest-based ask, no links, no calendar request."
+          },
+          {
+            "gate": "G6",
+            "label": "Plain language",
+            "passed": true,
+            "detail": "Fernández-Huerta (higher is easier): 70.3. Reads plainly."
+          },
+          {
+            "gate": "G7",
+            "label": "Reader-centred and signed",
+            "passed": true,
+            "detail": "Second-person to first-person ratio 3.0:1, signature present."
+          },
+          {
+            "gate": "G8",
+            "label": "Every number traces to a supplied fact",
+            "passed": true,
+            "detail": "All 4 numeral(s) in the draft trace to a fact the writer was given."
+          },
+          {
+            "gate": "G9",
+            "label": "Account name spelled correctly",
+            "passed": true,
+            "detail": "Account name not used in the body."
+          },
+          {
+            "gate": "G10",
+            "label": "Written wholly in the target language",
+            "passed": true,
+            "detail": "No English wording leaked into the target-language copy."
+          },
+          {
+            "gate": "G11",
+            "label": "Names a peer operator, and attributes every figure to whoever reported it",
+            "passed": true,
+            "detail": "Names Anglo American as a peer, and any quoted figure sits with the customer who reported it."
+          }
+        ],
+        "score": 100,
+        "accepted": true,
+        "rejectionReasons": [],
+        "model": "openai/gpt-oss-120b"
+      }
+    ],
+    "contact-vale-marlon-reis": [
+      {
+        "id": "contact-vale-marlon-reis-t1-i1",
+        "iteration": 1,
+        "subject": "Riscos de inspeções contratadas",
+        "body": "Vale opera 36 sites mapeados totalizando 82 km², sendo o maior um poço de 16.8 km². Seu relatório 20‑F destaca incidentes de segurança de contratados e paralisações de obras como riscos à produção. Essas equipes contratadas absorvem custos elevados e todo o risco de interrupções operacionais. A Anglo American viu o tempo de inspeção cair de dias para horas. Posso enviar um resumo escrito sobre como alteramos a cadência de inspeção?\nAtharva Awade, Business Development, FlytBase",
+        "language": "pt-BR",
+        "wordCount": 78,
+        "sentenceCount": 6,
+        "citedFacts": [
+          {
+            "text": "Vale's own 20-F for period ending 2026-03-27 names contractor safety incidents and contractor work stoppages among its risks to production",
+            "evidenceId": "ev-vale-filing-105"
+          },
+          {
+            "text": "Vale operates 36 mapped sites totalling 82 km², the largest being an unnamed pit at 16.8 km²",
+            "evidenceId": "ev-vale-geo-91"
+          }
+        ],
+        "gates": [
+          {
+            "gate": "G1",
+            "label": "No placeholder tokens",
+            "passed": true,
+            "detail": "No merge fields, brackets or TBD markers present."
+          },
+          {
+            "gate": "G2",
+            "label": "No template or model-tell phrasing",
+            "passed": true,
+            "detail": "Clean of known template openers, model vocabulary and em dashes."
+          },
+          {
+            "gate": "G3",
+            "label": "Opener length 55–95 words",
+            "passed": true,
+            "detail": "78 words across 6 sentences; longest sentence 18 words. Reply rates peak in the 50–100 word band."
+          },
+          {
+            "gate": "G4",
+            "label": "Two or more cited, verifiable specifics",
+            "passed": true,
+            "detail": "2 cited fact(s), 1 numeric, 1 dated within 18 months."
+          },
+          {
+            "gate": "G5",
+            "label": "Single interest-based ask, no meeting request",
+            "passed": true,
+            "detail": "One interest-based ask, no links, no calendar request."
+          },
+          {
+            "gate": "G6",
+            "label": "Plain language",
+            "passed": true,
+            "detail": "Fernández-Huerta (higher is easier): 69.8. Reads plainly."
           },
           {
             "gate": "G7",
@@ -253,6 +643,12 @@
             "label": "Written wholly in the target language",
             "passed": true,
             "detail": "No English wording leaked into the target-language copy."
+          },
+          {
+            "gate": "G11",
+            "label": "Names a peer operator, and attributes every figure to whoever reported it",
+            "passed": true,
+            "detail": "Names Anglo American as a peer, and any quoted figure sits with the customer who reported it."
           }
         ],
         "score": 86,
@@ -263,12 +659,12 @@
         "model": "openai/gpt-oss-120b"
       },
       {
-        "id": "contact-vale-henrique-candian-t1-i2",
+        "id": "contact-vale-marlon-reis-t1-i2",
         "iteration": 2,
-        "subject": "Riscos de inspeção contratada",
-        "body": "Você gerencia 36 sites mapeados, totalizando 82 km², incluindo a maior cava de 16,8 km².\nSeu relatório 20‑F destaca incidentes de segurança de contratados e paralisações como riscos à produção.\nEsses riscos forçam suas equipes contratadas a absorver custos elevados e exposição constante.\nA SQM reduziu o tempo de inspeção de dias para horas, mantendo confiabilidade acima de 95%.\nPosso enviar um resumo escrito sobre como essa mudança duplicou a frequência de inspeções?\nAtharva Awade, Business Development, FlytBase",
+        "subject": "Riscos de paradas de inspeção",
+        "body": "Você gerencia 36 sites mapeados que totalizam 82 km², sendo o maior com 16,8 km². Seu relatório anual destaca incidentes de segurança de contratados e paralisações como riscos críticos à produção. Essas paradas forçam suas equipes contratadas a absorver custos elevados e exposição ao risco. O Anglo American reduziu o tempo de inspeção de dias para horas. Posso enviar um resumo escrito sobre como alteramos a cadência de inspeção?\nAtharva Awade, Business Development, FlytBase",
         "language": "pt-BR",
-        "wordCount": 80,
+        "wordCount": 75,
         "sentenceCount": 6,
         "citedFacts": [
           {
@@ -291,13 +687,13 @@
             "gate": "G2",
             "label": "No template or model-tell phrasing",
             "passed": true,
-            "detail": "Clean of known template openers and model vocabulary."
+            "detail": "Clean of known template openers, model vocabulary and em dashes."
           },
           {
             "gate": "G3",
             "label": "Opener length 55–95 words",
             "passed": true,
-            "detail": "80 words across 6 sentences; longest sentence 16 words. Reply rates peak in the 50–100 word band."
+            "detail": "75 words across 6 sentences; longest sentence 16 words. Reply rates peak in the 50–100 word band."
           },
           {
             "gate": "G4",
@@ -315,7 +711,7 @@
             "gate": "G6",
             "label": "Plain language",
             "passed": true,
-            "detail": "Fernández-Huerta (higher is easier): 66.4. Reads plainly."
+            "detail": "Fernández-Huerta (higher is easier): 66.7. Reads plainly."
           },
           {
             "gate": "G7",
@@ -327,7 +723,7 @@
             "gate": "G8",
             "label": "Every number traces to a supplied fact",
             "passed": true,
-            "detail": "All 5 numeral(s) in the draft trace to a fact the writer was given."
+            "detail": "All 3 numeral(s) in the draft trace to a fact the writer was given."
           },
           {
             "gate": "G9",
@@ -340,93 +736,12 @@
             "label": "Written wholly in the target language",
             "passed": true,
             "detail": "No English wording leaked into the target-language copy."
-          }
-        ],
-        "score": 100,
-        "accepted": true,
-        "rejectionReasons": [],
-        "model": "openai/gpt-oss-120b"
-      }
-    ],
-    "contact-vale-marlon-reis": [
-      {
-        "id": "contact-vale-marlon-reis-t1-i1",
-        "iteration": 1,
-        "subject": "Riscos de inspeções contratadas",
-        "body": "Vocês operam 36 sites mapeados totalizando 82 km², sendo o maior um poço de 16,8 km². Sabemos que incidentes de segurança de contratados e paralisações de trabalho são riscos críticos à produção. Essas equipes contratadas absorvem custos elevados e expõem sua operação a interrupções frequentes. A SQM, com a Adentu, dobrou a frequência de inspeções mantendo confiabilidade acima de 95%. Posso enviar um resumo escrito sobre como essa mudança foi implementada?\nAtharva Awade, Business Development, FlytBase",
-        "language": "pt-BR",
-        "wordCount": 77,
-        "sentenceCount": 6,
-        "citedFacts": [
-          {
-            "text": "Vale's own 20-F for period ending 2026-03-27 names contractor safety incidents and contractor work stoppages among its risks to production",
-            "evidenceId": "ev-vale-filing-105"
           },
           {
-            "text": "Vale operates 36 mapped sites totalling 82 km², the largest being an unnamed pit at 16.8 km²",
-            "evidenceId": "ev-vale-geo-91"
-          }
-        ],
-        "gates": [
-          {
-            "gate": "G1",
-            "label": "No placeholder tokens",
+            "gate": "G11",
+            "label": "Names a peer operator, and attributes every figure to whoever reported it",
             "passed": true,
-            "detail": "No merge fields, brackets or TBD markers present."
-          },
-          {
-            "gate": "G2",
-            "label": "No template or model-tell phrasing",
-            "passed": true,
-            "detail": "Clean of known template openers and model vocabulary."
-          },
-          {
-            "gate": "G3",
-            "label": "Opener length 55–95 words",
-            "passed": true,
-            "detail": "77 words across 6 sentences; longest sentence 17 words. Reply rates peak in the 50–100 word band."
-          },
-          {
-            "gate": "G4",
-            "label": "Two or more cited, verifiable specifics",
-            "passed": true,
-            "detail": "2 cited fact(s), 1 numeric, 1 dated within 18 months."
-          },
-          {
-            "gate": "G5",
-            "label": "Single interest-based ask, no meeting request",
-            "passed": true,
-            "detail": "One interest-based ask, no links, no calendar request."
-          },
-          {
-            "gate": "G6",
-            "label": "Plain language",
-            "passed": true,
-            "detail": "Fernández-Huerta (higher is easier): 64.1. Reads plainly."
-          },
-          {
-            "gate": "G7",
-            "label": "Reader-centred and signed",
-            "passed": true,
-            "detail": "Second-person to first-person ratio all second-person:1, signature present."
-          },
-          {
-            "gate": "G8",
-            "label": "Every number traces to a supplied fact",
-            "passed": true,
-            "detail": "All 4 numeral(s) in the draft trace to a fact the writer was given."
-          },
-          {
-            "gate": "G9",
-            "label": "Account name spelled correctly",
-            "passed": true,
-            "detail": "Account name not used in the body."
-          },
-          {
-            "gate": "G10",
-            "label": "Written wholly in the target language",
-            "passed": true,
-            "detail": "No English wording leaked into the target-language copy."
+            "detail": "Names Anglo American as a peer, and any quoted figure sits with the customer who reported it."
           }
         ],
         "score": 100,
@@ -440,9 +755,9 @@
         "id": "contact-codelco-jorge-gomez-diaz-t1-i1",
         "iteration": 1,
         "subject": "Costos y riesgos de inspección",
-        "body": "Usted supervisa 24 sitios mapeados que cubren 177 km², siendo la División Radomiro Tomic 44.7 km². Sabemos que el Vicepresidente de Operaciones está cubierto interinamente por Lindor Quiroga B. Actualmente sus equipos contratados absorben altos costos y riesgos al mantener la frecuencia de inspección. SQM redujo su tiempo de inspección de días a horas y duplicó la frecuencia. ¿Podría enviarle un breve resumen escrito detallado de estos resultados?\nAtharva Awade, Business Development, FlytBase",
+        "body": "Usted supervisa 24 sitios mapeados que cubren 177 km², siendo la División Radomiro Tomic 44.7 km².\nAdemás, el Vicepresidente de Operaciones está temporalmente a cargo de Lindor Quiroga B.\nLos equipos contratados absorben gran parte del costo y el riesgo de inspecciones frecuentes.\nAnglo American ya vio que el tiempo de inspección cayó de días a horas.\n¿Podría enviarle un resumen escrito sobre cómo cambiaron la cadencia de inspección?\nAtharva Awade, Business Development, FlytBase",
         "language": "es-CL",
-        "wordCount": 74,
+        "wordCount": 75,
         "sentenceCount": 6,
         "citedFacts": [
           {
@@ -465,13 +780,13 @@
             "gate": "G2",
             "label": "No template or model-tell phrasing",
             "passed": true,
-            "detail": "Clean of known template openers and model vocabulary."
+            "detail": "Clean of known template openers, model vocabulary and em dashes."
           },
           {
             "gate": "G3",
             "label": "Opener length 55–95 words",
             "passed": true,
-            "detail": "74 words across 6 sentences; longest sentence 17 words. Reply rates peak in the 50–100 word band."
+            "detail": "75 words across 6 sentences; longest sentence 17 words. Reply rates peak in the 50–100 word band."
           },
           {
             "gate": "G4",
@@ -489,7 +804,7 @@
             "gate": "G6",
             "label": "Plain language",
             "passed": true,
-            "detail": "Fernández-Huerta (higher is easier): 64.8. Reads plainly."
+            "detail": "Fernández-Huerta (higher is easier): 71.5. Reads plainly."
           },
           {
             "gate": "G7",
@@ -514,6 +829,105 @@
             "label": "Written wholly in the target language",
             "passed": true,
             "detail": "No English wording leaked into the target-language copy."
+          },
+          {
+            "gate": "G11",
+            "label": "Names a peer operator, and attributes every figure to whoever reported it",
+            "passed": true,
+            "detail": "Names Anglo American as a peer, and any quoted figure sits with the customer who reported it."
+          }
+        ],
+        "score": 100,
+        "accepted": true,
+        "rejectionReasons": [],
+        "model": "openai/gpt-oss-120b"
+      }
+    ],
+    "contact-codelco-alejandro-sanhueza-diaz": [
+      {
+        "id": "contact-codelco-alejandro-sanhueza-diaz-t1-i1",
+        "iteration": 1,
+        "subject": "Costos y riesgo de inspecciones",
+        "body": "Codelco opera 24 sitios mapeados que suman 177 km², siendo la División Radomiro Tomic 44.7 km².\nEl Vicepresidente de Operaciones está cubierto interinamente por Lindor Quiroga B actualmente.\nLos equipos de inspección contratados representan costos altos y riesgo que su operación absorbe actualmente.\nAnglo American logró que el tiempo de inspección cayó de días a horas.\n¿Puedo enviarle un resumen escrito sobre cómo cambiaron la frecuencia de inspección?\nAtharva Awade, Business Development, FlytBase",
+        "language": "es-CL",
+        "wordCount": 74,
+        "sentenceCount": 6,
+        "citedFacts": [
+          {
+            "text": "Codelco operates 24 mapped sites totalling 177 km², the largest being División Radomiro Tomic at 44.7 km²",
+            "evidenceId": "ev-codelco-geo-27"
+          },
+          {
+            "text": "Vicepresidente de Operaciones (i) is held on an interim basis by Lindor Quiroga B.",
+            "evidenceId": "ev-codelco-person-47"
+          }
+        ],
+        "gates": [
+          {
+            "gate": "G1",
+            "label": "No placeholder tokens",
+            "passed": true,
+            "detail": "No merge fields, brackets or TBD markers present."
+          },
+          {
+            "gate": "G2",
+            "label": "No template or model-tell phrasing",
+            "passed": true,
+            "detail": "Clean of known template openers, model vocabulary and em dashes."
+          },
+          {
+            "gate": "G3",
+            "label": "Opener length 55–95 words",
+            "passed": true,
+            "detail": "74 words across 6 sentences; longest sentence 17 words. Reply rates peak in the 50–100 word band."
+          },
+          {
+            "gate": "G4",
+            "label": "Two or more cited, verifiable specifics",
+            "passed": true,
+            "detail": "2 cited fact(s), 1 numeric, 1 dated within 18 months."
+          },
+          {
+            "gate": "G5",
+            "label": "Single interest-based ask, no meeting request",
+            "passed": true,
+            "detail": "One interest-based ask, no links, no calendar request."
+          },
+          {
+            "gate": "G6",
+            "label": "Plain language",
+            "passed": true,
+            "detail": "Fernández-Huerta (higher is easier): 62.4. Reads plainly."
+          },
+          {
+            "gate": "G7",
+            "label": "Reader-centred and signed",
+            "passed": true,
+            "detail": "Second-person to first-person ratio all second-person:1, signature present."
+          },
+          {
+            "gate": "G8",
+            "label": "Every number traces to a supplied fact",
+            "passed": true,
+            "detail": "All 3 numeral(s) in the draft trace to a fact the writer was given."
+          },
+          {
+            "gate": "G9",
+            "label": "Account name spelled correctly",
+            "passed": true,
+            "detail": "\"Codelco\" spelled correctly."
+          },
+          {
+            "gate": "G10",
+            "label": "Written wholly in the target language",
+            "passed": true,
+            "detail": "No English wording leaked into the target-language copy."
+          },
+          {
+            "gate": "G11",
+            "label": "Names a peer operator, and attributes every figure to whoever reported it",
+            "passed": true,
+            "detail": "Names Anglo American as a peer, and any quoted figure sits with the customer who reported it."
           }
         ],
         "score": 100,
@@ -540,12 +954,22 @@
           "text": "SQM operates 49 mapped sites totalling 548 km², the largest being SQM Salar de Atacama at 236.5 km²",
           "evidenceId": "ev-sqm-geo-1",
           "isNumeric": true
+        },
+        {
+          "text": "SQM's own annual filing never uses the words drone, autonomous, automation, while referring to contractors 27 time(s)",
+          "evidenceId": "ev-sqm-filing-15",
+          "isNumeric": true,
+          "dateIso": "2026-04-22"
         }
       ],
       "proofPoint": {
         "customer": "SQM (with Adentu)",
         "claim": "678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year",
         "sourceUrl": "https://www.flytbase.com/case-studies/sqm-678-km2-mine-autonomous-inspection-adentu-and-flytbase"
+      },
+      "peerCustomer": {
+        "name": "Anglo American",
+        "whyPeer": "a large-scale metals operator running autonomous inspection with FlytBase, in the same commodity family and the same regulatory culture"
       },
       "ask": "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it, never for a meeting, and never propose a time.",
       "withheld": [
@@ -569,6 +993,12 @@
           "text": "SQM operates 49 mapped sites totalling 548 km², the largest being SQM Salar de Atacama at 236.5 km²",
           "evidenceId": "ev-sqm-geo-1",
           "isNumeric": true
+        },
+        {
+          "text": "SQM's own annual filing never uses the words drone, autonomous, automation, while referring to contractors 27 time(s)",
+          "evidenceId": "ev-sqm-filing-15",
+          "isNumeric": true,
+          "dateIso": "2026-04-22"
         }
       ],
       "proofPoint": {
@@ -576,34 +1006,9 @@
         "claim": "678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year",
         "sourceUrl": "https://www.flytbase.com/case-studies/sqm-678-km2-mine-autonomous-inspection-adentu-and-flytbase"
       },
-      "ask": "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it, never for a meeting, and never propose a time.",
-      "withheld": [
-        "DS 132/2004 Reglamento de Seguridad Minera is the instrument that forces inspection cadence here, but its text was not fetched in this run, so it is withheld from the copy. A wrong decree number is worse than none.",
-        "Deployment sizing rests on stated engineering assumptions, so its figures are kept out of a first touch and reserved for the discovery call."
-      ]
-    },
-    "contact-sqm-carlos-diaz-ortiz": {
-      "contactId": "contact-sqm-carlos-diaz-ortiz",
-      "language": "es-CL",
-      "whyThisPerson": "Carlos Díaz Ortiz holds Gerente General Nova Andino Litio, which makes them accountable for exactly the exposure this removes.",
-      "angle": "Contracted inspection crews are the cost and the risk; autonomous coverage removes the exposure without reducing the inspection frequency.",
-      "facts": [
-        {
-          "text": "SQM's own 20-F for period ending 2026-04-22 names contractor safety incidents and contractor work stoppages among its risks to production",
-          "evidenceId": "ev-sqm-filing-15",
-          "isNumeric": false,
-          "dateIso": "2026-04-22"
-        },
-        {
-          "text": "SQM operates 49 mapped sites totalling 548 km², the largest being SQM Salar de Atacama at 236.5 km²",
-          "evidenceId": "ev-sqm-geo-1",
-          "isNumeric": true
-        }
-      ],
-      "proofPoint": {
-        "customer": "SQM (with Adentu)",
-        "claim": "678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year",
-        "sourceUrl": "https://www.flytbase.com/case-studies/sqm-678-km2-mine-autonomous-inspection-adentu-and-flytbase"
+      "peerCustomer": {
+        "name": "Anglo American",
+        "whyPeer": "a large-scale metals operator running autonomous inspection with FlytBase, in the same commodity family and the same regulatory culture"
       },
       "ask": "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it, never for a meeting, and never propose a time.",
       "withheld": [
@@ -627,12 +1032,22 @@
           "text": "Vale operates 36 mapped sites totalling 82 km², the largest being an unnamed pit at 16.8 km²",
           "evidenceId": "ev-vale-geo-91",
           "isNumeric": true
+        },
+        {
+          "text": "Vale's annual filing already discusses autonomous",
+          "evidenceId": "ev-vale-filing-105",
+          "isNumeric": false,
+          "dateIso": "2026-03-27"
         }
       ],
       "proofPoint": {
         "customer": "SQM (with Adentu)",
         "claim": "678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year",
         "sourceUrl": "https://www.flytbase.com/case-studies/sqm-678-km2-mine-autonomous-inspection-adentu-and-flytbase"
+      },
+      "peerCustomer": {
+        "name": "Anglo American",
+        "whyPeer": "a large-scale metals operator running autonomous inspection with FlytBase, in the same commodity family and the same regulatory culture"
       },
       "ask": "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it, never for a meeting, and never propose a time.",
       "withheld": [
@@ -656,12 +1071,22 @@
           "text": "Vale operates 36 mapped sites totalling 82 km², the largest being an unnamed pit at 16.8 km²",
           "evidenceId": "ev-vale-geo-91",
           "isNumeric": true
+        },
+        {
+          "text": "Vale's annual filing already discusses autonomous",
+          "evidenceId": "ev-vale-filing-105",
+          "isNumeric": false,
+          "dateIso": "2026-03-27"
         }
       ],
       "proofPoint": {
         "customer": "SQM (with Adentu)",
         "claim": "678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year",
         "sourceUrl": "https://www.flytbase.com/case-studies/sqm-678-km2-mine-autonomous-inspection-adentu-and-flytbase"
+      },
+      "peerCustomer": {
+        "name": "Anglo American",
+        "whyPeer": "a large-scale metals operator running autonomous inspection with FlytBase, in the same commodity family and the same regulatory culture"
       },
       "ask": "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it, never for a meeting, and never propose a time.",
       "withheld": [
@@ -691,6 +1116,10 @@
         "customer": "SQM (with Adentu)",
         "claim": "678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year",
         "sourceUrl": "https://www.flytbase.com/case-studies/sqm-678-km2-mine-autonomous-inspection-adentu-and-flytbase"
+      },
+      "peerCustomer": {
+        "name": "Anglo American",
+        "whyPeer": "a large-scale metals operator running autonomous inspection with FlytBase, in the same commodity family and the same regulatory culture"
       },
       "ask": "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it, never for a meeting, and never propose a time.",
       "withheld": [
@@ -722,35 +1151,9 @@
         "claim": "678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year",
         "sourceUrl": "https://www.flytbase.com/case-studies/sqm-678-km2-mine-autonomous-inspection-adentu-and-flytbase"
       },
-      "ask": "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it, never for a meeting, and never propose a time.",
-      "withheld": [
-        "DS 132/2004 Reglamento de Seguridad Minera is the instrument that forces inspection cadence here, but its text was not fetched in this run, so it is withheld from the copy. A wrong decree number is worse than none.",
-        "No primary filing was available for this account, so no claim is made about its contractor dependency.",
-        "Deployment sizing rests on stated engineering assumptions, so its figures are kept out of a first touch and reserved for the discovery call."
-      ]
-    },
-    "contact-codelco-gabriel-mendez-serqueira": {
-      "contactId": "contact-codelco-gabriel-mendez-serqueira",
-      "language": "es-CL",
-      "whyThisPerson": "Gabriel Méndez Serqueira holds Vicepresidente de Asuntos Corporativos y Sustentabilidad, which makes them accountable for exactly the exposure this removes.",
-      "angle": "Contracted inspection crews are the cost and the risk; autonomous coverage removes the exposure without reducing the inspection frequency.",
-      "facts": [
-        {
-          "text": "Codelco operates 24 mapped sites totalling 177 km², the largest being División Radomiro Tomic at 44.7 km²",
-          "evidenceId": "ev-codelco-geo-27",
-          "isNumeric": true
-        },
-        {
-          "text": "Vicepresidente de Operaciones (i) is held on an interim basis by Lindor Quiroga B.",
-          "evidenceId": "ev-codelco-person-47",
-          "isNumeric": false,
-          "dateIso": "2026-02-13"
-        }
-      ],
-      "proofPoint": {
-        "customer": "SQM (with Adentu)",
-        "claim": "678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year",
-        "sourceUrl": "https://www.flytbase.com/case-studies/sqm-678-km2-mine-autonomous-inspection-adentu-and-flytbase"
+      "peerCustomer": {
+        "name": "Anglo American",
+        "whyPeer": "a large-scale metals operator running autonomous inspection with FlytBase, in the same commodity family and the same regulatory culture"
       },
       "ask": "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it, never for a meeting, and never propose a time.",
       "withheld": [
@@ -776,6 +1179,10 @@
         "claim": "678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year",
         "sourceUrl": "https://www.flytbase.com/case-studies/sqm-678-km2-mine-autonomous-inspection-adentu-and-flytbase"
       },
+      "peerCustomer": {
+        "name": "Anglo American",
+        "whyPeer": "a large-scale metals operator running autonomous inspection with FlytBase, in the same commodity family and the same regulatory culture"
+      },
       "ask": "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it, never for a meeting, and never propose a time.",
       "withheld": [
         "DS 132/2004 Reglamento de Seguridad Minera is the instrument that forces inspection cadence here, but its text was not fetched in this run, so it is withheld from the copy. A wrong decree number is worse than none.",
@@ -799,6 +1206,10 @@
         "customer": "SQM (with Adentu)",
         "claim": "678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year",
         "sourceUrl": "https://www.flytbase.com/case-studies/sqm-678-km2-mine-autonomous-inspection-adentu-and-flytbase"
+      },
+      "peerCustomer": {
+        "name": "Anglo American",
+        "whyPeer": "a large-scale metals operator running autonomous inspection with FlytBase, in the same commodity family and the same regulatory culture"
       },
       "ask": "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it, never for a meeting, and never propose a time.",
       "withheld": [

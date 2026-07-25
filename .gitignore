@@ -15,3 +15,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .cache
+
+# Runtime-written discovery records. Real research output, but not source.
+data/discoveries/
