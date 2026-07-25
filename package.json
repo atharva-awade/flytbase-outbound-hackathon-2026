@@ -1,0 +1,34 @@
+{
+  "name": "aerion",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "harvest": "tsx scripts/harvest.ts"
+  },
+  "dependencies": {
+    "next": "^16.2.11",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "cobe": "^2.0.1",
+    "maplibre-gl": "^5.9.0",
+    "motion": "^12.23.12",
+    "nodemailer": "^7.0.9",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.3.1",
+    "lucide-react": "^0.545.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.9.1",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.1",
+    "@types/nodemailer": "^7.0.4",
+    "typescript": "^5.9.3",
+    "tailwindcss": "^4.1.16",
+    "@tailwindcss/postcss": "^4.1.16",
+    "tsx": "^4.20.6"
+  }
+}
