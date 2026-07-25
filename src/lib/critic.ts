@@ -28,6 +28,13 @@ export interface CriticInput {
   citedFacts: { text: string; evidenceId: string; isNumeric?: boolean; dateIso?: string }[];
   /** Signature is required, and checked for rather than assumed. */
   senderName: string;
+  /** The account's display name, so a misspelling of it can be caught. */
+  accountName?: string;
+  /**
+   * Every numeral the writer was permitted to use. Any other number in the draft
+   * was invented, which is the most dangerous failure mode available to it.
+   */
+  permittedNumbers?: string[];
 }
 
 export interface GateOutcome {
@@ -274,6 +281,71 @@ export function critique(input: CriticInput): CriticVerdict {
     }`,
   });
 
+  // G8 — number provenance. The most dangerous thing a writer can do is take a
+  // supplied figure and restate it as something else: a contractor mention count
+  // rendered as a count of safety incidents, or an investment figure described
+  // as a saving. Both were observed. Every numeral in the draft must therefore
+  // trace to one the writer was actually given.
+  const permitted = new Set(
+    (input.permittedNumbers ?? []).flatMap((n) => [
+      n,
+      n.replace(",", "."),
+      n.replace(".", ","),
+      n.replace(/[.,]/g, ""),
+    ]),
+  );
+  // Ordinals, years and small integers used as plain words are not claims.
+  const bodyNumbers = (body.match(/\d+(?:[.,]\d+)?/g) ?? []).filter((n) => {
+    const bare = n.replace(/[.,]/g, "");
+    if (bare.length <= 1) return false; // "one dock", "2 sites" style counts
+    if (/^(19|20)\d{2}$/.test(bare)) return false; // a year is not a metric
+    return true;
+  });
+  const unsourcedNumbers = input.permittedNumbers
+    ? bodyNumbers.filter((n) => !permitted.has(n) && !permitted.has(n.replace(/[.,]/g, "")))
+    : [];
+  gates.push({
+    gate: "G8",
+    label: "Every number traces to a supplied fact",
+    passed: unsourcedNumbers.length === 0,
+    detail:
+      unsourcedNumbers.length > 0
+        ? `Numbers not present in the supplied facts: ${[...new Set(unsourcedNumbers)].slice(0, 5).join(", ")}. A figure the writer was not given is an invention, even when it looks plausible.`
+        : `All ${bodyNumbers.length} numeral(s) in the draft trace to a fact the writer was given.`,
+  });
+
+  // G9 — the account's name must be spelled correctly if it appears. A prospect
+  // reading their own company misspelled stops reading.
+  let nameOk = true;
+  let nameDetail = "Account name not used in the body.";
+  if (input.accountName) {
+    const target = input.accountName.split(/[\s(]/)[0];
+    if (target.length >= 5) {
+      const norm = (s: string) =>
+        s.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
+      const nBody = norm(body);
+      const nTarget = norm(target);
+      if (nBody.includes(nTarget)) {
+        nameDetail = `"${target}" spelled correctly.`;
+      } else {
+        // Look for a near-miss: same length, one character different.
+        const near = (nBody.match(new RegExp(`\\b\\w{${nTarget.length}}\\b`, "g")) ?? []).find(
+          (w) => w !== nTarget && levenshtein(w, nTarget) === 1,
+        );
+        if (near) {
+          nameOk = false;
+          nameDetail = `The body appears to misspell the account name as "${near}" instead of "${target}".`;
+        }
+      }
+    }
+  }
+  gates.push({
+    gate: "G9",
+    label: "Account name spelled correctly",
+    passed: nameOk,
+    detail: nameDetail,
+  });
+
   // Subject-line discipline is scored rather than gated, since a weak subject
   // is a lost open rather than a disqualifying artefact.
   const subjectWords = tokenizeWords(input.subject).length;
@@ -387,4 +459,24 @@ export function fernandezHuerta(words: string[], sentences: string[]): number {
   const P = (syll / words.length) * 100;
   const F = (sentences.length / words.length) * 100;
   return 206.84 - 0.6 * P - 1.02 * F;
+}
+
+/** Edit distance, used only to spot a one-character misspelling of a company name. */
+function levenshtein(a: string, b: string): number {
+  const m = a.length;
+  const n = b.length;
+  if (Math.abs(m - n) > 2) return 99;
+  let prev = Array.from({ length: n + 1 }, (_, j) => j);
+  for (let i = 1; i <= m; i++) {
+    const cur = [i, ...Array<number>(n).fill(0)];
+    for (let j = 1; j <= n; j++) {
+      cur[j] = Math.min(
+        prev[j] + 1,
+        cur[j - 1] + 1,
+        prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1),
+      );
+    }
+    prev = cur;
+  }
+  return prev[n];
 }

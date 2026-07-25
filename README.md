@@ -37,11 +37,11 @@ hazardous 24/7 extraction sites.
 | Resolved to corporate identities | **12** accounts |
 | Sites measured and individually citable | **157** |
 | Mapped footprint, computed geodesically | **964 km²** |
-| Evidence rows, each with a source URL and verbatim snippet | **154** |
+| Evidence rows, each with a source URL and verbatim snippet | **158** |
 | Named contacts, none invented | **55** |
 | Role targets where no individual could be sourced | **6** |
-| Messages that passed the critic | **6** |
-| Questions the pipeline could not answer, published | **10** |
+| Messages that passed the critic, after 4 were rejected | **3** |
+| Questions the pipeline could not answer, published | **13** |
 | Languages read and written | **en · es-CL · pt-BR** |
 
 Numbers move between runs because the sources are live. These come from the run frozen in
@@ -221,6 +221,16 @@ Vale S.A.; a Codelco operations manager was attributed to Sierra Gorda. Both are
 Single-token company names must now appear after an employer preposition, any profile naming a different
 operator in the run is discarded, and a leadership rank is required rather than a domain keyword. The rules
 are unit-tested against those exact cases.
+
+**The writer fabricated numbers by restating facts it was given.** Handed "refers to contractors 30
+times", it wrote "27 safety incidents cited". Handed a total system investment of USD 70–80k, it wrote
+"saving over 70k". It also misspelled a company name in the body. All three passed the original gates, because
+those checked that facts were *cited*, not that the paraphrase was *faithful* — the most dangerous gap in the
+whole system, since every claim looked sourced. Fixed three ways: mention counts are now withheld from the
+writer entirely (a frequency is a scoring signal, not a claim), reference-customer outcomes are supplied as a
+fixed set of quotable phrasings that may not be restated, and two gates were added — every numeral in a draft
+must trace to a supplied fact, and the account name must be spelled correctly. Acceptance dropped from six
+messages to three, which is the correct trade.
 
 **Server-side search returns 413 on this tier.** `groq/compound` rejects any request in which it actually
 searches — it reads as a malformed query but is a plan limit. Supplementary search moved to a direct provider;

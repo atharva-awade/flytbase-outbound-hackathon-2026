@@ -55,6 +55,20 @@ export interface MessageStrategy {
   withheld: string[];
 }
 
+/**
+ * The reference deployment's published outcomes, phrased so they cannot be
+ * restated into something untrue. Each is quotable verbatim and nothing else
+ * about that customer may be asserted.
+ */
+export const PROOF_QUOTABLES = [
+  "inspection time fell from days to hours",
+  "mission reliability above 95 percent",
+  "inspection frequency doubled",
+  "detection time under 90 minutes",
+  "total system investment of USD 70,000 to 80,000, which is what they SPENT",
+  "return on that investment inside one year",
+];
+
 const LANG_NAME: Record<string, string> = {
   "es-CL": "Chilean Spanish",
   "es-PE": "Peruvian Spanish",
@@ -98,12 +112,14 @@ export function buildStrategy(args: {
     (p) => /contractor/i.test(p.term) && p.evidenceId,
   );
   if (contractorPassage) {
-    const count =
-      (account.riskScan?.termCounts.contractor ?? 0) + (account.riskScan?.termCounts.contractors ?? 0);
+    // Deliberately carries NO count. The mention frequency is a scoring signal,
+    // not a claim: handed "refers to contractors 30 times" a writer will render
+    // it as "30 safety incidents", which the filing does not say. Observed
+    // happening, so the number is withheld from the writer entirely.
     facts.push({
-      text: `${account.displayName}'s own ${account.riskScan?.documentLabel} names contractor safety incidents and contractor work stoppages as risks to production, referring to contractors ${count} times`,
+      text: `${account.displayName}'s own ${account.riskScan?.documentLabel} names contractor safety incidents and contractor work stoppages among its risks to production`,
       evidenceId: contractorPassage.evidenceId,
-      isNumeric: true,
+      isNumeric: false,
       dateIso: account.riskScan?.filedAt,
     });
   }
@@ -259,7 +275,11 @@ function buildUserPrompt(args: {
   if (strategy.proofPoint) {
     lines.push(
       "",
-      `REFERENCE CUSTOMER you may mention by name: ${strategy.proofPoint.customer}. What was published about it: ${strategy.proofPoint.claim}. Mention at most one figure from this, and only if it strengthens the point.`,
+      `REFERENCE CUSTOMER you may name: ${strategy.proofPoint.customer}.`,
+      `Published outcomes, quotable ONLY in these exact terms:`,
+      ...PROOF_QUOTABLES.map((q) => `  - ${q}`),
+      `Use at most ONE of those, worded as given. Do not restate a figure in different terms and do not add detail the list does not contain.`,
+      `Specifically: "frequency doubled" must not become a before-and-after cadence, because the actual figures are not in your FACTS. The investment figure is what the customer SPENT, not what they saved — calling it a saving is false.`,
     );
   }
 
@@ -402,6 +422,13 @@ export async function generateEmail(args: {
       touch,
       citedFacts,
       senderName,
+      accountName: args.account.displayName,
+      // Every number the writer was allowed to use. Anything else in the draft
+      // was invented.
+      permittedNumbers: [
+        ...strategy.facts.flatMap((f) => f.text.match(/\d+(?:[.,]\d+)?/g) ?? []),
+        ...(strategy.proofPoint ? ["95", "90", "70", "80", "70,000", "80,000", "1", "2"] : []),
+      ],
     });
 
     const draft: EmailDraft = {
@@ -471,6 +498,14 @@ function buildRepairHint(verdict: CriticVerdict, strategy: MessageStrategy): str
     parts.push(
       `The final line of the body must be the signature block exactly as given. Also address the reader directly more often than you refer to yourself.`,
     );
+  }
+  if (verdict.gates.some((g) => g.gate === "G8" && !g.passed)) {
+    parts.push(
+      `Remove every number that was not in the FACTS. Do not convert a described risk into a count of incidents, and do not describe the investment figure as a saving — it is what the customer spent.`,
+    );
+  }
+  if (verdict.gates.some((g) => g.gate === "G9" && !g.passed)) {
+    parts.push(`Spell the company name exactly as it appears in the FACTS.`);
   }
   if (verdict.gates.some((g) => g.gate === "G4" && !g.passed)) {
     parts.push(
