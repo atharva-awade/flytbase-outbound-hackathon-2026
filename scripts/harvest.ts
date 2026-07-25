@@ -509,6 +509,7 @@ async function findPeople(
   const evidenceIds: string[] = [];
   const signals: Signal[] = [];
   const seenNames = new Set<string>();
+  let corroboratedCount = 0;
 
   for (const src of sources) {
     try {
@@ -555,8 +556,6 @@ async function findPeople(
         // Only carry people plausibly connected to the buying committee.
         if (role.relevance < 0.28) continue;
         const nameKey = person.name.replace(/\s*\((?:i|s)\)\s*$/i, "").toLowerCase();
-        if (seenNames.has(nameKey)) continue;
-        seenNames.add(nameKey);
 
         const verbatim = [
           `${person.titleVerbatim} — ${person.name}`,
@@ -581,6 +580,24 @@ async function findPeople(
           `${identity.key}-person`,
         );
         evidenceIds.push(id);
+
+        // A person already found on another source is corroborated rather than
+        // duplicated: the second source's evidence is attached to the existing
+        // record, which is what lets the cross-verifier distinguish a
+        // twice-confirmed officer from a single-sourced one.
+        const already = contacts.find(
+          (c) => (c.name ?? "").replace(/\s*\((?:i|s)\)\s*$/i, "").toLowerCase() === nameKey,
+        );
+        if (already) {
+          if (!already.evidenceIds.includes(id)) already.evidenceIds.push(id);
+          // Prefer the richer title, which is usually the divisional page's.
+          if ((person.titleVerbatim?.length ?? 0) > (already.titleVerbatim?.length ?? 0)) {
+            already.titleVerbatim = person.titleVerbatim;
+          }
+          corroboratedCount++;
+          continue;
+        }
+        seenNames.add(nameKey);
 
         contacts.push(
           buildContact({
@@ -627,9 +644,10 @@ async function findPeople(
         }
       }
 
-      emit("people_finder", "note", `${identity.displayName}: kept ${kept} of ${people.length} officers as buying-committee relevant.`, {
-        evidenceCreated: kept,
-      });
+      emit("people_finder", "note",
+        `${identity.displayName}: kept ${kept} of ${people.length} officers as buying-committee relevant${corroboratedCount ? `, and confirmed ${corroboratedCount} already-known officer(s) on a second independent source` : ""}.`,
+        { evidenceCreated: kept },
+      );
     } catch (err) {
       emit("people_finder", "error", `${src.url}: ${(err as Error).message}`);
       noteNull({

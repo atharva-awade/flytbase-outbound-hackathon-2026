@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { AeBriefPanel } from "@/components/AeBriefPanel";
+import { CrossVerify } from "@/components/CrossVerify";
 import { LiveRun } from "@/components/LiveRun";
 import { IcpWaterfall } from "@/components/IcpWaterfall";
 import { Outreach } from "@/components/Outreach";
@@ -32,6 +33,7 @@ import {
   resolveEvidence,
 } from "@/lib/run";
 import { summariseSites } from "@/lib/geo";
+import { crossVerify } from "@/lib/crossverify";
 import { loadOutreach } from "@/lib/run";
 import { getPack } from "@/lib/verticals";
 import type { EvidenceRow } from "@/lib/types";
@@ -54,6 +56,7 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
   const accountNulls = run.nullResults.filter(
     (n) => n.subject === account.displayName || n.subject === account.legalName,
   );
+  const cv = crossVerify({ account, evidence: run.evidence });
   const named = account.contacts.filter((c) => c.tier !== "ROLE_TARGET_NO_NAME");
   const roleTargets = account.contacts.filter((c) => c.tier === "ROLE_TARGET_NO_NAME");
 
@@ -356,6 +359,25 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
             </Panel>
           </div>
         </section>
+
+        {/* ── Cross-verification ───────────────────────────────────── */}
+        {(cv.corroborations.length > 0 || cv.conflicts.length > 0) && (
+          <section className="mt-14">
+            <SectionHead
+              label="Cross-verification"
+              title="What comparing the sources revealed"
+              note="Facts here were not read in isolation. Where independent sources agree, the agreement is recorded; where they disagree, the disagreement is shown with a stated trust order rather than resolved quietly in favour of the more flattering number."
+              aside={
+                <div className="flex gap-6">
+                  <Stat label="Corroborated" value={cv.stats.corroborated} sub="two or more sources" />
+                  <Stat label="Single-sourced" value={cv.stats.singleSourced} sub="confirm before use" />
+                  <Stat label="Conflicts" value={cv.stats.conflicts} sub="reconciled on screen" />
+                </div>
+              }
+            />
+            <CrossVerify cv={cv} />
+          </section>
+        )}
 
         {/* ── Risk-factor mining ───────────────────────────────────── */}
         {account.riskScan && (

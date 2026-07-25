@@ -69,6 +69,77 @@
         "model": "openai/gpt-oss-120b"
       }
     ],
+    "contact-sqm-pablo-altimiras": [
+      {
+        "id": "contact-sqm-pablo-altimiras-t1-i1",
+        "iteration": 1,
+        "subject": "Riesgos de producción",
+        "body": "SQM opera 49 sitios. La seguridad de los contratistas es un riesgo. Ustedes tienen 548 km². Un cliente similar redujo el tiempo de inspección. ¿Puedo enviar un resumen? \nAtharva Awade, Business Development, FlytBase",
+        "language": "es-CL",
+        "wordCount": 33,
+        "sentenceCount": 6,
+        "citedFacts": [
+          {
+            "text": "SQM's own 20-F for period ending 2026-04-22 names contractor safety incidents and contractor work stoppages as risks to production, referring to contractors 27 times",
+            "evidenceId": "ev-sqm-filing-15"
+          },
+          {
+            "text": "SQM operates 49 mapped sites totalling 548 km², the largest being SQM Salar de Atacama at 236.5 km²",
+            "evidenceId": "ev-sqm-geo-1"
+          }
+        ],
+        "gates": [
+          {
+            "gate": "G1",
+            "label": "No placeholder tokens",
+            "passed": true,
+            "detail": "No merge fields, brackets or TBD markers present."
+          },
+          {
+            "gate": "G2",
+            "label": "No template or model-tell phrasing",
+            "passed": true,
+            "detail": "Clean of known template openers and model vocabulary."
+          },
+          {
+            "gate": "G3",
+            "label": "Opener length 55–95 words",
+            "passed": false,
+            "detail": "33 words across 6 sentences; longest sentence 8 words. Reply rates peak in the 50–100 word band."
+          },
+          {
+            "gate": "G4",
+            "label": "Two or more cited, verifiable specifics",
+            "passed": true,
+            "detail": "2 cited fact(s), 2 numeric, 1 dated within 18 months."
+          },
+          {
+            "gate": "G5",
+            "label": "Single interest-based ask, no meeting request",
+            "passed": true,
+            "detail": "One interest-based ask, no links, no calendar request."
+          },
+          {
+            "gate": "G6",
+            "label": "Plain language",
+            "passed": true,
+            "detail": "Fernández-Huerta (higher is easier): 64.7. Reads plainly."
+          },
+          {
+            "gate": "G7",
+            "label": "Reader-centred and signed",
+            "passed": true,
+            "detail": "Second-person to first-person ratio all second-person:1, signature present."
+          }
+        ],
+        "score": 86,
+        "accepted": false,
+        "rejectionReasons": [
+          "G3 Opener length 55–95 words: 33 words across 6 sentences; longest sentence 8 words. Reply rates peak in the 50–100 word band."
+        ],
+        "model": "llama-3.3-70b-versatile"
+      }
+    ],
     "contact-vale-henrique-candian": [
       {
         "id": "contact-vale-henrique-candian-t1-i1",
@@ -81,11 +152,11 @@
         "citedFacts": [
           {
             "text": "Vale's own 20-F for period ending 2026-03-27 names contractor safety incidents and contractor work stoppages as risks to production, referring to contractors 44 times",
-            "evidenceId": "ev-vale-filing-101"
+            "evidenceId": "ev-vale-filing-105"
           },
           {
             "text": "Vale operates 36 mapped sites totalling 82 km², the largest being an unnamed pit at 16.8 km²",
-            "evidenceId": "ev-vale-geo-87"
+            "evidenceId": "ev-vale-geo-91"
           }
         ],
         "gates": [
@@ -150,11 +221,11 @@
         "citedFacts": [
           {
             "text": "Vale's own 20-F for period ending 2026-03-27 names contractor safety incidents and contractor work stoppages as risks to production, referring to contractors 44 times",
-            "evidenceId": "ev-vale-filing-101"
+            "evidenceId": "ev-vale-filing-105"
           },
           {
             "text": "Vale operates 36 mapped sites totalling 82 km², the largest being an unnamed pit at 16.8 km²",
-            "evidenceId": "ev-vale-geo-87"
+            "evidenceId": "ev-vale-geo-91"
           }
         ],
         "gates": [
@@ -219,11 +290,11 @@
         "citedFacts": [
           {
             "text": "Vale's own 20-F for period ending 2026-03-27 names contractor safety incidents and contractor work stoppages as risks to production, referring to contractors 44 times",
-            "evidenceId": "ev-vale-filing-101"
+            "evidenceId": "ev-vale-filing-105"
           },
           {
             "text": "Vale operates 36 mapped sites totalling 82 km², the largest being an unnamed pit at 16.8 km²",
-            "evidenceId": "ev-vale-geo-87"
+            "evidenceId": "ev-vale-geo-91"
           }
         ],
         "gates": [
@@ -580,13 +651,13 @@
       "facts": [
         {
           "text": "Vale's own 20-F for period ending 2026-03-27 names contractor safety incidents and contractor work stoppages as risks to production, referring to contractors 44 times",
-          "evidenceId": "ev-vale-filing-101",
+          "evidenceId": "ev-vale-filing-105",
           "isNumeric": true,
           "dateIso": "2026-03-27"
         },
         {
           "text": "Vale operates 36 mapped sites totalling 82 km², the largest being an unnamed pit at 16.8 km²",
-          "evidenceId": "ev-vale-geo-87",
+          "evidenceId": "ev-vale-geo-91",
           "isNumeric": true
         }
       ],
@@ -609,13 +680,13 @@
       "facts": [
         {
           "text": "Vale's own 20-F for period ending 2026-03-27 names contractor safety incidents and contractor work stoppages as risks to production, referring to contractors 44 times",
-          "evidenceId": "ev-vale-filing-101",
+          "evidenceId": "ev-vale-filing-105",
           "isNumeric": true,
           "dateIso": "2026-03-27"
         },
         {
           "text": "Vale operates 36 mapped sites totalling 82 km², the largest being an unnamed pit at 16.8 km²",
-          "evidenceId": "ev-vale-geo-87",
+          "evidenceId": "ev-vale-geo-91",
           "isNumeric": true
         }
       ],
@@ -728,7 +799,7 @@
       "facts": [
         {
           "text": "Albemarle (Salar de Atacama) operates 27 mapped sites totalling 43 km², the largest being Planta Salar Atacama Albemarle at 40.4 km²",
-          "evidenceId": "ev-albemarle-geo-71",
+          "evidenceId": "ev-albemarle-geo-75",
           "isNumeric": true
         }
       ],
@@ -752,7 +823,7 @@
       "facts": [
         {
           "text": "Albemarle (Salar de Atacama) operates 27 mapped sites totalling 43 km², the largest being Planta Salar Atacama Albemarle at 40.4 km²",
-          "evidenceId": "ev-albemarle-geo-71",
+          "evidenceId": "ev-albemarle-geo-75",
           "isNumeric": true
         }
       ],
