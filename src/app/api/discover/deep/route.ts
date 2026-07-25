@@ -8,7 +8,7 @@ import { generateEmail } from "@/lib/outreach";
 import { getPack, GRADED_BRIEF } from "@/lib/verticals";
 import { loadRun } from "@/lib/run";
 import { revenueCase } from "@/lib/revenue";
-import { round, summariseSites } from "@/lib/geo";
+import { osmUrl, round, summariseSites } from "@/lib/geo";
 import { sizeOpportunity } from "@/lib/sizing";
 import { saveDiscovery } from "@/lib/store";
 import type { Account, Contact, EvidenceRow, SiteGeometry } from "@/lib/types";
@@ -99,6 +99,38 @@ export async function POST(req: Request) {
         const summary = summariseSites(sites);
         const workingLanguage = country === "BR" ? "pt-BR" : country === "PE" ? "es-PE" : "es-CL";
 
+        /**
+         * Give the measured ground an evidence row before anything else runs.
+         *
+         * The first version of this handed the writer sites with empty evidence
+         * ids, so it had fewer than the two sourced facts the critic requires and
+         * produced no email at all. The footprint is the most citable thing in the
+         * whole pipeline, since the OpenStreetMap feature id opens the exact
+         * polygon that was measured, so withholding it was purely an oversight.
+         */
+        const measured = [...sites].sort((a, b) => b.areaKm2 - a.areaKm2);
+        for (const site of measured.slice(0, 12)) {
+          const rowId = `ev-geo-${site.osmId.replace(/[^a-z0-9]/gi, "-")}`;
+          addEvidence({
+            id: rowId,
+            claim: `${operator} operates a mapped ${site.assetClass.replace(/_/g, " ")} of ${round(site.areaKm2, 3)} km²${site.name ? ` known as ${site.name}` : ""}`,
+            value: round(site.areaKm2, 3),
+            unit: "km²",
+            sourceUrl: osmUrl(site.osmId),
+            sourceTitle: `OpenStreetMap ${site.osmId}`,
+            sourceClass: "geospatial",
+            fetchedAt: new Date().toISOString(),
+            verbatim: `${site.osmId} · ${Object.entries(site.tags ?? {})
+              .map(([k, v]) => `${k}=${v}`)
+              .join(" · ")}`,
+            language: "en",
+            confidence: "VERIFIED",
+            attributionMethod: site.attributionMethod,
+            producedBy: "terrain_surveyor",
+          });
+          site.evidenceIds = [rowId];
+        }
+
         send({
           type: "start",
           agent: "chief_of_staff",
@@ -119,8 +151,27 @@ export async function POST(req: Request) {
         let queriesRun: string[] = [];
 
         if (hasSerpKey()) {
+          /**
+           * Search on the trading name as well as the legal one.
+           *
+           * A live search for "SQM S.A." rejected all twenty three candidates it
+           * found, because nobody writes their employer as "SQM S.A." on a
+           * professional profile, they write "SQM". The employer check is strict
+           * on purpose, having previously attributed a person named Vale to Vale
+           * S.A. on a surname, so the fix is to give it the name people actually
+           * use rather than to loosen the check.
+           */
+          const trading = operator
+            .replace(/\b(s\.?a\.?|ltda\.?|limitada|s\.?p\.?a\.?|inc\.?|corp\.?|plc|ltd\.?|s\.?c\.?m\.?)\b/gi, "")
+            .replace(/\s{2,}/g, " ")
+            .replace(/[,.]\s*$/, "")
+            .trim();
+          const searchNames = Array.from(
+            new Set([operator, trading, ...(body.aliases ?? [])].filter((n) => n && n.length > 2)),
+          );
+
           const found = await findPublicProfiles({
-            companyNames: [operator, ...(body.aliases ?? [])],
+            companyNames: searchNames,
             country,
             language: workingLanguage,
             maxQueries: 3,
@@ -142,17 +193,21 @@ export async function POST(req: Request) {
               attributionMethod: "company_reported",
               producedBy: "people_finder",
             });
-            contacts.push(
-              buildContact({
-                accountId: slug(operator),
-                person: candidate,
-                sourceUrl: candidate.profileUrl,
-                tier: "NAMED_PUBLIC_PROFILE",
-                language: workingLanguage,
-                sites: sites.slice(0, 8).map((x) => ({ osmId: x.osmId, name: x.name })),
-                evidenceIds: [rowId],
-              }),
-            );
+            const built = buildContact({
+              accountId: slug(operator),
+              person: candidate,
+              sourceUrl: candidate.profileUrl,
+              tier: "NAMED_PUBLIC_PROFILE",
+              language: workingLanguage,
+              sites: sites.slice(0, 8).map((x) => ({ osmId: x.osmId, name: x.name })),
+              evidenceIds: [rowId],
+            });
+            // buildContact does not set this, the harvest assigns it afterwards,
+            // and this route was not doing the same. The brief asks for LinkedIn
+            // where findable, and it was findable: it is the page the name was
+            // read off in the first place.
+            built.linkedinUrl = candidate.profileUrl;
+            contacts.push(built);
           }
         }
 

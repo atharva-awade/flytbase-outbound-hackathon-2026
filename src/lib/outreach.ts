@@ -147,6 +147,31 @@ export function buildStrategy(args: {
     }
   }
 
+  /**
+   * A second measured feature, where the account has one.
+   *
+   * The critic requires two sourced specifics, and an account discovered live has
+   * neither a filing nor a dated signal yet, so it arrived with exactly one fact
+   * and produced no message at all. The honest second fact is already in hand:
+   * another measured feature, citing its own OpenStreetMap id. It is not padding,
+   * it is the difference between one pit and a spread of operations, which is the
+   * thing that makes a programme worth discussing rather than a single site.
+   */
+  if (facts.length < 2) {
+    const active = account.sites.filter((s) => !s.excluded);
+    const bySize = [...active].sort((a, b) => b.areaKm2 - a.areaKm2);
+    const alreadyCited = new Set(facts.map((f) => f.evidenceId));
+    const second = bySize.find((s) => s.evidenceIds[0] && !alreadyCited.has(s.evidenceIds[0]));
+    if (second?.evidenceIds[0]) {
+      const perimeter = active.reduce((a, s) => a + s.perimeterKm, 0);
+      facts.push({
+        text: `a second measured operation, ${second.name ?? second.osmId}, covers ${second.areaKm2.toFixed(1)} km², and the boundary a crew has to walk across all of these sites totals ${perimeter.toFixed(0)} km`,
+        evidenceId: second.evidenceIds[0],
+        isNumeric: true,
+      });
+    }
+  }
+
   // Fact 3, the timing signal, if one is strong and recent.
   const signal = [...account.signals].sort((a, b) => b.urgency - a.urgency)[0];
   if (signal && signal.urgency >= 0.7 && signal.evidenceIds[0]) {

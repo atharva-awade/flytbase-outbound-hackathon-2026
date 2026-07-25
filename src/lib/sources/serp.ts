@@ -198,8 +198,23 @@ export async function findPublicProfiles(args: {
   // Batch the title clauses into a single OR group per query to conserve credits.
   const groups = chunk(clauses, Math.ceil(clauses.length / maxQueries));
 
+  /**
+   * Search on the shortest name given, verify against all of them.
+   *
+   * A live discovery searched for the exact legal name, "SQM S.A.", and every one
+   * of the twenty three profiles it found was then rejected for not naming the
+   * employer, because nobody writes "S.A." after their employer on a professional
+   * profile. The search phrase and the verification phrase have opposite needs:
+   * the search wants the name people actually type, and the check wants every
+   * variant so it can still confirm the match. Widening the query while leaving
+   * the check strict fixes the first without loosening the second, which matters,
+   * because that check is what stopped a person named Vale being attributed to
+   * Vale S.A. on a surname.
+   */
+  const searchName = [...companyNames].sort((a, b) => a.length - b.length)[0] ?? companyNames[0];
+
   for (const group of groups.slice(0, maxQueries)) {
-    const company = companyNames[0];
+    const company = searchName;
     const query = `site:linkedin.com/in "${company}" (${group.join(" OR ")})`;
     queriesRun.push(query);
 
@@ -328,8 +343,31 @@ export function employerMatches(args: {
   const LEGAL_FORM = /\b(?:s\.?a\.?|ltda\.?|spa|inc\.?|plc|scm|limitada|corp\.?|sac)\b/g;
 
   for (const raw of args.companyNames) {
-    const c = norm(raw).replace(LEGAL_FORM, "").replace(/\s+/g, " ").trim();
-    if (c.length < 4) continue;
+    // Stripping the legal form leaves its punctuation behind: "SQM S.A." became
+    // "sqm ." rather than "sqm", because the word boundary after the final "a"
+    // stops the match before the closing dot. The remnant then poisoned the
+    // employer pattern, which was looking for "at sqm ." and could never match a
+    // real profile. Multi-word names survived this on their token pairs, which is
+    // why the failure looked selective, and why it took the anchor account to
+    // expose it.
+    const c = norm(raw)
+      .replace(LEGAL_FORM, "")
+      .replace(/[^\p{L}\p{N} ]+/gu, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    // Three characters, not four.
+    //
+    // This is the third time a length filter in this project has silently dropped
+    // "SQM", which is both the anchor account of the campaign and exactly the kind
+    // of short acronym a large operator uses. At four, the company name was
+    // discarded before any test ran, so a live discovery found twenty eight real
+    // profiles and rejected every one of them for "company not named as the
+    // employer" when the name it was checking for had already been thrown away.
+    //
+    // Lowering it is safe because of what happens below: a single-token name is
+    // only ever accepted when it follows an employer preposition, so "en SQM"
+    // matches and a person surnamed Vale still cannot be attributed to Vale S.A.
+    if (c.length < 3) continue;
 
     const tokens = c.split(" ").filter((t) => t.length > 3);
     const multiWord = tokens.length > 1;

@@ -291,11 +291,11 @@
         "citedFacts": [
           {
             "text": "Vale's own 20-F for period ending 2026-03-27 names contractor safety incidents and contractor work stoppages among its risks to production",
-            "evidenceId": "ev-vale-filing-105"
+            "evidenceId": "ev-vale-filing-112"
           },
           {
             "text": "Vale operates 36 mapped sites totalling 82 km², the largest being an unnamed pit at 16.8 km²",
-            "evidenceId": "ev-vale-geo-91"
+            "evidenceId": "ev-vale-geo-98"
           }
         ],
         "gates": [
@@ -384,15 +384,15 @@
         "citedFacts": [
           {
             "text": "Vale's own 20-F for period ending 2026-03-27 names contractor safety incidents and contractor work stoppages among its risks to production",
-            "evidenceId": "ev-vale-filing-105"
+            "evidenceId": "ev-vale-filing-112"
           },
           {
             "text": "Vale operates 36 mapped sites totalling 82 km², the largest being an unnamed pit at 16.8 km²",
-            "evidenceId": "ev-vale-geo-91"
+            "evidenceId": "ev-vale-geo-98"
           },
           {
             "text": "Vale's annual filing already discusses autonomous",
-            "evidenceId": "ev-vale-filing-105"
+            "evidenceId": "ev-vale-filing-112"
           }
         ],
         "gates": [
@@ -483,11 +483,11 @@
         "citedFacts": [
           {
             "text": "Vale's own 20-F for period ending 2026-03-27 names contractor safety incidents and contractor work stoppages among its risks to production",
-            "evidenceId": "ev-vale-filing-105"
+            "evidenceId": "ev-vale-filing-112"
           },
           {
             "text": "Vale operates 36 mapped sites totalling 82 km², the largest being an unnamed pit at 16.8 km²",
-            "evidenceId": "ev-vale-geo-91"
+            "evidenceId": "ev-vale-geo-98"
           }
         ],
         "gates": [
@@ -576,11 +576,11 @@
         "citedFacts": [
           {
             "text": "Vale's own 20-F for period ending 2026-03-27 names contractor safety incidents and contractor work stoppages among its risks to production",
-            "evidenceId": "ev-vale-filing-105"
+            "evidenceId": "ev-vale-filing-112"
           },
           {
             "text": "Vale operates 36 mapped sites totalling 82 km², the largest being an unnamed pit at 16.8 km²",
-            "evidenceId": "ev-vale-geo-91"
+            "evidenceId": "ev-vale-geo-98"
           }
         ],
         "gates": [
@@ -669,11 +669,11 @@
         "citedFacts": [
           {
             "text": "Vale's own 20-F for period ending 2026-03-27 names contractor safety incidents and contractor work stoppages among its risks to production",
-            "evidenceId": "ev-vale-filing-105"
+            "evidenceId": "ev-vale-filing-112"
           },
           {
             "text": "Vale operates 36 mapped sites totalling 82 km², the largest being an unnamed pit at 16.8 km²",
-            "evidenceId": "ev-vale-geo-91"
+            "evidenceId": "ev-vale-geo-98"
           }
         ],
         "gates": [
@@ -750,23 +750,23 @@
         "model": "openai/gpt-oss-120b"
       }
     ],
-    "contact-codelco-jorge-gomez-diaz": [
+    "contact-albemarle-werner-schalchli-dendal": [
       {
-        "id": "contact-codelco-jorge-gomez-diaz-t1-i1",
+        "id": "contact-albemarle-werner-schalchli-dendal-t1-i1",
         "iteration": 1,
         "subject": "Costos y riesgos de inspección",
-        "body": "Usted supervisa 24 sitios mapeados que cubren 177 km², siendo la División Radomiro Tomic 44.7 km².\nAdemás, el Vicepresidente de Operaciones está temporalmente a cargo de Lindor Quiroga B.\nLos equipos contratados absorben gran parte del costo y el riesgo de inspecciones frecuentes.\nAnglo American ya vio que el tiempo de inspección cayó de días a horas.\n¿Podría enviarle un resumen escrito sobre cómo cambiaron la cadencia de inspección?\nAtharva Awade, Business Development, FlytBase",
+        "body": "Usted supervisa 27 sitios mapeados que suman 43 km², siendo la planta principal de 40.4 km².\nAdemás, una operación medida cubre 0.5 km² y el perímetro que su equipo debe recorrer alcanza 60 km.\nActualmente, los equipos contratados, como Anglo American, absorben esos costos y riesgos mientras mantienen la frecuencia de inspección.\nNuestro cliente de referencia, SQM, duplicó la frecuencia de inspección logrando mayor cobertura sin aumentar el personal.\n¿Podría enviarle un breve resumen escrito de este cambio operativo?\nAtharva Awade, Business Development, FlytBase",
         "language": "es-CL",
-        "wordCount": 75,
+        "wordCount": 86,
         "sentenceCount": 6,
         "citedFacts": [
           {
-            "text": "Codelco operates 24 mapped sites totalling 177 km², the largest being División Radomiro Tomic at 44.7 km²",
-            "evidenceId": "ev-codelco-geo-27"
+            "text": "Albemarle (Salar de Atacama) operates 27 mapped sites totalling 43 km², the largest being Planta Salar Atacama Albemarle at 40.4 km²",
+            "evidenceId": "ev-albemarle-geo-79"
           },
           {
-            "text": "Vicepresidente de Operaciones (i) is held on an interim basis by Lindor Quiroga B.",
-            "evidenceId": "ev-codelco-person-47"
+            "text": "a second measured operation, way/354932476, covers 0.5 km², and the boundary a crew has to walk across all of these sites totals 60 km",
+            "evidenceId": "ev-albemarle-geo-80"
           }
         ],
         "gates": [
@@ -786,13 +786,13 @@
             "gate": "G3",
             "label": "Opener length 55–95 words",
             "passed": true,
-            "detail": "75 words across 6 sentences; longest sentence 17 words. Reply rates peak in the 50–100 word band."
+            "detail": "86 words across 6 sentences; longest sentence 19 words. Reply rates peak in the 50–100 word band."
           },
           {
             "gate": "G4",
             "label": "Two or more cited, verifiable specifics",
             "passed": true,
-            "detail": "2 cited fact(s), 1 numeric, 1 dated within 18 months."
+            "detail": "2 cited fact(s), 2 numeric, 0 dated within 18 months."
           },
           {
             "gate": "G5",
@@ -804,7 +804,100 @@
             "gate": "G6",
             "label": "Plain language",
             "passed": true,
-            "detail": "Fernández-Huerta (higher is easier): 71.5. Reads plainly."
+            "detail": "Fernández-Huerta (higher is easier): 69.3. Reads plainly."
+          },
+          {
+            "gate": "G7",
+            "label": "Reader-centred and signed",
+            "passed": true,
+            "detail": "Second-person to first-person ratio 3.0:1, signature present."
+          },
+          {
+            "gate": "G8",
+            "label": "Every number traces to a supplied fact",
+            "passed": true,
+            "detail": "All 5 numeral(s) in the draft trace to a fact the writer was given."
+          },
+          {
+            "gate": "G9",
+            "label": "Account name spelled correctly",
+            "passed": true,
+            "detail": "Account name not used in the body."
+          },
+          {
+            "gate": "G10",
+            "label": "Written wholly in the target language",
+            "passed": true,
+            "detail": "No English wording leaked into the target-language copy."
+          },
+          {
+            "gate": "G11",
+            "label": "Names a peer operator, and attributes every figure to whoever reported it",
+            "passed": true,
+            "detail": "Names Anglo American as a peer, and any quoted figure sits with the customer who reported it."
+          }
+        ],
+        "score": 100,
+        "accepted": true,
+        "rejectionReasons": [],
+        "model": "openai/gpt-oss-120b"
+      }
+    ],
+    "contact-albemarle-ivor-donoso": [
+      {
+        "id": "contact-albemarle-ivor-donoso-t1-i1",
+        "iteration": 1,
+        "subject": "Costos y riesgo de inspección",
+        "body": "Usted opera 27 sitios mapeados que suman 43 km², siendo la planta mayor de 40.4 km². Además, otra operación cubre 0.5 km² y el perímetro que su equipo debe recorrer es de 60 km. Los equipos contratados absorben esos costos y riesgos mientras mantienen la frecuencia de inspección requerida. SQM redujo el tiempo de inspección de días a horas, con fiabilidad superior al 95 por ciento. ¿Puedo enviarle un breve resumen escrito de cómo se logró este cambio?\nAtharva Awade, Business Development, FlytBase",
+        "language": "es-CL",
+        "wordCount": 85,
+        "sentenceCount": 6,
+        "citedFacts": [
+          {
+            "text": "Albemarle (Salar de Atacama) operates 27 mapped sites totalling 43 km², the largest being Planta Salar Atacama Albemarle at 40.4 km²",
+            "evidenceId": "ev-albemarle-geo-79"
+          },
+          {
+            "text": "a second measured operation, way/354932476, covers 0.5 km², and the boundary a crew has to walk across all of these sites totals 60 km",
+            "evidenceId": "ev-albemarle-geo-80"
+          }
+        ],
+        "gates": [
+          {
+            "gate": "G1",
+            "label": "No placeholder tokens",
+            "passed": true,
+            "detail": "No merge fields, brackets or TBD markers present."
+          },
+          {
+            "gate": "G2",
+            "label": "No template or model-tell phrasing",
+            "passed": true,
+            "detail": "Clean of known template openers, model vocabulary and em dashes."
+          },
+          {
+            "gate": "G3",
+            "label": "Opener length 55–95 words",
+            "passed": true,
+            "detail": "85 words across 6 sentences; longest sentence 19 words. Reply rates peak in the 50–100 word band."
+          },
+          {
+            "gate": "G4",
+            "label": "Two or more cited, verifiable specifics",
+            "passed": true,
+            "detail": "2 cited fact(s), 2 numeric, 0 dated within 18 months."
+          },
+          {
+            "gate": "G5",
+            "label": "Single interest-based ask, no meeting request",
+            "passed": true,
+            "detail": "One interest-based ask, no links, no calendar request."
+          },
+          {
+            "gate": "G6",
+            "label": "Plain language",
+            "passed": true,
+            "detail": "Fernández-Huerta (higher is easier): 83.9. Reads plainly."
           },
           {
             "gate": "G7",
@@ -816,7 +909,568 @@
             "gate": "G8",
             "label": "Every number traces to a supplied fact",
             "passed": true,
-            "detail": "All 3 numeral(s) in the draft trace to a fact the writer was given."
+            "detail": "All 6 numeral(s) in the draft trace to a fact the writer was given."
+          },
+          {
+            "gate": "G9",
+            "label": "Account name spelled correctly",
+            "passed": true,
+            "detail": "Account name not used in the body."
+          },
+          {
+            "gate": "G10",
+            "label": "Written wholly in the target language",
+            "passed": true,
+            "detail": "No English wording leaked into the target-language copy."
+          },
+          {
+            "gate": "G11",
+            "label": "Names a peer operator, and attributes every figure to whoever reported it",
+            "passed": false,
+            "detail": "Does not name Anglo American. A peer already operating this way is the strongest line available, and the brief asks for it."
+          }
+        ],
+        "score": 86,
+        "accepted": false,
+        "rejectionReasons": [
+          "G11 Names a peer operator, and attributes every figure to whoever reported it: Does not name Anglo American. A peer already operating this way is the strongest line available, and the brief asks for it."
+        ],
+        "model": "openai/gpt-oss-120b"
+      },
+      {
+        "id": "contact-albemarle-ivor-donoso-t1-i2",
+        "iteration": 2,
+        "subject": "Costos y riesgo en inspecciones",
+        "body": "Usted gestiona 27 sitios mapeados que suman 43 km², siendo la planta de 40.4 km² la mayor. Además, una operación medida cubre 0.5 km² y el perímetro que su equipo debe recorrer es 60 km. Los equipos contratados absorben esos costos y riesgos mientras mantienen la frecuencia de inspección requerida. SQM redujo el tiempo de inspección de días a horas, alcanzando una fiabilidad superior al 95 por ciento. ¿Podría enviarle un breve resumen escrito de cómo se cambió la cadencia de inspección?\nAtharva Awade, Business Development, FlytBase",
+        "language": "es-CL",
+        "wordCount": 89,
+        "sentenceCount": 6,
+        "citedFacts": [
+          {
+            "text": "Albemarle (Salar de Atacama) operates 27 mapped sites totalling 43 km², the largest being Planta Salar Atacama Albemarle at 40.4 km²",
+            "evidenceId": "ev-albemarle-geo-79"
+          },
+          {
+            "text": "a second measured operation, way/354932476, covers 0.5 km², and the boundary a crew has to walk across all of these sites totals 60 km",
+            "evidenceId": "ev-albemarle-geo-80"
+          }
+        ],
+        "gates": [
+          {
+            "gate": "G1",
+            "label": "No placeholder tokens",
+            "passed": true,
+            "detail": "No merge fields, brackets or TBD markers present."
+          },
+          {
+            "gate": "G2",
+            "label": "No template or model-tell phrasing",
+            "passed": true,
+            "detail": "Clean of known template openers, model vocabulary and em dashes."
+          },
+          {
+            "gate": "G3",
+            "label": "Opener length 55–95 words",
+            "passed": true,
+            "detail": "89 words across 6 sentences; longest sentence 19 words. Reply rates peak in the 50–100 word band."
+          },
+          {
+            "gate": "G4",
+            "label": "Two or more cited, verifiable specifics",
+            "passed": true,
+            "detail": "2 cited fact(s), 2 numeric, 0 dated within 18 months."
+          },
+          {
+            "gate": "G5",
+            "label": "Single interest-based ask, no meeting request",
+            "passed": true,
+            "detail": "One interest-based ask, no links, no calendar request."
+          },
+          {
+            "gate": "G6",
+            "label": "Plain language",
+            "passed": true,
+            "detail": "Fernández-Huerta (higher is easier): 81.3. Reads plainly."
+          },
+          {
+            "gate": "G7",
+            "label": "Reader-centred and signed",
+            "passed": true,
+            "detail": "Second-person to first-person ratio all second-person:1, signature present."
+          },
+          {
+            "gate": "G8",
+            "label": "Every number traces to a supplied fact",
+            "passed": true,
+            "detail": "All 6 numeral(s) in the draft trace to a fact the writer was given."
+          },
+          {
+            "gate": "G9",
+            "label": "Account name spelled correctly",
+            "passed": true,
+            "detail": "Account name not used in the body."
+          },
+          {
+            "gate": "G10",
+            "label": "Written wholly in the target language",
+            "passed": true,
+            "detail": "No English wording leaked into the target-language copy."
+          },
+          {
+            "gate": "G11",
+            "label": "Names a peer operator, and attributes every figure to whoever reported it",
+            "passed": false,
+            "detail": "Does not name Anglo American. A peer already operating this way is the strongest line available, and the brief asks for it."
+          }
+        ],
+        "score": 86,
+        "accepted": false,
+        "rejectionReasons": [
+          "G11 Names a peer operator, and attributes every figure to whoever reported it: Does not name Anglo American. A peer already operating this way is the strongest line available, and the brief asks for it."
+        ],
+        "model": "openai/gpt-oss-120b"
+      },
+      {
+        "id": "contact-albemarle-ivor-donoso-t1-i3",
+        "iteration": 3,
+        "subject": "Costos y riesgo en inspecciones",
+        "body": "Usted gestiona 27 sitios mapeados que suman 43 km², siendo la planta de 40.4 km² la mayor. Además, una operación medida cubre 0.5 km² y el perímetro que su equipo debe recorrer es 60 km. Los equipos contratados absorben esos costos y riesgos mientras mantienen la frecuencia de inspección requerida. SQM redujo el tiempo de inspección de días a horas, alcanzando una fiabilidad superior al 95 por ciento. ¿Podría enviarle un breve resumen escrito de cómo se cambió la cadencia de inspección?\nAtharva Awade, Business Development, FlytBase",
+        "language": "es-CL",
+        "wordCount": 89,
+        "sentenceCount": 6,
+        "citedFacts": [
+          {
+            "text": "Albemarle (Salar de Atacama) operates 27 mapped sites totalling 43 km², the largest being Planta Salar Atacama Albemarle at 40.4 km²",
+            "evidenceId": "ev-albemarle-geo-79"
+          },
+          {
+            "text": "a second measured operation, way/354932476, covers 0.5 km², and the boundary a crew has to walk across all of these sites totals 60 km",
+            "evidenceId": "ev-albemarle-geo-80"
+          }
+        ],
+        "gates": [
+          {
+            "gate": "G1",
+            "label": "No placeholder tokens",
+            "passed": true,
+            "detail": "No merge fields, brackets or TBD markers present."
+          },
+          {
+            "gate": "G2",
+            "label": "No template or model-tell phrasing",
+            "passed": true,
+            "detail": "Clean of known template openers, model vocabulary and em dashes."
+          },
+          {
+            "gate": "G3",
+            "label": "Opener length 55–95 words",
+            "passed": true,
+            "detail": "89 words across 6 sentences; longest sentence 19 words. Reply rates peak in the 50–100 word band."
+          },
+          {
+            "gate": "G4",
+            "label": "Two or more cited, verifiable specifics",
+            "passed": true,
+            "detail": "2 cited fact(s), 2 numeric, 0 dated within 18 months."
+          },
+          {
+            "gate": "G5",
+            "label": "Single interest-based ask, no meeting request",
+            "passed": true,
+            "detail": "One interest-based ask, no links, no calendar request."
+          },
+          {
+            "gate": "G6",
+            "label": "Plain language",
+            "passed": true,
+            "detail": "Fernández-Huerta (higher is easier): 81.3. Reads plainly."
+          },
+          {
+            "gate": "G7",
+            "label": "Reader-centred and signed",
+            "passed": true,
+            "detail": "Second-person to first-person ratio all second-person:1, signature present."
+          },
+          {
+            "gate": "G8",
+            "label": "Every number traces to a supplied fact",
+            "passed": true,
+            "detail": "All 6 numeral(s) in the draft trace to a fact the writer was given."
+          },
+          {
+            "gate": "G9",
+            "label": "Account name spelled correctly",
+            "passed": true,
+            "detail": "Account name not used in the body."
+          },
+          {
+            "gate": "G10",
+            "label": "Written wholly in the target language",
+            "passed": true,
+            "detail": "No English wording leaked into the target-language copy."
+          },
+          {
+            "gate": "G11",
+            "label": "Names a peer operator, and attributes every figure to whoever reported it",
+            "passed": false,
+            "detail": "Does not name Anglo American. A peer already operating this way is the strongest line available, and the brief asks for it."
+          }
+        ],
+        "score": 86,
+        "accepted": false,
+        "rejectionReasons": [
+          "G11 Names a peer operator, and attributes every figure to whoever reported it: Does not name Anglo American. A peer already operating this way is the strongest line available, and the brief asks for it."
+        ],
+        "model": "openai/gpt-oss-120b"
+      },
+      {
+        "id": "contact-albemarle-ivor-donoso-t1-i4",
+        "iteration": 4,
+        "subject": "Costos y riesgo en inspecciones",
+        "body": "Usted gestiona 27 sitios mapeados que suman 43 km², siendo la planta de 40.4 km² la mayor. Además, una operación medida cubre 0.5 km² y el perímetro que su equipo debe recorrer es 60 km. Los equipos contratados absorben esos costos y riesgos mientras mantienen la frecuencia de inspección requerida. SQM redujo el tiempo de inspección de días a horas, alcanzando una fiabilidad superior al 95 por ciento. ¿Podría enviarle un breve resumen escrito de cómo se cambió la cadencia de inspección?\nAtharva Awade, Business Development, FlytBase",
+        "language": "es-CL",
+        "wordCount": 89,
+        "sentenceCount": 6,
+        "citedFacts": [
+          {
+            "text": "Albemarle (Salar de Atacama) operates 27 mapped sites totalling 43 km², the largest being Planta Salar Atacama Albemarle at 40.4 km²",
+            "evidenceId": "ev-albemarle-geo-79"
+          },
+          {
+            "text": "a second measured operation, way/354932476, covers 0.5 km², and the boundary a crew has to walk across all of these sites totals 60 km",
+            "evidenceId": "ev-albemarle-geo-80"
+          }
+        ],
+        "gates": [
+          {
+            "gate": "G1",
+            "label": "No placeholder tokens",
+            "passed": true,
+            "detail": "No merge fields, brackets or TBD markers present."
+          },
+          {
+            "gate": "G2",
+            "label": "No template or model-tell phrasing",
+            "passed": true,
+            "detail": "Clean of known template openers, model vocabulary and em dashes."
+          },
+          {
+            "gate": "G3",
+            "label": "Opener length 55–95 words",
+            "passed": true,
+            "detail": "89 words across 6 sentences; longest sentence 19 words. Reply rates peak in the 50–100 word band."
+          },
+          {
+            "gate": "G4",
+            "label": "Two or more cited, verifiable specifics",
+            "passed": true,
+            "detail": "2 cited fact(s), 2 numeric, 0 dated within 18 months."
+          },
+          {
+            "gate": "G5",
+            "label": "Single interest-based ask, no meeting request",
+            "passed": true,
+            "detail": "One interest-based ask, no links, no calendar request."
+          },
+          {
+            "gate": "G6",
+            "label": "Plain language",
+            "passed": true,
+            "detail": "Fernández-Huerta (higher is easier): 81.3. Reads plainly."
+          },
+          {
+            "gate": "G7",
+            "label": "Reader-centred and signed",
+            "passed": true,
+            "detail": "Second-person to first-person ratio all second-person:1, signature present."
+          },
+          {
+            "gate": "G8",
+            "label": "Every number traces to a supplied fact",
+            "passed": true,
+            "detail": "All 6 numeral(s) in the draft trace to a fact the writer was given."
+          },
+          {
+            "gate": "G9",
+            "label": "Account name spelled correctly",
+            "passed": true,
+            "detail": "Account name not used in the body."
+          },
+          {
+            "gate": "G10",
+            "label": "Written wholly in the target language",
+            "passed": true,
+            "detail": "No English wording leaked into the target-language copy."
+          },
+          {
+            "gate": "G11",
+            "label": "Names a peer operator, and attributes every figure to whoever reported it",
+            "passed": false,
+            "detail": "Does not name Anglo American. A peer already operating this way is the strongest line available, and the brief asks for it."
+          }
+        ],
+        "score": 86,
+        "accepted": false,
+        "rejectionReasons": [
+          "G11 Names a peer operator, and attributes every figure to whoever reported it: Does not name Anglo American. A peer already operating this way is the strongest line available, and the brief asks for it."
+        ],
+        "model": "openai/gpt-oss-120b"
+      }
+    ],
+    "contact-codelco-jorge-gomez-diaz": [
+      {
+        "id": "contact-codelco-jorge-gomez-diaz-t1-i1",
+        "iteration": 1,
+        "subject": "Costos y riesgo de inspección",
+        "body": "Usted gestiona 24 sitios mapeados que suman 177 km², siendo la División Radomiro Tomic de 44.7 km². Además, la División Chuquicamata cubre 39.2 km² y el perímetro que su equipo debe recorrer totaliza 269 km. Los equipos contratados absorben esos costos y riesgos mientras mantienen la frecuencia de inspección requerida. Nuestro cliente SQM redujo el tiempo de inspección de días a horas. ¿Puedo enviarle un breve resumen escrito de cómo se logró este cambio?\nAtharva Awade, Business Development, FlytBase",
+        "language": "es-CL",
+        "wordCount": 81,
+        "sentenceCount": 6,
+        "citedFacts": [
+          {
+            "text": "Codelco operates 24 mapped sites totalling 177 km², the largest being División Radomiro Tomic at 44.7 km²",
+            "evidenceId": "ev-codelco-geo-31"
+          },
+          {
+            "text": "a second measured operation, División Chuquicamata, covers 39.2 km², and the boundary a crew has to walk across all of these sites totals 269 km",
+            "evidenceId": "ev-codelco-geo-32"
+          }
+        ],
+        "gates": [
+          {
+            "gate": "G1",
+            "label": "No placeholder tokens",
+            "passed": true,
+            "detail": "No merge fields, brackets or TBD markers present."
+          },
+          {
+            "gate": "G2",
+            "label": "No template or model-tell phrasing",
+            "passed": true,
+            "detail": "Clean of known template openers, model vocabulary and em dashes."
+          },
+          {
+            "gate": "G3",
+            "label": "Opener length 55–95 words",
+            "passed": true,
+            "detail": "81 words across 6 sentences; longest sentence 19 words. Reply rates peak in the 50–100 word band."
+          },
+          {
+            "gate": "G4",
+            "label": "Two or more cited, verifiable specifics",
+            "passed": true,
+            "detail": "2 cited fact(s), 2 numeric, 0 dated within 18 months."
+          },
+          {
+            "gate": "G5",
+            "label": "Single interest-based ask, no meeting request",
+            "passed": true,
+            "detail": "One interest-based ask, no links, no calendar request."
+          },
+          {
+            "gate": "G6",
+            "label": "Plain language",
+            "passed": true,
+            "detail": "Fernández-Huerta (higher is easier): 77.1. Reads plainly."
+          },
+          {
+            "gate": "G7",
+            "label": "Reader-centred and signed",
+            "passed": true,
+            "detail": "Second-person to first-person ratio 3.0:1, signature present."
+          },
+          {
+            "gate": "G8",
+            "label": "Every number traces to a supplied fact",
+            "passed": true,
+            "detail": "All 5 numeral(s) in the draft trace to a fact the writer was given."
+          },
+          {
+            "gate": "G9",
+            "label": "Account name spelled correctly",
+            "passed": true,
+            "detail": "Account name not used in the body."
+          },
+          {
+            "gate": "G10",
+            "label": "Written wholly in the target language",
+            "passed": true,
+            "detail": "No English wording leaked into the target-language copy."
+          },
+          {
+            "gate": "G11",
+            "label": "Names a peer operator, and attributes every figure to whoever reported it",
+            "passed": false,
+            "detail": "Does not name Anglo American. A peer already operating this way is the strongest line available, and the brief asks for it."
+          }
+        ],
+        "score": 86,
+        "accepted": false,
+        "rejectionReasons": [
+          "G11 Names a peer operator, and attributes every figure to whoever reported it: Does not name Anglo American. A peer already operating this way is the strongest line available, and the brief asks for it."
+        ],
+        "model": "openai/gpt-oss-120b"
+      },
+      {
+        "id": "contact-codelco-jorge-gomez-diaz-t1-i2",
+        "iteration": 2,
+        "subject": "Costos y riesgos de inspección",
+        "body": "Usted gestiona 24 sitios mapeados que suman 177 km², siendo la División Radomiro Tomic 44.7 km².\nAdemás, la División Chuquicamata cubre 39.2 km² y el recorrido total del personal es 269 km.\nLos equipos contratados absorben esos recorridos, generando costos y riesgos elevados para usted.\nSQM redujo el tiempo de inspección de días a horas en sus operaciones.\n¿Me permite enviar un breve resumen escrito de ese cambio de frecuencia?\nAtharva Awade, Business Development, FlytBase",
+        "language": "es-CL",
+        "wordCount": 77,
+        "sentenceCount": 6,
+        "citedFacts": [
+          {
+            "text": "Codelco operates 24 mapped sites totalling 177 km², the largest being División Radomiro Tomic at 44.7 km²",
+            "evidenceId": "ev-codelco-geo-31"
+          },
+          {
+            "text": "a second measured operation, División Chuquicamata, covers 39.2 km², and the boundary a crew has to walk across all of these sites totals 269 km",
+            "evidenceId": "ev-codelco-geo-32"
+          }
+        ],
+        "gates": [
+          {
+            "gate": "G1",
+            "label": "No placeholder tokens",
+            "passed": true,
+            "detail": "No merge fields, brackets or TBD markers present."
+          },
+          {
+            "gate": "G2",
+            "label": "No template or model-tell phrasing",
+            "passed": true,
+            "detail": "Clean of known template openers, model vocabulary and em dashes."
+          },
+          {
+            "gate": "G3",
+            "label": "Opener length 55–95 words",
+            "passed": true,
+            "detail": "77 words across 6 sentences; longest sentence 17 words. Reply rates peak in the 50–100 word band."
+          },
+          {
+            "gate": "G4",
+            "label": "Two or more cited, verifiable specifics",
+            "passed": true,
+            "detail": "2 cited fact(s), 2 numeric, 0 dated within 18 months."
+          },
+          {
+            "gate": "G5",
+            "label": "Single interest-based ask, no meeting request",
+            "passed": false,
+            "detail": "No recognisable interest-based ask, the reader is not told what they are agreeing to receive."
+          },
+          {
+            "gate": "G6",
+            "label": "Plain language",
+            "passed": true,
+            "detail": "Fernández-Huerta (higher is easier): 75.0. Reads plainly."
+          },
+          {
+            "gate": "G7",
+            "label": "Reader-centred and signed",
+            "passed": true,
+            "detail": "Second-person to first-person ratio all second-person:1, signature present."
+          },
+          {
+            "gate": "G8",
+            "label": "Every number traces to a supplied fact",
+            "passed": true,
+            "detail": "All 5 numeral(s) in the draft trace to a fact the writer was given."
+          },
+          {
+            "gate": "G9",
+            "label": "Account name spelled correctly",
+            "passed": true,
+            "detail": "Account name not used in the body."
+          },
+          {
+            "gate": "G10",
+            "label": "Written wholly in the target language",
+            "passed": true,
+            "detail": "No English wording leaked into the target-language copy."
+          },
+          {
+            "gate": "G11",
+            "label": "Names a peer operator, and attributes every figure to whoever reported it",
+            "passed": false,
+            "detail": "Does not name Anglo American. A peer already operating this way is the strongest line available, and the brief asks for it."
+          }
+        ],
+        "score": 72,
+        "accepted": false,
+        "rejectionReasons": [
+          "G5 Single interest-based ask, no meeting request: No recognisable interest-based ask, the reader is not told what they are agreeing to receive.",
+          "G11 Names a peer operator, and attributes every figure to whoever reported it: Does not name Anglo American. A peer already operating this way is the strongest line available, and the brief asks for it."
+        ],
+        "model": "openai/gpt-oss-120b"
+      },
+      {
+        "id": "contact-codelco-jorge-gomez-diaz-t1-i3",
+        "iteration": 3,
+        "subject": "Desplazamiento y costos de inspección",
+        "body": "Usted gestiona 24 sitios que suman 177 km², siendo la División Radomiro Tomic de 44.7 km² la mayor.\nUsted también cubre la División Chuquicamata, que abarca 39.2 km² y requiere caminar 269 km entre sus límites.\nLos equipos de inspección contratados absorben ese desplazamiento, elevando costos y riesgos sin mejorar la frecuencia.\nSQM, con Adentu, logró que el tiempo de inspección pasara de días a horas, y Anglo American ya opera de forma similar.\n¿Puedo enviarle un breve resumen escrito de cómo SQM cambió su cadencia de inspección?\nAtharva Awade, Business Development, FlytBase",
+        "language": "es-CL",
+        "wordCount": 95,
+        "sentenceCount": 6,
+        "citedFacts": [
+          {
+            "text": "Codelco operates 24 mapped sites totalling 177 km², the largest being División Radomiro Tomic at 44.7 km²",
+            "evidenceId": "ev-codelco-geo-31"
+          },
+          {
+            "text": "a second measured operation, División Chuquicamata, covers 39.2 km², and the boundary a crew has to walk across all of these sites totals 269 km",
+            "evidenceId": "ev-codelco-geo-32"
+          }
+        ],
+        "gates": [
+          {
+            "gate": "G1",
+            "label": "No placeholder tokens",
+            "passed": true,
+            "detail": "No merge fields, brackets or TBD markers present."
+          },
+          {
+            "gate": "G2",
+            "label": "No template or model-tell phrasing",
+            "passed": true,
+            "detail": "Clean of known template openers, model vocabulary and em dashes."
+          },
+          {
+            "gate": "G3",
+            "label": "Opener length 55–95 words",
+            "passed": true,
+            "detail": "95 words across 6 sentences; longest sentence 22 words. Reply rates peak in the 50–100 word band."
+          },
+          {
+            "gate": "G4",
+            "label": "Two or more cited, verifiable specifics",
+            "passed": true,
+            "detail": "2 cited fact(s), 2 numeric, 0 dated within 18 months."
+          },
+          {
+            "gate": "G5",
+            "label": "Single interest-based ask, no meeting request",
+            "passed": true,
+            "detail": "One interest-based ask, no links, no calendar request."
+          },
+          {
+            "gate": "G6",
+            "label": "Plain language",
+            "passed": true,
+            "detail": "Fernández-Huerta (higher is easier): 79.8. Reads plainly."
+          },
+          {
+            "gate": "G7",
+            "label": "Reader-centred and signed",
+            "passed": true,
+            "detail": "Second-person to first-person ratio all second-person:1, signature present."
+          },
+          {
+            "gate": "G8",
+            "label": "Every number traces to a supplied fact",
+            "passed": true,
+            "detail": "All 5 numeral(s) in the draft trace to a fact the writer was given."
           },
           {
             "gate": "G9",
@@ -847,19 +1501,19 @@
       {
         "id": "contact-codelco-alejandro-sanhueza-diaz-t1-i1",
         "iteration": 1,
-        "subject": "Costos y riesgo de inspecciones",
-        "body": "Codelco opera 24 sitios mapeados que suman 177 km², siendo la División Radomiro Tomic 44.7 km².\nEl Vicepresidente de Operaciones está cubierto interinamente por Lindor Quiroga B actualmente.\nLos equipos de inspección contratados representan costos altos y riesgo que su operación absorbe actualmente.\nAnglo American logró que el tiempo de inspección cayó de días a horas.\n¿Puedo enviarle un resumen escrito sobre cómo cambiaron la frecuencia de inspección?\nAtharva Awade, Business Development, FlytBase",
+        "subject": "Altos costos de inspección",
+        "body": "Usted supervisa 24 sitios mapeados que suman 177 km², y la División Radomiro Tomic ocupa 44.7 km².\nAdemás, la División Chuquicamata cubre 39.2 km² y el perímetro que su equipo debe recorrer es 269 km.\nActualmente, los equipos contratados absorben esos costos y riesgos sin reducir la frecuencia de inspección.\nSQM redujo el tiempo de inspección de días a horas en sus operaciones.\n¿Puedo enviarle un breve resumen escrito de cómo se logró este cambio?\nAtharva Awade, Business Development, FlytBase",
         "language": "es-CL",
-        "wordCount": 74,
+        "wordCount": 82,
         "sentenceCount": 6,
         "citedFacts": [
           {
             "text": "Codelco operates 24 mapped sites totalling 177 km², the largest being División Radomiro Tomic at 44.7 km²",
-            "evidenceId": "ev-codelco-geo-27"
+            "evidenceId": "ev-codelco-geo-31"
           },
           {
-            "text": "Vicepresidente de Operaciones (i) is held on an interim basis by Lindor Quiroga B.",
-            "evidenceId": "ev-codelco-person-47"
+            "text": "a second measured operation, División Chuquicamata, covers 39.2 km², and the boundary a crew has to walk across all of these sites totals 269 km",
+            "evidenceId": "ev-codelco-geo-32"
           }
         ],
         "gates": [
@@ -879,13 +1533,13 @@
             "gate": "G3",
             "label": "Opener length 55–95 words",
             "passed": true,
-            "detail": "74 words across 6 sentences; longest sentence 17 words. Reply rates peak in the 50–100 word band."
+            "detail": "82 words across 6 sentences; longest sentence 19 words. Reply rates peak in the 50–100 word band."
           },
           {
             "gate": "G4",
             "label": "Two or more cited, verifiable specifics",
             "passed": true,
-            "detail": "2 cited fact(s), 1 numeric, 1 dated within 18 months."
+            "detail": "2 cited fact(s), 2 numeric, 0 dated within 18 months."
           },
           {
             "gate": "G5",
@@ -897,7 +1551,7 @@
             "gate": "G6",
             "label": "Plain language",
             "passed": true,
-            "detail": "Fernández-Huerta (higher is easier): 62.4. Reads plainly."
+            "detail": "Fernández-Huerta (higher is easier): 77.9. Reads plainly."
           },
           {
             "gate": "G7",
@@ -909,13 +1563,13 @@
             "gate": "G8",
             "label": "Every number traces to a supplied fact",
             "passed": true,
-            "detail": "All 3 numeral(s) in the draft trace to a fact the writer was given."
+            "detail": "All 5 numeral(s) in the draft trace to a fact the writer was given."
           },
           {
             "gate": "G9",
             "label": "Account name spelled correctly",
             "passed": true,
-            "detail": "\"Codelco\" spelled correctly."
+            "detail": "Account name not used in the body."
           },
           {
             "gate": "G10",
@@ -926,13 +1580,15 @@
           {
             "gate": "G11",
             "label": "Names a peer operator, and attributes every figure to whoever reported it",
-            "passed": true,
-            "detail": "Names Anglo American as a peer, and any quoted figure sits with the customer who reported it."
+            "passed": false,
+            "detail": "Does not name Anglo American. A peer already operating this way is the strongest line available, and the brief asks for it."
           }
         ],
-        "score": 100,
-        "accepted": true,
-        "rejectionReasons": [],
+        "score": 86,
+        "accepted": false,
+        "rejectionReasons": [
+          "G11 Names a peer operator, and attributes every figure to whoever reported it: Does not name Anglo American. A peer already operating this way is the strongest line available, and the brief asks for it."
+        ],
         "model": "openai/gpt-oss-120b"
       }
     ]
@@ -1024,18 +1680,18 @@
       "facts": [
         {
           "text": "Vale's own 20-F for period ending 2026-03-27 names contractor safety incidents and contractor work stoppages among its risks to production",
-          "evidenceId": "ev-vale-filing-105",
+          "evidenceId": "ev-vale-filing-112",
           "isNumeric": false,
           "dateIso": "2026-03-27"
         },
         {
           "text": "Vale operates 36 mapped sites totalling 82 km², the largest being an unnamed pit at 16.8 km²",
-          "evidenceId": "ev-vale-geo-91",
+          "evidenceId": "ev-vale-geo-98",
           "isNumeric": true
         },
         {
           "text": "Vale's annual filing already discusses autonomous",
-          "evidenceId": "ev-vale-filing-105",
+          "evidenceId": "ev-vale-filing-112",
           "isNumeric": false,
           "dateIso": "2026-03-27"
         }
@@ -1063,18 +1719,18 @@
       "facts": [
         {
           "text": "Vale's own 20-F for period ending 2026-03-27 names contractor safety incidents and contractor work stoppages among its risks to production",
-          "evidenceId": "ev-vale-filing-105",
+          "evidenceId": "ev-vale-filing-112",
           "isNumeric": false,
           "dateIso": "2026-03-27"
         },
         {
           "text": "Vale operates 36 mapped sites totalling 82 km², the largest being an unnamed pit at 16.8 km²",
-          "evidenceId": "ev-vale-geo-91",
+          "evidenceId": "ev-vale-geo-98",
           "isNumeric": true
         },
         {
           "text": "Vale's annual filing already discusses autonomous",
-          "evidenceId": "ev-vale-filing-105",
+          "evidenceId": "ev-vale-filing-112",
           "isNumeric": false,
           "dateIso": "2026-03-27"
         }
@@ -1094,6 +1750,72 @@
         "Deployment sizing rests on stated engineering assumptions, so its figures are kept out of a first touch and reserved for the discovery call."
       ]
     },
+    "contact-albemarle-werner-schalchli-dendal": {
+      "contactId": "contact-albemarle-werner-schalchli-dendal",
+      "language": "es-CL",
+      "whyThisPerson": "Werner Schälchli Dendal holds Gerente de Mantenimiento e, which makes them accountable for exactly the exposure this removes.",
+      "angle": "Contracted inspection crews are the cost and the risk; autonomous coverage removes the exposure without reducing the inspection frequency.",
+      "facts": [
+        {
+          "text": "Albemarle (Salar de Atacama) operates 27 mapped sites totalling 43 km², the largest being Planta Salar Atacama Albemarle at 40.4 km²",
+          "evidenceId": "ev-albemarle-geo-79",
+          "isNumeric": true
+        },
+        {
+          "text": "a second measured operation, way/354932476, covers 0.5 km², and the boundary a crew has to walk across all of these sites totals 60 km",
+          "evidenceId": "ev-albemarle-geo-80",
+          "isNumeric": true
+        }
+      ],
+      "proofPoint": {
+        "customer": "SQM (with Adentu)",
+        "claim": "678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year",
+        "sourceUrl": "https://www.flytbase.com/case-studies/sqm-678-km2-mine-autonomous-inspection-adentu-and-flytbase"
+      },
+      "peerCustomer": {
+        "name": "Anglo American",
+        "whyPeer": "a large-scale metals operator running autonomous inspection with FlytBase, in the same commodity family and the same regulatory culture"
+      },
+      "ask": "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it, never for a meeting, and never propose a time.",
+      "withheld": [
+        "DS 132/2004 Reglamento de Seguridad Minera is the instrument that forces inspection cadence here, but its text was not fetched in this run, so it is withheld from the copy. A wrong decree number is worse than none.",
+        "No primary filing was available for this account, so no claim is made about its contractor dependency.",
+        "Deployment sizing rests on stated engineering assumptions, so its figures are kept out of a first touch and reserved for the discovery call."
+      ]
+    },
+    "contact-albemarle-ivor-donoso": {
+      "contactId": "contact-albemarle-ivor-donoso",
+      "language": "es-CL",
+      "whyThisPerson": "Ivor Donoso holds Jefe de Confiabilidad y Mantenibilidad en, which makes them accountable for exactly the exposure this removes.",
+      "angle": "Contracted inspection crews are the cost and the risk; autonomous coverage removes the exposure without reducing the inspection frequency.",
+      "facts": [
+        {
+          "text": "Albemarle (Salar de Atacama) operates 27 mapped sites totalling 43 km², the largest being Planta Salar Atacama Albemarle at 40.4 km²",
+          "evidenceId": "ev-albemarle-geo-79",
+          "isNumeric": true
+        },
+        {
+          "text": "a second measured operation, way/354932476, covers 0.5 km², and the boundary a crew has to walk across all of these sites totals 60 km",
+          "evidenceId": "ev-albemarle-geo-80",
+          "isNumeric": true
+        }
+      ],
+      "proofPoint": {
+        "customer": "SQM (with Adentu)",
+        "claim": "678 km² operation; inspection time cut from days to hours; >95% mission reliability; inspection frequency doubled; iodine extraction gain from 0.5% to 2%; detection time under 90 minutes; USD 70–80k total system investment with ROI in under a year",
+        "sourceUrl": "https://www.flytbase.com/case-studies/sqm-678-km2-mine-autonomous-inspection-adentu-and-flytbase"
+      },
+      "peerCustomer": {
+        "name": "Anglo American",
+        "whyPeer": "a large-scale metals operator running autonomous inspection with FlytBase, in the same commodity family and the same regulatory culture"
+      },
+      "ask": "Offer to send a short written breakdown of how the reference customer changed inspection cadence. Ask only for permission to send it, never for a meeting, and never propose a time.",
+      "withheld": [
+        "DS 132/2004 Reglamento de Seguridad Minera is the instrument that forces inspection cadence here, but its text was not fetched in this run, so it is withheld from the copy. A wrong decree number is worse than none.",
+        "No primary filing was available for this account, so no claim is made about its contractor dependency.",
+        "Deployment sizing rests on stated engineering assumptions, so its figures are kept out of a first touch and reserved for the discovery call."
+      ]
+    },
     "contact-codelco-jorge-gomez-diaz": {
       "contactId": "contact-codelco-jorge-gomez-diaz",
       "language": "es-CL",
@@ -1102,12 +1824,17 @@
       "facts": [
         {
           "text": "Codelco operates 24 mapped sites totalling 177 km², the largest being División Radomiro Tomic at 44.7 km²",
-          "evidenceId": "ev-codelco-geo-27",
+          "evidenceId": "ev-codelco-geo-31",
+          "isNumeric": true
+        },
+        {
+          "text": "a second measured operation, División Chuquicamata, covers 39.2 km², and the boundary a crew has to walk across all of these sites totals 269 km",
+          "evidenceId": "ev-codelco-geo-32",
           "isNumeric": true
         },
         {
           "text": "Vicepresidente de Operaciones (i) is held on an interim basis by Lindor Quiroga B.",
-          "evidenceId": "ev-codelco-person-47",
+          "evidenceId": "ev-codelco-person-51",
           "isNumeric": false,
           "dateIso": "2026-02-13"
         }
@@ -1136,12 +1863,17 @@
       "facts": [
         {
           "text": "Codelco operates 24 mapped sites totalling 177 km², the largest being División Radomiro Tomic at 44.7 km²",
-          "evidenceId": "ev-codelco-geo-27",
+          "evidenceId": "ev-codelco-geo-31",
+          "isNumeric": true
+        },
+        {
+          "text": "a second measured operation, División Chuquicamata, covers 39.2 km², and the boundary a crew has to walk across all of these sites totals 269 km",
+          "evidenceId": "ev-codelco-geo-32",
           "isNumeric": true
         },
         {
           "text": "Vicepresidente de Operaciones (i) is held on an interim basis by Lindor Quiroga B.",
-          "evidenceId": "ev-codelco-person-47",
+          "evidenceId": "ev-codelco-person-51",
           "isNumeric": false,
           "dateIso": "2026-02-13"
         }

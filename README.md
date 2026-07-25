@@ -331,10 +331,45 @@ arithmetically true and the pair said nothing. The full span stays on the page, 
 ## Repository
 
 ```
-src/lib/          geo · icp · sizing · critic · outreach · briefing · llm · agents · verticals
-src/lib/sources/  sec · people · serp
-scripts/harvest   the pipeline; writes a frozen run artifact to ./data
-src/app/          landing · console · account brief · how-it-thinks · generality · evidence
-src/app/api/      run (live SSE) · export (CRM CSV and JSON) · send (consent-first)
-data/             frozen run artifacts, real outputs, original timestamps preserved
+src/lib/            geo · icp · sizing · revenue · critic · outreach · ask · store · verticals
+src/lib/sources/    sec · people · serp · geocode
+scripts/harvest     the pipeline; writes a frozen run artifact to ./data
+scripts/no-em-dash  prebuild guard; fails the build on a prose tell we wrote
+scripts/test-employer-match  prebuild guard; pins the contact attribution check
+src/app/            landing · console · account brief · discover · how-it-thinks · generality · evidence
+src/app/api/        run · discover · discover/deep · ask · export · send
+public/mindmap.html the thought process, standalone and served from the deployment
+supabase/schema.sql one table for persisted discoveries, row level security on
+data/               frozen run artifacts, real outputs, original timestamps preserved
 ```
+
+---
+
+## The bug that appeared three times
+
+Worth recording, because it is the most useful thing this codebase taught me.
+
+A company name shorter than four characters kept getting discarded by length filters. It happened in the terrain
+attribution normaliser, where `length > 3` dropped `SQM` and the anchor account came back with zero measured
+sites. It happened again in the operator merge for live discovery. And it happened a third time in the contact
+attribution check, where names under four characters were skipped before any test ran, so a live search found 28
+genuine profiles and rejected all 28 for "company not named as the employer" when the name it was checking for had
+already been thrown away.
+
+The same test exposed a second fault underneath it. Stripping the legal form from `SQM S.A.` left `sqm .`, because
+the word boundary after the final `a` stops the match before the closing dot, and the remnant poisoned the pattern
+that looks for an employer. Multi-word names survived on their token pairs, which is why the failure looked
+selective for so long.
+
+Both are now asserted in `scripts/test-employer-match.ts`, which runs before every build. It checks the guard in
+both directions: `SQM` must match when it follows an employer preposition, and a person surnamed Vale must still
+not be attributed to Vale S.A. on a surname.
+
+The lesson generalises past this project. A filter that silently drops an input is worse than one that throws,
+because the failure surfaces far from its cause and looks like a data problem rather than a code problem.
+
+---
+
+## Author
+
+**Atharva Awade** · work.atharva2231@gmail.com
