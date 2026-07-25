@@ -40,8 +40,8 @@ hazardous 24/7 extraction sites.
 | Evidence rows, each with a source URL and verbatim snippet | **158** |
 | Named contacts, none invented | **55** |
 | Role targets where no individual could be sourced | **6** |
-| Messages that passed the critic, after 4 were rejected | **3** |
-| Questions the pipeline could not answer, published | **13** |
+| Messages that passed the critic, after 1 was rejected | **5** |
+| Questions the pipeline could not answer, published | **11** |
 | Languages read and written | **en · es-CL · pt-BR** |
 
 Numbers move between runs because the sources are live. These come from the run frozen in
@@ -76,7 +76,7 @@ page we fetched. Where nobody could be found the role is targeted instead, with 
 individual. Derived addresses are labelled inferred and excluded from the sendable column of every export,
 because a guessed address in a CRM becomes a real send later by someone who never saw the warning.
 
-**6 · The critic rejects work.** A deterministic Red Team scores each draft against seven mechanical gates and
+**6 · The critic rejects work.** A deterministic Red Team scores each draft against ten mechanical gates and
 returns it until it passes. Rejected drafts are kept and displayed — simultaneously the proof that a machine
 wrote the copy and the proof that something adversarial checked it before a prospect would have seen it.
 
@@ -230,7 +230,13 @@ whole system, since every claim looked sourced. Fixed three ways: mention counts
 writer entirely (a frequency is a scoring signal, not a claim), reference-customer outcomes are supplied as a
 fixed set of quotable phrasings that may not be restated, and two gates were added — every numeral in a draft
 must trace to a supplied fact, and the account name must be spelled correctly. Acceptance dropped from six
-messages to three, which is the correct trade.
+messages to three before the remaining gate was added, which is the correct trade.
+
+**The writer pasted English into Spanish copy.** Told the reference outcomes were "quotable in these exact
+terms", it obeyed literally and dropped *"inspection time fell from days to hours"* into an otherwise Spanish
+message. A message that switches language mid-sentence is instantly recognisable as machine-assembled. The
+instruction now says to translate the outcome and keep the figure, and a tenth gate rejects unambiguously
+English tokens in a non-English draft.
 
 **Server-side search returns 413 on this tier.** `groq/compound` rejects any request in which it actually
 searches — it reads as a malformed query but is a plan limit. Supplementary search moved to a direct provider;

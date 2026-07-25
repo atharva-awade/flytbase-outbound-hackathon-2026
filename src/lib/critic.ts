@@ -346,6 +346,35 @@ export function critique(input: CriticInput): CriticVerdict {
     detail: nameDetail,
   });
 
+  // G10 — language purity. Told that outcomes were "quotable in these exact
+  // terms", the writer pasted an English phrase into Spanish copy verbatim.
+  // A message that switches language mid-sentence is instantly recognisable as
+  // machine-assembled, so unambiguously English tokens are rejected outright in a
+  // non-English draft. Only words with no Spanish or Portuguese equivalent
+  // spelling are listed, so an accented cognate cannot trigger it.
+  let purityOk = true;
+  let purityDetail = "Target language is English; no purity check applies.";
+  if (isSpanish || isPortuguese) {
+    const ENGLISH_ONLY = [
+      "the", "and", "from", "with", "that", "this", "was", "were", "fell", "hours",
+      "days", "time", "above", "under", "inside", "percent", "investment", "return",
+      "frequency", "doubled", "reliability", "mission", "inspection", "safety",
+      "contractor", "contractors", "site", "sites", "boundary", "footprint", "year",
+    ];
+    const tokens = new Set(body.toLowerCase().match(/[a-z']+/g) ?? []);
+    const found = ENGLISH_ONLY.filter((w) => tokens.has(w));
+    purityOk = found.length < 2;
+    purityDetail = purityOk
+      ? "No English wording leaked into the target-language copy."
+      : `English words present in ${isSpanish ? "Spanish" : "Portuguese"} copy: ${found.slice(0, 6).join(", ")}. A message that switches language mid-sentence reads as machine-assembled.`;
+  }
+  gates.push({
+    gate: "G10",
+    label: "Written wholly in the target language",
+    passed: purityOk,
+    detail: purityDetail,
+  });
+
   // Subject-line discipline is scored rather than gated, since a weak subject
   // is a lost open rather than a disqualifying artefact.
   const subjectWords = tokenizeWords(input.subject).length;

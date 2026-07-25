@@ -1,11 +1,11 @@
 {
   "drafts": {
-    "contact-sqm-ricardo-ramos": [
+    "contact-sqm-pablo-altimiras": [
       {
-        "id": "contact-sqm-ricardo-ramos-t1-i1",
+        "id": "contact-sqm-pablo-altimiras-t1-i1",
         "iteration": 1,
-        "subject": "Riesgos de inspección contratada",
-        "body": "Usted opera 49 sitios mapeados que suman 548 km², siendo el Salar de Atacama 236.5 km².\nUsted reconoce incidentes de seguridad de contratistas y paros de trabajo como riesgos a la producción.\nActualmente, los equipos contratados absorben costos elevados y exposición a esos riesgos operacionales.\nCon Adentu, SQM experimentó que inspection time fell from days to hours.\n¿Podría enviarle un breve resumen escrito detallado de estos resultados?\nAtharva Awade, Business Development, FlytBase",
+        "subject": "Riesgos de contratistas en inspección",
+        "body": "Usted opera 49 sitios mapeados que suman 548 km², siendo el Salar de Atacama 236.5 km². Según su informe 20‑F, los incidentes de seguridad de contratistas y paros son riesgos críticos. Actualmente, sus equipos contratados absorben costos elevados y exposición a esos riesgos operativos. Con Adentu, SQM redujo el tiempo de inspección de días a horas. ¿Podría enviarle un breve resumen escrito de este cambio operacional?\nAtharva Awade, Business Development, FlytBase",
         "language": "es-CL",
         "wordCount": 73,
         "sentenceCount": 6,
@@ -54,7 +54,7 @@
             "gate": "G6",
             "label": "Plain language",
             "passed": true,
-            "detail": "Fernández-Huerta (higher is easier): 64.5. Reads plainly."
+            "detail": "Fernández-Huerta (higher is easier): 70.2. Reads plainly."
           },
           {
             "gate": "G7",
@@ -66,13 +66,19 @@
             "gate": "G8",
             "label": "Every number traces to a supplied fact",
             "passed": true,
-            "detail": "All 3 numeral(s) in the draft trace to a fact the writer was given."
+            "detail": "All 4 numeral(s) in the draft trace to a fact the writer was given."
           },
           {
             "gate": "G9",
             "label": "Account name spelled correctly",
             "passed": true,
             "detail": "Account name not used in the body."
+          },
+          {
+            "gate": "G10",
+            "label": "Written wholly in the target language",
+            "passed": true,
+            "detail": "No English wording leaked into the target-language copy."
           }
         ],
         "score": 100,
@@ -86,9 +92,9 @@
         "id": "contact-sqm-carlos-diaz-ortiz-t1-i1",
         "iteration": 1,
         "subject": "Riesgos de inspección contratada",
-        "body": "Operan 49 sitios mapeados que suman 548 km², siendo el Salar de Atacama 236.5 km².\nSu reporte 20‑F indica incidentes de seguridad de contratistas y paros de trabajo como riesgos.\nLos equipos contratados absorben esos costos y riesgos, limitando la eficiencia operativa.\nSQM con Adentu logró que la frecuencia de inspección se duplicara, manteniendo alta fiabilidad.\n¿Puedo enviarle un breve resumen escrito de estos resultados para su revisión?\nAtharva Awade, Business Development, FlytBase",
+        "body": "Usted opera 49 sitios mapeados que suman 548 km², siendo el Salar de Atacama 236.5 km². Usted también reconoce incidentes de seguridad de contratistas y paros de trabajo como riesgos a la producción. Actualmente, los equipos contratados absorben costos elevados y la exposición al riesgo de esas interrupciones. SQM con Adentu duplicó la frecuencia de inspección y la confiabilidad de misión superó el 95 %. ¿Podría enviarle un breve resumen escrito de cómo logramos ese cambio?\nAtharva Awade, Business Development, FlytBase",
         "language": "es-CL",
-        "wordCount": 75,
+        "wordCount": 81,
         "sentenceCount": 6,
         "citedFacts": [
           {
@@ -117,7 +123,7 @@
             "gate": "G3",
             "label": "Opener length 55–95 words",
             "passed": true,
-            "detail": "75 words across 6 sentences; longest sentence 16 words. Reply rates peak in the 50–100 word band."
+            "detail": "81 words across 6 sentences; longest sentence 17 words. Reply rates peak in the 50–100 word band."
           },
           {
             "gate": "G4",
@@ -135,7 +141,7 @@
             "gate": "G6",
             "label": "Plain language",
             "passed": true,
-            "detail": "Fernández-Huerta (higher is easier): 65.9. Reads plainly."
+            "detail": "Fernández-Huerta (higher is easier): 69.7. Reads plainly."
           },
           {
             "gate": "G7",
@@ -154,6 +160,12 @@
             "label": "Account name spelled correctly",
             "passed": true,
             "detail": "Account name not used in the body."
+          },
+          {
+            "gate": "G10",
+            "label": "Written wholly in the target language",
+            "passed": true,
+            "detail": "No English wording leaked into the target-language copy."
           }
         ],
         "score": 100,
@@ -166,10 +178,10 @@
       {
         "id": "contact-vale-henrique-candian-t1-i1",
         "iteration": 1,
-        "subject": "Riscos de inspeção contratada",
-        "body": "Você gerencia 36 sites mapeados que totalizam 82 km² de operação diariamente.\nAlém disso, seu relatório 20‑F indica incidentes de segurança de contratados e paralisações como riscos à produção.\nEsses riscos fazem com que equipes contratadas absorvam custos elevados e exposição significativa.\nA SQM, com Adentu, relatou que a frequência de inspeção dobrou após a adoção.\nPosso enviar um resumo escrito detalhado para você sobre esses resultados?\nAtharva Awade, Business Development, FlytBase",
+        "subject": "Risco e custo de inspeções",
+        "body": "A Vale opera 36 sites mapeados totalizando 82 km², incluindo o maior poço de 16,8 km². Seu relatório 20‑F destaca incidentes de segurança de contratados e paralisações como riscos à produção. Essas equipes contratadas absorvem custos elevados e expõem a operação a interrupções frequentes. Na SQM, o tempo de inspeção caiu de dias para horas significativamente. Posso enviar um resumo escrito sobre como essa mudança de cadência foi alcançada?\nAtharva Awade, Business Development, FlytBase",
         "language": "pt-BR",
-        "wordCount": 73,
+        "wordCount": 76,
         "sentenceCount": 6,
         "citedFacts": [
           {
@@ -198,7 +210,7 @@
             "gate": "G3",
             "label": "Opener length 55–95 words",
             "passed": true,
-            "detail": "73 words across 6 sentences; longest sentence 18 words. Reply rates peak in the 50–100 word band."
+            "detail": "76 words across 6 sentences; longest sentence 17 words. Reply rates peak in the 50–100 word band."
           },
           {
             "gate": "G4",
@@ -215,42 +227,48 @@
           {
             "gate": "G6",
             "label": "Plain language",
-            "passed": false,
-            "detail": "Fernández-Huerta (higher is easier): 57.1. Too dense for a message that gets read between shifts."
+            "passed": true,
+            "detail": "Fernández-Huerta (higher is easier): 64.6. Reads plainly."
           },
           {
             "gate": "G7",
             "label": "Reader-centred and signed",
-            "passed": true,
-            "detail": "Second-person to first-person ratio 3.0:1, signature present."
+            "passed": false,
+            "detail": "Second-person to first-person ratio 1.0:1, signature present."
           },
           {
             "gate": "G8",
             "label": "Every number traces to a supplied fact",
             "passed": true,
-            "detail": "All 3 numeral(s) in the draft trace to a fact the writer was given."
+            "detail": "All 4 numeral(s) in the draft trace to a fact the writer was given."
           },
           {
             "gate": "G9",
             "label": "Account name spelled correctly",
             "passed": true,
             "detail": "Account name not used in the body."
+          },
+          {
+            "gate": "G10",
+            "label": "Written wholly in the target language",
+            "passed": true,
+            "detail": "No English wording leaked into the target-language copy."
           }
         ],
         "score": 86,
         "accepted": false,
         "rejectionReasons": [
-          "G6 Plain language: Fernández-Huerta (higher is easier): 57.1. Too dense for a message that gets read between shifts."
+          "G7 Reader-centred and signed: Second-person to first-person ratio 1.0:1, signature present."
         ],
         "model": "openai/gpt-oss-120b"
       },
       {
         "id": "contact-vale-henrique-candian-t1-i2",
         "iteration": 2,
-        "subject": "Riscos nas inspeções de manutenção",
-        "body": "Vocês operam 36 sites mapeados que totalizam 82 km², com a maior cava de 16.8 km². O relatório 20‑F indica incidentes de segurança de contratados e paralisações como riscos à produção. Essas paralisações obrigam suas equipes internas a absorver custos e riscos das inspeções. A SQM, com a Adentu, viu a frequência de inspeção dobrar significativamente. Posso enviar um resumo escrito sobre como essa mudança foi implementada?\nAtharva Awade, Business Development, FlytBase",
+        "subject": "Riscos de inspeção contratada",
+        "body": "Você gerencia 36 sites mapeados, totalizando 82 km², incluindo a maior cava de 16,8 km².\nSeu relatório 20‑F destaca incidentes de segurança de contratados e paralisações como riscos à produção.\nEsses riscos forçam suas equipes contratadas a absorver custos elevados e exposição constante.\nA SQM reduziu o tempo de inspeção de dias para horas, mantendo confiabilidade acima de 95%.\nPosso enviar um resumo escrito sobre como essa mudança duplicou a frequência de inspeções?\nAtharva Awade, Business Development, FlytBase",
         "language": "pt-BR",
-        "wordCount": 74,
+        "wordCount": 80,
         "sentenceCount": 6,
         "citedFacts": [
           {
@@ -260,6 +278,180 @@
           {
             "text": "Vale operates 36 mapped sites totalling 82 km², the largest being an unnamed pit at 16.8 km²",
             "evidenceId": "ev-vale-geo-91"
+          }
+        ],
+        "gates": [
+          {
+            "gate": "G1",
+            "label": "No placeholder tokens",
+            "passed": true,
+            "detail": "No merge fields, brackets or TBD markers present."
+          },
+          {
+            "gate": "G2",
+            "label": "No template or model-tell phrasing",
+            "passed": true,
+            "detail": "Clean of known template openers and model vocabulary."
+          },
+          {
+            "gate": "G3",
+            "label": "Opener length 55–95 words",
+            "passed": true,
+            "detail": "80 words across 6 sentences; longest sentence 16 words. Reply rates peak in the 50–100 word band."
+          },
+          {
+            "gate": "G4",
+            "label": "Two or more cited, verifiable specifics",
+            "passed": true,
+            "detail": "2 cited fact(s), 1 numeric, 1 dated within 18 months."
+          },
+          {
+            "gate": "G5",
+            "label": "Single interest-based ask, no meeting request",
+            "passed": true,
+            "detail": "One interest-based ask, no links, no calendar request."
+          },
+          {
+            "gate": "G6",
+            "label": "Plain language",
+            "passed": true,
+            "detail": "Fernández-Huerta (higher is easier): 66.4. Reads plainly."
+          },
+          {
+            "gate": "G7",
+            "label": "Reader-centred and signed",
+            "passed": true,
+            "detail": "Second-person to first-person ratio 2.0:1, signature present."
+          },
+          {
+            "gate": "G8",
+            "label": "Every number traces to a supplied fact",
+            "passed": true,
+            "detail": "All 5 numeral(s) in the draft trace to a fact the writer was given."
+          },
+          {
+            "gate": "G9",
+            "label": "Account name spelled correctly",
+            "passed": true,
+            "detail": "Account name not used in the body."
+          },
+          {
+            "gate": "G10",
+            "label": "Written wholly in the target language",
+            "passed": true,
+            "detail": "No English wording leaked into the target-language copy."
+          }
+        ],
+        "score": 100,
+        "accepted": true,
+        "rejectionReasons": [],
+        "model": "openai/gpt-oss-120b"
+      }
+    ],
+    "contact-vale-marlon-reis": [
+      {
+        "id": "contact-vale-marlon-reis-t1-i1",
+        "iteration": 1,
+        "subject": "Riscos de inspeções contratadas",
+        "body": "Vocês operam 36 sites mapeados totalizando 82 km², sendo o maior um poço de 16,8 km². Sabemos que incidentes de segurança de contratados e paralisações de trabalho são riscos críticos à produção. Essas equipes contratadas absorvem custos elevados e expõem sua operação a interrupções frequentes. A SQM, com a Adentu, dobrou a frequência de inspeções mantendo confiabilidade acima de 95%. Posso enviar um resumo escrito sobre como essa mudança foi implementada?\nAtharva Awade, Business Development, FlytBase",
+        "language": "pt-BR",
+        "wordCount": 77,
+        "sentenceCount": 6,
+        "citedFacts": [
+          {
+            "text": "Vale's own 20-F for period ending 2026-03-27 names contractor safety incidents and contractor work stoppages among its risks to production",
+            "evidenceId": "ev-vale-filing-105"
+          },
+          {
+            "text": "Vale operates 36 mapped sites totalling 82 km², the largest being an unnamed pit at 16.8 km²",
+            "evidenceId": "ev-vale-geo-91"
+          }
+        ],
+        "gates": [
+          {
+            "gate": "G1",
+            "label": "No placeholder tokens",
+            "passed": true,
+            "detail": "No merge fields, brackets or TBD markers present."
+          },
+          {
+            "gate": "G2",
+            "label": "No template or model-tell phrasing",
+            "passed": true,
+            "detail": "Clean of known template openers and model vocabulary."
+          },
+          {
+            "gate": "G3",
+            "label": "Opener length 55–95 words",
+            "passed": true,
+            "detail": "77 words across 6 sentences; longest sentence 17 words. Reply rates peak in the 50–100 word band."
+          },
+          {
+            "gate": "G4",
+            "label": "Two or more cited, verifiable specifics",
+            "passed": true,
+            "detail": "2 cited fact(s), 1 numeric, 1 dated within 18 months."
+          },
+          {
+            "gate": "G5",
+            "label": "Single interest-based ask, no meeting request",
+            "passed": true,
+            "detail": "One interest-based ask, no links, no calendar request."
+          },
+          {
+            "gate": "G6",
+            "label": "Plain language",
+            "passed": true,
+            "detail": "Fernández-Huerta (higher is easier): 64.1. Reads plainly."
+          },
+          {
+            "gate": "G7",
+            "label": "Reader-centred and signed",
+            "passed": true,
+            "detail": "Second-person to first-person ratio all second-person:1, signature present."
+          },
+          {
+            "gate": "G8",
+            "label": "Every number traces to a supplied fact",
+            "passed": true,
+            "detail": "All 4 numeral(s) in the draft trace to a fact the writer was given."
+          },
+          {
+            "gate": "G9",
+            "label": "Account name spelled correctly",
+            "passed": true,
+            "detail": "Account name not used in the body."
+          },
+          {
+            "gate": "G10",
+            "label": "Written wholly in the target language",
+            "passed": true,
+            "detail": "No English wording leaked into the target-language copy."
+          }
+        ],
+        "score": 100,
+        "accepted": true,
+        "rejectionReasons": [],
+        "model": "openai/gpt-oss-120b"
+      }
+    ],
+    "contact-codelco-jorge-gomez-diaz": [
+      {
+        "id": "contact-codelco-jorge-gomez-diaz-t1-i1",
+        "iteration": 1,
+        "subject": "Costos y riesgos de inspección",
+        "body": "Usted supervisa 24 sitios mapeados que cubren 177 km², siendo la División Radomiro Tomic 44.7 km². Sabemos que el Vicepresidente de Operaciones está cubierto interinamente por Lindor Quiroga B. Actualmente sus equipos contratados absorben altos costos y riesgos al mantener la frecuencia de inspección. SQM redujo su tiempo de inspección de días a horas y duplicó la frecuencia. ¿Podría enviarle un breve resumen escrito detallado de estos resultados?\nAtharva Awade, Business Development, FlytBase",
+        "language": "es-CL",
+        "wordCount": 74,
+        "sentenceCount": 6,
+        "citedFacts": [
+          {
+            "text": "Codelco operates 24 mapped sites totalling 177 km², the largest being División Radomiro Tomic at 44.7 km²",
+            "evidenceId": "ev-codelco-geo-27"
+          },
+          {
+            "text": "Vicepresidente de Operaciones (i) is held on an interim basis by Lindor Quiroga B.",
+            "evidenceId": "ev-codelco-person-47"
           }
         ],
         "gates": [
@@ -297,7 +489,7 @@
             "gate": "G6",
             "label": "Plain language",
             "passed": true,
-            "detail": "Fernández-Huerta (higher is easier): 67.2. Reads plainly."
+            "detail": "Fernández-Huerta (higher is easier): 64.8. Reads plainly."
           },
           {
             "gate": "G7",
@@ -309,265 +501,24 @@
             "gate": "G8",
             "label": "Every number traces to a supplied fact",
             "passed": true,
-            "detail": "All 4 numeral(s) in the draft trace to a fact the writer was given."
+            "detail": "All 3 numeral(s) in the draft trace to a fact the writer was given."
           },
           {
             "gate": "G9",
             "label": "Account name spelled correctly",
             "passed": true,
             "detail": "Account name not used in the body."
+          },
+          {
+            "gate": "G10",
+            "label": "Written wholly in the target language",
+            "passed": true,
+            "detail": "No English wording leaked into the target-language copy."
           }
         ],
         "score": 100,
         "accepted": true,
         "rejectionReasons": [],
-        "model": "openai/gpt-oss-120b"
-      }
-    ],
-    "contact-codelco-jorge-gomez-diaz": [
-      {
-        "id": "contact-codelco-jorge-gomez-diaz-t1-i1",
-        "iteration": 1,
-        "subject": "Costos y riesgos de inspección",
-        "body": "Usted gestiona 24 sitios mapeados que suman 177 km², siendo el mayor 44.7 km².\nAdemás, el Vicepresidente de Operaciones está cubierto interinamente por Lindor Quiroga B.\nActualmente, los equipos contratados absorben tanto el costo como el riesgo de inspecciones.\nSQM con Adentu logró que la frecuencia de inspección se duplicara significativamente.\n¿Puedo enviarle un breve resumen escrito sobre este cambio detallado?\nAtharva Awade, Business Development, FlytBase",
-        "language": "es-CL",
-        "wordCount": 67,
-        "sentenceCount": 6,
-        "citedFacts": [
-          {
-            "text": "Codelco operates 24 mapped sites totalling 177 km², the largest being División Radomiro Tomic at 44.7 km²",
-            "evidenceId": "ev-codelco-geo-27"
-          },
-          {
-            "text": "Vicepresidente de Operaciones (i) is held on an interim basis by Lindor Quiroga B.",
-            "evidenceId": "ev-codelco-person-47"
-          }
-        ],
-        "gates": [
-          {
-            "gate": "G1",
-            "label": "No placeholder tokens",
-            "passed": true,
-            "detail": "No merge fields, brackets or TBD markers present."
-          },
-          {
-            "gate": "G2",
-            "label": "No template or model-tell phrasing",
-            "passed": true,
-            "detail": "Clean of known template openers and model vocabulary."
-          },
-          {
-            "gate": "G3",
-            "label": "Opener length 55–95 words",
-            "passed": true,
-            "detail": "67 words across 6 sentences; longest sentence 15 words. Reply rates peak in the 50–100 word band."
-          },
-          {
-            "gate": "G4",
-            "label": "Two or more cited, verifiable specifics",
-            "passed": true,
-            "detail": "2 cited fact(s), 1 numeric, 1 dated within 18 months."
-          },
-          {
-            "gate": "G5",
-            "label": "Single interest-based ask, no meeting request",
-            "passed": true,
-            "detail": "One interest-based ask, no links, no calendar request."
-          },
-          {
-            "gate": "G6",
-            "label": "Plain language",
-            "passed": false,
-            "detail": "Fernández-Huerta (higher is easier): 58.0. Too dense for a message that gets read between shifts."
-          },
-          {
-            "gate": "G7",
-            "label": "Reader-centred and signed",
-            "passed": true,
-            "detail": "Second-person to first-person ratio all second-person:1, signature present."
-          },
-          {
-            "gate": "G8",
-            "label": "Every number traces to a supplied fact",
-            "passed": true,
-            "detail": "All 3 numeral(s) in the draft trace to a fact the writer was given."
-          },
-          {
-            "gate": "G9",
-            "label": "Account name spelled correctly",
-            "passed": true,
-            "detail": "Account name not used in the body."
-          }
-        ],
-        "score": 86,
-        "accepted": false,
-        "rejectionReasons": [
-          "G6 Plain language: Fernández-Huerta (higher is easier): 58.0. Too dense for a message that gets read between shifts."
-        ],
-        "model": "openai/gpt-oss-120b"
-      },
-      {
-        "id": "contact-codelco-jorge-gomez-diaz-t1-i2",
-        "iteration": 2,
-        "subject": "Costos y riesgos de inspección",
-        "body": "Usted administra 24 sitios mapeados que suman 177 km², siendo Radomiro Tomic 44.7 km².\nEl Vicepresidente de Operaciones interino, Lindor Quiroga B., supervisa estas áreas diarias actuales.\nSus equipos contratados absorben costos y riesgos al realizar inspecciones manuales frecuentemente en campo.\nSQM con Adentu logró que la frecuencia de inspección se dobló significativamente.\n¿Puedo enviarle un breve resumen escrito sobre este cambio detallado?\nAtharva Awade, Business Development, FlytBase",
-        "language": "es-CL",
-        "wordCount": 69,
-        "sentenceCount": 6,
-        "citedFacts": [
-          {
-            "text": "Codelco operates 24 mapped sites totalling 177 km², the largest being División Radomiro Tomic at 44.7 km²",
-            "evidenceId": "ev-codelco-geo-27"
-          },
-          {
-            "text": "Vicepresidente de Operaciones (i) is held on an interim basis by Lindor Quiroga B.",
-            "evidenceId": "ev-codelco-person-47"
-          }
-        ],
-        "gates": [
-          {
-            "gate": "G1",
-            "label": "No placeholder tokens",
-            "passed": true,
-            "detail": "No merge fields, brackets or TBD markers present."
-          },
-          {
-            "gate": "G2",
-            "label": "No template or model-tell phrasing",
-            "passed": true,
-            "detail": "Clean of known template openers and model vocabulary."
-          },
-          {
-            "gate": "G3",
-            "label": "Opener length 55–95 words",
-            "passed": true,
-            "detail": "69 words across 6 sentences; longest sentence 15 words. Reply rates peak in the 50–100 word band."
-          },
-          {
-            "gate": "G4",
-            "label": "Two or more cited, verifiable specifics",
-            "passed": true,
-            "detail": "2 cited fact(s), 1 numeric, 1 dated within 18 months."
-          },
-          {
-            "gate": "G5",
-            "label": "Single interest-based ask, no meeting request",
-            "passed": true,
-            "detail": "One interest-based ask, no links, no calendar request."
-          },
-          {
-            "gate": "G6",
-            "label": "Plain language",
-            "passed": false,
-            "detail": "Fernández-Huerta (higher is easier): 54.5. Too dense for a message that gets read between shifts."
-          },
-          {
-            "gate": "G7",
-            "label": "Reader-centred and signed",
-            "passed": true,
-            "detail": "Second-person to first-person ratio all second-person:1, signature present."
-          },
-          {
-            "gate": "G8",
-            "label": "Every number traces to a supplied fact",
-            "passed": true,
-            "detail": "All 3 numeral(s) in the draft trace to a fact the writer was given."
-          },
-          {
-            "gate": "G9",
-            "label": "Account name spelled correctly",
-            "passed": true,
-            "detail": "Account name not used in the body."
-          }
-        ],
-        "score": 86,
-        "accepted": false,
-        "rejectionReasons": [
-          "G6 Plain language: Fernández-Huerta (higher is easier): 54.5. Too dense for a message that gets read between shifts."
-        ],
-        "model": "openai/gpt-oss-120b"
-      }
-    ],
-    "contact-codelco-alejandro-sanhueza-diaz": [
-      {
-        "id": "contact-codelco-alejandro-sanhueza-diaz-t1-i1",
-        "iteration": 1,
-        "subject": "Costos y riesgo de inspecciones",
-        "body": "Codelco opera 24 sitios mapeados que suman 177 km², siendo la División Radomiro Tomic 44.7 km². El Vicepresidente de Operaciones (i) está a cargo interinamente de Lindor Quiroga B. Sus equipos de inspección contratados absorben costos elevados y riesgo significativo sin reducir la frecuencia. SQM (con Adentu) logró que la frecuencia de inspección se duplicara significativamente. ¿Podría enviarle un breve resumen escrito detallado de estos resultados?\nAtharva Awade, Business Development, FlytBase",
-        "language": "es-CL",
-        "wordCount": 72,
-        "sentenceCount": 6,
-        "citedFacts": [
-          {
-            "text": "Codelco operates 24 mapped sites totalling 177 km², the largest being División Radomiro Tomic at 44.7 km²",
-            "evidenceId": "ev-codelco-geo-27"
-          },
-          {
-            "text": "Vicepresidente de Operaciones (i) is held on an interim basis by Lindor Quiroga B.",
-            "evidenceId": "ev-codelco-person-47"
-          }
-        ],
-        "gates": [
-          {
-            "gate": "G1",
-            "label": "No placeholder tokens",
-            "passed": true,
-            "detail": "No merge fields, brackets or TBD markers present."
-          },
-          {
-            "gate": "G2",
-            "label": "No template or model-tell phrasing",
-            "passed": true,
-            "detail": "Clean of known template openers and model vocabulary."
-          },
-          {
-            "gate": "G3",
-            "label": "Opener length 55–95 words",
-            "passed": true,
-            "detail": "72 words across 6 sentences; longest sentence 17 words. Reply rates peak in the 50–100 word band."
-          },
-          {
-            "gate": "G4",
-            "label": "Two or more cited, verifiable specifics",
-            "passed": true,
-            "detail": "2 cited fact(s), 1 numeric, 1 dated within 18 months."
-          },
-          {
-            "gate": "G5",
-            "label": "Single interest-based ask, no meeting request",
-            "passed": true,
-            "detail": "One interest-based ask, no links, no calendar request."
-          },
-          {
-            "gate": "G6",
-            "label": "Plain language",
-            "passed": false,
-            "detail": "Fernández-Huerta (higher is easier): 55.8. Too dense for a message that gets read between shifts."
-          },
-          {
-            "gate": "G7",
-            "label": "Reader-centred and signed",
-            "passed": true,
-            "detail": "Second-person to first-person ratio all second-person:1, signature present."
-          },
-          {
-            "gate": "G8",
-            "label": "Every number traces to a supplied fact",
-            "passed": true,
-            "detail": "All 3 numeral(s) in the draft trace to a fact the writer was given."
-          },
-          {
-            "gate": "G9",
-            "label": "Account name spelled correctly",
-            "passed": true,
-            "detail": "\"Codelco\" spelled correctly."
-          }
-        ],
-        "score": 86,
-        "accepted": false,
-        "rejectionReasons": [
-          "G6 Plain language: Fernández-Huerta (higher is easier): 55.8. Too dense for a message that gets read between shifts."
-        ],
         "model": "openai/gpt-oss-120b"
       }
     ]

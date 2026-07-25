@@ -278,7 +278,7 @@ function buildUserPrompt(args: {
       `REFERENCE CUSTOMER you may name: ${strategy.proofPoint.customer}.`,
       `Published outcomes, quotable ONLY in these exact terms:`,
       ...PROOF_QUOTABLES.map((q) => `  - ${q}`),
-      `Use at most ONE of those, worded as given. Do not restate a figure in different terms and do not add detail the list does not contain.`,
+      `Use at most ONE of those. Express it IN THE TARGET LANGUAGE — translate the meaning exactly and keep any figure identical. Do NOT copy the English wording into the message; the list above is in English only because these instructions are.`,
       `Specifically: "frequency doubled" must not become a before-and-after cadence, because the actual figures are not in your FACTS. The investment figure is what the customer SPENT, not what they saved — calling it a saving is false.`,
     );
   }
@@ -502,6 +502,11 @@ function buildRepairHint(verdict: CriticVerdict, strategy: MessageStrategy): str
   if (verdict.gates.some((g) => g.gate === "G8" && !g.passed)) {
     parts.push(
       `Remove every number that was not in the FACTS. Do not convert a described risk into a count of incidents, and do not describe the investment figure as a saving — it is what the customer spent.`,
+    );
+  }
+  if (verdict.gates.some((g) => g.gate === "G10" && !g.passed)) {
+    parts.push(
+      `Rewrite entirely in the target language. Translate the reference outcome rather than copying its English wording.`,
     );
   }
   if (verdict.gates.some((g) => g.gate === "G9" && !g.passed)) {
