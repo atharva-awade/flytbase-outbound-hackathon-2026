@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import GlobeExplorer, { type ExplorerSite } from "@/components/GlobeExplorer";
+import DroneModel from "@/components/DroneModel";
 import { Footer, Nav, Panel, SectionHead, Stat, cx } from "@/components/ui";
 import { fmtDateTime, fmtKm2, loadMeta, loadRun } from "@/lib/run";
 import { VERTICAL_PACKS } from "@/lib/verticals";
@@ -76,6 +77,15 @@ export default async function Home() {
 
       {/* ── Hero ───────────────────────────────────────────────────── */}
       <main className="wash grain relative overflow-hidden">
+        {/* The one decorative element in the whole application, and it earns its
+            place: the pitch is autonomous inspection of hazardous ground, so the
+            page shows the thing that does the inspecting. Absolutely positioned so
+            it cannot affect the layout, and the component removes itself entirely
+            on a small screen, a metered connection, or reduced-motion. */}
+        <div className="pointer-events-none absolute left-5 top-6 z-10 hidden lg:block">
+          <DroneModel size={200} />
+        </div>
+
         <div className="mx-auto grid max-w-[1340px] items-center gap-10 px-6 pt-16 pb-8 lg:grid-cols-[1.05fr_0.95fr] lg:pt-20">
           <div>
             <p className="t-label">Outbound account &amp; contact generation</p>

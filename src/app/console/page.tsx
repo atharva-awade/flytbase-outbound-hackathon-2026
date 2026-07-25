@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import AskPanel from "@/components/AskPanel";
+import DroneModel from "@/components/DroneModel";
 import { Citations, Footer, Nav, NoRun, Panel, SectionHead, Stat, TierBadge } from "@/components/ui";
 import { fmtDateTime, fmtKm2, loadMeta, loadRun, resolveEvidence } from "@/lib/run";
 import { getPack, PRESET_BRIEFS } from "@/lib/verticals";
@@ -25,7 +26,14 @@ export default async function ConsolePage() {
   return (
     <>
       <Nav current="/console" />
-      <main className="wash grain mx-auto max-w-[1340px] px-6 pt-10">
+      <main className="wash grain relative mx-auto max-w-[1340px] px-6 pt-10">
+        {/* Mirrors the landing page, on the other side. Absolutely positioned so
+            it cannot push the brief around, and it removes itself on a narrow
+            screen where that column is needed for content. */}
+        <div className="pointer-events-none absolute right-2 top-2 z-10 hidden xl:block">
+          <DroneModel size={170} />
+        </div>
+
         {/* ── The brief, shown verbatim ─────────────────────────────── */}
         <div className="flex flex-wrap items-start justify-between gap-6">
           <div className="max-w-2xl">
