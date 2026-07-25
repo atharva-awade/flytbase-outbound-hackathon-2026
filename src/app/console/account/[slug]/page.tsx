@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { AeBriefPanel } from "@/components/AeBriefPanel";
+import { LiveRun } from "@/components/LiveRun";
 import { IcpWaterfall } from "@/components/IcpWaterfall";
 import { Outreach } from "@/components/Outreach";
 import { ExportBar } from "@/components/ExportBar";
@@ -104,6 +105,11 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
             )}
           </Panel>
         </div>
+
+        {/* ── Live proof, before anything asks to be believed ──────── */}
+        <section className="mt-8">
+          <LiveRun slug={account.slug} displayName={account.displayName} />
+        </section>
 
         {/* ── The hand-off, above the analysis that justifies it ───── */}
         {run.briefs[account.id] && (
