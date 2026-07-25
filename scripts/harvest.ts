@@ -52,10 +52,12 @@ import {
 } from "../src/lib/sources/people";
 import { GRADED_BRIEF, getPack, type VerticalPack } from "../src/lib/verticals";
 import { buildCadence, generateEmail, type MessageStrategy } from "../src/lib/outreach";
+import { buildAeBrief } from "../src/lib/briefing";
 import { findPublicProfiles, hasSerpKey } from "../src/lib/sources/serp";
 import { hasKey } from "../src/lib/llm";
 import type {
   Account,
+  AeBrief,
   AgentId,
   CadenceStep,
   EmailDraft,
@@ -1033,6 +1035,23 @@ async function main() {
     cadences[account.id] = buildCadence({ account, contacts, accepted: acceptedByContact });
   }
 
+  // Stage 6 — the account executive hand-off. Deterministic: every question and
+  // objection is derived from this account's own evidence rather than a generic
+  // playbook, so each one carries the source it rests on.
+  const briefs: Record<string, AeBrief> = {};
+  emit("ae_briefer", "start", "Writing the account executive hand-off for every qualified account.");
+  for (const account of ordered) {
+    briefs[account.id] = buildAeBrief({
+      account,
+      pack,
+      evidence,
+      anchorName: brief.referenceAccount,
+    });
+  }
+  emit("ae_briefer", "finish",
+    `Wrote ${Object.keys(briefs).length} hand-off brief(s), each with discovery questions and objection handling tied to that account's own filings and measured ground.`,
+  );
+
   emit("sequence_architect", "finish",
     `Built ${Object.keys(cadences).length} cadence(s); ${accepted} message(s) passed the critic, ${rejected} draft(s) were rejected.`,
   );
@@ -1060,7 +1079,7 @@ async function main() {
     evidence,
     nullResults,
     cadences,
-    briefs: {},
+    briefs,
     trace,
     stats: {
       accountsConsidered: terrain.operatorTotals.size,

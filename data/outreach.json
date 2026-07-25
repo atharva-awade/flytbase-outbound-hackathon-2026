@@ -344,6 +344,144 @@
         "rejectionReasons": [],
         "model": "openai/gpt-oss-120b"
       }
+    ],
+    "contact-codelco-alejandro-sanhueza-diaz": [
+      {
+        "id": "contact-codelco-alejandro-sanhueza-diaz-t1-i1",
+        "iteration": 1,
+        "subject": "Costos y riesgos de inspección",
+        "body": "Codelco opera 24 sitios mapeados que suman 177 km², siendo la División Radomiro Tomic 44.7 km². El Vicepresidente de Operaciones está cubierto temporalmente por Lindor Quiroga B actualmente. Sus equipos contratados absorben costos elevados y riesgos significativos al mantener la frecuencia de inspección. SQM redujo el tiempo de inspección de días a horas, ahorrando más de 70 k USD en inversión. ¿Puedo enviarle un breve resumen escrito detallado de estos resultados?\nAtharva Awade, Business Development, FlytBase",
+        "language": "es-CL",
+        "wordCount": 77,
+        "sentenceCount": 6,
+        "citedFacts": [
+          {
+            "text": "Codelco operates 24 mapped sites totalling 177 km², the largest being División Radomiro Tomic at 44.7 km²",
+            "evidenceId": "ev-codelco-geo-27"
+          },
+          {
+            "text": "Vicepresidente de Operaciones (i) is held on an interim basis by Lindor Quiroga B.",
+            "evidenceId": "ev-codelco-person-47"
+          }
+        ],
+        "gates": [
+          {
+            "gate": "G1",
+            "label": "No placeholder tokens",
+            "passed": true,
+            "detail": "No merge fields, brackets or TBD markers present."
+          },
+          {
+            "gate": "G2",
+            "label": "No template or model-tell phrasing",
+            "passed": true,
+            "detail": "Clean of known template openers and model vocabulary."
+          },
+          {
+            "gate": "G3",
+            "label": "Opener length 55–95 words",
+            "passed": true,
+            "detail": "77 words across 6 sentences; longest sentence 18 words. Reply rates peak in the 50–100 word band."
+          },
+          {
+            "gate": "G4",
+            "label": "Two or more cited, verifiable specifics",
+            "passed": true,
+            "detail": "2 cited fact(s), 1 numeric, 1 dated within 18 months."
+          },
+          {
+            "gate": "G5",
+            "label": "Single interest-based ask, no meeting request",
+            "passed": true,
+            "detail": "One interest-based ask, no links, no calendar request."
+          },
+          {
+            "gate": "G6",
+            "label": "Plain language",
+            "passed": true,
+            "detail": "Fernández-Huerta (higher is easier): 64.1. Reads plainly."
+          },
+          {
+            "gate": "G7",
+            "label": "Reader-centred and signed",
+            "passed": true,
+            "detail": "Second-person to first-person ratio all second-person:1, signature present."
+          }
+        ],
+        "score": 100,
+        "accepted": true,
+        "rejectionReasons": [],
+        "model": "openai/gpt-oss-120b"
+      }
+    ],
+    "contact-codelco-gabriel-mendez-serqueira": [
+      {
+        "id": "contact-codelco-gabriel-mendez-serqueira-t1-i1",
+        "iteration": 1,
+        "subject": "Costos y riesgos de inspección",
+        "body": "Codelgo opera 24 sitios mapeados sumando 177 km², siendo la División Radomiro Tomic 44.7 km². El Vicepresidente de Operaciones está ocupado temporalmente por Lindor Quiroga B actualmente. Sus equipos contratados absorben altos costos y riesgos mientras mantienen la frecuencia de inspección. SQM redujo su tiempo de inspección de días a horas, invirtiendo solo 75 k USD. ¿Puedo enviarle un breve resumen escrito detallado de este caso?\nAtharva Awade, Business Development, FlytBase",
+        "language": "es-CL",
+        "wordCount": 72,
+        "sentenceCount": 6,
+        "citedFacts": [
+          {
+            "text": "Codelco operates 24 mapped sites totalling 177 km², the largest being División Radomiro Tomic at 44.7 km²",
+            "evidenceId": "ev-codelco-geo-27"
+          },
+          {
+            "text": "Vicepresidente de Operaciones (i) is held on an interim basis by Lindor Quiroga B.",
+            "evidenceId": "ev-codelco-person-47"
+          }
+        ],
+        "gates": [
+          {
+            "gate": "G1",
+            "label": "No placeholder tokens",
+            "passed": true,
+            "detail": "No merge fields, brackets or TBD markers present."
+          },
+          {
+            "gate": "G2",
+            "label": "No template or model-tell phrasing",
+            "passed": true,
+            "detail": "Clean of known template openers and model vocabulary."
+          },
+          {
+            "gate": "G3",
+            "label": "Opener length 55–95 words",
+            "passed": true,
+            "detail": "72 words across 6 sentences; longest sentence 16 words. Reply rates peak in the 50–100 word band."
+          },
+          {
+            "gate": "G4",
+            "label": "Two or more cited, verifiable specifics",
+            "passed": true,
+            "detail": "2 cited fact(s), 1 numeric, 1 dated within 18 months."
+          },
+          {
+            "gate": "G5",
+            "label": "Single interest-based ask, no meeting request",
+            "passed": true,
+            "detail": "One interest-based ask, no links, no calendar request."
+          },
+          {
+            "gate": "G6",
+            "label": "Plain language",
+            "passed": true,
+            "detail": "Fernández-Huerta (higher is easier): 64.2. Reads plainly."
+          },
+          {
+            "gate": "G7",
+            "label": "Reader-centred and signed",
+            "passed": true,
+            "detail": "Second-person to first-person ratio all second-person:1, signature present."
+          }
+        ],
+        "score": 100,
+        "accepted": true,
+        "rejectionReasons": [],
+        "model": "openai/gpt-oss-120b"
+      }
     ]
   },
   "strategies": {

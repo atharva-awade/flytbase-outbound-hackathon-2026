@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { AeBriefPanel } from "@/components/AeBriefPanel";
 import { IcpWaterfall } from "@/components/IcpWaterfall";
 import { Outreach } from "@/components/Outreach";
 import { ExportBar } from "@/components/ExportBar";
@@ -103,6 +104,13 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
             )}
           </Panel>
         </div>
+
+        {/* ── The hand-off, above the analysis that justifies it ───── */}
+        {run.briefs[account.id] && (
+          <section className="mt-10">
+            <AeBriefPanel brief={run.briefs[account.id]} account={account} evidenceFor={ev} />
+          </section>
+        )}
 
         {/* ── Terrain ──────────────────────────────────────────────── */}
         <section className="mt-12">
