@@ -2,6 +2,7 @@
 
 import maplibregl, { type Map as MlMap } from "maplibre-gl";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { lockScroll, pushLayer } from "@/lib/overlay";
 
 import type { SiteGeometry } from "@/lib/types";
 import { cx } from "./ui";
@@ -161,14 +162,18 @@ export default function SiteMap({
   // needs an explicit resize when its container changes size.
   useEffect(() => {
     if (!fullscreen) return;
+    const layer = pushLayer();
+    const unlock = lockScroll();
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setFullscreen(false);
+      // Only the topmost layer answers Escape, so one press does not also close
+      // the dialog this may be sitting inside.
+      if (e.key === "Escape" && layer.isTop()) setFullscreen(false);
     };
     window.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
+      unlock();
+      layer.release();
     };
   }, [fullscreen]);
 
@@ -297,17 +302,25 @@ export default function SiteMap({
       }
     }
 
-    // Frame the geometry we actually have.
-    const coords = featureCollection.features.flatMap((f) => f.geometry.coordinates[0]);
+    // Frame the FOCUSED feature rather than every site. Codelco's sites span the
+    // length of Chile, so fitting all of them puts the camera at a 300 km scale
+    // where the pits are specks — technically correct and useless. The rest stay
+    // on the map, one zoom-out away.
+    const focused = focusOsmId
+      ? featureCollection.features.find((f) => f.properties.osmId === focusOsmId)
+      : undefined;
+    const coords = (focused ? [focused] : featureCollection.features).flatMap(
+      (f) => f.geometry.coordinates[0],
+    );
     if (coords.length) {
       m.resize();
       const b = coords.reduce(
-        (acc, [lon, lat]) => acc.extend([lon, lat] as [number, number]),
+        (acc, c) => acc.extend(c as [number, number]),
         new maplibregl.LngLatBounds(coords[0] as [number, number], coords[0] as [number, number]),
       );
-      m.fitBounds(b, { padding: 44, duration: 700, maxZoom: 14 });
+      m.fitBounds(b, { padding: focused ? 90 : 44, duration: 700, maxZoom: focused ? 15 : 11 });
     }
-  }, [ready, featureCollection, onSelect, styleEpoch]);
+  }, [ready, featureCollection, onSelect, styleEpoch, focusOsmId]);
 
   return (
     <div
@@ -335,7 +348,14 @@ export default function SiteMap({
         className="relative min-h-0 flex-1 overflow-hidden rounded-[12px]"
         style={fullscreen ? undefined : { height }}
       >
-        <div ref={holder} className="absolute inset-0" />
+        {/* Positioned inline rather than by utility class. A third-party
+            stylesheet already defeated `absolute` here once and silently
+            collapsed this box to zero height; an inline style cannot be
+            overridden by a stylesheet, so the map's geometry is guaranteed. */}
+        <div
+          ref={holder}
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
+        />
 
         {!ready && !mapError && (
           <div className="pointer-events-none absolute inset-0 bg-[var(--color-panel-sunk)] opacity-70" />

@@ -689,7 +689,10 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
                   <p className="text-[0.88rem] font-[560]">{n.question}</p>
                   <div className="mt-2 space-y-1">
                     {n.attempts.map((a, i) => (
-                      <p key={i} className="t-micro font-[family-name:var(--font-mono)]">
+                      <p
+                        key={i}
+                        className="t-micro min-w-0 font-[family-name:var(--font-mono)] [overflow-wrap:anywhere]"
+                      >
                         {a.source}
                         {a.url ? ` · ${a.url}` : ""} → {a.outcome}
                       </p>

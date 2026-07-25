@@ -65,7 +65,7 @@ export default function MindMap({
             if (agents.length === 0) return null;
             return (
               <div key={desk.id}>
-                <div className="mb-2 flex items-baseline gap-2.5">
+                <div className="mb-2 flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
                   <span
                     className="inline-block h-2.5 w-2.5 shrink-0 rounded-full"
                     style={{ background: desk.accent }}

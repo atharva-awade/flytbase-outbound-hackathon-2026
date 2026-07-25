@@ -118,11 +118,20 @@ export function EvidenceChip({ row, compact }: { row: EvidenceRow; compact?: boo
 }
 
 /** A run of chips for a cited value. Renders nothing when there is no evidence. */
-export function Citations({ rows, max = 4 }: { rows: EvidenceRow[]; max?: number }) {
+export function Citations({
+  rows,
+  max = 4,
+  className,
+}: {
+  rows: EvidenceRow[];
+  max?: number;
+  /** Used where a surrounding row disables pointer events. */
+  className?: string;
+}) {
   if (rows.length === 0) return null;
   const shown = rows.slice(0, max);
   return (
-    <span className="ml-1.5 inline-flex flex-wrap items-center gap-1 align-baseline">
+    <span className={cx("ml-1.5 inline-flex flex-wrap items-center gap-1 align-baseline", className)}>
       {shown.map((r) => (
         <EvidenceChip key={r.id} row={r} compact />
       ))}
@@ -251,18 +260,18 @@ export function Nav({ current }: { current?: string }) {
   ];
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--color-hair)] bg-[rgba(251,251,250,0.86)] backdrop-blur-md">
-      <div className="mx-auto flex h-14 max-w-[1340px] items-center gap-6 px-6">
+      <div className="mx-auto flex h-14 max-w-[1340px] items-center gap-4 px-4 sm:gap-6 sm:px-6">
         <Link href="/" className="flex items-baseline gap-2">
           <span className="text-[1.02rem] font-[600] tracking-[-0.035em]">Aerion</span>
           <span className="t-micro hidden sm:inline">outbound intelligence</span>
         </Link>
-        <nav className="ml-auto flex items-center gap-1">
+        <nav className="no-bar ml-auto flex min-w-0 items-center gap-1 overflow-x-auto">
           {items.map((i) => (
             <Link
               key={i.href}
               href={i.href}
               className={cx(
-                "rounded-[7px] px-2.5 py-1.5 text-[0.82rem] transition-colors",
+                "shrink-0 whitespace-nowrap rounded-[7px] px-2 py-1.5 text-[0.82rem] transition-colors sm:px-2.5",
                 current === i.href
                   ? "bg-[var(--color-panel-sunk)] text-[var(--color-ink)]"
                   : "text-[var(--color-ink-3)] hover:text-[var(--color-ink)]",

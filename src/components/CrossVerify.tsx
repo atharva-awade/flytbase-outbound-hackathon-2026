@@ -47,11 +47,15 @@ export function CrossVerify({ cv }: { cv: CrossVerification }) {
 
                 <div className="mt-2.5 space-y-2">
                   {c.positions.map((p, j) => (
-                    <div key={j} className="flex items-baseline gap-2.5">
+                    // The figure never shrinks, so on a narrow screen the label
+                    // used to be squeezed to a few pixels and its source chip
+                    // spilled off the page. Give the label its own line until
+                    // there is room for both.
+                    <div key={j} className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
                       <span className="tnum shrink-0 font-[family-name:var(--font-mono)] text-[0.86rem] font-[560]">
                         {p.value}
                       </span>
-                      <span className="t-micro min-w-0 flex-1">
+                      <span className="t-micro w-full min-w-0 [overflow-wrap:anywhere] sm:w-auto sm:flex-1">
                         {p.label}
                         <a
                           href={p.sourceUrl}

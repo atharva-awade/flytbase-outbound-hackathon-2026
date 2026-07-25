@@ -99,11 +99,14 @@ export default async function Home() {
             )}
           </div>
 
-          <div className="flex flex-col items-center lg:items-end">
+          {/* The globe carries its own legend in normal flow, so the caption is
+              given its own row rather than being absolutely positioned into the
+              same space — which is what made the two collide. */}
+          <div className="flex flex-col items-center gap-1 lg:items-end">
             <GlobeExplorer sites={explorerSites} maptilerKey={process.env.MAPTILER_KEY} />
-            <p className="t-micro mt-3 max-w-sm text-center lg:text-right">
-              {explorerSites.length} measured sites, each a real mapped feature. Hover to hold the rotation,
-              click any site to open its satellite view and figures. Arcs originate at FlytBase in Pune.
+            <p className="t-micro mt-2 max-w-md text-center leading-relaxed lg:text-right">
+              {explorerSites.length} measured sites, each a real mapped feature. Hover holds the rotation ·
+              click a site to open its satellite view and draw its link to Pune.
             </p>
           </div>
         </div>

@@ -2,11 +2,12 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import type { GlobeSite } from "./LiveGlobe";
 import type { SiteGeometry } from "@/lib/types";
 import { ASSET_CLASS_LABEL, ATTRIBUTION_LABEL, fmtKm2 } from "@/lib/format";
+import { lockScroll, pushLayer } from "@/lib/overlay";
 import { cx } from "./ui";
 
 const LiveGlobe = dynamic(() => import("./LiveGlobe"), {
@@ -108,6 +109,30 @@ function SiteDetail({
     return [site.geometry, ...others];
   }, [site]);
 
+  const panel = useRef<HTMLDivElement | null>(null);
+
+  // A modal owes the keyboard three things, none of which were here: Escape
+  // closes it, the page behind it stops scrolling, and focus moves into it and
+  // returns to whatever opened it. Without the first, a keyboard user has no
+  // way out; without the second, the globe scrolls away underneath.
+  useEffect(() => {
+    const opener = document.activeElement as HTMLElement | null;
+    const layer = pushLayer();
+    const unlock = lockScroll();
+    const onKey = (e: KeyboardEvent) => {
+      // Deferred while the map inside this dialog is itself full screen.
+      if (e.key === "Escape" && layer.isTop()) onClose();
+    };
+    document.addEventListener("keydown", onKey);
+    panel.current?.focus();
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      unlock();
+      layer.release();
+      opener?.focus?.();
+    };
+  }, [onClose]);
+
   return (
     <div
       className="fixed inset-0 z-[110] flex items-end justify-center bg-[rgba(20,22,26,0.28)] p-0 backdrop-blur-[2px] sm:items-center sm:p-6"
@@ -117,7 +142,9 @@ function SiteDetail({
       aria-label={`${site.name} detail`}
     >
       <div
-        className="max-h-[92vh] w-full max-w-[1080px] overflow-y-auto rounded-t-[16px] bg-[var(--color-paper)] shadow-[var(--shadow-lift)] sm:rounded-[16px]"
+        ref={panel}
+        tabIndex={-1}
+        className="max-h-[92vh] w-full max-w-[1080px] overflow-y-auto rounded-t-[16px] bg-[var(--color-paper)] shadow-[var(--shadow-lift)] outline-none sm:rounded-[16px]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}

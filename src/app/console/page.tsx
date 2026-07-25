@@ -97,12 +97,21 @@ export default async function ConsolePage() {
               const topSignal = [...a.signals].sort((x, y) => y.urgency - x.urgency)[0];
               const area = a.sizing?.totalAreaKm2 ?? 0;
               return (
-                <Link
+                // The card is a container, not a link. It used to be a <Link>
+                // wrapping the whole body, which put the citation chips' own <a>
+                // inside an <a> — invalid HTML, a hydration error, and a chip
+                // click that also navigated the card. The overlay link below
+                // keeps the whole card clickable while leaving the chips live.
+                <div
                   key={a.id}
-                  href={`/console/account/${a.slug}`}
-                  className="block rounded-[14px] bg-[var(--color-panel)] p-4 shadow-[var(--shadow-panel)] transition-shadow hover:shadow-[var(--shadow-lift)]"
+                  className="group relative rounded-[14px] bg-[var(--color-panel)] p-4 shadow-[var(--shadow-panel)] transition-shadow hover:shadow-[var(--shadow-lift)]"
                 >
-                  <div className="flex flex-wrap items-start justify-between gap-4">
+                  <Link
+                    href={`/console/account/${a.slug}`}
+                    aria-label={`Open the account brief for ${a.displayName}`}
+                    className="absolute inset-0 z-0 rounded-[14px]"
+                  />
+                  <div className="pointer-events-none relative z-10 flex flex-wrap items-start justify-between gap-4">
                     <div className="min-w-[16rem] flex-1">
                       <div className="flex flex-wrap items-center gap-2">
                         <TierBadge tier={a.icp.tier} score={a.icp.total} />
@@ -116,7 +125,11 @@ export default async function ConsolePage() {
                         <p className="t-micro mt-2 max-w-3xl">
                           <span className="chip chip-verified mr-1.5">timing</span>
                           {topSignal.headline}
-                          <Citations rows={resolveEvidence(run, topSignal.evidenceIds)} max={2} />
+                          <Citations
+                            rows={resolveEvidence(run, topSignal.evidenceIds)}
+                            max={2}
+                            className="pointer-events-auto relative z-20"
+                          />
                         </p>
                       )}
                     </div>
@@ -131,7 +144,7 @@ export default async function ConsolePage() {
                       />
                     </div>
                   </div>
-                </Link>
+                </div>
               );
             })}
           </div>

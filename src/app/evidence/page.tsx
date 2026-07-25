@@ -81,7 +81,7 @@ export default async function EvidencePage() {
                         : "bg-[var(--color-panel-sunk)] opacity-60",
                     )}
                   >
-                    <p className="t-micro font-[family-name:var(--font-mono)] opacity-55">
+                    <p className="t-micro font-[family-name:var(--font-mono)] opacity-55 [overflow-wrap:anywhere]">
                       {String(i + 1).padStart(2, "0")}
                     </p>
                     <p className="mt-1 text-[0.8rem] font-[560] leading-tight">

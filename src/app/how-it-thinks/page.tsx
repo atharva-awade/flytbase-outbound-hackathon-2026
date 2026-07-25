@@ -49,7 +49,7 @@ export default async function HowItThinksPage() {
             ].map((step, i, arr) => (
               <div key={step.l} className="flex flex-1 items-center gap-2">
                 <div className="min-w-0 flex-1 rounded-[10px] bg-[var(--color-panel)] px-3 py-2.5 shadow-[var(--shadow-hair)]">
-                  <p className="t-micro font-[family-name:var(--font-mono)] opacity-55">
+                  <p className="t-micro font-[family-name:var(--font-mono)] opacity-55 [overflow-wrap:anywhere]">
                     {String(i + 1).padStart(2, "0")}
                   </p>
                   <p className="mt-0.5 text-[0.82rem] font-[560] leading-tight">{step.l}</p>
